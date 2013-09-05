@@ -6,4 +6,7 @@ activities
 - setup repository, import initial literature, import template source (15min)
 - setup kulemt class and initial document using template (3h)
 
-total: 3h15min
+2013-09-05 (2h30)
+- papers 1, 2 (2h30)
+
+total: 5h45min
