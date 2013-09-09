@@ -1,0 +1,65 @@
+Masterproef 000: Intrusie Detectie in Draadloze Sensornetwerken
+
+Begeleiding:
+Promotoren: Wouter Joosen, Christophe Huygens
+Begeleider: Jef Maerien
+
+Onderzoeksgroep:
+Gedistribueerde Systemen en Netwerken
+
+Context:
+Het "Internet of Things" zit eraan te komen - per hoofd van de wereldbevolking
+1000 CPUs met diverse besturingssystemen, mogelijkheden en eigenaars. Slechts
+enkele mogelijke toepassingen zijn het opvolgen van de logistieke keten, het
+monitoren van de gezondheid van personen en het monitoren van gebouwen, bruggen
+en wegen. De aard van draadloze sensoren en de netwerken die ze vormen is zeer
+ad-hoc en sterk onderhevig aan invloeden van buitenaf. In tegenstelling tot
+klassieke geïnformatiseerde systemen, is bv. de fysieke toegang tot deze
+componenten zeer open. Verder is de informatie die in deze netwerken verzonden
+wordt zeer privacy gevoelig en moet de authenticiteit van de verzamelde
+informatie gewaarborgd kunnen worden.
+
+Doel:
+Sensornetwerken zijn nog meer dan andere geïnformatiseerde systemen gevoelig
+voor intrusies. Deze intrusies kunnen zich zowel fysiek als op softwarevlak
+manifesteren. Wanneer één node in het netwerk gecompromitteerd wordt,
+introduceert dit risico's voor het hele netwerk en dus ook voor de
+doelstellingen van het netwerk op zich. De student zal aan de hand van een
+literatuurstudie een overzicht maken van de risico's waaraan een sensornetwerk
+blootgesteld wordt. Dit gaat verder dan klassieke netwerk intrusie detectie
+systemen (NIDS) en host intrusie detectie systemen (HIDS) en kan zo ver reiken
+als iets wat een groep intrusie detectie systeem (GIDS) zou kunnen genoemd
+worden, waarbij de groep als een gedistribueerd geheel moet kunnen detecteren
+wanneer een subset van de groep gecompromitteerd dreigt te worden. Vertrekkende
+van dit overzicht zal de student antwoorden formuleren hoe deze aanvallen
+kunnen gedetecteerd worden. Op basis van deze cartografie zal de student
+vervolgens een framework ontwerpen en implementeren dat implementatoren van
+draadloze sensornetwerken de mogelijkheid biedt om zich te wapenen tegen
+bepaalde niveau's van potentiële aanvallen van buitenaf.
+
+Mogelijke Onderzoeksvragen:
+- Aan welke vormen van intrusies zijn draadloze sensornetwerken blootgesteld en
+  hoe kunnen deze gedetecteerd worden ?
+- Hoe kan één node in een draadloos sensornetwerk intrusies detecteren ?
+- Hoe kan een draadloos sensornetwerk als een geheel intrusies detecteren ?
+- Hoeveel overhead veroorzaakt dit ?
+
+Uitwerking:
+In deze thesis zal eerst een literatuurstudie gemaakt worden ivm intrusie
+mogelijkheden en mogelijke antwoorden hierop in draadloze sensornetwerken.
+Vervolgens zal de student zich bekend maken met bestaande intrusie detectie
+systemen en evalueren hoe de concepten van deze systemen kunnen toegepast
+kunnen in het kader van draadloze sensornetwerken. De student moet enkele
+interessante use cases zoeken, om de problemen en antwoorden te verantwoorden.
+Aan de hand van deze use cases kan de student vereisten opstellen en deze
+valideren in het kader van draadloze sensornetwerken. Vervolgens zal de student
+een architectuur en framework ontwerpen en implementeren dat kan gebruikt
+worden om sensor netwerken in staat te stellen verschillende niveau's van deze
+problemen te detecteren. Ten slotte moet de student deze architectuur en
+implementatie evalueren en valideren.
+De implementatie zal indien mogelijk zo platform-onafhankelijk gebeuren, met
+een duidelijk onderscheid tussen het detectie systeem en de interface met het
+platform. De eigen implementatie zal voortbouwen op het Contiki
+besturingssysteem. Er dient tevens onderzocht te worden in hoeverre het
+Loosely-coupled Component Infrastructure (LooCI) kan aangewend worden om de
+doelstellingen te realiseren.
