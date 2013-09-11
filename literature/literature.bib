@@ -2,7 +2,7 @@
 %% http://bibdesk.sourceforge.net/
 
 
-%% Created for Christophe VG at 2013-09-10 13:32:27 +0200 
+%% Created for Christophe VG at 2013-09-11 17:21:24 +0200 
 
 
 %% Saved with string encoding Unicode (UTF-8) 
@@ -10,24 +10,89 @@
 
 
 @inproceedings{zhang2000intrusion,
+	Annote = {WSN Issues:
+- open medium
+- dynamic changing topology
+- cooperative algorithms
+- lack of centralized monitoring/mgmt point
+- no clear line of defense
+
+Wireless Links = passive eavesdropping to active interfering
+Nodes can be captured, compromised and hijacked
+
+Ad-hoc network algorithms rely on cooperative participation of all nodes.
+all MAC protocols for wireless ad-hoc networks are vulnerable
+
+decision-making = unanimous promise of an exclusive use of the hannel,...
+
+Integrity validation
+
+Intrusion Detection = capturing audit data and reasoning about the evidence in the data to determine wether the system is under attack
+
+misuse and anomaly
+
+Questions:
+- architecture
+- data sources
+- model of activities to separate anomaly from normalcy
+
+Local detection + information charing -> group conclusion about intrusion
+
+Anomalies
+- changes to routing tables
+- other layers (MAC)
+
+--> focus on routing/network oriented "attacks"
+},
 	Author = {Zhang, Yongguang and Lee, Wenke},
 	Booktitle = {Proceedings of the 6th annual international conference on Mobile computing and networking},
 	Date-Added = {2013-09-10 11:14:37 +0000},
-	Date-Modified = {2013-09-10 11:15:18 +0000},
+	Date-Modified = {2013-09-11 14:34:28 +0000},
 	Keywords = {self},
 	Organization = {ACM},
 	Pages = {275--283},
+	Rating = {2},
+	Read = {1},
 	Title = {Intrusion detection in wireless ad-hoc networks},
 	Year = {2000},
 	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QM0ludHJ1c2lvbiBkZXRlY3Rpb24gaW4gd2lyZWxlc3MgYWQtaG9jIG5ldHdvcmtzLnBkZtIXCxgZV05TLmRhdGFPEQIoAAAAAAIoAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADJeaQ4SCsAAAFNAWQfSW50cnVzaW9uIGRldGVjdGlvbiMxNTc1REFCLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVddq85Uy64AAAAAAAAAAAABAAIAAAkgAAAAAAAAAAAAAAAAAAAACmxpdGVyYXR1cmUAEAAIAADJeZYoAAAAEQAIAADOVK+OAAAAAQAUAU0BZAFNEjwACuguAAh8jQAAl+0AAgBYTWFjaW50b3NoIEhEOlVzZXJzOgB4dG9mOgBXb3Jrc3BhY2U6AHRoZXNpczoAbGl0ZXJhdHVyZToASW50cnVzaW9uIGRldGVjdGlvbiMxNTc1REFCLnBkZgAOAGgAMwBJAG4AdAByAHUAcwBpAG8AbgAgAGQAZQB0AGUAYwB0AGkAbwBuACAAaQBuACAAdwBpAHIAZQBsAGUAcwBzACAAYQBkAC0AaABvAGMAIABuAGUAdAB3AG8AcgBrAHMALgBwAGQAZgAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAFpVc2Vycy94dG9mL1dvcmtzcGFjZS90aGVzaXMvbGl0ZXJhdHVyZS9JbnRydXNpb24gZGV0ZWN0aW9uIGluIHdpcmVsZXNzIGFkLWhvYyBuZXR3b3Jrcy5wZGYAEwABLwAAFQACAAv//wAAgAbSGxwdHlokY2xhc3NuYW1lWCRjbGFzc2VzXU5TTXV0YWJsZURhdGGjHR8gVk5TRGF0YVhOU09iamVjdNIbHCIjXE5TRGljdGlvbmFyeaIiIF8QD05TS2V5ZWRBcmNoaXZlctEmJ1Ryb290gAEACAARABoAIwAtADIANwBAAEYATQBVAGAAZwBqAGwAbgBxAHMAdQB3AIQAjgDEAMkA0QL9Av8DBAMPAxgDJgMqAzEDOgM/A0wDTwNhA2QDaQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANr}}
 
 @article{djenouri2005survey,
+	Annote = {Amorpheus = come and go
+
+attack =
+	internal / external
+	passive / active
+
+misbehavior = unauth behavior of internal node (unintentionally)
+
+defence classes
+	proactive / reactive
+
+1. Routing in MANETS
+	- rushing
+	- modification, impersonation, fabrication
+	- Solutions: auth all phases, define new metrics, secure neighbour detection, random msg forwarding
+2. Data forwarding
+	- eavesdropping, dropping, injection (alteration?)
+	- Solutions: end2end SA, information dispersal, feedback, SMT, admission/monitoring/neighbour verification
+
+3. Misbehavior
+	- MAC, Routing, watchdog
+
+4. Key Mgmt
+	- distributed solution
+
+5. IDS -> Zee/Lang 2000
+},
 	Author = {Djenouri, Djamel and Khelladi, L and Badache, N},
 	Date-Added = {2013-09-10 11:00:29 +0000},
-	Date-Modified = {2013-09-10 11:15:11 +0000},
+	Date-Modified = {2013-09-11 14:59:15 +0000},
 	Journal = {IEEE communications surveys},
 	Keywords = {self},
 	Number = {4},
+	Rating = {2},
+	Read = {1},
 	Title = {A survey of security issues in mobile ad hoc networks},
 	Volume = {7},
 	Year = {2005},
