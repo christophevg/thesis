@@ -27,4 +27,7 @@ activities
 - meeting 1 (30min)
 - research Zigduino + home setup (1h)
 
-total: 18h20min
+2013-09-13 (1h)
+- initial high level concepts (1h)
+
+total: 19h20min
