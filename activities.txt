@@ -25,5 +25,6 @@ activities
 
 2013-09-12 (30min)
 - meeting 1 (30min)
+- research Zigduino + home setup (1h)
 
-total: 17h20min
+total: 18h20min
