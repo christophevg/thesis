@@ -1,0 +1,28 @@
+2013-09-12 12:00 - thesis kick-off
++ Jef Maerien
+
+? R&R
+  -> Jef
+? ideas to start from
+  -> related work (matrix style mogelijk?) schrijven
+     = paper X doet dit wel/niet/moet/goed...
+  -> evaluatie van evaluatie van papers doen
+
+! LooCI
+  -> als plugin FW gebruiken ? wel zo veel mogelijk optioneel houden
+  -> deployment
+  -> message passing kan ook
+  -> 1 oktober: LooCI tutorial -> Sam Michiels
+! deliverables
+  -> 2-week planning
+  -> maandelijks vooruitgangs rapport -> admin -> cc jef
+  -> per semester presentatie
+! zeker duidelijke demo voorzien
+! platform -> Zigduino: thuis zelf, @KUL groter lab
+! 2 wekelijkse afspraak, volgende 26/9
+
+@ TODO
+  - 2-week planning
+  - related work + matrix
+  - thuis platform
+  - concretiseren voorstel goal
