@@ -31,4 +31,22 @@ activities
 - initial high level concepts (1h)
 - setup report structure (2h)
 
-total: 21h20min
+2013-09-14 (1h25)
+- papers 17, 18, 19 (1h25)
+
+2013-09-15 (2h10)
+- papers 20, 21, 22 (2h10)
+
+2013-09-16 (45min)
+- papers 23, 24 (45min)
+
+2013-09-17 (2h20)
+- papers 25, 26 (2h20)
+
+2013-09-18 (30min)
+- paper 27 (30min)
+
+2013-09-19 (45min)
+- draft description of thesis' goal (45min)
+
+total: 29h15
