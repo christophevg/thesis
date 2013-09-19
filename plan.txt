@@ -1,0 +1,64 @@
+week 23/9 + 30/9
+- literatuurstudie: selectie basis papers + gerelateeerd werk
+- schrijven "gerelateerd werk"
+- definitie mogelijke scope
+- meeting 26/9
+
+week 7/10 + 14/10
+- schrijven "gerelateerd werk"
+- definitieve afbakening scope
+- studie Contiki
+- studie LooCI
+- meeting 10/10
+
+week 21/10 + 28/10
+- functionele analyse
+- meeting 24/10
+
+week 4/11 + 11/11
+- technische analyse
+- meeting 7/11
+
+week 18/11 + 25/11
+- definitie + implementatie testen
+- meeting 21/11
+
+week 2/12 + 9/12
+- ontwikkeling
+- meeting 5/12
+
+week 16/12 + 23/12
+- ontwikkeling
+- meeting 19/12
+
+week 30/12 + (6/1)
+- ontwikkeling
+
+week (13/1) + (20/1)
+
+week (27/1) + 3/2
+- finalisatie ontwikkeling
+
+week 10/2 + 17/2
+- testen + verbeteringen
+
+week 24/2 + 3/3
+- creatie demo
+
+week 10/3 + 17/3
+- finalisatie resultaten
+
+week 24/3 + 31/3
+- schrijven
+
+week 7/4 + 14/4
+- schrijven
+
+week 21/4 + 28/4
+- schrijven
+
+week 5/5 + 12/5
+- controle en correcties
+
+week 19/5 + (26/5)
+- finalisatie inlevering

@@ -48,5 +48,6 @@ activities
 
 2013-09-19 (45min)
 - draft description of thesis' goal (45min)
+- highlevel initial 2-week plan (20min)
 
-total: 29h15
+total: 29h35
