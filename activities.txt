@@ -50,4 +50,10 @@ activities
 - draft description of thesis' goal (45min)
 - highlevel initial 2-week plan (20min)
 
-total: 29h35
+2013-09-20 (4h)
+- searching for non-WSN IDS related papers for IDS background/comparison (4h)
+
+2013-09-22 (2h)
+- designing architecture based on DSL, code generation + framework (2h)
+
+total: 35h35
