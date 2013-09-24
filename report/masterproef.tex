@@ -1,15 +1,15 @@
 \documentclass[master=cws,masteroption=gs]{kulemt}
 
 \setup{
-  title={Intrusie detectie in draadloze sensornetwerken},
+  title={Een raamwerk ter ondersteuning van inbraakdetectie in draadloze sensornetwerken},
   author={Christophe Van Ginneken},
-  promotor={Prof.\,dr.\,ir.\ Wouter Joosen\and Prof.\,dr.\,ir.\ Christophe Huyghens},
+  promotor={Prof.\,dr.\,ir.\ Wouter Joosen\and Prof.\,dr.\,ir.\ Christophe Huygens},
   assessor={Ir.\,W. Eetveel\and W. Eetrest},
   assistant={Drs.\,ir.\ Jef Maeri\"en},
   acyear={2013 -- 2014}}
 
 \setup{filingcard,
-  translatedtitle={Intrusion detection in wireless sensor networks},
+  translatedtitle={A framework to support intrusion detection in wireless sensor networks},
   udc=621.3,
   shortabstract={Hier komt een heel bondig abstract van hooguit 500
     woorden. \LaTeX\ commando's mogen hier gebruikt worden. Blanco lijnen
@@ -23,31 +23,34 @@
 % Dit mag verwijderd worden voor de af te drukken versie.
 \usepackage[pdfusetitle,colorlinks,plainpages=false]{hyperref}
 
+% enkele persoonlijke shortcuts
+\newcommand{\TODO}{\textbf{\color{red}TODO}}
+
 \begin{document}
 
-\include{voorwoord}
+%\include{voorwoord}
 
-\tableofcontents*
+%\tableofcontents*
 
-\include{samenvatting}
+%\include{samenvatting}
 
 %\listoffigures
 %\listoftables
-\listoffiguresandtables
+%\listoffiguresandtables
 
-\include{symbolen-afkortingen}
+%\include{symbolen-afkortingen}
 
 \mainmatter
 
 \include{inleiding}
 \include{achtergrond}
-\include{besluit}
+%\include{besluit}
 
-\appendixpage*
-\appendix
-\include{app-A}
+%\appendixpage*
+%\appendix
+%\include{app-A}
 
-\backmatter
+%\backmatter
 
 \bibliographystyle{abbrv}
 \bibliography{referenties}
