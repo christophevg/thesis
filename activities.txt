@@ -62,4 +62,10 @@ activities
 2013-09-25 (1h30min)
 - created conceptual architecture slide (1h30min)
 
-total: 37h45
+2013-09-26 (3h)
+- general administration: invitations readers,... (30min)
+- clean-up conceptual architecture slide (30min)
+- cleaned up literature listing (30min)
+- processed papers 17-27 (1h30min)
+
+total: 40h45
