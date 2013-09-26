@@ -53,10 +53,13 @@ activities
 2013-09-20 (4h)
 - searching for non-WSN IDS related papers for IDS background/comparison (4h)
 
-2013-09-22 (2h)
+2013-09-21 (2h)
 - designing architecture based on DSL, code generation + framework (2h)
+
+2013-09-22 (2h)
+- searching for DSL+codegen-related papers in embedded software (2h)
 
 2013-09-25 (1h30min)
 - created conceptual architecture slide (1h30min)
 
-total: 37h05
+total: 37h45
