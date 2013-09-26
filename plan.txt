@@ -10,6 +10,7 @@ week 7/10 + 14/10
 - studie Contiki
 - studie LooCI
 - meeting 10/10
+- 16/10 presentatie (5min): vereisten + literatuur
 
 week 21/10 + 28/10
 - functionele analyse

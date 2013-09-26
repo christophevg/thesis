@@ -26,3 +26,30 @@
   - related work + matrix
   - thuis platform
   - concretiseren voorstel goal
+
+2013-09-25 14:00
++ Wouter Joosen
+
+! overzicht doelstelling
+! overizcht architectuur
+	- uitwerking ok
+  - focus op beveliging
+
+2013-09-26 15:00 - status update
++ Jef Maerien
+
+! nelson mathijs (Distrinet): PMA
+	- high level lang
+	- byte code
+	-> node
+! cross optimalisatie tussen algo's
+  - per node (of set van) zijn eigen systeem
+  - per node type optimalisatie van detectorset
+! policy-based -> beslissingvormen waarom -> niet zo belangrijk
+!! core : "fw om dat te doen"
+	- wat biedt ge aan in interface
+	- overhead dat dat al meebrengt
+!! demo + overhead
+	- processing
+	- boodschappen
+	- memory
