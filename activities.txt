@@ -56,4 +56,7 @@ activities
 2013-09-22 (2h)
 - designing architecture based on DSL, code generation + framework (2h)
 
-total: 35h35
+2013-09-25 (1h30min)
+- created conceptual architecture slide (1h30min)
+
+total: 37h05
