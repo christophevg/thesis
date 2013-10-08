@@ -5,16 +5,17 @@ week 23/9 + 30/9
 - meeting 26/9
 
 week 7/10 + 14/10
-- schrijven "gerelateerd werk"
-- definitieve afbakening scope
-- studie Contiki
-- studie LooCI
-- meeting 10/10
+- verwerken van papers 28-38
+- schrijven "gerelateerd werk" (1e versie)
+- definitieve afbakening scope (meeting met promotoren)
+- 10/10 meeting met Jef
 - 16/10 presentatie (5min): vereisten + literatuur
 
 week 21/10 + 28/10
+- studie Contiki
+- studie LooCI
 - functionele analyse
-- meeting 24/10
+- 24/10 meeting met Jef
 
 week 4/11 + 11/11
 - technische analyse

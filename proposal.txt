@@ -21,21 +21,21 @@ informatie gewaarborgd kunnen worden.
 
 Doel:
 Sensornetwerken zijn nog meer dan andere geïnformatiseerde systemen gevoelig
-voor intrusies. Deze intrusies kunnen zich zowel fysiek als op softwarevlak
-manifesteren. Wanneer één node in het netwerk gecompromitteerd wordt,
+voor inbraken. Deze inbraken kunnen zich zowel fysiek als op softwarevlak
+manifesteren. Wanneer één knoop in het netwerk gecompromitteerd wordt,
 introduceert dit risico's voor het hele netwerk en dus ook voor de
-doelstellingen van het netwerk op zich. De student zal aan de hand van een
-literatuurstudie een overzicht maken van de risico's waaraan een sensornetwerk
-blootgesteld wordt. Dit gaat verder dan klassieke netwerk intrusie detectie
-systemen (NIDS) en host intrusie detectie systemen (HIDS) en kan zo ver reiken
-als iets wat een groep intrusie detectie systeem (GIDS) zou kunnen genoemd
-worden, waarbij de groep als een gedistribueerd geheel moet kunnen detecteren
-wanneer een subset van de groep gecompromitteerd dreigt te worden. Vertrekkende
-van dit overzicht zal de student antwoorden formuleren hoe deze aanvallen
-kunnen gedetecteerd worden. Op basis van deze cartografie zal de student
-vervolgens een framework ontwerpen en implementeren dat implementatoren van
-draadloze sensornetwerken de mogelijkheid biedt om zich te wapenen tegen
-bepaalde niveau's van potentiële aanvallen van buitenaf.
+doelstellingen van het netwerk op zich. Aan de hand van een literatuurstudie
+wil ik een overzicht maken van de risico's waaraan een sensornetwerk
+blootgesteld wordt. Dit gaat verder dan klassieke netwerk inbraak detectie
+systemen (NIDS) en machine inbraak detectie systemen (HIDS) en kan zo ver
+reiken als iets wat een groep inbraak detectie systeem (GIDS) zou kunnen
+genoemd worden, waarbij de groep als een gedistribueerd geheel moet kunnen
+detecteren wanneer een subset van de groep gecompromitteerd dreigt te worden.
+Vertrekkende van dit overzicht wil ik antwoorden formuleren hoe deze aanvallen
+kunnen gedetecteerd worden. Op basis van deze cartografie zal vervolgens een
+framework ontworpen en geïmplementeerd worden dat ontwikkelaars van draadloze
+sensornetwerken de mogelijkheid biedt om zich te wapenen tegen bepaalde
+niveau's van potentiële aanvallen van buitenaf.
 
 Mogelijke Onderzoeksvragen:
 - Aan welke vormen van intrusies zijn draadloze sensornetwerken blootgesteld en

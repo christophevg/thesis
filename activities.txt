@@ -69,4 +69,7 @@ activities
 - processed papers 17-27 (1h30min)
 - meeting 2 (30min)
 
-total: 41h15
+2013-10-08 (1h)
+- rapportering faculteit (1h)
+
+total: 42h15
