@@ -53,3 +53,18 @@
 	- processing
 	- boodschappen
 	- memory
+
+2013-10-11 12:30 - scope definitie
++ Christophe Huygens
++ Jef Maerien
+
+! voorgestelde scope bevestigd
+  1) aantonen dat de verschillende IDS sondes kunnen beschreven worden ahv
+     een (minimaal) gemeenschappelijke basisset van functies
+  2) aantonen realiseerbaarheid door middel van minimal implementatie
+! software attestation buiten scope houden
+  -> een vertrek-platform beschrijven met vermelding dat deze zaken door
+     ander onderzoek (verwijzen) gerealiseerd kan worden
+! Contiki
+  -> onveilig door design
+     -> als basis-component proberen uit te sluiten ?

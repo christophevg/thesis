@@ -70,6 +70,9 @@ activities
 - meeting 2 (30min)
 
 2013-10-08 (1h)
-- rapportering faculteit (1h)
+- status reporting to faculty (1h)
 
-total: 42h15
+2013-10-11 (30min)
+- meeting 3: scope definition with promotor (30min)
+
+total: 42h45
