@@ -9,6 +9,7 @@ function plot_trust(data_file, image_file)
   
   fh = figure;
   plot([0:size(trusts,1)-1], trusts, plot_colors, 'lineWidth', 4);
+  axis([0 size(trusts,1)-1 0 +1]);
   set(gca, 'ytick', 0:.1:1);  % make sure every 0.1 tick is shown
 
   legend(plot_legend);

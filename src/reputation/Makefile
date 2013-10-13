@@ -2,7 +2,7 @@ SOURCE=paper
 OCTAVE=LC_CTYPE=C /usr/local/bin/octave -q -p $(SOURCE)
 PACKETS=50
 
-all: paper.eps
+all: paper.eps failure.eps
 
 %.mat: %.conf.m %
 	@echo "*** performing simulation for $(word 2,$^)"
@@ -15,6 +15,8 @@ all: paper.eps
 
 mrproper:
 	@rm -f *.eps *.mat
+
+.PHONY: paper failure
 
 .PRECIOUS: %.mat %.eps
 .SECONDARY: %.mat %.eps
