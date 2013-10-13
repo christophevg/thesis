@@ -80,4 +80,7 @@ activities
 2013-10-12 (3h)
 - POC1: algo analysis paper 1 (3h)
 
-total: 47h45
+2013-10-13 (2h)
+- POC1: rewrote scripts and added failing forwarders experiment (2h)
+
+total: 49h45
