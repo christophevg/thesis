@@ -2,15 +2,16 @@ SOURCE=paper
 OCTAVE=LC_CTYPE=C /usr/local/bin/octave -q -p $(SOURCE)
 PACKETS=50
 
-all:
-	@make paper.eps SOURCE=paper
-	@make simple.eps SOURCE=simple
+all: paper.eps
 
-%.mat:
-	@$(OCTAVE) --eval "simulate( $(PACKETS), '$@' );"
+%.mat: %.conf.m %
+	@echo "*** performing simulation for $(word 2,$^)"
+	@$(OCTAVE) --eval "source('$<');" simulate_$(word 2,$^).m
 
-%.eps: %.mat
-	@$(OCTAVE) --eval "plot_trust( '$<', '$@' ); " 2> /dev/null
+%.eps: %.mat %.conf.m %
+	@echo "*** plotting trust for $(word 3,$^)"
+	@$(OCTAVE) --eval "source('$(word 2,$^)');" \
+						 --eval "plot_trust( '$<', '$@' );" 2> /dev/null
 
 mrproper:
 	@rm -f *.eps *.mat
