@@ -83,4 +83,7 @@ activities
 2013-10-13 (2h)
 - POC1: rewrote scripts and added failing forwarders experiment (2h)
 
-total: 49h45
+2013-10-14 (4h30)
+- created 5min intro presentation (4h30min)
+
+total: 54h15
