@@ -86,7 +86,8 @@ activities
 2013-10-14 (4h30)
 - created 5min intro presentation (4h30min)
 
-2013-10-20 (1h)
+2013-10-20 (4h30min)
 - POC1: finalized scripts (1h)
+- literature study: paper 1 (3h30min)
 
-total: 54h15
+total: 58h45
