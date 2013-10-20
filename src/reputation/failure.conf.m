@@ -3,9 +3,9 @@
 
 clear all;
 
-global seed    = 123;
-global packets = 50;
+source('common.conf.m');
 
-global plot_legend = ['10% failure'; '30% failure'; '50% failure'; ...
-                      '70% failure'; '90% failure' ];
-global plot_colors = ['-r'; '-b'; '-g'; '--b'; '--r'];
+global plot_legend = ['0% failure'; '5% failure'; '10% failure'; '30% failure'; ...
+                      '0% with 2nd'; '5% with 2nd'; '10% with 2nd'; '30% with 2nd'];
+global plot_colors = ['-r'; '-g'; '-b'; '-m'; ...
+                      '--r'; '--g'; '--b'; '--m' ];

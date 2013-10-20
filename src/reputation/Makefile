@@ -1,6 +1,5 @@
 SOURCE=paper
 OCTAVE=LC_CTYPE=C /usr/local/bin/octave -q -p $(SOURCE)
-PACKETS=50
 
 all: paper.eps failure.eps
 

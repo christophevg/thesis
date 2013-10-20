@@ -2,7 +2,7 @@
 % author: Christophe VG
 
 function [trusts] = simulate(packets, get_observation, with_2nd)
-  packets = packets + 1;     % include 0
+  packets = packets + 1;        % include 0
   trusts  = zeros(1, packets);  % packets x trust
 
   % initial situation

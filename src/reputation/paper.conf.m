@@ -3,7 +3,7 @@
 
 clear all;
 
-global packets = 50;
+source('common.conf.m');
 
 global plot_legend = ['initial trust'; 'cooperative'; 'uncooperative'; '2nd hand'];
 global plot_colors = ['--m'; '-b'; '-g'; '-r'];

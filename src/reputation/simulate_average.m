@@ -3,8 +3,7 @@
 
 function [average] = simulate_average(packets, get_observation, with_2nd)
   global seed;
-  
-  max_iterations = 100;
+  global max_iterations;
 
   trusts = zeros(packets+1, 1);
 

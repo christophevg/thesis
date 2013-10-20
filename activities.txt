@@ -86,4 +86,7 @@ activities
 2013-10-14 (4h30)
 - created 5min intro presentation (4h30min)
 
+2013-10-20 (1h)
+- POC1: finalized scripts (1h)
+
 total: 54h15
