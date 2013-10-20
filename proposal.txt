@@ -44,21 +44,20 @@ Mogelijke Onderzoeksvragen:
 - Hoe kan een draadloos sensornetwerk als een geheel intrusies detecteren ?
 - Hoeveel overhead veroorzaakt dit ?
 
-Uitwerking:
-In deze thesis zal eerst een literatuurstudie gemaakt worden ivm intrusie
-mogelijkheden en mogelijke antwoorden hierop in draadloze sensornetwerken.
-Vervolgens zal de student zich bekend maken met bestaande intrusie detectie
-systemen en evalueren hoe de concepten van deze systemen kunnen toegepast
-kunnen in het kader van draadloze sensornetwerken. De student moet enkele
-interessante use cases zoeken, om de problemen en antwoorden te verantwoorden.
-Aan de hand van deze use cases kan de student vereisten opstellen en deze
-valideren in het kader van draadloze sensornetwerken. Vervolgens zal de student
-een architectuur en framework ontwerpen en implementeren dat kan gebruikt
-worden om sensor netwerken in staat te stellen verschillende niveau's van deze
-problemen te detecteren. Ten slotte moet de student deze architectuur en
-implementatie evalueren en valideren.
-De implementatie zal indien mogelijk zo platform-onafhankelijk gebeuren, met
-een duidelijk onderscheid tussen het detectie systeem en de interface met het
+Uitwerking: In deze thesis zal eerst een literatuurstudie gemaakt worden ivm de
+mogelijkheden tot intrusie in draadloze sensornetwerken alsook ivm mogelijke
+antwoorden hierop. Vervolgens zal de student zich vertrouwd maken met bestaande
+intrusie detectie systemen en evalueren hoe de concepten van deze systemen
+kunnen toegepast worden in het kader van draadloze sensornetwerken. De student
+moet enkele interessante use cases zoeken, om de problemen en antwoorden te
+verantwoorden. Aan de hand van deze use cases kan de student vereisten
+opstellen en deze valideren in het kader van draadloze sensornetwerken.
+Vervolgens zal de student een architectuur en framework ontwerpen en
+implementeren dat kan gebruikt worden om sensor netwerken in staat te stellen
+verschillende niveau's van deze problemen te detecteren. Ten slotte moet de
+student deze architectuur en implementatie evalueren en valideren. De
+implementatie zal zo platform-onafhankelijk mogelijk gebeuren, met een
+duidelijk onderscheid tussen het detectie systeem en de interface met het
 platform. De eigen implementatie zal voortbouwen op het Contiki
 besturingssysteem. Er dient tevens onderzocht te worden in hoeverre het
 Loosely-coupled Component Infrastructure (LooCI) kan aangewend worden om de
