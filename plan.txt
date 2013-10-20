@@ -12,6 +12,8 @@ week 7/10 + 14/10
 - 16/10 presentatie (5min): vereisten + literatuur
 
 week 21/10 + 28/10
++ verwerken van papers 28-38
++ schrijven "gerelateerd werk" (1e versie)
 - studie Contiki
 - studie LooCI
 - functionele analyse
