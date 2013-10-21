@@ -90,4 +90,7 @@ activities
 - POC1: finalized scripts (1h)
 - literature study: paper 1 (3h30min)
 
-total: 58h45
+2013-10-21 (1h30min)
+- LooCI workshop (1h30min)
+
+total: 60h15
