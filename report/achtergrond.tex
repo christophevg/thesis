@@ -198,7 +198,24 @@ doorgestuurde boodschappen niet verloren gaan, maar met opzet lichtjes
 gewijzigd worden. 5\% kan een significante vertekening van metingen van een
 netwerk betekenen en zo de werking van het hele netwerk ondermijnen.
 
-\TODO example of well-crafted malicious behavior
+Figuur \ref{fig:reputation-malicious} gaat slechts een kleine stap verder en
+toont het effect van falende (of malafide) knopen die pas falingen vertonen
+nadat ze het vertrouwen hebben gekregen van een node. We merken op dat nu zelfs
+10\% falingen zeer lang het vertrouwen kunnen behouden.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=.5\linewidth]{./resources/reputation-malicious.eps}
+ \caption{Falende knopen met vertraging van 15 pakketten (100 simulaties)}
+ \label{fig:reputation-malicious}
+\end{figure}
+
+Dit elementaire voorbeeld toont duidelijk aan dat het vaststellen van een
+reputatie op basis van externe observaties een zeer delicaat onderwerp is dat
+zeer gevoelig is voor manipulatie op basis van kennis van de interne
+parameters. Dit laatste is dan weer net \'e\'en van d\'e problemen waar
+draadloze sensornetwerken mee kampen omdat knopen vrij eenvoudig kunnen
+weggenomen, ge\"inspecteerd, gewijzigd en teruggeplaatst worden.
 
 \TODO
 

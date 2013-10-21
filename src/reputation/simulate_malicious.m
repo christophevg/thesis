@@ -1,8 +1,10 @@
-% performs a simulation of failing forwarders
+% performs a simulation of malicious forwarders
 % author: Christophe VG
 
 function [a, b] = get_observation_pct_fail(observation, pct)
-  if rand > pct
+  global wait_for_observations;
+  
+  if ( (observation < wait_for_observations) || (rand > pct) )
     a = 1;
   else
     a = 0;
@@ -22,4 +24,4 @@ trusts(:,6)  = simulate_average(packets, @(o)get_observation_pct_fail(o, .05),  
 trusts(:,7)  = simulate_average(packets, @(o)get_observation_pct_fail(o, .10),  true)';
 trusts(:,8)  = simulate_average(packets, @(o)get_observation_pct_fail(o, .30),  true)';
 
-save( '-binary', 'failure.mat', 'trusts');
+save( '-binary', 'malicious.mat', 'trusts');

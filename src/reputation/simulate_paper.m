@@ -20,8 +20,8 @@ end
 trusts  = zeros(packets+1, 4);
 
 trusts(:,1) = ones(1) / 2;
-trusts(:,2) = simulate(packets, @get_observation_cooperative,   false)';
-trusts(:,3) = simulate(packets, @get_observation_uncooperative, false)';
-trusts(:,4) = simulate(packets, @get_observation_cooperative,   true)';
+trusts(:,2) = simulate(packets, @(o)get_observation_cooperative(),   false)';
+trusts(:,3) = simulate(packets, @(o)get_observation_uncooperative(), false)';
+trusts(:,4) = simulate(packets, @(o)get_observation_cooperative(),   true)';
 
 save( '-binary', 'paper.mat', 'trusts');

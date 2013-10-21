@@ -16,7 +16,7 @@ function [trusts] = simulate(packets, get_observation, with_2nd)
   for packet = 2:packets
     prev_a = a; prev_b = b; prev_ak = ak; prev_bk = bk;
 
-    [obsv_a, obsv_b] = get_observation();
+    [obsv_a, obsv_b] = get_observation(packet);
     
     if with_2nd
       [ak, bk] = update(prev_ak, prev_bk, obsv_a, obsv_b, 0, 0, 0);

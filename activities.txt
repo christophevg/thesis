@@ -90,7 +90,8 @@ activities
 - POC1: finalized scripts (1h)
 - literature study: paper 1 (3h30min)
 
-2013-10-21 (1h30min)
+2013-10-21 (3h)
 - LooCI workshop (1h30min)
+- literature study: paper 1 - added malicious example (1h30min)
 
-total: 60h15
+total: 61h45min
