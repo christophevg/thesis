@@ -1,0 +1,14 @@
+This code was originally created by Matt Mahoney and was retrieved from his
+website (http://www.mattmahoney.net/dc/) on October 23, 2013.
+
+test.c compares the implementation to the readily available implementation by
+the OpenSSL project, to minimally make sure the code works as expected.
+
+$ make
+clang -g -Wall -c sha1.c -o sha1.o
+clang -g -Wall -c test.c -o test.o
+clang -lssl -lcrypto  sha1.o  test.o -Wall -lm -o test
+./test
+2a ae 6c 35 c9 4f cf b4 15 db e9 5f 40 8b 9c e9 1e e8 46 ed 
+2a ae 6c 35 c9 4f cf b4 15 db e9 5f 40 8b 9c e9 1e e8 46 ed 
+RESULT: OK
