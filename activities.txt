@@ -94,4 +94,10 @@ activities
 - LooCI workshop (1h30min)
 - literature study: paper 1 - added malicious example (1h30min)
 
-total: 61h45min
+2013-10-23 (4h)
+- Literature study: paper 2 (4h)
+
+2013-10-24 (5h)
+- Literature study: paper 2 (5h)
+
+total: 70h45min
