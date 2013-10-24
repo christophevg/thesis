@@ -97,7 +97,9 @@ activities
 2013-10-23 (4h)
 - Literature study: paper 2 (4h)
 
-2013-10-24 (5h)
+2013-10-24 (6h)
 - Literature study: paper 2 (5h)
+- meeting 4 (30min)
+- definition of reference to RFCs (30min)
 
-total: 70h45min
+total: 71h45min

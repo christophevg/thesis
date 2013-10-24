@@ -68,3 +68,9 @@
 ! Contiki
   -> onveilig door design
      -> als basis-component proberen uit te sluiten ?
+
+2013-10-24 15:00
++ Jef Maerien
+
+! streven naar referentie architetuur
+  -> 7/11 (volgens plan mogelijk: functioneel)

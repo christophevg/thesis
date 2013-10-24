@@ -334,23 +334,24 @@ optioneel het inroepen van informatie uit de externe kring.
 
 Tijdens de initialisatie fase krijgt elke knoop een unieke sleutel, $K_l$. Aan
 de hand van deze sleutel wordt een \'e\'en-richtingsketting van langte $l$
-gemaakt van sleutels door het toepassen van bv. een SHA1 hashing toe te passen:
-$\{K_0, K_1, \dots K_{l-1}\}$ waarbij $\forall k \in [1..l] : K_{k-1} =
-SHA1(K_k)$. Daarnaast worden ook naburige knopen gezocht tot twee knopen ver en
-wordt sleutel $K_0$ gecommuniceerd aan al deze buren. De volledige
-initialisatie fase wordt verondersteld te gebeuren zonder mogelijkheid tot
-inbraken.
+gemaakt van sleutels door het toepassen van bv. SHA1 \cite{rfc:3174} hashing
+toe te passen: $\{K_0, K_1, \dots K_{l-1}\}$ waarbij $\forall k \in [1..l] :
+K_{k-1} = SHA1(K_k)$. Daarnaast worden ook naburige knopen gezocht tot twee
+knopen ver en wordt sleutel $K_0$ gecommuniceerd aan al deze buren. De
+volledige initialisatie fase wordt verondersteld te gebeuren zonder
+mogelijkheid tot inbraken.
 
 Tijdens de stemming brengen alle knopen een stem uit van de vorm $m_v(s),$ $
-MAC_{K_j}(m_v(s))$. $m_v(s)$ bestaat uit een lijst van knopen die door knoop $s$
-beschouwd worden als mogelijke aanvallers, of uitgedrukt aan de hand van het
-theoretische model: $m_v(s) = D(s)$. De $MAC_{K_j}()$ functie is een zgn.
-\emph{Message Authentication Code} en wordt meestal berekend door het toepassen
-van een \'e\'en-richtings-hashfunctie toe te passen op de boodschap. Typisch
-wordt er aan de boodschap een unieke, wederzijds gekende identificatie
-toegevoegd, zodat de ontvanger van een boodschap deze handtekening ook kan
-berekenen en vergelijken met het origineel. In dit geval wordt $K_j$ gebruikt,
-waarbij $j$ de volgende indexwaarde krijg uit lijst van beschikbare sleutels.
+MAC_{K_j}(m_v(s))$. $m_v(s)$ bestaat uit een lijst van knopen die door knoop
+$s$ beschouwd worden als mogelijke aanvallers, of uitgedrukt aan de hand van
+het theoretische model: $m_v(s) = D(s)$. De $MAC_{K_j}()$ functie is een zgn.
+\emph{Message Authentication Code} \cite{rfc:2104} en wordt meestal berekend
+door het toepassen van een \'e\'en-richtings-hashfunctie toe te passen op de
+boodschap. Typisch wordt er aan de boodschap een unieke, wederzijds gekende
+identificatie toegevoegd, zodat de ontvanger van een boodschap deze
+handtekening ook kan berekenen en vergelijken met het origineel. In dit geval
+wordt $K_j$ gebruikt, waarbij $j$ de volgende indexwaarde krijg uit lijst van
+beschikbare sleutels.
 
 Een dergelijke boodschap kan op ogenblik van verzending door geen enkele andere
 knoop gevalideerd worden. De enige sleutel die zij tot op dat ogenblik kennen
