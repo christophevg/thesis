@@ -1,2 +1,2 @@
-git push github
-git push dnet
+git push github master
+git push dnet master
