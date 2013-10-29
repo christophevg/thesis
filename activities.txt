@@ -102,4 +102,7 @@ activities
 - meeting 4 (30min)
 - definition of reference to RFCs (30min)
 
-total: 71h45min
+2013-10-28 (15min)
+- setup section on architecture (15min)
+
+total: 72h
