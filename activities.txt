@@ -105,4 +105,10 @@ activities
 2013-10-28 (15min)
 - setup section on architecture (15min)
 
-total: 72h
+2013-10-29 (9h)
+- setup development environment: atmega1284p and avr-gdb (9h)
+
+2013-10-31 (5h)
+- experiment: node capture (5h)
+
+total: 86h
