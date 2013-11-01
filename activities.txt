@@ -6,109 +6,107 @@ activities
 - setup repository, import initial literature, import template source (15min)
 - setup kulemt class and initial document using template (3h)
 
-2013-09-05 (2h30)
+2013-09-05 (2h30/5h45)
 - papers 1, 2 (2h30)
 
-2013-09-08 (2h45)
+2013-09-08 (2h45/8h30)
 - papers 3, 4, 5, 6 (2h45)
 
-2013-09-09 (3h20)
+2013-09-09 (3h20/11h50)
 - papers 7-13 (3h20)
 
-2013-09-10 (3h)
+2013-09-10 (3h/14h50)
 - documenting notes on papers 1-13 (1h)
 - paper 14 (45min)
 - initial landscape overview (1h15min)
 
-2013-09-11 (2h)
+2013-09-11 (2h/16h50)
 - papers 15, 16 (2h)
 
-2013-09-12 (30min)
+2013-09-12 (30min/17h20)
 - meeting 1 (30min)
 - research Zigduino + home setup (1h)
 
-2013-09-13 (3h)
+2013-09-13 (3h/20h20)
 - initial high level concepts (1h)
 - setup report structure (2h)
 
-2013-09-14 (1h25)
+2013-09-14 (1h25/21h45)
 - papers 17, 18, 19 (1h25)
 
-2013-09-15 (2h10)
+2013-09-15 (2h10/23h55)
 - papers 20, 21, 22 (2h10)
 
-2013-09-16 (45min)
+2013-09-16 (45min/24h40)
 - papers 23, 24 (45min)
 
-2013-09-17 (2h20)
+2013-09-17 (2h20/27h)
 - papers 25, 26 (2h20)
 
-2013-09-18 (30min)
+2013-09-18 (30min/27h30)
 - paper 27 (30min)
 
-2013-09-19 (45min)
+2013-09-19 (45min/28h15)
 - draft description of thesis' goal (45min)
 - highlevel initial 2-week plan (20min)
 
-2013-09-20 (4h)
+2013-09-20 (4h/32h15)
 - searching for non-WSN IDS related papers for IDS background/comparison (4h)
 
-2013-09-21 (2h)
+2013-09-21 (2h/34h15)
 - designing architecture based on DSL, code generation + framework (2h)
 
-2013-09-22 (2h)
+2013-09-22 (2h/36h15)
 - searching for DSL+codegen-related papers in embedded software (2h)
 
-2013-09-25 (1h30min)
+2013-09-25 (1h30min/37h45)
 - created conceptual architecture slide (1h30min)
 
-2013-09-26 (3h30min)
+2013-09-26 (3h30min/41h15)
 - general administration: invitations readers,... (30min)
 - clean-up conceptual architecture slide (30min)
 - cleaned up literature listing (30min)
 - processed papers 17-27 (1h30min)
 - meeting 2 (30min)
 
-2013-10-08 (1h)
+2013-10-08 (1h/42h15)
 - status reporting to faculty (1h)
 
-2013-10-11 (30min)
+2013-10-11 (30min/42h45)
 - meeting 3: scope definition with promotor (30min)
 - POC1: algo analysis paper 1 (1h30min)
 - found 2 new papers (30min)
 
-2013-10-12 (3h)
+2013-10-12 (3h/45h45)
 - POC1: algo analysis paper 1 (3h)
 
-2013-10-13 (2h)
+2013-10-13 (2h/47h45)
 - POC1: rewrote scripts and added failing forwarders experiment (2h)
 
-2013-10-14 (4h30)
+2013-10-14 (4h30/52h15)
 - created 5min intro presentation (4h30min)
 
-2013-10-20 (4h30min)
+2013-10-20 (4h30min/56h45)
 - POC1: finalized scripts (1h)
 - literature study: paper 1 (3h30min)
 
-2013-10-21 (3h)
+2013-10-21 (3h/59h45)
 - LooCI workshop (1h30min)
 - literature study: paper 1 - added malicious example (1h30min)
 
-2013-10-23 (4h)
+2013-10-23 (4h/63h45)
 - Literature study: paper 2 (4h)
 
-2013-10-24 (6h)
+2013-10-24 (6h/69h45)
 - Literature study: paper 2 (5h)
 - meeting 4 (30min)
 - definition of reference to RFCs (30min)
 
-2013-10-28 (15min)
+2013-10-28 (15min/70h)
 - setup section on architecture (15min)
 
-2013-10-29 (9h)
+2013-10-29 (9h/79h)
 - setup development environment: atmega1284p and avr-gdb (9h)
 
-2013-10-31 (5h)
+2013-10-31 (5h/84h)
 - experiment: node capture (5h)
-
-total: 86h
