@@ -110,3 +110,6 @@ activities
 
 2013-10-31 (5h/84h)
 - experiment: node capture (5h)
+
+2013-11-1 (3h/87h)
+- experiment: node capture (3h)

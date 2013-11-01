@@ -174,3 +174,62 @@ $ hexdump counter15.bin
   \caption{Interpretatie van de gedownloade geheugenplaatsen.}
   \label{lst:node-capture-hexdump}
 \end{listing}
+
+\subsection{Geheugens en geheugenplaatsen}
+
+In de \ttt{gdb} sessie worden expliciete adressen in het geheugen gebruikt. Dit
+was mogelijk mits enige voorkennis i.v.m. de gecompileerde code. De
+\ttt{counter} variabele is een globale variabele en komt daarom terecht in de
+\ttt{.bss} data sectie. Deze sectie heeft standaard een vaste plaats in het
+data geheugen - dat bij de Harvard architectuur gescheiden is van het programma
+geheugen \cite{avr-memory}. Figuur \ref{fig:avr-ram-map} geeft een overzicht
+van de indeling van het data geheugen op een AVR \mcu.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{resources/avr-ram-map.pdf}
+  \caption{Indeling van het data geheugen \cite{avr-malloc}.}
+  \label{fig:avr-ram-map}
+\end{figure}
+
+Zelfs zonder voorkennis over de code kunnen we het data geheugen benaderen. Het
+binaire beeld dat naar de \mcu werd overgebracht, bestond uit de programma code
+in de \ttt{.text} sectie en de \ttt{.data} sectie met de statische gegevens.
+Aangezien de Harvard architectuur programma en data geheugen scheidt, wordt bij
+het uitvoeren van het programma, de \ttt{.data} sectie gekopieerd naar dit
+aparte data geheugen. Daarna wordt de \ttt{.bss} sectie gevuld en start de
+opbouw van de \ttt{heap}.
+
+We kunnen nu twee binaire beelden downloaden van de \mcu: het oorspronkelijk
+ge\"uploade beeld en een kopie van het data geheugen. Dit laatste start op
+adres \ttt{0x0100} met een bijkomende verschuiving van \ttt{0x800000}.
+
+Door het einde van het oorspronkelijke beeld en het begin van het data geheugen
+te vergelijken, kunnen we de \ttt{.data} sectie bepalen, als ook het begin van
+de \ttt{.bss} sectie.
+
+\subsection{Conclusies en gevolgen}
+
+In bovenstaande paragrafen werd aan de hand van een beperkt voorbeeld
+ge\"illustreerd hoe met standaard ontwikkelingsmiddelen, doelbewust het
+geheugen van een werkende \mcu uitgelezen en ge\"interpreteerd kan worden.
+
+Een eenvoudige variabele met een teller is zeker geen doelwit op zich, maar het
+is denkbaar dat in een gelijkaardige globale variabele een encryptie sleutel,
+of andere belangrijke informatie, opgeslagen wordt.
+
+De mogelijkheid om via JTAG en OCD (On-Chip Debugging) het geheugen te
+benaderen moet echter wel toegelaten worden door de instellingen van de \mcu.
+Maar ook deze instellingen kunnen ook door kwaadwilligen aangepast worden, net
+zoals door de rechtmatige eigenaar en ontwikkelaar van de knoop.
+
+Het aanpassen van deze instellingen gaat echter gepaard met het herstarten van
+de \mcu, omdat ze deel uitmaken van de programmatie. Indien de software van een
+knoop dus bij het opstarten een validatie doet van de instellingen van de \mcu
+kan het controleren dat deze instellingen geen kwaadaardige acties toelaten.
+Indien wel, kunnen ze er voor zorgen dat ze geen belangrijke informatie
+ontvangen van het netwerk en opslagen in het data geheugen.
+
+Hieruit blijkt dat een minimaal onderdeel van een inbraak detectie-systeem een
+controle zal zijn van de instellingen van de \mcu, wat onderdeel kan uitmaken
+van een globaal \emph{anomalie-detectie} subsysteem.
