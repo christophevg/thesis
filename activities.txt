@@ -114,5 +114,6 @@ activities
 2013-11-1 (3h/87h)
 - experiment: node capture (3h)
 
-2013-11-3 (1h/88h)
+2013-11-3 (1h30min/88h30min)
 - completed code and automated node capture experiment (1h)
+- cleaned up "achtergrond" chapter (30min)
