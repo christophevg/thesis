@@ -6,8 +6,8 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#include "../avr/avr.h"
-#include "../avr/serial.h"    // wires printf to the USART port
+#include "avr.h"
+#include "serial.h"    // wires printf to the USART port
 
 unsigned int counter = 0;
 

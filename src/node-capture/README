@@ -1,0 +1,27 @@
+node-capture
+
+This directory contains an elementary example showing how easy it is to get data
+from the memory of a running AVR MCU.
+
+Pre-requisites: avarice, avr-gdb, hexdump, diff
+
+Steps to perform:
+
+1. setup a AVR MCU with ISP and JTAG connectors wired.
+   (optionally connect the MCU via a MAX232 and a serial cable to a terminal)
+2. connect (preferably) a JTAGICE mkII to the ISP wiring
+3. issue "make program" (with default parameters MCU=atmega1284p F_CPU=8000000)
+4. connect (preferably) a JTAGICE mkII to the JTAG wiring
+5. issue ./perform-attack.sh
+
+   $ ./perform-attack.sh 
+   *** starting avarice...
+   *** performing memory dump using gdb...
+   *** waiting for second iteration...
+   *** starting avarice...
+   *** performing memory dump using gdb...
+   *** difference between dumps...
+   2c2
+   < 0000010 75 6e 74 65 72 20 3d 20 25 69 0a 00 03 00 00 00
+   ---
+   > 0000010 75 6e 74 65 72 20 3d 20 25 69 0a 00 08 00 00 00
