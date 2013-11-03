@@ -1,0 +1,186 @@
+%!TEX root=masterproef.tex
+\subsection{Reputatie en vertrouwen}
+\label{subsection:reputation}
+
+De probleemstelling dat knopen in het netwerk elkaar niet langer kunnen
+vertrouwen, zette verschillende onderzoekers aan tot het zoeken naar
+oplossingen gebaseerd op reputatie en vertrouwen.
+
+\cite{ganeriwal2008reputation} beschrijft een architectuur gebaseerd op
+observaties door knopen van de acties van andere knopen in het kader van acties
+van zichzelf of derde knopen. Figuur \ref{fig:reputation-cooperation} toont de
+situaties die beschouwd worden: in \ref{fig:reputation-cooperative-node} zal
+een co\"operatieve knoop (C) alle boodschappen die via hem verzonden worden
+door een zendende knoop (Z) effectief doorsturen naar een verder gelegen
+ontvangende knoop (O). De verzender van de boodschap, alsook andere naburige
+knopen (B) kunnen deze actie vaststellen. In
+\ref{fig:reputation-uncooperative-node} daarentegen zal een een
+niet-co\"operatieve knoop (NC) deze boodschappen niet verder versturen of zelfs
+aanpassen.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.49\textwidth}
+\centering
+\[ \entrymodifiers={-=+++[o][F-]}
+ \xymatrix@!=0.75pc {
+  Z \ar[dr] & *{}       & *{} & *{} \\
+  *{}       & C \ar[rr] & *{} & O   \\
+  B         & *{}       & *{} & *{} \\
+ }
+\]
+\caption{Co\"operatieve knoop}
+\label{fig:reputation-cooperative-node}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+\centering
+\[ \entrymodifiers={-=+++[o][F-]}
+ \xymatrix@!=0.75pc {
+  Z \ar[dr] & *{}       & *{} & *{} \\
+  *{}       & NC        & *{} & O   \\
+  B         & *{}       & *{} & *{} \\
+ }
+\]
+\caption{Niet-co\"operatieve knoop}
+\label{fig:reputation-uncooperative-node}
+\end{subfigure}
+\caption{Beschouwde situaties bij al dan niet co\"operatieve knopen.}
+\label{fig:reputation-cooperation}
+\end{figure}
+
+Gegeven knopen $i$ en $j$, met $\alpha_j$, het aantal observaties van acties van
+knoop $j$ dat als co\"operatief werd beschouwd, en $\beta_j$, het aantal niet
+co\"operatieve acties, toont men aan dat de reputatie van knoop $j$ wordt
+weergegeven door een beta distributie van $\alpha_j$ en $\beta_j$:
+
+\begin{equation} \label{eq:reputation-beta}
+R_{ij} \sim Beta(\alpha_j+1, \beta_j+1)
+\end{equation}
+
+Van deze reputatie kan vervolgens een vertrouwen bepaald worden van knoop $i$
+ten opzichte van knoop $j$ als volgt: 
+
+\begin{equation} \label{eq:reputation-trust}
+\begin{array}{rcl}
+T_{ij} & = & E(R_{ij}) \\
+       & = & E(Beta(\alpha_j+1, \beta_j+1)) \\
+       & = & \frac{\alpha_j+1}{\alpha_j+\beta_j+2} \\
+\end{array}
+\end{equation}
+
+$\alpha_j$ en $\beta_j$ evolueren doorheen de tijd. Hierbij dienen enerzijds
+nieuwe observaties binnen afzonderlijke tijdspannes beschouwd te worden, maar
+moet ook een wegingsfactor toegepast worden op de oude waarden om er voor te
+zorgen dat een historisch opgebouwd beeld niet dominant blijft en nieuwe
+wijzigingen in het gedrag overstemt. Gegeven $r$ het aantal co\"operatieve
+observaties in een bepaalde tijdspanne en $s$ het aantal niet-co\"operatieve
+observaties in diezelfde tijdspanne worden de nieuwe waarden voor $\alpha_j$ en
+$\beta_j$ gegeven door:
+
+\begin{equation} \label{eq:reputation-update-direct}
+\begin{array}{rcl}
+\alpha^{new}_j & = & (w_{age} \times \alpha_j) + r \\
+\beta^{new}_j  & = & (w_{age} \times \beta_j) + s \\
+\end{array}
+\end{equation}
+
+Hierbij is $w_{age}$ een factor ($< 1$) die zorgt voor een afname van de
+belangrijkheid van de oudere informatie.
+
+Naast deze eigen directe observaties, kunnen ook indirecte observaties door
+naburige knopen in beschouwing genomen worden. Voor zo'n naburige knoop, $k$,
+zal een knoop $i$ eveneens een vertrouwen $T_{ik}$ kunnen bepalen op basis van
+$\alpha_k$ en $\beta_k$. Knoop $k$ kan vervolgens zijn eigen informatie met
+betrekking tot de reputatie van knoop $j$ kenbaar maken als $\alpha^k_j$ en
+$\beta^k_j$. Knoop $i$ kan vervolgens zijn parameters bijwerken als volgt:
+
+\begin{equation} \label{eq:reputation-update-indirect}
+\begin{array}{rrcl}
+& \alpha^{new}_j & = & \alpha_j + ( w^k_{rep} \times \alpha^k_j ) \\
+& \beta^{new}_j  & = & \beta_j  + ( w^k_{rep} \times \beta^k_j )  \\
+met \\
+& w^k_{rep}      & = & \frac{2 \alpha_k}{(\beta_k+2) (\alpha^k_j+\beta^k_j+2)+2 \alpha_k} \\
+\end{array}
+\end{equation}
+
+De factor $w^k_{rep}$ zorgt er voor dat de opname van indirecte informatie van
+knoop $k$ in verhouding tot zijn reputatie zal gebeuren.
+
+Enkele bijkomende regels beschermen tegen typische problemen gerelateerd aan
+deze aanpak: een knoop accepteert slechts indirecte informatie van een andere,
+indien deze knoop zelf als vertrouwd wordt beschouwd. Hierbij wordt een
+drempelwaarde ($TH_{SHI}$) gehanteerd. Verder wordt enkel positieve informatie
+uitgewisseld, om negatieve be\"invloeding te vermijden. Tot slot wordt tevens
+alleen directe informatie uitgewisseld, om de onafhankelijkheid van de
+informatie te garanderen.
+
+De auteurs vermelden zelf een zeer belangrijk probleem: omdat knopen constant
+moeten luisteren naar de acties van naburige knopen, moeten zij constant actief
+zijn. Dit is een zeer nadelig uitgangspunt voor systemen die typisch trachten
+zuinig om te springen met hun energie.
+
+Maar de architectuur heeft ook inherente problemen en laat kwaadwillige
+partijen toe om - mits kennis van de parameters - net onder de radar te
+opereren. We illustreren dit met de simulatie zoals deze uitgevoerd werd door
+de auteurs.
+
+De evolutie van een volledige co\"operatieve of volledige niet-co\"operatieve
+knoop wordt weergegeven in figuur \ref{fig:reputation-paper}. Een eigenschap
+van het algoritme is dat pas na een tiental (louter positieve) observaties een
+knoop de drempelwaarde van vertrouwen overschrijdt.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{./resources/reputation-paper.eps}
+  \caption{Co\"operatieve en niet-co\"operatieve knopen}
+  \label{fig:reputation-paper}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{./resources/reputation-with-failure.eps}
+  \caption{Falende knopen (100 simulaties)}
+  \label{fig:reputation-with-failure}
+\end{subfigure}
+\caption{Impact van falende knopen op evolutie van vertrouwen.}
+\label{fig:reputation-paper-with-failure}
+\end{figure}
+
+Deze eigenschap kan echter misbruikt worden zoals aangetoond wordt in figuur
+\ref{fig:reputation-with-failure}. Stel dat een knoop $j$ te kampen heeft met
+falende hardware, waardoor 5\% van zijn transmissies verloren gaan en daarom
+ook niet opgemerkt kunnen worden door andere knopen.
+
+We merken op dat deze knoop, zelfs met 5\% niet-co\"operatieve observaties, na
+een twintigtal observaties toch boven de drempelwaarde uitkomt en door de
+beschouwende knoop aanvaard wordt als betrouwbaar.
+
+Vanuit een operationeel standpunt gezien is dit in eerste instantie een
+positief effect. Indien een knoop \emph{slechts} 5\% faalt zal deze toch als
+co\"operatief beschouwd worden en de goede werking van het netwerk niet
+fundamenteel in het gedrang brengen - vanuit een inbraakdetectie oogpunt gezien.
+
+Maar stel dat deze 5\% niet-co\"operatieve acties geen falen zijn en dat de
+doorgestuurde boodschappen niet verloren gaan, maar met opzet lichtjes
+gewijzigd worden. 5\% kan een significante vertekening van metingen van een
+netwerk betekenen en zo de werking van het hele netwerk ondermijnen.
+
+Figuur \ref{fig:reputation-malicious} gaat slechts een kleine stap verder en
+toont het effect van falende (of malafide) knopen die pas falingen vertonen
+nadat ze het vertrouwen hebben gekregen van een knoop. We merken op dat nu zelfs
+10\% falingen zeer lang het vertrouwen kunnen behouden.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=.5\linewidth]{./resources/reputation-malicious.eps}
+ \caption{Falende knopen met vertraging van 15 pakketten (100 simulaties)}
+ \label{fig:reputation-malicious}
+\end{figure}
+
+Dit elementaire voorbeeld toont duidelijk aan dat het vaststellen van een
+reputatie op basis van externe observaties een zeer delicaat onderwerp is dat
+zeer gevoelig is voor manipulatie op basis van kennis van de interne
+parameters. Dit laatste is dan weer net \'e\'en van d\'e problemen waar
+draadloze sensornetwerken mee kampen omdat knopen vrij eenvoudig kunnen
+weggenomen, ge\"inspecteerd, gewijzigd en teruggeplaatst worden.
