@@ -118,3 +118,6 @@ activities
 - completed code and automated node capture experiment (1h)
 - cleaned up "achtergrond" chapter (30min)
 - started work on section on software attestation (30min)
+
+2013-11-4 (2h/91h)
+- continued work on software attestation (2h)

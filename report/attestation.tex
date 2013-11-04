@@ -14,4 +14,39 @@ mogelijk om wijzigingen aan het programma van een knoop in het netwerk vast te
 stellen?}''. Deze vraag wordt onderzocht binnen het domein van software
 attestatie.
 
-\cite{castelluccia2009difficulty}
+\cite{castelluccia2009difficulty} geeft enerzijds een goed overzicht van de
+concepten evenals de mogelijkheden, maar vooral de moeilijkheden en beperkingen
+van software attestatie.
+
+\subsubsection*{Werking}
+
+Alle bestaande vormen van software attestatie maken gebruik van een protocol
+gebaseerd op het challenge response principe. Als men de integriteit van een
+knoop wil vast stellen, zal men aan deze knoop een verzoek sturen om een unieke
+samenvatting te maken van zijn inhoud door middel van een cryptografische
+hashfunctie, een \emph{checksum}.
+
+De vaststeller beschikt zelf over een versie van de inhoud van de knoop en kan
+dezelfde unieke samenvatting berekenen. Door in het initi\"ele verzoek een
+\'e\'enmalig te gebruiken code mee te geven, een zgn. \emph{nonce}, en deze
+deel te laten uitmaken van de inhoud, kunnen verschillende verzoeken telkens
+met een ander, unieke samenvatting beantwoord worden en wordt kan deze
+samenvatting niet op voorhand gekend en berekend worden. Figuur
+\ref{fig:attestation-process} geeft een overzicht van de werking van software
+attestatie en illustreert hoe een wijziging door een aanvaller zich propageert.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{resources/attestation-process.pdf}
+  \caption{De werking van software attestatie: een aanvaller heeft een
+  wijziging kunnen aanbrengen in de programma code op een knoop. Deze wijziging
+  propageert zich in de \emph{checksum} en wordt door de vaststeller opgemerkt.}
+  \label{fig:attestation-process}
+\end{figure}
+
+De inhoud waarvan een samenvatting gemaakt wordt is typisch de programma code
+die op de knoop ge\"installeerd werd. Indien een aanvaller deze code kon
+wijzigen, zou de samenvatting niet langer overeenkomen met die opgesteld door
+de vaststeller en kan deze laatste besluiten om deze gewijzigde code niet te
+vertrouwen en de knoop uit te sluiten.
+
