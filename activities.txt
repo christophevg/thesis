@@ -121,3 +121,6 @@ activities
 
 2013-11-4 (2h/91h)
 - continued work on software attestation (2h)
+
+2013-11-4 (5h/96h)
+- continued work on software attestation (5h)
