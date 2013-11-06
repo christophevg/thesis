@@ -19,3 +19,10 @@
 
 % http://en.wikibooks.org/wiki/LaTeX/Customizing_LaTeX
 \newcommand{\ttt}[1]{\texttt{\justify{#1}}}
+
+% algorithms in ... Dutch ;-)
+\floatname{algorithm}{Algoritme}
+\renewcommand{\algorithmicrequire}{\textbf{Invoer:}}
+\renewcommand{\algorithmicfunction}{\textbf{functie}}
+% custom Let command
+\newcommand*\Let[2]{\State #1 $\gets$ #2}

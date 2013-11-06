@@ -14,10 +14,6 @@ mogelijk om wijzigingen aan het programma van een knoop in het netwerk vast te
 stellen?}''. Deze vraag wordt onderzocht binnen het domein van software
 attestatie.
 
-\cite{castelluccia2009difficulty} geeft enerzijds een goed overzicht van de
-concepten evenals de mogelijkheden, maar vooral de moeilijkheden en beperkingen
-van software attestatie.
-
 \subsubsection*{Werking}
 
 Alle bestaande vormen van software attestatie maken gebruik van een protocol
@@ -50,12 +46,46 @@ wijzigen, zou de samenvatting niet langer overeenkomen met die opgesteld door
 de vaststeller en kan deze laatste besluiten om deze gewijzigde code niet te
 vertrouwen en de knoop uit te sluiten.
 
-\subsubsection*{Aanvalsmogelijkheden}
+\subsubsection*{Implementaties}
 
-Ondanks de mogelijkheden zijn er spijtig genoeg verschillende manieren om deze
-vorm van integriteit-controle te omzeilen.
+In 2004 stelde \cite{seshadri2004swatt} SWATT voor, een attestatie procedure
+die een \emph{checksum} berekent over nagenoeg alle geheugenlocaties, echter
+wel in willekeurige volgorde. Anderzijds houdt SWATT ook rekening houdt met de
+tijd die de attestatie routine op de knoop nodig heeft om de \emph{checksum} te
+berekenen. Indien een aanvaller code zou toevoegen om de werking van de
+attestatie routine te verstoren, zou op te merken zijn in een vertraging.
 
-De eenvoudigste manier om de attestatie code te omzeilen bestaat er in om de
+Met SCUBA in \cite{seshadri2006scuba} en SAKE in \cite{seshadri2008sake} werd
+verder gebouwd op de SWATT techniek met het oog op een beveiligde distributie
+van programma code en het veilig uitwisselen van sleutels. Samen met SCUBA en
+SAKE werd ook \emph{Indisputable Code Execution} of ICE ge\"introduceerd. Daar
+waar SWATT gericht is op inhoudelijke integriteit, voegt ICE hieraan ook de
+garantie van een niet aangetaste uitvoering van programma's aan toe.
+
+ICE realiseert dit door een \emph{checksum} te berekenen over de geheugenregio
+waar de attestatie routine zich bevindt, alsook over de regio waar het uit te
+voeren programma staat en van de staat van de processor. Hierdoor ontstaat er
+een garantie dat de attestatie correct verloopt, dat het uit te voeren
+programma geen onbekende code bevat en dat de omgeving waarin de attestatie en
+het programma uitgevoerd worden gegarandeerd niet aangetast kan worden.
+
+\subsubsection*{Evaluatie}
+
+De beweringen rond SWATT en ICE werden in \cite{castelluccia2009difficulty}
+onder de loep genomen en verschillende manieren om deze vormen van
+integriteits-controle te omzeilen werden voorgesteld. Ondanks het feit dat
+verschillende interessante aspecten van de attestatie technieken werden
+belicht, werden te snel veronderstellingen rond beide implementaties gemaakt en
+werd in \cite{perrig2010refutation} een weerwoord gegeven.
+
+Desalniettemin zijn de ontwijkingstechnieken die voorgesteld werden zeer
+interessante voorbeelden van de mogelijkheden die een aanvaller heeft tegen
+software attestatie. Het feit dat de op het eerste zicht inderdaad valabele
+aanvallen toch nog fouten bevatten, biedt dan weer een ander interessant beeld
+op de kwaliteiten van de voorgestelde technieken. We belichten ze in de
+volgende paragrafen als inspiratiebron.
+
+De fundamentele manier om de attestatie code te omzeilen bestaat er in om de
 opgevraagde geheugenadressen te controleren en indien ze verwijzen naar
 plaatsen waar zich niet-originele code bevindt, deze te herschrijven naar
 adressen waar de originele code zich bevindt.
@@ -69,16 +99,17 @@ genoemd.
 
 Om het probleem van leeg programma geheugen en de bijhorende uitnodiging aan
 het adres van de aanvaller om zich eenvoudig te kunnen verschuilen, aan te
-pakken, stelt o.a. \cite{yang2007distributed} voor om dit geheugen voor dat het
-op een knoop wordt geplaatst, op te vullen met willekeurige waarden. Op deze
-manier heeft de aanvaller geen vrije ruimte om zijn code in te plaatsen.
+pakken, stelelen o.a. \cite{yang2007distributed,seshadri2008sake} voor om dit
+geheugen voor dat het op een knoop wordt geplaatst, op te vullen met
+willekeurige waarden. Op deze manier heeft de aanvaller geen vrije ruimte om
+zijn code in te plaatsen.
 
 Ofschoon deze willekeurige data inderdaad zo kan opgesteld worden dat ze niet
 kan verkleind worden, kan dit niet gegarandeerd worden van de eigenlijke
 programma code. Deze kan typisch wel nog verkleind worden en in die vorm
-opgeslagen worden, waardoor er ruimte vrijkomt voor de code van de aanvaller.
-Op het ogenblik van attestatie kan deze oorspronkelijke code dan, indien nodig
-terug hersteld worden.
+opgeslagen worden, waardoor er mogelijk voldoende ruimte vrijkomt voor de code
+van de aanvaller. Op het ogenblik van attestatie kan deze oorspronkelijke code
+dan, indien nodig terug hersteld worden.
 
 Indien deze eenvoudige technieken toch niet voldoende ruimte zouden bieden, kan
 er nog altijd gekeken worden naar het data geheugen. We merken immers op dat
@@ -86,10 +117,11 @@ nagenoeg alle vormen van attestatie alleen toegepast worden op het programma
 geheugen. Het data geheugen is immers te veranderlijk en kan niet volledig
 gekend zijn door de vaststeller.
 
-Hierdoor wordt dit data geheugen natuurlijk het volgende aandachtspunt voor de
-aanvaller. Ondanks het feit dat ook op een \mcu het data geheugen veelal niet
-kan uitgevoerd worden, blijft het mogelijk om programma code in het data
-geheugen op te slagen en te kopi\"eren naar het programma geheugen.
+Hierdoor wordt dit data geheugen natuurlijk het volgende mogelijke
+aandachtspunt voor de aanvaller. Ondanks het feit dat ook op een \mcu het data
+geheugen veelal niet kan uitgevoerd worden, blijft het mogelijk om programma
+code in het data geheugen op te slagen en te kopi\"eren naar het programma
+geheugen.
 
 De \emph{rootkit} voorgesteld in \cite{castelluccia2009difficulty} hanteert dit
 principe. Door middel van de \emph{Return Operation Programming} (ROP)
@@ -116,17 +148,25 @@ leveren t.o.v. bv. de SWATT attestatie techniek voorgesteld in
 \cite{seshadri2004swatt}. Deze techniek controleert tevens de tijd dat de
 attestatie routine nodig had om de checksum te berekenen. Indien deze te lang
 duurt dan schrijft SWATT dit toe aan de overhead ge\"introduceerd door
-mogelijke kwaadaardige code. Een verhoging met 0.3\% is te weinig om tot deze
-conclusie te komen.
+mogelijke kwaadaardige code. Een verhoging met 0.3\% is mogelijk te weinig om
+tot deze conclusie te komen.
 
-Een attestatie routine zou zichzelf kunnen beschermen tegen een dergelijke
-rootkit door op het einde van zijn implementatie het data geheugen volledig
-leeg te maken en vervolgens, zonder een terugkeer operatie uit te voeren
-waardoor de tweede haak vermeden wordt, de knoop te herstarten. Het verwijderen
-van alle gegevens en het herstarten van een knoop bij elk attestatie verzoek,
-kan afhankelijk van de functionaliteit die de knoop aanbiedt, in de meeste
-gevallen niet wenselijk zijn. Dit euvel kan eventueel wel ondervangen worden
-door het wegschrijven van deze gegevens naar een EEPROM.
+Deze aanval richt zich nu louter op de attestatie routine, maar zoals in
+\cite{perrig2010refutation} aangegeven wordt, it SWATT slechts een deel van een
+volledige software attestatie en focust zich op het effectief attesteren van
+code in het geheugen, niet op de omringende context. In een volledige
+opstelling zou een attestatie procedure de het terugkeer adres op de stack mee
+kunnen nemen in de attestatie.
+
+\cite{castelluccia2009difficulty} beschrijven zelf enkele mogelijke pistes
+waarmee een attestatie routine zichzelf zou kunnen beschermen tegen een
+dergelijke rootkit. Een eerste zou op het einde van zijn implementatie het data
+geheugen volledig leeg kunnen maken en vervolgens, zonder een terugkeer
+operatie uit te voeren, waardoor de tweede haak vermeden wordt, de knoop te
+herstarten. Het verwijderen van alle gegevens en het herstarten van een knoop
+bij elk attestatie verzoek, kan afhankelijk van de functionaliteit die de knoop
+aanbiedt, in de meeste gevallen niet wenselijk zijn. Dit euvel kan eventueel
+wel ondervangen worden door het wegschrijven van deze gegevens naar een EEPROM.
 
 Een andere oplossingsstrategie zou kunnen liggen in het attesteren van het data
 geheugen. Dit moet dan wel op op het zelfde ogenblik gebeuren als de attestatie
@@ -152,17 +192,109 @@ opleveren voor de vaststeller, maar dit is dan evengoed een voorspelbaar
 resultaat voor de aanvaller en kunnen opnieuw geheugen schaduwende technieken
 gebruikt worden.
 
+Naast SWATT werd in \cite{castelluccia2009difficulty} ook een
+aanvalsmogelijkheid tegen ICE voorgesteld. Het \emph{checksum} algoritme van
+ICE is zo geconstrueerd dat het niet mogelijk is om bij elke geheugentoegang na
+te gaan of er een doorverwijzing moet gebeuren of niet. Maar het is wel
+mogelijk om een consequentie bit-wijziging te doen, zonder voorafgaande test.
+
+Algoritme \ref{alg:attestation-ice} toont het \emph{checksum} algoritme. De
+eigenlijke berekening vanaf regel 4 bestaat uit een strikte afwisseling van
+16 bit optellingen zonder overdracht en XOR operaties ($\oplus$).
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+  \Require{y, het aantal iteraties dat de verificatie routine uitvoert}
+  \For{$l = y \: to \: 0$}
+    \Let{$x$}{$x + (x^2 \vee 5) mod 2^{16}$} \Comment{T functie voor $0 < x < 2^{16}$}
+    \Let{$daddr$}{$(daddr \oplus) \wedge MASK) + code\_start$} \Comment{adres gebaseerd op $x$.}
+    \Let{$C_j$}{$C_j + PC$}   \Comment{Program Counter}
+    \Let{$C_j$}{$C_j \oplus mem[daddr]$}  \Comment{het willekeurige geheugenadres}
+    \Let{$C_j$}{$C_j + l$}
+    \Let{$C_j$}{$C_j \oplus C_{j-1}$}
+    \Let{$C_j$}{$C_j + x$}
+    \Let{$C_j$}{$C_j \oplus daddr$}
+    \Let{$C_j$}{$C_j + C_{j-2}$}
+    \Let{$C_j$}{$C_j \oplus SR$}    \Comment{Status register}
+    \Let{$C_j$}{\Call{rotate\_left}{$C_j$}}
+    \Let{j}{$(j+1)\: mod \: 10$}
+  \EndFor
+\end{algorithmic}
+\caption{ICE pseudo-code\label{alg:attestation-ice}}
+\end{algorithm}
+
+Een mogelijke aanval op ICE bestaat er in om twee wijzigingen aan te brengen
+die elkaar opheffen, waardoor een zelfde checksum berekent wordt, maar er toch
+iets anders berekend wordt. Praktisch is het mogelijk om de meest
+betekenisvolle bit van de Program Counter en van de waarde van de opgehaalde
+geheugenlocatie te wisselen. Door de opeenvolging van de optelling en de XOR
+operatie zullen deze elkaar opheffen, zoals getoond wordt in de vergelijkingen
+\ref{eq:attestation-ice} en \ref{eq:attestation-ice-bitflip}, waarin een
+voorbeeld wordt gegeven met 8 bits argumenten.
+
+\begin{equation} \label{eq:attestation-ice}
+\begin{array}{cccccccccc}
+       & c_{j-1}    & 1 &	0 &	1 &	0 &	1 &	1 &	1 &	0 \\
++	     & PC	        & 0	& 1	& 1	& 0	& 1	& 0	& 1	& 1 \\
+\cline{1-10}
+       &            &	0	& 0	& 0	& 1	& 1	& 0	& 0	& 1 \\
+\oplus &	mem[addr]	& 0	& 1	& 1 &	0	& 1	& 1	& 0	& 1 \\
+\cline{1-10}
+       &            &	0	& 1	& 1	& 1	& 0	& 1	& 0	& 0 \\
+\end{array}
+\end{equation}
+
+\begin{equation} \label{eq:attestation-ice-bitflip}
+\begin{array}{cccccccccc}
+       & c_{j-1}    & 1 &	0 &	1 &	0 &	1 &	1 &	1 &	0 \\
++	     & PC	        & \bm{1}	& 1	& 1	& 0	& 1	& 0	& 1	& 1 \\
+\cline{1-10}
+       &            &	\bm{1}	& 0	& 0	& 1	& 1	& 0	& 0	& 1 \\
+\oplus &	mem[addr]	& \bm{1}	& 1	& 1 &	0	& 1	& 1	& 0	& 1 \\
+\cline{1-10}
+       &            &	0	& 1	& 1	& 1	& 0	& 1	& 0	& 0 \\
+\end{array}
+\end{equation}
+
+Het resultaat van deze minimale aanpassingen is dat er zich een situatie
+voordoet zoals weergegeven in figuur \ref{fig:attestation-ice-copy}, waarbij de
+aanvaller zijn eigen aangepaste kopie van de ICE routine kan laten uitvoeren,
+terwijl de geattesteerde regio zich elders bevindt, waardoor de routine niet
+meer zelf-attesterend is en zijn beginsel verliest.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{resources/attestation-ice-copy.pdf}
+  \caption{De legitieme ICE routine is opgeslagen op adres 0x9100 en een
+  aangepaste kopie is opgeslagen op adres 0x1100. Deze twee adressen
+  verschillen slechts in hun meest betekenisvolle bit. De aanvaller kan zijn
+  aangepaste code gebruiken, maar nog steeds slagen voor de attestatie.}
+  \label{fig:attestation-ice-copy}
+\end{figure}
+
+In \cite{perrig2010refutation} bevestigen de auteurs van ICE dat er fouten zijn
+geslopen in de finale definitie van ICE en dat ze opportuniteiten hebben laten
+liggen om deze aanval tegen te gaan.
+
 \subsubsection*{Conclusies en gevolgen}
 
 Uit voorgaande paragrafen kunnen we vaststellen dat het op een eenvoudige \mcu
-nagenoeg onmogelijk is om een sluitende oplossing voor software attestatie uit
-te realiseren omdat de code van een aanvaller zich steeds tussen de
-verschillende stappen in de attestatie procedure kan wringen. Zelfs indien de
-vaststeller rekening houdt met de tijd die de knoop nodig heeft om de
-attestatie te voltooien, zijn er technieken die snel genoeg zijn om ook hier
-binnen de aannemelijke grenzen te vallen.
+zeer moeilijk maar mogelijk moet zijn om een sluitende oplossing voor software
+attestatie uit te realiseren. Er zijn echter veel mogelijkheden waarbij de code
+van een aanvaller zich steeds tussen de verschillende stappen in de attestatie
+procedure kan wringen. Zelfs indien de vaststeller rekening houdt met de tijd
+die de knoop nodig heeft om de attestatie te voltooien, zijn er technieken die
+snel genoeg zijn om ook hier binnen de aannemelijke grenzen te vallen. Maar al
+deze ingrepen zijn zeer complex en vragen een perfecte voorbereiding.
 
+Aan de andere kant kan voor bijna elk van deze aanvallen wel een aanpassing
+toegevoegd worden aan een bestaande attestatie, zodat de aanval verijdeld kan
+worden. Zoals met veel jonge beveiligings-gerelateerde wetenschappen is ook
+hier het kat en muis nog lang niet gedaan en is er nog ruimte voor verder
+onderzoek.
 
+We kunnen concluderen dat software attestatie op een eenvoudige \mcu mogelijk
+is, maar met de nodige omzichtigheid moet ge\"implementeerd worden.
 
 \subsubsection*{Potentieel}
 
