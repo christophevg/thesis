@@ -126,3 +126,7 @@ activities
 - continued work on software attestation (5h)
 - analysis of ICE attack (1h)
 - found refutal of other attacks (1h)
+
+2013-11-6 (3h/101h)
+- added refutal info (1h30min)
+- added ICE (1h30min)
