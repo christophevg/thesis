@@ -131,6 +131,7 @@ activities
 - added refutal info (1h30min)
 - added ICE (1h30min)
 
-2013-11-7 (5h/106h)
+2013-11-7 (7h/108h)
 - discussion of TPM (4h)
 - discussion of distributed attestation knowledge (1h)
+- some small additions + clean up of literature (2h)
