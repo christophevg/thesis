@@ -404,18 +404,19 @@ slechts over $K_{CN_j,CH_i}$ kan beschikken indien zijn configuratie
 ongewijzigd is, beschikt de CN over voldoende aanwijzing dat de CH betrouwbaar
 is.
 
-\subsubsection*{Gedistribueerde kennis}
+\subsubsection*{Gedistribueerde attestatie}
 
-In \ref{section:cooperation} zagen we reeds een algoritme dat toelaat om
+In \ref{subsection:cooperation} zagen we reeds een algoritme dat toelaat om
 gedistribueerd informatie te verdelen en te valideren op basis van ketens van
 hashes. Een andere voorbeeld van een co\"operatief algoritme binnen de context
 van software attestatie wordt voorgesteld in \cite{yang2007distributed}. Om te
 vermijden dat aanvallers het lege programma geheugen gebruiken om een kopie van
 de originele software van een knoop op te slaan, wordt voordat een knoop in
 gebruik wordt genomen, deze lege ruimte opgevuld met pseudo-willekeurige
-getallen. Dit gebeurt voor knoop $u$ op basis van een initi\"ele waarde $S_u$.
+getallen. Dit gebeurt voor knoop $u$ op basis van een initi\"ele waarde $S_u$,
+de zgn. \emph{seed}
 
-Als knoop $u$ $n$ buren heeft, kiest $u$ $k - 1$ ($1 \leq k \eq n$)
+Als knoop $u$ $n$ buren heeft, kiest $u$ $k - 1$ ($1 \leq k \leq n$)
 willekeurige constante termen $a_1, a_2, \dots a_{k-1}$ uit een eindig
 priemveld $Z_p$. Hiermee wordt de functie $f(x) = S_u + a_1 x+a_2 x^2 + \dots +
 a_{k-1} x^{k-1}$, waarvoor evident $f(0) = S_u$. Vervolgens berekent en
