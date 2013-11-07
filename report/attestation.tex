@@ -48,19 +48,26 @@ vertrouwen en de knoop uit te sluiten.
 
 \subsubsection*{Implementaties}
 
-In 2004 stelde \cite{seshadri2004swatt} SWATT voor, een attestatie procedure
-die een \emph{checksum} berekent over nagenoeg alle geheugenlocaties, echter
-wel in willekeurige volgorde. Anderzijds houdt SWATT ook rekening houdt met de
-tijd die de attestatie routine op de knoop nodig heeft om de \emph{checksum} te
-berekenen. Indien een aanvaller code zou toevoegen om de werking van de
-attestatie routine te verstoren, zou op te merken zijn in een vertraging.
+SWATT werd voorgesteld in \cite{seshadri2004swatt}. Het is een attestatie
+procedure die een \emph{checksum} berekent over nagenoeg alle geheugenlocaties,
+echter wel in willekeurige volgorde. Anderzijds houdt SWATT ook rekening houdt
+met de tijd die de attestatie routine op de knoop nodig heeft om de
+\emph{checksum} te berekenen. Indien een aanvaller code zou toevoegen om de
+werking van de attestatie routine te verstoren, zou op te merken zijn in een
+vertraging.
 
 Met SCUBA in \cite{seshadri2006scuba} en SAKE in \cite{seshadri2008sake} werd
 verder gebouwd op de SWATT techniek met het oog op een beveiligde distributie
 van programma code en het veilig uitwisselen van sleutels. Samen met SCUBA en
 SAKE werd ook \emph{Indisputable Code Execution} of ICE ge\"introduceerd. Daar
 waar SWATT gericht is op inhoudelijke integriteit, voegt ICE hieraan ook de
-garantie van een niet aangetaste uitvoering van programma's aan toe.
+garantie van een niet aangetaste uitvoering van programma's aan toe en laat het
+toe om beperkte regio's van het geheugen te benaderen.
+
+Op deze manier kan nu bovenop de attestatie van het geheugen van een knoop, nu
+ook functionaliteit aangeroepen worden, waarvan de werking ook gegarandeerd
+veilig is. Het installeren van nieuwe code en het uitwisselen van gedeelde
+geheimen wordt op die manier mogelijk.
 
 ICE realiseert dit door een \emph{checksum} te berekenen over de geheugenregio
 waar de attestatie routine zich bevindt, alsook over de regio waar het uit te
@@ -68,6 +75,12 @@ voeren programma staat en van de staat van de processor. Hierdoor ontstaat er
 een garantie dat de attestatie correct verloopt, dat het uit te voeren
 programma geen onbekende code bevat en dat de omgeving waarin de attestatie en
 het programma uitgevoerd worden gegarandeerd niet aangetast kan worden.
+
+Een belangrijke eigenschap van de ICE techniek is dat de attestatie routine de
+processor in een emph{veilige} staat brengt door geen interrupts toe te laten.
+Hierdoor kan de werking van de attestatie routine niet onderbroken en gewijzigd
+worden. Na correcte attestatie zal het geattesteerde programma in dezelfde
+veilige omstandigheden als de ICE routine uitgevoerd worden.
 
 \subsubsection*{Evaluatie}
 
