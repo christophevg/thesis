@@ -359,11 +359,13 @@ door het feit dat de CHs berichten voor hun CNs bufferen.
 
 Deze attestatie focust zich op het garanderen dat de configuratie van het CH
 ongewijzigd is sinds de installatie van het netwerk. Tijdens deze installatie
-zal zo'n CH met zijn TPM een keten van hashes maken\footnote{We zagen reeds een
-gelijkaardige constructie in de beschrijving van een co\"operatief algoritme in
-\ref{subsubsection:cooperation-algorithm}.} en deze blokkeren in de TPM. De TPM
-zal deze hashes alleen vrijgeven indien deze de configuratie van de CH kan
-valideren als ongewijzigd.
+zal zo'n CH met zijn TPM een keten van hashes maken en deze blokkeren in de
+TPM. Dit is een techniek die \emph{sealing}\footnote{Dit is slechts \'e\'en van
+de basiscomponenten van een TPM. De volledige TPM functionaliteit wordt o.a. in
+\cite{parno2010bootstrapping} toegelicht in het kader van de mogelijkheden die
+een TPM biedt om als initi\"ele bron van vertrouwen gebruikt te worden.}
+genoemd wordt. De TPM zal deze hashes alleen vrijgeven indien deze de
+configuratie van de CH kan valideren als ongewijzigd.
 
 Door de laatste hash uit de keten van elke CH te verdelen over de CNs, wordt
 het voor hen opnieuw mogelijk om boodschappen van de CH te valideren. We nemen
