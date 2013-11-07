@@ -24,20 +24,20 @@ week 4/11 + 11/11
 + schrijven "gerelateerd werk" (1e versie)
 + functionele analyse
 - technische analyse
-- meeting 7/11
+x meeting 7/11
 
 week 18/11 + 25/11
 + studie Contiki
 - definitie + implementatie testen
-- meeting 21/11
+- meeting 14/11
 
 week 2/12 + 9/12
 - ontwikkeling
-- meeting 5/12
+- meeting 28/11
 
 week 16/12 + 23/12
 - ontwikkeling
-- meeting 19/12
+- meeting 12/12
 
 week 30/12 + (6/1)
 - ontwikkeling
