@@ -406,15 +406,15 @@ is.
 
 \subsubsection*{Gedistribueerde attestatie}
 
-In \ref{subsection:cooperation} zagen we reeds een algoritme dat toelaat om
-gedistribueerd informatie te verdelen en te valideren op basis van ketens van
-hashes. Een andere voorbeeld van een co\"operatief algoritme binnen de context
-van software attestatie wordt voorgesteld in \cite{yang2007distributed}. Om te
-vermijden dat aanvallers het lege programma geheugen gebruiken om een kopie van
-de originele software van een knoop op te slaan, wordt voordat een knoop in
-gebruik wordt genomen, deze lege ruimte opgevuld met pseudo-willekeurige
-getallen. Dit gebeurt voor knoop $u$ op basis van een initi\"ele waarde $S_u$,
-de zgn. \emph{seed}
+In \ref{subsection:cooperation} zagen we reeds een implementatie van het Guy
+Fawkes protocol, waardoor een groep van knopen toch een stemming konden houden
+in het bijzijn van veroverde knopen. Een andere voorbeeld van een co\"operatief
+algoritme binnen de context van software attestatie wordt voorgesteld in
+\cite{yang2007distributed}. Om te vermijden dat aanvallers het lege programma
+geheugen gebruiken om een kopie van de originele software van een knoop op te
+slaan, wordt voordat een knoop in gebruik wordt genomen, deze lege ruimte
+opgevuld met pseudo-willekeurige getallen. Dit gebeurt voor knoop $u$ op basis
+van een initi\"ele waarde $S_u$, de zgn. \emph{seed}
 
 Als knoop $u$ $n$ buren heeft, kiest $u$ $k - 1$ ($1 \leq k \leq n$)
 willekeurige constante termen $a_1, a_2, \dots a_{k-1}$ uit een eindig
