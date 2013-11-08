@@ -136,5 +136,7 @@ activities
 - discussion of distributed attestation knowledge (1h)
 - some small additions + clean up of literature (2h)
 
-2013-11-8 (1h/109h)
+2013-11-8 (5h/113h)
 - finalized section on software attestation (1h)
+- processed papers 6-15 in detail for landscape definition (4h)
+
