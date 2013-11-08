@@ -220,7 +220,7 @@ eigenlijke berekening vanaf regel 4 bestaat uit een strikte afwisseling van
   \Require{y, het aantal iteraties dat de verificatie routine uitvoert}
   \For{$l = y \: to \: 0$}
     \Let{$x$}{$x + (x^2 \vee 5) mod 2^{16}$} \Comment{T functie voor $0 < x < 2^{16}$}
-    \Let{$daddr$}{$(daddr \oplus) \wedge MASK) + code\_start$} \Comment{adres gebaseerd op $x$.}
+    \Let{$daddr$}{$(daddr \: \oplus \: x ) \wedge MASK) + code\_start$} \Comment{adres gebaseerd op $x$.}
     \Let{$C_j$}{$C_j + PC$}   \Comment{Program Counter}
     \Let{$C_j$}{$C_j \oplus mem[daddr]$}  \Comment{het willekeurige geheugenadres}
     \Let{$C_j$}{$C_j + l$}
