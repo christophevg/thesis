@@ -140,3 +140,5 @@ activities
 - finalized section on software attestation (1h)
 - processed papers 6-15 in detail for landscape definition (4h)
 
+2013-11-9 (3h30min/116h30min)
+- started work on WSN landscape (3h30min)
