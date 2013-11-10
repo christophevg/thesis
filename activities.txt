@@ -142,3 +142,6 @@ activities
 
 2013-11-9 (3h30min/116h30min)
 - started work on WSN landscape (3h30min)
+
+2013-11-10 (5hmin/121h30min)
+- research on WSN attacks (5h)
