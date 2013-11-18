@@ -145,3 +145,6 @@ activities
 
 2013-11-10 (5hmin/121h30min)
 - research on WSN attacks (5h)
+
+2013-11-18 (30min/117h)
+- status reporting to faculty (30min)

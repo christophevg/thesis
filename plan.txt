@@ -26,11 +26,13 @@ week 4/11 + 11/11
 - schrijven "achtergrond", "inleiding" (technologie) (1e versie)
 
 week 18/11 + 25/11
+- mapping aanvallen - code
 - technische analyse
-- definitie + implementatie testen
-- meeting 14/11
+- definitie testen
+- meeting 18/11
 
 week 2/12 + 9/12
+- implementatie testen
 - ontwikkeling
 - meeting 28/11
 
