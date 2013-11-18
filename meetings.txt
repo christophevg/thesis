@@ -74,3 +74,8 @@
 
 ! streven naar referentie architetuur
   -> 7/11 (volgens plan mogelijk: functioneel)
+2013-11-18 11:30
++ Jef Maerien
+
+? artikel: vormgeving
+
