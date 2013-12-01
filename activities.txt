@@ -143,8 +143,21 @@ activities
 2013-11-9 (3h30min/116h30min)
 - started work on WSN landscape (3h30min)
 
-2013-11-10 (5hmin/121h30min)
+2013-11-10 (5h/121h30min)
 - research on WSN attacks (5h)
 
-2013-11-18 (30min/117h)
+2013-11-18 (30min/122h)
 - status reporting to faculty (30min)
+
+2013-11-28 (7h/129h)
+- demo 1: heartbeat to detect node removal: design (3h)
+- demo 1: import and extension of AVR+XBEE codebase (4h)
+
+2013-11-29 (6h/135h)
+- demo 1: import and extension of AVR+XBEE codebase (6h)
+
+2013-11-30 (6h/141h)
+- demo 1: import and extension of AVR+XBEE codebase (6h)
+
+2013-12-1 (3h/144h)
+- demo 1: finalized import and extension of AVR+XBEE codebase (3h)

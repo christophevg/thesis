@@ -34,11 +34,14 @@ week 18/11 + 25/11
 week 2/12 + 9/12
 - implementatie testen
 - ontwikkeling
-- meeting 28/11
+- schrijven artikel
+- presentatie WSN groep
+- meeting 5/12
 
 week 16/12 + 23/12
 - ontwikkeling
-- meeting 12/12
+- schrijven artikel
+- meeting 19/12: demo hw+sw setup
 
 week 30/12 + (6/1)
 - ontwikkeling
