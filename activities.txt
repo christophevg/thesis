@@ -161,3 +161,10 @@ activities
 
 2013-12-1 (3h/144h)
 - demo 1: finalized import and extension of AVR+XBEE codebase (3h)
+
+2013-12-2 (7h/151h)
+- demo 1: added more low-level support (4h)
+- demo 1: started implementation (3h)
+
+2013-12-3 (5h/156h)
+- demo 1: fixed some nasty Zigbee bugs (5h)
