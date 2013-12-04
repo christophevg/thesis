@@ -31,9 +31,9 @@
 + Wouter Joosen
 
 ! overzicht doelstelling
-! overizcht architectuur
+! overzicht architectuur
 	- uitwerking ok
-  - focus op beveliging
+  - focus op beveiliging
 
 2013-09-26 15:00 - status update
 + Jef Maerien
@@ -45,7 +45,7 @@
 ! cross optimalisatie tussen algo's
   - per node (of set van) zijn eigen systeem
   - per node type optimalisatie van detectorset
-! policy-based -> beslissingvormen waarom -> niet zo belangrijk
+! policy-based -> beslissingsvormen waarom -> niet zo belangrijk
 !! core : "fw om dat te doen"
 	- wat biedt ge aan in interface
 	- overhead dat dat al meebrengt
@@ -72,10 +72,25 @@
 2013-10-24 15:00
 + Jef Maerien
 
-! streven naar referentie architetuur
+! streven naar referentie architectuur
   -> 7/11 (volgens plan mogelijk: functioneel)
+
 2013-11-18 11:30
 + Jef Maerien
 
-? artikel: vormgeving
+! afgestemd: scope invulling
+  - geen "runtime" met plugins, maar "compilatie" (code gen)
+  -> mappen op "deployable" = min. runtime + additional deploys
+     -> nog steeds winst mogelijk ?
+        => waarschijnlijk wel door implementatie op basis van VM structuur
 
+? artikel: vormgeving
+  -> vrij, mag niet-latex, e.g. EOS clone
+
+@ TODO
+  - 19/12 : demo van minimaal 1 inbraakdetectie : manueel vs. "compilatie"
+  - 11/12 : presentatie WSN groep
+  - 25/12 : artikel / 5blz / populariserend
+
+2013-12-5 15:00
++ Jef Maerien

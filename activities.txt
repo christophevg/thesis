@@ -168,3 +168,6 @@ activities
 
 2013-12-3 (5h/156h)
 - demo 1: fixed some nasty Zigbee bugs (5h)
+
+2013-12-4 (6h/162h)
+- demo 1: building sensors (6h)
