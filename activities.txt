@@ -146,33 +146,35 @@ activities
 2013-11-10 (5h/121h30min)
 - research on WSN attacks (5h)
 
-2013-11-18 (30min/122h)
+2013-11-18 (1h/122h30min)
 - status reporting to faculty (30min)
+- meeting 5 (30min)
 
-2013-11-28 (7h/129h)
+2013-11-28 (7h/129h30min)
 - demo 1: heartbeat to detect node removal: design (3h)
 - demo 1: import and extension of AVR+XBEE codebase (4h)
 
-2013-11-29 (6h/135h)
+2013-11-29 (6h/135h30min)
 - demo 1: import and extension of AVR+XBEE codebase (6h)
 
-2013-11-30 (6h/141h)
+2013-11-30 (6h/141h30min)
 - demo 1: import and extension of AVR+XBEE codebase (6h)
 
-2013-12-1 (3h/144h)
+2013-12-1 (3h/144h30min)
 - demo 1: finalized import and extension of AVR+XBEE codebase (3h)
 
-2013-12-2 (7h/151h)
+2013-12-2 (7h/151h30min)
 - demo 1: added more low-level support (4h)
 - demo 1: started implementation (3h)
 
-2013-12-3 (5h/156h)
+2013-12-3 (5h/156h30min)
 - demo 1: fixed some nasty Zigbee bugs (5h)
 
-2013-12-4 (6h/162h)
+2013-12-4 (6h/162h30min)
 - demo 1: building sensors (6h)
 
-2013-12-5 (1h/163h)
+2013-12-5 (1h30min/164h)
 - split off and imported moose ;-) (30min)
 - imported draft event loop for heartbeat demo (15min)
 - imported dump.py tool + did end2end test (15min)
+- meeting 6 (30min) 

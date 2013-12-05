@@ -94,3 +94,18 @@
 
 2013-12-5 15:00
 + Jef Maerien
+
+! opnieuw afgestemd: scope invulling
+  - focus op evaluatiecriteria => resource gebruik
+  - high-level plan: 1. basic hw
+                     2. standaard mote (raven)
+                     3. fixed runtime + deployed bytecode
+
+! presentatie:
+  - evaluatiecriteria = resource gebruik
+    - netwerk gebruik (belangrijkste factor voor energie verbruik)
+    - redudante "calls" wegwerken (herhaalde validaties, checks, ... 
+                                   op zelfde data)
+
+@ TODO
+  - 9/12 : presentatie doorsturen tegen ma middag -> Jeff
