@@ -172,5 +172,6 @@ activities
 2013-12-4 (6h/162h)
 - demo 1: building sensors (6h)
 
-2013-12-5 (30min/162h30min)
+2013-12-5 (45min/162h45min)
 - split off and imported moose ;-) (30min)
+- imported draft event loop for heartbeat demo (15min)
