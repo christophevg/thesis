@@ -171,3 +171,6 @@ activities
 
 2013-12-4 (6h/162h)
 - demo 1: building sensors (6h)
+
+2013-12-5 (30min/162h30min)
+- split off and imported moose ;-) (30min)
