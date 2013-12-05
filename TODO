@@ -1,2 +1,13 @@
+TODO
+
+*** now
+- check missing ref to dargie2010fundamentals
+- add section on development of embedded systems
+  - compilation/deployment style:
+    - hex + install
+    - OS process + deployment OTAP
+  - target platform definition
+
+*** at end
 - make sure illustrations use same font-sizes, colors, ...
 - node-capture: replace ISP programming with JTAG programming
