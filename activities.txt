@@ -173,8 +173,12 @@ activities
 2013-12-4 (6h/162h30min)
 - demo 1: building sensors (6h)
 
-2013-12-5 (1h30min/164h)
+2013-12-5 (3h30min/165h30min)
 - split off and imported moose ;-) (30min)
 - imported draft event loop for heartbeat demo (15min)
 - imported dump.py tool + did end2end test (15min)
+- created introduction for presentation 11/12 (2h)
 - meeting 6 (30min) 
+
+2013-12-6 (3h/168h30min)
+- finalized presentation 11/12 (3h)

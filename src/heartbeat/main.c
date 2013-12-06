@@ -38,20 +38,19 @@
 
 // forward declarations
 void init(void);
-void wakeup(void);
-void send(uint8_t *bytes);
+void send_bytes(uint8_t *bytes, uint8_t size);
 void send_str(const char *string);
 void sleep(void);
+void receive(xbee_rx_t*);
 
 int main(void) {
   uint16_t reading;               // the 16-bit reading from the ADC
   uint8_t  values[2];             // the bytes containing the reading in bytes
 
   init();
+  xbee_on_receive(receive);
 
   while(TRUE) {
-    wakeup();
-
     // light
     reading = avr_adc_read(LIGHT_SENSOR_PIN);
     values[0] = (reading >> 8 ) & 0x00FF;
@@ -94,6 +93,8 @@ void init(void) {
   // FUNCTIONALITY
   avr_clear_bit(LIGHT_SENSOR_PORT,// make light sensor pin an input pin
                 LIGHT_SENSOR_PIN);  
+  avr_set_bit(VCC_SENSOR_PORT,    // provide power to sensor
+              VCC_SENSOR_PIN);
 }
 
 void send_str(const char *string) {
@@ -114,34 +115,19 @@ void send_bytes(uint8_t *bytes, uint8_t size) {
   xbee_send(&frame);
 }
 
-void wakeup(void) {
-  avr_set_bit(VCC_SENSOR_PORT,      // provide power to sensor
-              VCC_SENSOR_PIN);
-  _delay_ms(10);                    // time to rise - TODO: how o this CLEANLY?
-  avr_adc_init();                   // re-initialize the ADC
-                                    // TODO: move this elsewhere once I
-                                    // understand enabling ADC better ;-)
-  xbee_wakeup();                    // revive the XBee from hibernation
-                                    // (this includes waiting for association)
-}
-
-static unsigned long previous_start = 0;
-
 void sleep(void) {
-  xbee_sleep();                     // put XBee to sleep
-  avr_clear_bit(VCC_SENSOR_PORT,    // revoke power to sensor
-                VCC_SENSOR_PIN);
-  // power-down the MCU until full second has passed
-  // compute remaining time until next full second
-  unsigned long awake = (clock_get_millis() - previous_start);
-  if(awake < 1000) {
-    unsigned long sleep = 1000 - awake;
-    debug_printf("sleeping for %lu ms\n", sleep);
-    avr_clear_bit(STATUS_LED_PORT,  // turn on the green status led
-                  STATUS_LED_PIN);
-    sleep_ms(sleep);
-  }
-  previous_start = clock_get_millis();
+  avr_clear_bit(STATUS_LED_PORT,  // turn off the green status led
+                STATUS_LED_PIN);
+  _delay_ms(1000L);
   avr_set_bit(STATUS_LED_PORT,      // turn on the green status led
               STATUS_LED_PIN);
+}
+
+void receive(xbee_rx_t *frame) {
+  printf("[%lu] RX : %i / %i\n", clock_get_millis(), frame->nw_address, frame->size);
+  printf("      ");
+  for(int i=0; i<frame->size; i++) {
+    printf("%i ", frame->data[i]);
+  }
+  printf("\n");
 }
