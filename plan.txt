@@ -32,45 +32,53 @@ week 18/11 + 25/11
 - meeting 18/11
 
 week 2/12 + 9/12
-- implementatie testen
-- ontwikkeling
+- ontwikkeling demo 1: 1 of 2 manuele implementaties van detectoren
 - schrijven artikel
 - presentatie WSN groep
+- schrijven samenvatting probleem- en doelstelling (faculteit)
 - meeting 5/12
 
 week 16/12 + 23/12
-- ontwikkeling
-- schrijven artikel
-- meeting 19/12: demo hw+sw setup
+- ontwikkeling: afwerken manuele implementaties + gereorganiseerde versie
+- schrijven populariserend artikel (5blz)
+- meeting 19/12: demo 1 hw+sw setup
 
 week 30/12 + (6/1)
-- ontwikkeling
+- afwerken functionele analyse: definitie DSL
+- afwerken technische analyse: keuzes code generatie
 
 week (13/1) + (20/1)
+  (niets gepland wegens examens)
 
 week (27/1) + 3/2
-- finalisatie ontwikkeling
+- ontwikkeling: code generatie raamwerk (basis parser, AST,...)
 
 week 10/2 + 17/2
-- testen + verbeteringen
+- ontwikkeling: code generatie concrete implementatie
 
 week 24/2 + 3/3
-- creatie demo
+- ontwikkeling: uitbreidingen over modules heen ter ondersteuning van meer
+                voorbeelden
+- samenstellen finale demo
 
 week 10/3 + 17/3
-- finalisatie resultaten
+- testen en opmeten resultaten evaluatiecriteria
+- schrijven: probleemstelling
 
 week 24/3 + 31/3
-- schrijven
+- schrijven: architectuur en implementatie
 
 week 7/4 + 14/4
-- schrijven
+- schrijven: discussie
+- afwerken: achtergrond
 
 week 21/4 + 28/4
-- schrijven
+- schrijven: inleiding, samenvatting en besluit
+- inkorten teksten
 
 week 5/5 + 12/5
-- controle en correcties
+- afwerken technische aspecten (figuren, referenties, ...)
+- controle door lezers en correcties
 
 week 19/5 + (26/5)
-- finalisatie inlevering
+- praktische afwerking en inlevering
