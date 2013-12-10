@@ -1,0 +1,71 @@
+\documentclass[DIV=calc,paper=a4,fontsize=11pt,twocolumn,draft]{scrartcl}
+
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage[svgnames]{xcolor}
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage{booktabs}
+\usepackage{fix-cm}
+\usepackage{sectsty}
+\allsectionsfont{\usefont{OT1}{phv}{b}{n}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{Deze ochtend vond ik een hacker in mijn koelkast - Christophe Van Ginneken}
+\cfoot{}
+\rfoot{\footnotesize \thepage}
+
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{lettrine}
+\newcommand{\initial}[1]{
+\lettrine[lines=3,lhang=0.3,nindent=0em]{
+\color{DarkGoldenrod}
+{\textsf{#1}}}{}}
+
+\usepackage{titling}
+
+\newcommand{\HorRule}{\color{DarkGoldenrod} \rule{\linewidth}{1pt}}
+
+\pretitle{\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{50}{50}
+\usefont{OT1}{phv}{b}{n} \color{DarkRed} \selectfont}
+
+\title{Deze ochtend vond ik een hacker in mijn koelkast}
+
+\posttitle{\par\end{flushleft}\vskip 0.5em}
+
+\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl}
+\color{DarkRed}}
+\author{Christophe Van Ginneken, }
+\postauthor{\footnotesize \usefont{OT1}{phv}{m}{sl} \color{Black}
+Student KULeuven
+\par\end{flushleft}\HorRule}
+
+\date{\today}
+
+\setlength{\columnsep}{1cm}
+
+\usepackage{lineno}
+\linenumbers
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\initial{H}et lijkt een deel van een dialoog uit een slechte science fictie
+film. Maar als we de huidige evolutie van de technologie van naderbij bekijken,
+zien we dat de realiteit misschien sneller dan verwacht de fictie zal inhalen.
+
+
+
+\lipsum[1-10]
+
+\end{document}
