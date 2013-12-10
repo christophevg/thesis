@@ -2,7 +2,7 @@
 
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
-\usepackage[english]{babel}
+\usepackage[dutch]{babel}
 \usepackage{minted}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -57,14 +57,14 @@
 \section*{Inleiding}
 
 Wanneer verwezen wordt naar de context van deze thesis, inbraakdetectie voor
-draadloze sensornetwerken, wordt meestal nogal snel verwezen naar de
-\emph{anonieme hacker} die zich toegang verleent tot de weerloze draadloze
-sensorknoop, hem omschoolt tot zijn volgeling en hierdoor de goede werking van
-het netwerk in het gedrag brengt. Ofschoon volledig correct, blijft het voor
-buurman Jan slechts een abstract gegeven en blijft hij achter met de vraag
-``Ja, ok, en dan?''. Ofschoon de echte zwaarte van dit probleem waarschijnlijk
-nog enkele jaren in de toekomst ligt, zijn er vandaag spijtig genoeg toch reeds
-voorbeelden te vinden.
+draadloze sensornetwerken, wordt bij wijze van voorbeeld nogal snel beroep
+gedaan op de \emph{anonieme hacker} die zich toegang verleent tot de weerloze
+draadloze sensorknoop, hem omschoolt tot zijn volgeling en hierdoor de goede
+werking van het netwerk in het gedrag brengt. Ofschoon volledig correct, blijft
+het voor buurman Jan slechts een abstract gegeven en blijft hij achter met de
+vraag ``Ja, ok, en dan?''. Ofschoon de echte zwaarte van dit probleem
+waarschijnlijk nog enkele jaren in de toekomst ligt, zijn er vandaag spijtig
+genoeg toch reeds voorbeelden te vinden.
 
 \subsection*{De realiteit achtervolgt de fictie}
 
@@ -86,39 +86,40 @@ vermijden.
 
 Toen we in 1995 genoten van de eerste acteerprestaties van Angelina Jolie in de
 cultfilm ``Hackers'', leek het kunnen besturen van verkeerslichten een prachtig
-staaltje science fiction. Bijna 20 jaar later, zijn verkeerslichten en
-draadloze sensornetwerken in wetenschappelijke publicaties alvast dikke
-vrienden en is men klaar om onder het mom van de zgn. ``Smart City'', elk van
-deze lichten een autonoom leven te bieden. De grote omarming door het
-``Internet of Things'' is nu reeds alom tegenwoordig.
+staaltje science fictie. Bijna 20 jaar later, zijn verkeerslichten en draadloze
+sensornetwerken in wetenschappelijke publicaties alvast dikke vrienden en is
+men klaar om onder het mom van de zgn. ``Smart City'', elk van deze lichten een
+autonoom leven te bieden. De grote omarming door het ``Internet of Things'' is
+nu reeds alomtegenwoordig.
 
 Zelfs buurman Jan kan niet voorbij aan deze voorbeelden en stelt zich
 ondertussen terecht de vraag: ``Ok, en wat nu?''. De feiten zijn wat ze zijn en
-weldra zal elk \emph{ding} op aarde wel een eigen neetwerk adres hebben. Hoe
-ziet die wereld er dan eigenlijk uit?
+weldra zal elk \emph{ding} op aarde wel een eigen netwerkadres hebben. Hoe ziet
+die wereld er dan eigenlijk uit?
 
 \section*{Probleemstelling}
 
-Aan de ene kant hebben we de draadloze sensorknopen en aan de andere kan hebben
-we de beveiliging ervan, in case inbraakdetectie. Ofschoon de ene de andere
-duidelijk nodig heeft om zich - en uiteindelijk ons - te beschermen, blijkt
-snel dat hun huwelijk strandt op basis van tegenstrijdige belangen.
+Aan de ene kant hebben we de draadloze sensorknopen en aan de andere kant
+hebben we de beveiliging ervan, in case inbraakdetectie. Ofschoon de ene de
+andere duidelijk nodig heeft om zich - en uiteindelijk ons - te beschermen,
+blijkt snel dat hun huwelijk strandt op basis van tegenstrijdige belangen.
 
 Een knoop is nagenoeg gedurende zijn volledige levensloop aan zijn lot
 overgelaten. De enige link met de buitenwereld is zijn draadloze radio die hem
-toelaat te communiceren met andere knopen en zo tevens langs dit netwerk met
-zijn heer en meester. Gedurende deze hele periode dient de knoop ook zijn
-energie te halen uit \'e\'en enkele batterij en moet dus zeer spaarzaam
-omspringen met deze bron. Omdat knopen tevens in grote getale worden ingezet en
-ze feitelijk beschouwd dienen te worden als wegwerpproducten, dient hun
-kostprijs zo laag mogelijk gehouden te worden. Ze zijn dan ook voorzien van net
-genoeg geheugen en verwerkingskracht om hun veelal beperkte taak uit te voeren.
+toelaat te communiceren met andere knopen. Die zelfde knopen zijn tevens zijn
+enige communicatiekanaal met de wereld buiten het netwerk. Gedurende deze hele
+periode dient de knoop ook zijn energie te halen uit \'e\'en enkele batterij.
+Hij moet dus zeer spaarzaam omspringen met deze bron. Omdat knopen tevens in
+grote getale worden ingezet en ze feitelijk beschouwd dienen te worden als
+wegwerpproducten, dient hun kostprijs zo laag mogelijk gehouden te worden. Ze
+zijn dan ook voorzien van net genoeg geheugen en verwerkingskracht om hun
+veelal beperkte taak uit te voeren.
 
 Inbraakdetectie, aan de andere kant, vraagt opvolging. Een meerderheid van de
-alarmen die door een dergelijk systeem worden gegeneerd zijn nog steeds te
-valideren. Aangezien dat daarnaast nagenoeg elke aanval verschillend is, zijn
-de mogelijkheden om te detecteren ook vaak eindeloos en wil men bij voorkeur
-een inbraakdetectie systeem constant laten werken. Om zijn werk te kunnen doen,
+alarmen die door een dergelijk systeem worden gegenereerd zijn nog steeds te
+valideren. Aangezien dat bijna elke aanval verschillend is, zijn de
+mogelijkheden om te detecteren ook vaak eindeloos en wil men bij voorkeur een
+inbraakdetectiesysteem constant laten werken. Om zijn werk te kunnen doen,
 dient het bij voorkeur ook te beschikken over veel gegevens. Deze gaan van
 aanvalspatronen tot modellen van normaal gedrag om anomalie\"en te kunnen
 detecteren. Tot slot is het detecteren op zich natuurlijk van uit het oogpunt
@@ -126,7 +127,7 @@ van een knoop een niet-functionele bijkomende belasting in het algemeen.
 
 Het is snel duidelijk dat de afweging tussen knoop en detectie neerkomt op een
 gebruik van de middelen waarover een knoop beschikt. In een ideale wereld zou
-een inbraakdetectie systeem voor draadloze sensorknopen de levensduur van de
+een inbraakdetectiesysteem voor draadloze sensorknopen de levensduur van de
 batterij van de knoop niet mogen be\"invloeden, maar dat is spijtig genoeg
 echte science fictie.
 
@@ -137,8 +138,8 @@ onnoemelijk veel manieren om specifieke aanvallen te detecteren. Een enkele
 uitzondering waagt zich aan een combinatie van patronen of stelt een raamwerk
 voor om enkele patronen te combineren. De algemene conclusie is echter unaniem:
 gegeven de beperkte mogelijkheden van een knoop, is het onmogelijk om een
-volledige dekking te bieden betreffende inbraakdetectie. Nog meer zelfs, omdat
-een aanvaller nagenoeg ten allen tijde in staat is om een knoop fysiek te
+volledige dekking te bieden betreffende inbraakdetectie. Meer zelfs, omdat een
+aanvaller nagenoeg ten allen tijde in staat is om een knoop fysiek te
 benaderen, het geheugen van de knoop te raadplegen en te wijzigen, is er per
 definitie geen enkele mogelijkheid om een inbraak te verijdelen - zonder fysiek
 uitbreiden van een knoop met bijkomende, specifieke hardware. Maar deze zou de
@@ -156,17 +157,17 @@ voor de aanvaller toch weer een beetje hoger wordt.
 
 \subsection*{Situatie}
 
-Om een mogelijk bijdrage te defini\"eren aan deze situatie, bekijken we eerst
-de situatie op het slagveld: De ontwikkelaar van de software van een draadloze
-sensorknoop kan zelf de literatuur raadplegen en \'e\'en of meerdere van de
-beschreven detectie-mechanismen trachten te implementeren. Hierbij zal hij
-typisch, voor elk van deze detectoren, een zeer gelijkaardige blok code
-produceren.
+Om een mogelijke bijdrage te defini\"eren die kan bijdragen tot een verbetering
+van deze probleemstelling, bekijken we eerst de situatie op het slagveld: De
+ontwikkelaar van de software van een draadloze sensorknoop kan zelf de
+literatuur raadplegen en \'e\'en of meerdere van de beschreven
+detectiemechanismen trachten te implementeren. Hierbij zal hij typisch, voor
+elk van deze detectoren, een zeer gelijkaardige blok code produceren.
 
 Aangezien een knoop zelden op zich een aanval kan detecteren, is communicatie
 met de andere knopen een noodzakelijk kwaad. Tevens is activiteit op het
 netwerk typisch de belangrijkste bron van informatie voor de knoop betreffende
-wat er zich rondom hem afspeelt. Nagenoeg elk detectie algoritme zal bij
+wat er zich rondom hem afspeelt. Nagenoeg elk detectiealgoritme zal bij
 ontvangst van een netwerkpakket de inhoud ervan moeten inspecteren om zich van
 nieuwe informatie over zijn omgeving te vergewissen.
 
@@ -178,7 +179,7 @@ gebeurtenissen in het netwerk en de informatie die andere knopen hieromtrent
 hebben gedeeld.
 
 Het is evident dat deze zeer gelijklopende structuur voor elk
-detectie-mechanisme onherroepelijk kan leiden tot code duplicatie, maar ook tot
+detectiemechanisme onherroepelijk kan leiden tot code duplicatie, maar ook tot
 meerdere sequenti\"ele iteraties en talrijke communicatie tussen de knopen voor
 elk van de algoritmen afzonderlijk. Sequenti\"ele uitvoering leidt tot langere
 uitvoertijden en meerdere communicaties leidt tot meer gebruik van het
@@ -209,7 +210,7 @@ van het gebruik ervan is dus een zeer belangrijke noodzaak.
 
 \subsection*{Aanpak}
 
-In deze thesis stel ik voor om de beschrijving van een detectie-algoritme te
+In deze thesis stel ik voor om de beschrijving van een detectiealgoritme te
 realiseren aan de hand van een domein-specifieke taal. Deze taal is beperkt in
 zijn expressiviteit en bevat bv. niet de mogelijkheid om een klassieke iteratie
 te beschrijven. Hierdoor wordt \'e\'en van de basisproblemen ontweken en ligt
@@ -218,7 +219,7 @@ combineren.
 
 Immers indien hergebruik van bestaande code niet mogelijk is omwille van de
 hoger vermelde problemen, dient er op een andere manier een combinatie van
-detectie-mechanismen gerealiseerd te worden. Deze thesis stelt daarom voor om
+detectiemechanismen gerealiseerd te worden. Deze thesis stelt daarom voor om
 op basis van de beschrijvingen in de domein-specifieke taal, door middel van
 code generatie, de nodige code voor inbraakdetectie te genereren op maat van de
 ontwikkelaar, net zoals wanneer hij dit manueel zou doen. Op deze manier kan
@@ -228,9 +229,8 @@ redundant werk leidt.
 Door aan de hand van code generatie de code optimaal te organiseren, wordt het
 mogelijk om de verschillende algoritmen in parallel te laten werken en niet
 langer sequentieel. Dit leidt ook tot de mogelijkheid om de communicatie die de
-verschillende algoritmen versturen kan gebundeld worden in \'e\'en packet,
-waardoor het herhaaldelijk gebruik van de draadloze radio tot een minimum
-gereduceerd wordt.
+verschillende algoritmen versturen te bundelen in \'e\'en packet, waardoor het
+herhaaldelijk gebruik van de draadloze radio tot een minimum gereduceerd wordt.
 
 Het samennemen van verschillende uitvoeringslussen en het combineren van
 communicatie zijn slechts twee van de mogelijkheden die zich aanbieden. Zo kan
@@ -246,7 +246,7 @@ De implementatie van dit code generatie raamwerk zal in eerste instantie
 volledig onafhankelijk van enige andere technologie ontwikkeld worden. Deze
 aanpak laat toe om het resultaat later in verschillende andere omgevingen in te
 bedden. Minstens \'e\'en andere omgeving zal uitgewerkt worden. Hierbij zal
-getracht worden om het resultaat op te splitsen in een basis component dit op
+getracht worden om het resultaat op te splitsen in een basis component die op
 elke knoop voorzien kan worden en anderzijds een gegenereerd deel dat apart
 ge\"installeerd kan worden.
 
@@ -273,15 +273,15 @@ verlichten.
 
 Aan de hand van code generatie kunnen de algoritmen onafhankelijk beschreven
 worden en toch zo georganiseerd worden dat de uitvoeringstijd geminimaliseerd
-wordt alsook dat het gebruik van het netwerk gegroepeerd wordt in een enkele
+wordt. Verder wordt ook het gebruik van het netwerk gegroepeerd in een enkele
 verzending van de informatie van alle verschillende algoritmen samen.
 
 Zo resulteert deze aanpak in een automatisering van de implementatie van
-inbraakdetectie mechanismen, waardoor de flexibiliteit om code te organiseren
+inbraakdetectiemechanismen, waardoor de flexibiliteit om code te organiseren
 behouden blijft en het mogelijk wordt om de impact van deze bijkomende
 niet-functionele code te minimaliseren. De onafhankelijkheid van de
-domein-specifieke taal biedt verder tevens de mogelijkheid om
-platform-onafhankelijke beschrijvingen van inbraakdetectie algoritmes te
+domeinspecifieke taal biedt verder tevens de mogelijkheid om
+platform-onafhankelijke beschrijvingen van inbraakdetectiealgoritmes te
 hanteren binnen het zeer heterogene landschap van de draadloze sensornetwerken.
 
 \end{document}
