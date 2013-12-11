@@ -26,27 +26,36 @@ void sha1_dump(unsigned char buffer[20]) {
 
 int main() {
   unsigned char ibuf[] = "hello world";
-  unsigned char obuf[20];
-  unsigned char obuf2[20];
+
+  sha1_t openssl,
+         mahoney,
+         allinone;
 
   // OpenSSL implementation
-  SHA1(ibuf, strlen(ibuf), obuf);
+  SHA1(ibuf, strlen(ibuf), &(openssl.hash));
 
   // Matt Mahoney implementation
   SHA1Context context;
 
-  SHA1Reset(&context);
-  SHA1Input(&context, &ibuf, strlen(ibuf));
-  SHA1Result(&context, &obuf2);
+  SHA1Reset (&context);
+  SHA1Input (&context, &ibuf, strlen(ibuf));
+  SHA1Result(&context, &(mahoney.hash));
 
   // visual confirmation ;-)
-  sha1_dump(obuf);
-  sha1_dump(obuf2);
+  // sha1_dump(openssl.hash);
+  // sha1_dump(mahoney.hash);
 
   // make sure ;-)
-  for(int i=0; i<20; i++) {
-    assert( obuf[i] == obuf2[i] );
-  }
+  assert( memcmp( openssl.hash, mahoney.hash, 20) == 0 );
+
+  // use the all in one compute function
+  allinone = SHA1Compute(&ibuf, strlen(ibuf));
+
+  // more visual confirmation ;-)
+  // sha1_dump(allinone.hash);
+
+  assert( allinone.result == shaSuccess );
+  assert( memcmp(openssl.hash, allinone.hash, 20) == 0 );
 
   printf("RESULT: OK\n");
 

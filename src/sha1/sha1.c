@@ -387,3 +387,15 @@ void SHA1PadMessage(SHA1Context *context)
 
     SHA1ProcessMessageBlock(context);
 }
+
+
+sha1_t SHA1Compute(const uint8_t *ibuf, const uint8_t length) {
+  sha1_t sha1;
+  SHA1Context context;
+
+  SHA1Reset(&context);
+  SHA1Input(&context, ibuf, length);
+  sha1.result = SHA1Result(&context, (unsigned char*)&(sha1.hash));
+
+  return sha1;
+}

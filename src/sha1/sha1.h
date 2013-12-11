@@ -12,6 +12,9 @@
  *
  *      Please read the file sha1.c for more information.
  *
+ * adapted by Christophe VG
+ * - added sha1_t type
+ * - added SHA1Compute function - all in one solution ;-)
  */
 
 #ifndef _SHA1_H_
@@ -59,6 +62,12 @@ typedef struct SHA1Context
     int Corrupted;             /* Is the message digest corrupted? */
 } SHA1Context;
 
+// sha1 type
+typedef struct {
+  uint8_t result;
+  uint8_t hash[SHA1HashSize];
+} sha1_t;
+
 /*
  *  Function Prototypes
  */
@@ -69,5 +78,8 @@ int SHA1Input(  SHA1Context *,
                 unsigned int);
 int SHA1Result( SHA1Context *,
                 uint8_t Message_Digest[SHA1HashSize]);
+
+// an all-in-one function, returning a SHA1
+sha1_t SHA1Compute(const uint8_t *, const uint8_t);
 
 #endif
