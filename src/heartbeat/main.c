@@ -19,6 +19,8 @@
 #include "../an-avr-lib/xbee.h"
 #include "../an-avr-lib/clock.h"
 
+#include "heartbeat.h"
+
 // configuration of external components
 
 #define STATUS_LED_PORT    PORTB  // PB0
@@ -34,14 +36,17 @@
 #define VCC_SENSOR_PIN     7
 
 // network config
-#define DESTINATION XBEE_COORDINATOR
+#define DESTINATION XB_COORDINATOR
 
 // forward declarations
 void init(void);
 void send_bytes(uint8_t *bytes, uint8_t size);
+void broadcast_bytes(uint8_t *bytes, uint8_t size);
 void send_str(const char *string);
 void sleep(void);
 void receive(xbee_rx_t*);
+// ids
+void ids_heartbeat(void);
 
 int main(void) {
   uint16_t reading;               // the 16-bit reading from the ADC
@@ -62,10 +67,33 @@ int main(void) {
     printf("[%06lu] light = %3i (0x%04X)\n", clock_get_millis(),
            reading, reading);
 
+    // IDS hooks
+    ids_heartbeat();
+
+    // process receiving
+    xbee_receive();
+
+    // and go to sleep for a while...
     sleep();
   }
 
   return(0);
+}
+
+static unsigned long next_heartbeat = 0;
+
+void ids_heartbeat(void) {
+  // send a heartbeat every 3 seconds
+  if(clock_get_millis() >= next_heartbeat) {
+    printf("[%06lu] sending heartbeat\n", clock_get_millis());
+
+    // broadcast heartbeat
+    heartbeat_payload_t payload = heartbeat_create_payload();
+    broadcast_bytes(payload.data, HEARTBEAT_PAYLOAD_SIZE);
+
+    // shedule next
+    next_heartbeat += 3000;
+  }
 }
 
 void init(void) {
@@ -106,8 +134,22 @@ void send_bytes(uint8_t *bytes, uint8_t size) {
 
   frame.size        = size;
   frame.id          = XB_TX_NO_RESPONSE;
-  frame.address     = XB_COORDINATOR;
+  frame.address     = DESTINATION;
   frame.nw_address  = XB_NW_ADDR_UNKNOWN;
+  frame.radius      = XB_MAX_RADIUS;
+  frame.options     = XB_OPT_NONE;
+  frame.data        = bytes;
+
+  xbee_send(&frame);
+}
+
+void broadcast_bytes(uint8_t *bytes, uint8_t size) {
+  xbee_tx_t frame;
+
+  frame.size        = size;
+  frame.id          = XB_TX_NO_RESPONSE;
+  frame.address     = XB_BROADCAST;
+  frame.nw_address  = XB_NW_BROADCAST;
   frame.radius      = XB_MAX_RADIUS;
   frame.options     = XB_OPT_NONE;
   frame.data        = bytes;
@@ -124,10 +166,14 @@ void sleep(void) {
 }
 
 void receive(xbee_rx_t *frame) {
-  printf("[%lu] RX : %i / %i\n", clock_get_millis(), frame->nw_address, frame->size);
-  printf("      ");
-  for(int i=0; i<frame->size; i++) {
-    printf("%i ", frame->data[i]);
+  printf("[%06lu] RX : from : %02x %02x | size : %i\n",
+         clock_get_millis(),
+         (uint8_t)(frame->nw_address >> 8), (uint8_t)frame->nw_address,
+         frame->size);
+  printf("-----------------------------");
+  for(uint8_t i=0; i<frame->size; i++) {
+    if(i % 10 == 0) { printf("\n"); }
+    printf("%02x ", frame->data[i]);
   }
-  printf("\n");
+  printf("\n-----------------------------\n");
 }

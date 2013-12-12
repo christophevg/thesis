@@ -194,3 +194,11 @@ activities
 2013-12-10 (30min/175h30min)
 - incorporated first batch of reviewers' comments for faculty reporting (30min)
 
+2013-12-11 (3h30min/179h)
+- presentation WSN group (30min)
+- create another sensor (2h30min)
+- improved sha1 module (30min)
+
+2013-12-12 (8h/187h)
+- implemented improved heartbeat broadcast (6h)
+- clean up of code & co (2h)

@@ -1,5 +1,6 @@
 MORE_SRC = ../an-avr-lib/avr.c    ../an-avr-lib/clock.c ../an-avr-lib/sleep.c  \
-					 ../an-avr-lib/serial.c ../an-avr-lib/xbee.c
+					 ../an-avr-lib/serial.c ../an-avr-lib/xbee.c \
+					 heartbeat.c ../sha1/sha1.c
 
 MCU=atmega1284p
 F_CPU=8000000
@@ -17,3 +18,14 @@ clean: clean_avr
 
 clean_avr:
 	@(cd ../an-avr-lib; $(MAKE) clean)
+
+# setup and control targets
+
+fuses:
+	$(AVRDUDE) $(AVRDUDE_FLAGS) -U lfuse:w:0xE2:m
+
+serial-digitus:
+	screen /dev/tty.usbserial-FTSJ84AI 9600
+
+serial-logilink:
+	screen /dev/tty.usbserial 9600
