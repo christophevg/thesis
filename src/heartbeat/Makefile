@@ -1,6 +1,7 @@
 MORE_SRC = ../an-avr-lib/avr.c    ../an-avr-lib/clock.c ../an-avr-lib/sleep.c  \
 					 ../an-avr-lib/serial.c ../an-avr-lib/xbee.c \
 					 heartbeat.c ../sha1/sha1.c
+MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
 
 MCU=atmega1284p
 F_CPU=8000000
@@ -14,10 +15,13 @@ MORE_CDEFS=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
 
 include ../an-avr-lib/Makefile
 
-clean: clean_avr
+clean: clean_avr clean_more_objects
 
 clean_avr:
 	@(cd ../an-avr-lib; $(MAKE) clean)
+
+clean_more_objects:
+	@rm -f $(MORE_OBJECTS)
 
 # setup and control targets
 
