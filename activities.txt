@@ -202,3 +202,6 @@ activities
 2013-12-12 (8h/187h)
 - implemented improved heartbeat broadcast (6h)
 - clean up of code & co (2h)
+
+2013-12-13 (30min/187h30min)
+- incorporated 2 more reviewers' comments (30min)
