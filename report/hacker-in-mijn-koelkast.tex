@@ -1,7 +1,7 @@
 \documentclass[DIV=calc,paper=a4,fontsize=11pt,twocolumn,draft]{scrartcl}
 
 \usepackage{lipsum}
-\usepackage[english]{babel}
+\usepackage[dutch]{babel}
 \usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage{amsmath,amsfonts,amsthm}
 \usepackage[svgnames]{xcolor}
@@ -27,7 +27,7 @@
 
 \usepackage{lettrine}
 \newcommand{\initial}[1]{
-\lettrine[lines=3,lhang=0.3,nindent=0em]{
+\lettrine[lines=4,lhang=0.3,nindent=0em]{
 \color{DarkGoldenrod}
 {\textsf{#1}}}{}}
 
@@ -46,7 +46,7 @@
 \color{DarkRed}}
 \author{Christophe Van Ginneken, }
 \postauthor{\footnotesize \usefont{OT1}{phv}{m}{sl} \color{Black}
-Student KULeuven
+Student MSc Computerwetenschapp, KULeuven
 \par\end{flushleft}\HorRule}
 
 \date{\today}
@@ -57,8 +57,27 @@ Student KULeuven
 \linenumbers
 
 \begin{document}
-\maketitle
 \thispagestyle{fancy}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\maketitle
+\begin{abstract}
+
+De opkomst van het ``internet van de dingen'' is niet meer te stoppen en weldra
+zal elk ding op aarde voorzien zijn van een eigen plek op het internet. Dit is
+leuk, want zo zullen we van op het werk kunnen nakijken hoeveel melk er nog in
+onze koelkast staat of kunnen we de verwarming van de badkamer alvast een
+graadje hoger zetten terwijl we nog in de file zitten op een druilige
+vrijdagavond. Maar terwijl wij kunnen genieten van al deze luxe, staat de
+voordeur van ons geautomatiseerd huis ook open voor anderen, met minder
+aangename bedoelingen en een massa aan mogelijkheden om al onze online
+\emph{dingen} aan te vallen. Zullen we ons kunnen verdedigen, of is de strijd
+bij voorbaat al verloren?
+
+\end{abstract}
+\end{@twocolumnfalse}
+]
 
 \initial{H}et lijkt een deel van een dialoog uit een slechte science fiction
 film. Als we echter de evolutie van technologie van naderbij bekijken, zien we
