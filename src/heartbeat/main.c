@@ -48,24 +48,27 @@ void receive(xbee_rx_t*);
 // ids
 void ids_heartbeat(void);
 
-int main(void) {
-  uint16_t reading;               // the 16-bit reading from the ADC
-  uint8_t  values[2];             // the bytes containing the reading in bytes
+// little hack to have a timed log function without the function ;-)
+#define log printf("[%06lu] ", clock_get_millis()); printf
 
+int main(void) {
   init();
+
   xbee_on_receive(receive);
 
   while(TRUE) {
+    uint16_t reading;               // the 16-bit reading from the ADC
+    uint8_t  values[2];             // the bytes containing the reading in bytes
+
     // light
     reading = avr_adc_read(LIGHT_SENSOR_PIN);
-    values[0] = (reading >> 8 ) & 0x00FF;
-    values[1] = reading & 0x00FF;
+    values[0] = (reading >> 8 );
+    values[1] = reading;
 
     // send it to the coordinator
     send_bytes(values, 2);
     // print it to the serial
-    printf("[%06lu] light = %3i (0x%04X)\n", clock_get_millis(),
-           reading, reading);
+    log("light = %3i (0x%04X)\n", reading, reading);
 
     // IDS hooks
     ids_heartbeat();
@@ -80,12 +83,13 @@ int main(void) {
   return(0);
 }
 
-static unsigned long next_heartbeat = 0;
+static unsigned long next_heartbeat  = 0,
+                     next_processing = 0;
 
 void ids_heartbeat(void) {
   // send a heartbeat every 3 seconds
   if(clock_get_millis() >= next_heartbeat) {
-    printf("[%06lu] sending heartbeat\n", clock_get_millis());
+    log("sending heartbeat\n");
 
     // broadcast heartbeat
     heartbeat_payload_t payload = heartbeat_create_payload();
@@ -93,6 +97,14 @@ void ids_heartbeat(void) {
 
     // shedule next
     next_heartbeat += 3000;
+  }
+  
+  // do background processing every second
+  if(clock_get_millis() >= next_processing) {
+    heartbeat_process();
+    
+    // schedule next
+    next_processing += 1000;
   }
 }
 
@@ -113,9 +125,9 @@ void init(void) {
 
   // XBEE
   xbee_init();                    // initialize use of XBee module
-  printf("xbee initialized, waiting for association...\n");
+  log("xbee initialized, waiting for association...\n");
   xbee_wait_for_association();    // wait until the network is available
-  printf("xbee associated\n");    // announce boot process via serial
+  log("xbee associated\n");    // announce boot process via serial
   send_str("xbee associated\n");  // announce boot process via xbee
 
   // FUNCTIONALITY
@@ -165,15 +177,20 @@ void sleep(void) {
               STATUS_LED_PIN);
 }
 
+// frames that are received, are presented to all possible interested parties
+// in this case: ids ;-)
 void receive(xbee_rx_t *frame) {
-  printf("[%06lu] RX : from : %02x %02x | size : %i\n",
-         clock_get_millis(),
-         (uint8_t)(frame->nw_address >> 8), (uint8_t)frame->nw_address,
-         frame->size);
-  printf("-----------------------------");
-  for(uint8_t i=0; i<frame->size; i++) {
-    if(i % 10 == 0) { printf("\n"); }
-    printf("%02x ", frame->data[i]);
-  }
-  printf("\n-----------------------------\n");
+  // log("RX : from : %02x %02x | size : %i\n",
+  //      (uint8_t)(frame->nw_address >> 8),
+  //      (uint8_t)frame->nw_address,
+  //      frame->size);
+  // printf("-----------------------------");
+  // for(uint8_t i=0; i<frame->size; i++) {
+  //   if(i % 10 == 0) { printf("\n"); }
+  //   printf("%02x ", frame->data[i]);
+  // }
+  // printf("\n-----------------------------\n");
+  
+  // present it to the ids hearbeat module
+  heartbeat_receive(frame->nw_address, frame->size, frame->data);
 }
