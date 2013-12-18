@@ -214,5 +214,6 @@ activities
 - status reporting to faculty (15min)
 - wrote draft popular article (3h30min)
 
-2013-12-18 (5hmin/197h30min)
-- finalised basic functionality heartbeat demo (5h)
+2013-12-18 (6h/198h30min)
+- finalized basic functionality heartbeat demo (5h)
+- incorporated first batch of reviewer's comments for popular article (1h)
