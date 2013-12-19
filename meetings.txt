@@ -109,3 +109,20 @@
 
 @ TODO
   - 9/12 : presentatie doorsturen tegen ma middag -> Jeff
+
+2013-12-19
++ Jef Maerien
+
+? lost packets
+  -> more transmission power ?
+  -> positioning of antenna ?
+? popular paper
+  -> naar Jef
+  -> later bundelen bij inlevering
+
+! eind februari: code generatie werkend
+  -> (dat kan, conform planning)
+! extensies (deployment, contiki) missen in planning
+  -> klopt, vergeten tijdens opmaken planning, horen in parallel met schrijven
+! verschillende signalen "ik vertrouw deze node niet"
+  -> aggregatielaag toevoegen (was gepland, maar niet in eerste scope)
