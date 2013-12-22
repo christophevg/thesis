@@ -216,7 +216,10 @@ activities
 
 2013-12-18 (6h/202h)
 - finalized basic functionality heartbeat demo (5h)
-- incorporated first batch of reviewer's comments for popular article (1h)
+- incorporated first batch of reviewers' comments for popular article (1h)
 
 2013-12-19 (30min/202h30min)
 - meeting 7 + demo (30min)
+
+2013-12-22 (30min/203h)
+- incorporated second batch of reviewers' comments for popular article (30min)
