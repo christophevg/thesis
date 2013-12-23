@@ -221,5 +221,9 @@ activities
 2013-12-19 (30min/202h30min)
 - meeting 7 + demo (30min)
 
-2013-12-22 (30min/203h)
+2013-12-22 (1h30min/204h)
 - incorporated second batch of reviewers' comments for popular article (30min)
+- incorporated thrid batch of reviewers' comments (1h)
+
+2013-12-23 (2h/206h)
+- more improvements on popular article (2h)
