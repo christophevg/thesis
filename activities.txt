@@ -225,5 +225,6 @@ activities
 - incorporated second batch of reviewers' comments for popular article (30min)
 - incorporated thrid batch of reviewers' comments (1h)
 
-2013-12-23 (2h/206h)
+2013-12-23 (3h/207h)
 - more improvements on popular article (2h)
+- final review and submission popular article (1h)

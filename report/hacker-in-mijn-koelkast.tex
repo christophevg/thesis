@@ -101,8 +101,8 @@ dan verwacht de fictie zal inhalen.
 
 Sinds het internet ervoor zorgde dat elke computer - en ondertussen ook bijna
 elke telefoon - ter wereld online is, voelen we reeds de hete adem van de
-volgende revolutie in onze nek. Opnieuw wordt alles kleiner kleiner en wil men
-tegen elke prijs elk \emph{ding} ter wereld aansluiten op internet.
+volgende revolutie in onze nek. Opnieuw wordt alles kleiner en wil men tegen
+elke prijs elk \emph{ding} ter wereld aansluiten op internet.
 
 Elk ding mogen we hier eigenlijk zelfs letterlijk nemen. Onder de noemer van
 het ``internet van de dingen'' wordt al enkele jaren getracht om elk toestel in
@@ -135,13 +135,13 @@ De onderliggende technologie die dit alles mogelijk maakt, is de
 microcontroller. Een microcontroller is in essentie een zeer kleine computer in
 de vorm van \'e\'en enkele chip. Zo bevat hij alles wat nodig is om er software
 op te plaatsen en deze uit te voeren: rekenkracht, geheugen en
-aansluitingspunten voor allerhande externe componenten.
+aansluitingspunten voor communicatie met de buitenwereld.
 
 Microcontrollers worden in de eerste plaats ontwikkeld om andere toestellen te
 besturen en trachten daarom zo weinig mogelijk aanspraak te maken op de
 energiebron van het toestel waar ze deel van uitmaken. Een laag energieverbruik
 gaat echter wel gepaard met een lagere rekenkracht, maar dit is doorgaans geen
-probleem omdat ze ingezet worden voor een goed gedefinieerde taak.
+probleem omdat ze ingezet worden voor een duidelijk afgelijnde taak.
 
 Dankzij hun beperkte mogelijkheden en daardoor typische werkingscontext, zijn
 microcontrollers relatief goedkoop en worden ze in groten getale ingezet in
@@ -158,10 +158,9 @@ hun omgeving op te nemen en toestellen aan te sturen.
 
 De externe componenten die microcontrollers in staat stellen om hun omgeving
 waar te nemen, noemen we sensoren. Deze elektronische schakelingen kunnen
-omgevingsfactoren detecteren en omzetten in elektrische signalen. De
-microcontroller kan vervolgens deze elektrische signalen meten en hieruit een
-waarde bepalen zoals bijvoorbeeld de intensiteit van het licht of de
-vochtigheid in een kamer.
+omgevingseigenschappen omzetten in elektrische signalen. De microcontroller kan
+vervolgens op basis van deze elektrische signalen een waarde bepalen voor
+bijvoorbeeld de intensiteit van het licht of de vochtigheid in een kamer.
 
 Het is deze combinatie van grote hoeveelheden sensoren en microcontrollers die
 de evolutie van de automobielsector vooruit stuwt en ons reeds vandaag auto's
@@ -182,9 +181,9 @@ sensoren die dankzij draadloze technologie met elkaar kunnen communiceren en zo
 een netwerk cre\"eren van zogenaamde sensorknopen.
 
 De inzetbaarheid van deze netwerken kent vele vormen. Zo kunnen
-overstromingsgebieden in het oog gehouden worden of kan men het trek- en
-kuddegedrag van dieren op de voet volgen. Dankzij hun kleine vormgeving en zeer
-lage energienoden, kunnen deze sensorknopen soms wel tot meer dan een jaar
+overstromingsgebieden nauwgezet opgevolgd worden of kan men het trek- en
+kuddegedrag van dieren optekenen. Dankzij hun kleine vormgeving en zeer lage
+energienoden, kunnen deze sensorknopen soms wel tot meer dan een jaar
 functioneren aan de hand van \'e\'en enkele batterij. Dankzij hun lage
 kostprijs worden ze dan ook beschouwd als een wegwerpbaar goed en worden ze
 typisch in groten getale ingezet. Zo zal indien \'e\'en knoop uitvalt, dit geen
@@ -242,17 +241,17 @@ worden die impact heeft op het leven van iedereen en niet slechts voor wie mee
 is met de nieuwste technologische snufjes.
 
 Onder beveiliging verstaan we meestal diens eerste doelstelling: voorkomen dat
-er iets misgaat. Maar beveiliging gaat verder dan dat. Niet alles kan voorkomen
+iets misgaat. Maar beveiliging gaat verder dan dat. Niet alles kan voorkomen
 worden. In het geval van een inbraak zal men soms genoegen moeten nemen met het
 ``in staat zijn om de inbraak vast te stellen'', om zo toch nog na de feiten
-reactieve maatregelen te nemen. In de digitale wereld is dit schering en inslag
-- denken we maar aan de recente onthullingen inzake de spionage in
+reactieve maatregelen te kunnen nemen. In de digitale wereld is dit schering en
+inslag - denken we maar aan de recente onthullingen inzake de spionage in
 verschillende telecombedrijven. Hier worden specifieke inbraakdetectiesystemen
 dan ook veelvuldig ingezet om op zijn minst de inbraak vast te stellen en de
 schade te kunnen opmeten.
 
-Dit is zonder meer ook de situatie bij draadloze sensornetwerken. Ook hier
-zullen we soms genoegen moeten nemen met het kunnen vaststellen van een
+Dit is zonder twijfel ook het geval bij draadloze sensornetwerken, waar we
+eveneens dikwijls genoegen moeten nemen met het kunnen vaststellen van een
 inbraak. Maar het huwelijk van sensorknopen en inbraakdetectie blijkt al snel
 te stranden op basis van tegenstrijdige belangen.
 
@@ -330,14 +329,14 @@ vergewissen.
 
 Anderzijds dient ook op regelmatige tijdstippen een inventaris gemaakt te
 worden van de verzamelde gegevens. Dit kan gaan van het controleren of er geen
-andere knopen zijn die reeds geruime tijd geen activiteit hebben vertoond, tot
-het berekenen van een reputatie van een knoop op basis van de verschillende
+knopen zijn die reeds geruime tijd geen activiteit hebben vertoond, tot het
+berekenen van een reputatie van een knoop op basis van de verschillende
 gebeurtenissen in het netwerk en de informatie die andere knopen hieromtrent
 deelden.
 
 Het is evident dat deze zeer gelijklopende structuur voor elk
 detectiemechanisme onherroepelijk kan leiden tot veel dezelfde programmacode,
-maar ook tot meerdere malen het uitvoeren van diezelfde code en talrijke
+maar ook tot het herhaaldelijk uitvoeren van dezelfde code en talrijke
 berichtenuitwisselingen over het netwerk tussen de knopen, en dit voor elk van
 de detectoren afzonderlijk. Veelvuldige uitvoering leidt tot langere
 verwerkingstijden en veel communicatie leidt tot meer gebruik van het draadloze
@@ -348,11 +347,11 @@ respecterende ontwikkelaar zal dit opmerken en zal de code zo structureren dat
 deze problemen weggewerkt worden. Inderdaad, voor eenvoudige systemen \'en
 indien de ontwikkelaar de volledige inbraakdetectie zelf bouwt, is dat het
 geval. Maar inbraakdetectie is een niet-functioneel gegeven voor de
-ontwikkelaar. Om inbraakdetectie schaalbaar inzetbaar te maken, zal men ook
+ontwikkelaar. Om inbraakdetectie economisch verantwoord te maken, zal men ook
 hier zoveel mogelijk gebruik willen maken van bestaande implementaties. Op dat
 ogenblik heeft de ontwikkelaar niet langer de luxe om de code anders te
 organiseren en zullen de langere uitvoertijden en het veelvuldige
-netwerkgebruik effectief een overmatige belasting worden op de beperkte
+netwerkgebruik effectief een overmatige belasting worden voor de beperkte
 mogelijkheden van de sensorknoop.
 
 Men kan echter nog verder argumenteren dat de de bijkomende verwerkingstijden
@@ -384,19 +383,19 @@ automatisch om te zetten tot beter georganiseerde code.
 
 Een andere aanpak bestaat erin om de beschrijving van een detector te
 realiseren aan de hand van een domeinspecifieke taal. Zo'n taal is opgebouwd
-rond een specifiek domein, in dit geval dat van inbraakdetectie, en voorziet
+rond een specifiek domein - in dit geval dat van inbraakdetectie - en voorziet
 daarvoor een typisch en vertrouwd jargon. Dit type van talen is, in
 tegenstelling tot normale, generieke programmeertalen, beperkt in zijn
-expressiviteit en bevat bv. niet de mogelijkheid om een klassieke iteratie te
-beschrijven.
+expressiviteit en bevat bv. niet de mogelijkheid om eenvoudig iteratief gedrag
+te beschrijven.
 
 Deze beperking leidt er toe dat de beschrijving van een detector nog nauwelijks
 op meerdere manieren kan gerealiseerd worden - of alvast niet op een ongunstige
 manier - waardoor een geautomatiseerde verwerking sterk vereenvoudigd wordt.
 Hierdoor wordt \'e\'en van de basisproblemen ontweken en ligt de weg open om
 verschillende mechanismen te combineren en optimaal te organiseren. Dit kan
-gebeuren door middel van specifieke codegeneratiesoftware die de
-domeinspecifieke taal analyseert en omzet in effectieve programmacode.
+gebeuren door middel van specifieke codegeneratiesoftware die de beschrijving
+in de domeinspecifieke taal analyseert en omzet in effectieve programmacode.
 
 Het aspect van een domeinspecifieke taal is hier het essenti\"ele gegeven. Net
 door de taal toe te spitsen op \'e\'en specifiek domein wordt het mogelijk om
@@ -453,9 +452,9 @@ Zo resulteert deze aanpak in een automatisering van de implementatie van
 inbraakdetectiemechanismen, waardoor de flexibiliteit om code te organiseren
 behouden blijft en het mogelijk wordt om de impact van deze bijkomende
 niet-functionele code te minimaliseren. De onafhankelijkheid van de
-domeinspecifieke taal biedt verder tevens de mogelijkheid om
-platformonafhankelijke beschrijvingen van inbraakdetectiemechanismen te hanteren
-binnen het heterogene landschap van de draadloze sensornetwerken.
+domeinspecifieke taal biedt verder de mogelijkheid om platformonafhankelijke
+beschrijvingen van inbraakdetectiemechanismen te hanteren binnen het heterogene
+landschap van de draadloze sensornetwerken.
 
 Zo heeft de ontwikkelaar van de software van de sensorknopen die weldra
 alomtegenwoordig zullen zijn in onze huizen, alvast de mogelijkheid om snel en
