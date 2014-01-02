@@ -231,3 +231,6 @@ activities
 
 2013-12-24 (2h30min/209h30min)
 - DeskTop Publishing on Xmas' eve (2h30min)
+
+2014-01-02 (1h/210h30min)
+- investigated possible application of actor-model (1h)
