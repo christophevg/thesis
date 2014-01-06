@@ -235,5 +235,6 @@ activities
 2014-01-02 (1h/210h30min)
 - investigated possible application of actor-model (1h)
 
-2014-01-06 (15min/210h45min)
+2014-01-06 (1h45min/212h15min)
 - status reporting to faculty (15min)
+- imported parser generation framework (1h30min)
