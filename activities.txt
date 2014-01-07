@@ -239,5 +239,6 @@ activities
 - status reporting to faculty (15min)
 - imported parser generation framework (1h30min)
 
-2014-01-07 (1h/213h15min)
+2014-01-07 (4h30min/216h45min)
 - research into template engines (1h)
+- implemented first basic language constructs in parser framework (3h30min)

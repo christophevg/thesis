@@ -4,17 +4,22 @@ PYTHON=/opt/local/bin/python2.7
 APP=emlang
 
 BUILD_DIR=$(APP)
+ANTLR_OUT=antlr.out
 
-all: clean
-	@echo "*** generating parser"
-	@$(ANTLR) -o $(APP) $(APP).g
+PARSER=$(APP)/$(APP)Parser.py
 
-test: all
-	@echo "*** performing tests"
-	@rm -rf t/$(APP)
-	@(cd t; ln -s ../$(BUILD_DIR) .)
+all: $(PARSER)
+
+test: $(PARSER)
+	@echo "*** performing $(APP) parser tests"
 	@(cd t; $(PYTHON) test.py syntax.json)
-	@rm -rf t/$(APP)
+
+$(PARSER): $(APP).g
+	@echo "*** generating $(APP) parser"
+	@$(ANTLR) -o $(APP) $< > $(ANTLR_OUT) 2>&1 || (cat $(ANTLR_OUT); false)
 
 clean:
+	@rm -f $(ANTLR_OUT)
 	@(cd $(APP); rm -f $(APP).tokens $(APP)Lexer.py $(APP)Parser.py *.pyc)
+
+.PHONY: test clean
