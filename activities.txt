@@ -242,3 +242,9 @@ activities
 2014-01-07 (4h30min/216h45min)
 - research into template engines (1h)
 - implemented first basic language constructs in parser framework (3h30min)
+
+2014-01-08 (6h15min/223h)
+- erlang refresher (1h30min)
+- implemented broadcasting layer in erlang (1h30min)
+- implemented heartbeat demo in erlang (3h)
+- found gerl + paper (15min)
