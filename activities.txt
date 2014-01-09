@@ -248,3 +248,6 @@ activities
 - implemented broadcasting layer in erlang (1h30min)
 - implemented heartbeat demo in erlang (3h)
 - found gerl + paper (15min)
+
+2014-01-09 (3h/226h)
+- functional analysis targeting DSL definition (3h)
