@@ -31,18 +31,29 @@ use nodes
 // identification of nodes. internal modification of the module allows for
 // different network stacks and properties to be implemented (e.g. Zigbee,...)
 // from the outside (=here), all this is abstracted into nodes in general.
+// the format is a simple hash of <name> : <type> = value's
 extend nodes with {
   last_seen  : timestamp = 0
-, fail_count : byte      = 0
-, trust      : boolean   = true    // we trust nodes until otherwise proven
-, sequence   : byte      = 0
+  fail_count : byte      = 0
+  trust      : boolean   = true    // we trust nodes until otherwise proven
+  sequence   : byte      = 0
 }
+// note: the nodes module keeps track of all nodes it encounters. the very first
+// node is our own node, which can be referenced through nodes.self
 
-// validate is a function that is called depending on the validation strategy
-// here added as an annotation. it is called for each node in the known nodes
-// collection. it is defined as a method called upon an instance of a node,
-// which allows the self reference to this.
-nodes.validate = function() @every(validation_interval) {
+// we can interact with the module through event handlers and extensions.
+// extensions are functions that are added to the nodes and are linked to events
+// or have an execution strategy.
+// event handlers are triggered when certain events happen within the scope of
+// nodes. typically this consists of existing functions that are executed. the
+// registered event handler will then be called with the same arguments. think
+// of it as kind of aspect-programming meets event handling, because using
+// the @before and @after annotations, the event handler can kick in before
+// or after the event will happen - premonition anyone :-)
+
+// every node is validated using this function at the validation_interval.
+@every(validation_interval)
+with nodes do function() {
   // validate if the time that passed since the last heartbeat isn't too long
   if( now() - this.last_seen > max_last_seen_interval ) {
     // the heartbeat is late, let's track this incident
@@ -59,11 +70,11 @@ nodes.validate = function() @every(validation_interval) {
 // representing the actual node that is running this code. a reference to the
 // sender is provided, aswell as the FULL payload. to extract the part that is
 // of interest, matching can be used.
-nodes.receive = function(from, payload) {
+when nodes receive do function(from, to, payload) {
   // payload is a list of data. we can consider one or more cases
   case payload {
     // e.g. we can check if we find an atom and three variables after is
-    contains [ 'heartbeat', time, sequence, signature ]:
+    contains [ 'heartbeat', time, sequence, signature ] :
       // validate signature
       if(sha1([sequence, time]) == signature) {
         from.last_seen = time
@@ -78,9 +89,10 @@ nodes.receive = function(from, payload) {
   }
 }
 
-// adding a send function to the nodes, with an execution strategy to have it
+// adding a send function to our own node, with an execution strategy to have it
 // executed every some milliseconds.
-nodes.send = function() @every(heartbeat_interval) {
+@every(heartbeat_interval)
+with nodes.self do function() {
   time = now()
   // <- is an operator representing "send to"
   // * here represents all possible nodes (aka broadcasting)
