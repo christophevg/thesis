@@ -251,3 +251,6 @@ activities
 
 2014-01-09 (3h/226h)
 - functional analysis targeting DSL definition (3h)
+
+2014-01-11 (2h/228h)
+- draft implementation of heartbeat using DSL (2h)
