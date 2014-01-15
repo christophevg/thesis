@@ -256,3 +256,6 @@ activities
 - draft implementation of heartbeat using DSL (2h)
 - added more details to heartbeat implementation using DSL (1h)
 - added rough implementation of reputation using DSL + updates (2h)
+
+2014-01-15 (2h/233h)
+- literature research on code generation/dsl/embedded (2h)
