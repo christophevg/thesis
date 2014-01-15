@@ -257,5 +257,6 @@ activities
 - added more details to heartbeat implementation using DSL (1h)
 - added rough implementation of reputation using DSL + updates (2h)
 
-2014-01-15 (2h/233h)
+2014-01-15 (4h30min/235h30min)
 - literature research on code generation/dsl/embedded (2h)
+- reading Fowler on DSL (2h30min)
