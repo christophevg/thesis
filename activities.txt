@@ -260,3 +260,7 @@ activities
 2014-01-15 (4h30min/235h30min)
 - literature research on code generation/dsl/embedded (2h)
 - reading Fowler on DSL (2h30min)
+
+2014-01-16 (3h30min/239h)
+- preliminary work on semantic model for nodes DSL (1h30min)
+- reading Fowler on DSL (2h)
