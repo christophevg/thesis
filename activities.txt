@@ -264,3 +264,6 @@ activities
 2014-01-16 (3h30min/239h)
 - preliminary work on semantic model for nodes DSL (1h30min)
 - reading Fowler on DSL (2h)
+
+2014-01-17 (1h30min/240h30min)
+- added rough draft of preface and closing thoughts (1h30min)
