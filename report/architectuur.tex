@@ -3,19 +3,50 @@
 \chapter{Architectuur}
 \label{chapter:architectuur}
 
-\TODO
+Ofschoon het domein van inbraakdetectie goed afgelijnd lijkt, werd uit de
+analyse van de probleemstelling snel duidelijk dat in het geval van draadloze
+sensornetwerken, de situatie enigszins complexer blijkt te zijn dan men op het
+eerste zicht zou mogen verwachten. De conclusie van de probleemstelling is dat
+vooral het onderzoek naar inbraakdetectie in draadloze sensornetwerken
+feitelijk nog in zijn kinderschoenen staat en dat de stap naar
+industrialisering nog niet genomen is.
+
+De daarbij horende gestructureerde manier van werken en het streven naar een
+geformaliseerde manier van werken ontbreken nog duidelijk en noodzaken daarom
+een holistische aanpak. De oplossingsstrategie vertrekt van dit gegeven en
+wordt in sectie \ref{section:strategy} uitgewerkt tot een totaaloplossing.
+
+Deze strategie wordt in secties \ref{section:funcarch} en
+\ref{section:techarch} uitgewerkt in de vorm van respectievelijk een
+functionele en technische architectuur.
 
 \section{Oplossingsstrategie}
+\label{section:strategy}
 
 \TODO
 
 \section{Functionele architectuur}
+\label{section:funcarch}
 
-\TODO
+In een functionele analyse gaan we in essentie op zoek naar de manier waarop de
+beoogde functionaliteit kan bereikt worden. In dit geval betreft het het zoeken
+naar een manier waarop het mogelijk is om detectiealgoritmen van verschillende
+bronnen te combineren tot een geheel dat minder eisen stelt tov. een
+sensorknoop, dan wanneer mijn de verschillende algoritmen sequentieel hun ding
+laat doen.
 
-\subsection{Programmatie}
+\subsection{Manuele programmatie}
 
-\TODO
+In zijn eenvoudigste vorm kan een oplossing voor het probleem bestaan in het
+defini\"eren van regels waar men zich moet aan houden bij het implementeren van
+detectiealgoritmes. Zo is het in theorie perfect mogelijk voor een programmeur
+om de extra belasting die de implementatie van verschillende detectiealgortimen
+met zich meebrengt te minimaliseren door voorafgaand een goede analyse te maken
+en op systematische wijze deze om te zetten in goed georganiseerde code.
+
+Gedistribueerde afspraken zonder centrale controle werken zelden. De
+ongebondenheid laat nog steeds toe om terug te vallen op klassieke
+implementaties.
 
 \subsection{Code generatie}
 
@@ -25,11 +56,14 @@
 
 \TODO
 
+\cite{fowler2010domain}
+
 \subsection{Domein specifieke taal}
 
-\TODO
+
 
 \section{Technische architectuur}
+\label{section:techarch}
 
 \TODO
 
