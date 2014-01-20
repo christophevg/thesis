@@ -271,3 +271,6 @@ activities
 2014-01-18 (1h30min/242h)
 - added readers + assessors + names to preface (30min)
 - prepared sections on problem description and architecture (1h)
+
+2014-01-20 (1h/243h)
+- added experiment with trampolining (1h)
