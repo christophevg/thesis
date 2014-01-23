@@ -274,3 +274,6 @@ activities
 
 2014-01-20 (1h/243h)
 - added experiment with trampolining (1h)
+
+2014-01-22 (2h/245h)
+- made on-paper design of semantic model (2h)
