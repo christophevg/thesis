@@ -31,16 +31,22 @@ extend nodes with {
 
 // we can react on "events". events are actions taken by nodes. actions are
 // statements performed by nodes (e.g. sending data, raising of events,...)
-when nodes transmit do function(to, hop, payload) {
+after nodes transmit do function(from, to, hop, payload) {
   // only if we expect the addressee to actually route the message futher...
-  if( hop != to ) { return }
+  if( hop == to ) { return }
+
+  // count the total number of packets that are being sent and for which we
+  // expect to see a forward action
+  if ! payload.contains(['reputation']) {
+    hop.msg_count++
+  }
 
   // we add the payload to a queue of payloads we expect to be forwarded by
   // the hop.
   hop.queue.push( [ now() + forward_timeout, payload ] )
 }
 
-when nodes receive do function(from, payload) {
+after nodes receive do function(from, to, payload) {
   case payload {
     contains [ 'reputation', of, alpha, beta ] :
       if( from.trust > indirect_threashold ) {
@@ -78,6 +84,11 @@ with nodes do function() {
   // and compute trust
   this.trust = (this.alpha + 1) / (this.alpha + this.beta + 2)
 
+  // notify bad node
+  if(this.trust < 0.25) {
+    send to this [ 'excluded' ]
+  }
+
   // reset message counter
   this.msg_count = 0;
 }
@@ -85,5 +96,5 @@ with nodes do function() {
 // of all nodes we track, we send out reputation information
 @every(broadcast_interval)
 with nodes do function() {
-  * <- [ 'reputation', this, this.alpha, this.beta ]
+ send to * [ 'reputation', this, this.alpha, this.beta ]
 }

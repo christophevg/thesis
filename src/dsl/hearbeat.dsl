@@ -70,7 +70,7 @@ with nodes do function() {
 // representing the actual node that is running this code. a reference to the
 // sender is provided, aswell as the FULL payload. to extract the part that is
 // of interest, matching can be used.
-when nodes receive do function(from, to, payload) {
+after nodes receive do function(from, to, payload) {
   // payload is a list of data. we can consider one or more cases
   case payload {
     // e.g. we can check if we find an atom and three variables after is
