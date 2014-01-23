@@ -277,3 +277,7 @@ activities
 
 2014-01-22 (2h/245h)
 - made on-paper design of semantic model (2h)
+
+2014-01-23 (1h30min/246h30min)
+- transfer of paper to case tool (1h)
+- small adaptations and clean up of DSL files (30min)
