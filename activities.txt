@@ -281,3 +281,6 @@ activities
 2014-01-23 (1h30min/246h30min)
 - transfer of paper to case tool (1h)
 - small adaptations and clean up of DSL files (30min)
+
+2014-01-27 (2h/248h30min)
+- added const, import, use and extend to parser grammar (ANTLR3 refresh) (2h)
