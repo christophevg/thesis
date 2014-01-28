@@ -284,3 +284,6 @@ activities
 
 2014-01-27 (2h/248h30min)
 - added const, import, use and extend to parser grammar (ANTLR3 refresh) (2h)
+
+2014-01-28 (8h30min/257h)
+- completed parser grammar up to heartbeat + AST clean up (8h30min)
