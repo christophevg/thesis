@@ -288,5 +288,6 @@ activities
 2014-01-28 (8h30min/257h)
 - completed parser grammar up to heartbeat + AST clean up (8h30min)
 
-2014-01-29 (1h/258h)
+2014-01-29 (3h/260h)
 - added Graphviz-based visualization of AST (1h)
+- completed parser grammar up to reputation (2h)
