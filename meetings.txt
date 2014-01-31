@@ -126,3 +126,31 @@
   -> klopt, vergeten tijdens opmaken planning, horen in parallel met schrijven
 ! verschillende signalen "ik vertrouw deze node niet"
   -> aggregatielaag toevoegen (was gepland, maar niet in eerste scope)
+
+2014-01-31 10:00
++ Dominique Devriese
+
+- infrastructuur
+  - debugging -> simulatie tool -> demo-ability
+  - assembly
+  - communicatie tussen modules/specifieke opslitsen files
+
+- concreet
+  - DSL -> generalistisch -> is it worthwhile (mentioning)?
+  ! drop USE (for now ;-))
+  ? external DSL
+    - nadelen: debugger
+    - voordelen: meer restricties
+
+- debugger
+  ! debug statements cfr C of explicitly
+
+2014-01-31 11:30
++ Jef Maerien
+
+! submission paper: april
+! gerelateerde technologie presentatie : kort na paasverlof
+! verdediging: tijdens examenperiode
+  - presentatie
+  - demo onafhankelijk
+  - vragen assessoren (namen bekend vlak voor inlevering)
