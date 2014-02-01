@@ -296,3 +296,6 @@ activities
 2014-01-31 (1h30/265h)
 - meeting with Dominique Devriese (1h15min)
 - meeting with Jef (15min)
+
+2014-02-01 (2h/267h)
+- added more AST visitor support (2h)
