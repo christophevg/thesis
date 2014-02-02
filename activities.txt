@@ -299,3 +299,6 @@ activities
 
 2014-02-01 (2h/267h)
 - added more AST visitor support (2h)
+
+2014-02-02 (1h/268h)
+- added more semantic model classes and structure (1h)
