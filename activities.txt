@@ -302,3 +302,7 @@ activities
 
 2014-02-02 (1h/268h)
 - added more semantic model classes and structure (1h)
+
+2014-02-04 (2h/270h)
+- converted to standard unittest (30min)
+- restructured foo-lang subproject structure (1h30min)
