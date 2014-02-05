@@ -307,5 +307,6 @@ activities
 - converted to standard unittest (30min)
 - restructured foo-lang subproject structure (1h30min)
 
-2014-02-05 (4h/274h)
+2014-02-05 (5h30min/275h30min)
 - started cleaning up semantic model + adding unittests (4h)
+- added expressions to semantic model (1h30min)
