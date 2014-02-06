@@ -310,3 +310,6 @@ activities
 2014-02-05 (5h30min/275h30min)
 - started cleaning up semantic model + adding unittests (4h)
 - added expressions to semantic model (1h30min)
+
+2014-02-06 (2h/277h30min)
+- added statements to semantic model (2h)
