@@ -316,5 +316,6 @@ activities
 - tried to use tree grammar to construct visitor: failed (1h)
 - continued work on visitor (1h)
 
-2014-02-07 (30min/280h)
+2014-02-07 (3h30min/283h)
 - status reporting to faculty (30min)
+- continued work on visitor (3h)
