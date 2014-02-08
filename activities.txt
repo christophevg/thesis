@@ -320,3 +320,6 @@ activities
 - status reporting to faculty (30min)
 - continued work on visitor (5h)
 - added more expressions and statements to visitor (1h)
+
+2014-02-08 (2h/288h)
+- completed visitor up to heartbeat level (2h)
