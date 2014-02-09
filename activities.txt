@@ -325,7 +325,8 @@ activities
 - completed visitor up to heartbeat level (2h)
 - started work on additional visitor features for reputation (3h)
 
-2014-02-09 (2h/293h)
+2014-02-09 (2h45min/293h45min)
 - several fixed and improvements to visitor/model/testing (1h)
 - added complex type definitions (30min)
 - completed model/visitor up to reputation level (30min)
+- unified dump-*.py into foo.py (45min)
