@@ -325,5 +325,6 @@ activities
 - completed visitor up to heartbeat level (2h)
 - started work on additional visitor features for reputation (3h)
 
-2014-02-09 (1h/292h)
+2014-02-09 (1h30min/292h30min)
 - several fixed and improvements to visitor/model/testing (1h)
+- added complex type definitions (30min)
