@@ -333,3 +333,6 @@ activities
 - added unittest coverage tracking and reporting (15min)
 - created basic generator structural setup (30min)
 - initial code design for actual code generator (1h)
+
+2014-02-10 (1h30min/297h)
+- construction of Visitor/Visitable setup for Code Model (1h30min)
