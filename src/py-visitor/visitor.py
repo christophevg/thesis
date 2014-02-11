@@ -25,9 +25,9 @@ class Visitor(object):
 
 class visitor_for(object):
   """
-  Decorator @visit(superclass) makes a decorated class a visitor for all classes in
-  the module of the decorated class. The visitable classes can be limited to
-  a common superclass.
+  Decorator @visitor_for(superclass) makes a decorated class a visitor for all
+  classes in the module of the decorated class. The visitable classes can be
+  limited to a common superclass.
   """
   def __init__(self, super=None):
     self.super = super
