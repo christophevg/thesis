@@ -338,5 +338,6 @@ activities
 - construction of Visitor/Visitable setup for Code Model (2h)
 - started work on Code Model and C emitter (2h)
 
-2014-02-11 (2h30min/302h)
+2014-02-11 (4h30min/304h)
 - completed rough Code Model & C emitter implementations (tests todo) (2h30min)
+- structured code builders (2h)
