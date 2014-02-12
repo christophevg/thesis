@@ -341,3 +341,6 @@ activities
 2014-02-11 (4h30min/304h)
 - completed rough Code Model & C emitter implementations (tests todo) (2h30min)
 - structured code builders (2h)
+
+2014-02-12 (1h/305h)
+- some fixes + completed build process (directory output+astyle) (1h)
