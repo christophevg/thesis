@@ -345,3 +345,8 @@ activities
 2014-02-12 (4h/308h)
 - some fixes + completed build process (directory output+astyle) (1h)
 - added more code builders + integrated domain (nodes) (3h)
+
+2014-02-13 (10h/318h)
+- more extensions to code builders + Nodes domain (1h)
+- redesigned semantic model to match Visitor pattern module (8h)
+- added stubs for checker and inferer (1h)
