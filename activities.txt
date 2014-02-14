@@ -350,3 +350,6 @@ activities
 - more extensions to code builders + Nodes domain (1h)
 - redesigned semantic model to match Visitor pattern module (6h)
 - added stubs for checker and inferer (1h)
+
+2014-02-14 (3h/321h)
+- implementation of SemanticHandler, SemanticChecker + Checker (3h)
