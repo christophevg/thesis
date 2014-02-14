@@ -351,5 +351,6 @@ activities
 - redesigned semantic model to match Visitor pattern module (6h)
 - added stubs for checker and inferer (1h)
 
-2014-02-14 (3h/321h)
+2014-02-14 (4h30min/322h30min)
 - implementation of SemanticHandler, SemanticChecker + Checker (3h)
+- introducetion of Identifier in SemanticModel (1h30min)
