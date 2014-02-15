@@ -358,3 +358,6 @@ activities
 - intial work on Inferrer (systematic solutions) (1h30min)
 - cleaned up handler stack tracing implementation (45min)
 - fixed existing and added more special cases to Checker (45min)
+
+2014-02-15 (45min/325h15min)
+- added some structure for Checker/Typer combo (45min)
