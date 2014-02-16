@@ -362,5 +362,6 @@ activities
 2014-02-15 (45min/325h15min)
 - added some structure for Checker/Typer combo (45min)
 
-2014-02-16 (2h/327h15min)
+2014-02-16 (3h45min/329h)
 - implemented Parameter type inference (2h)
+- redesigned Typing to use all classes (1h45min)
