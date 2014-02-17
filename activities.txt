@@ -367,7 +367,8 @@ activities
 - redesigned Typing to use all classes (1h45min)
 - added more inference to make Checker succeed (2h)
 
-2014-02-17 (1h30min/332h30min)
+2014-02-17 (4h/335h)
 - created Environment class (30min)
 - clean-up of SM Visitors + added environment building to SemanticVisitor (30min)
 - started introduction of environment-based checks Checker (30min)
+- started systematic implementation of Inferrer/Checker + unittests (2h30min)
