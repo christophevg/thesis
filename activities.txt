@@ -366,3 +366,6 @@ activities
 - implemented Parameter type inference (2h)
 - redesigned Typing to use all classes (1h45min)
 - added more inference to make Checker succeed (2h)
+
+2014-02-17 (30min/331h30min)
+- created Environment class (30min)
