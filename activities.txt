@@ -372,3 +372,6 @@ activities
 - clean-up of SM Visitors + added environment building to SemanticVisitor (30min)
 - started introduction of environment-based checks Checker (30min)
 - started systematic implementation of Inferrer/Checker + unittests (2h30min)
+
+2014-02-18 (2h/337h)
+- added more support to reach valid example models (for now) (2h)
