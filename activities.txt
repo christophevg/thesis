@@ -375,3 +375,6 @@ activities
 
 2014-02-18 (2h/337h)
 - added more support to reach valid example models (for now) (2h)
+
+2014-02-20 (5h/342h)
+- added a dot-dumper for SM, continued inference implementation (5h)
