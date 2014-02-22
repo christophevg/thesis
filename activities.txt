@@ -378,3 +378,9 @@ activities
 
 2014-02-20 (5h/342h)
 - added a dot-dumper for SM, continued inference implementation (5h)
+
+2014-02-21 (5h/347h)
+- redesigned Domain implementation (5h)
+
+2014-02-22 (1h/348h)
+- completed redesign Domain implementation (1h)
