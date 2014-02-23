@@ -385,3 +385,6 @@ activities
 
 2014-02-22 (1h/348h)
 - completed redesign Domain implementation (1h)
+
+2014-02-23 (7h/355h)
+- completed inference implementation for both scenario's (7h)
