@@ -288,44 +288,44 @@ activities
 2014-01-28 (8h30min/257h)
 - completed parser grammar up to heartbeat + AST clean up (8h30min)
 
-2014-01-29 (6h/263h30min)
+2014-01-29 (6h/263h)
 - added Graphviz-based visualization of AST (1h)
 - completed parser grammar up to reputation (2h)
 - setup semantic model+visitor code structure (3h30min)
 
-2014-01-31 (1h30/265h)
+2014-01-31 (1h30/264h30min)
 - meeting with Dominique Devriese (1h15min)
 - meeting with Jef (15min)
 
-2014-02-01 (2h/267h)
+2014-02-01 (2h/266h30min)
 - added more AST visitor support (2h)
 
-2014-02-02 (1h/268h)
+2014-02-02 (1h/267h30min)
 - added more semantic model classes and structure (1h)
 
-2014-02-04 (2h/270h)
+2014-02-04 (2h/269h30min)
 - converted to standard unittest (30min)
 - restructured foo-lang subproject structure (1h30min)
 
-2014-02-05 (5h30min/275h30min)
+2014-02-05 (5h30min/275h)
 - started cleaning up semantic model + adding unittests (4h)
 - added expressions to semantic model (1h30min)
 
-2014-02-06 (4h/279h30min)
+2014-02-06 (4h/279h)
 - added statements to semantic model (2h)
 - tried to use tree grammar to construct visitor: failed (1h)
 - continued work on visitor (1h)
 
-2014-02-07 (6h30min/286h)
+2014-02-07 (6h30min/285h30min)
 - status reporting to faculty (30min)
 - continued work on visitor (5h)
 - added more expressions and statements to visitor (1h)
 
-2014-02-08 (5h/291h)
+2014-02-08 (5h/290h30min)
 - completed visitor up to heartbeat level (2h)
 - started work on additional visitor features for reputation (3h)
 
-2014-02-09 (4h30min/295h30min)
+2014-02-09 (4h30min/295h)
 - several fixed and improvements to visitor/model/testing (1h)
 - added complex type definitions (30min)
 - completed model/visitor up to reputation level (30min)
@@ -334,24 +334,24 @@ activities
 - created basic generator structural setup (30min)
 - initial code design for actual code generator (1h)
 
-2014-02-10 (4h/299h30min)
+2014-02-10 (4h/299h)
 - construction of Visitor/Visitable setup for Code Model (2h)
 - started work on Code Model and C emitter (2h)
 
-2014-02-11 (4h30min/304h)
+2014-02-11 (4h30min/303h30min)
 - completed rough Code Model & C emitter implementations (tests todo) (2h30min)
 - structured code builders (2h)
 
-2014-02-12 (4h/308h)
+2014-02-12 (4h/307h30min)
 - some fixes + completed build process (directory output+astyle) (1h)
 - added more code builders + integrated domain (nodes) (3h)
 
-2014-02-13 (8h/316h)
+2014-02-13 (8h/315h30min)
 - more extensions to code builders + Nodes domain (1h)
 - redesigned semantic model to match Visitor pattern module (6h)
 - added stubs for checker and inferer (1h)
 
-2014-02-14 (8h30min/324h30min)
+2014-02-14 (8h30min/324h)
 - implementation of SemanticHandler, SemanticChecker + Checker (3h)
 - introduced Identifier in SemanticModel (1h30min)
 - introduced UnknownType (1h)
@@ -359,32 +359,32 @@ activities
 - cleaned up handler stack tracing implementation (45min)
 - fixed existing and added more special cases to Checker (45min)
 
-2014-02-15 (45min/325h15min)
+2014-02-15 (45min/324h45min)
 - added some structure for Checker/Typer combo (45min)
 
-2014-02-16 (5h45min/331h)
+2014-02-16 (5h45min/330h30min)
 - implemented Parameter type inference (2h)
 - redesigned Typing to use all classes (1h45min)
 - added more inference to make Checker succeed (2h)
 
-2014-02-17 (4h/335h)
+2014-02-17 (4h/334h30min)
 - created Environment class (30min)
 - clean-up of SM Visitors + added environment building to SemanticVisitor (30min)
 - started introduction of environment-based checks Checker (30min)
 - started systematic implementation of Inferrer/Checker + unittests (2h30min)
 
-2014-02-18 (2h/337h)
+2014-02-18 (2h/336h30min)
 - added more support to reach valid example models (for now) (2h)
 
-2014-02-20 (5h/342h)
+2014-02-20 (5h/341h30min)
 - added a DotDumper for SM, continued inference implementation (5h)
 
-2014-02-21 (5h/347h)
+2014-02-21 (5h/346h30min)
 - cleaned up DotDumper (1h)
 - redesigned Domain implementation (4h)
 
-2014-02-22 (1h/348h)
+2014-02-22 (1h/347h30min)
 - completed redesign Domain implementation (1h)
 
-2014-02-23 (7h/355h)
+2014-02-23 (7h/354h30min)
 - completed inference implementation for both scenario's (7h)
