@@ -223,7 +223,7 @@ activities
 
 2013-12-22 (1h30min/204h)
 - incorporated second batch of reviewers' comments for popular article (30min)
-- incorporated thrid batch of reviewers' comments (1h)
+- incorporated third batch of reviewers' comments (1h)
 
 2013-12-23 (3h/207h)
 - more improvements on popular article (2h)
@@ -304,11 +304,11 @@ activities
 - added more semantic model classes and structure (1h)
 
 2014-02-04 (2h/269h30min)
-- converted to standard unittest (30min)
+- converted to standard unites (30min)
 - restructured foo-lang subproject structure (1h30min)
 
 2014-02-05 (5h30min/275h)
-- started cleaning up semantic model + adding unittests (4h)
+- started cleaning up semantic model + adding unit tests (4h)
 - added expressions to semantic model (1h30min)
 
 2014-02-06 (4h/279h)
@@ -330,7 +330,7 @@ activities
 - added complex type definitions (30min)
 - completed model/visitor up to reputation level (30min)
 - unified dump-*.py into foo.py (45min)
-- added unittest coverage tracking and reporting (15min)
+- added unit test coverage tracking and reporting (15min)
 - created basic generator structural setup (30min)
 - initial code design for actual code generator (1h)
 
@@ -349,13 +349,13 @@ activities
 2014-02-13 (8h/315h30min)
 - more extensions to code builders + Nodes domain (1h)
 - redesigned semantic model to match Visitor pattern module (6h)
-- added stubs for checker and inferer (1h)
+- added stubs for checker and inferrer (1h)
 
 2014-02-14 (8h30min/324h)
 - implementation of SemanticHandler, SemanticChecker + Checker (3h)
 - introduced Identifier in SemanticModel (1h30min)
 - introduced UnknownType (1h)
-- intial work on Inferrer (systematic solutions) (1h30min)
+- initial work on Inferrer (systematic solutions) (1h30min)
 - cleaned up handler stack tracing implementation (45min)
 - fixed existing and added more special cases to Checker (45min)
 
