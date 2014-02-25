@@ -388,3 +388,7 @@ activities
 
 2014-02-23 (7h/354h30min)
 - completed inference implementation for both scenario's (7h)
+
+2014-02-25 (7h/361h30min)
+- repo maintenance + clean up (2h)
+- implemented CodeCanvas (5h)
