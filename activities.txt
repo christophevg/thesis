@@ -392,3 +392,7 @@ activities
 2014-02-25 (7h/361h30min)
 - repo maintenance + clean up (2h)
 - implemented CodeCanvas (5h)
+
+2014-02-26 (3h30min/365h)
+- improved CodeCanvas (tagging,...) (2h)
+- improved Builders (Visitable) + integration (1h30min)
