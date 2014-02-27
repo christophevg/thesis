@@ -396,3 +396,7 @@ activities
 2014-02-26 (3h30min/365h)
 - improved CodeCanvas (tagging,...) (2h)
 - improved Builders (Visitable) + integration (1h30min)
+
+2014-02-27 (2h30min/367h30min)
+- introduced Transformer (1h30min)
+- implemented StructuredType + domain type generation (1h)
