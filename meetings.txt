@@ -154,3 +154,15 @@
   - presentatie
   - demo onafhankelijk
   - vragen assessoren (namen bekend vlak voor inlevering)
+
+2014-02-27 16:00
++ Jef Maerien
+
+- status/structuur code generator overlopen: ok
+
+? IEEE artikel: numerieke vergelijking
+  -> aantal netwerk calls, bytes, ...
+
+! binnen 2 weken demo voor professor Hughes
+! binnen 3 weken presentatie WSN groep: related work
+! extra afspraak volgende week voor extra status update
