@@ -418,6 +418,6 @@ activities
 - continued redesign of CodeCanvas + started reintegration (2h)
 - status reporting to faculty (30min)
 
-2014-03-05 (3h/388h30min)
+2014-03-05 (4h/389h30min)
 - reintegrated redesigned of CodeCanvas (3h)
 - reintegrated platform (1h)
