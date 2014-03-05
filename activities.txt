@@ -401,3 +401,23 @@ activities
 - introduced Transformer (1h30min)
 - implemented StructuredType + domain type generation (1h)
 - improved StructuredType handling (30min)
+
+2014-02-28 (1h30min/369h30min)
+- started redesign of CodeCanvas (1h30min)
+
+2014-03-01 (6h/375h30min)
+- continued redesign of CodeCanvas (6h)
+
+2014-03-02 (5h30min/381h)
+- migrated emitter fw to CodeCanvas (5h30min)
+
+2014-03-03 (2h/383h)
+- continued redesign of CodeCanvas (2h)
+
+2014-03-04 (2h30min/385h30min)
+- continued redesign of CodeCanvas + started reintegration (2h)
+- status reporting to faculty (30min)
+
+2014-03-05 (3h/388h30min)
+- reintegrated redesigned of CodeCanvas (3h)
+- reintegrated platform (1h)
