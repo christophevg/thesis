@@ -421,3 +421,12 @@ activities
 2014-03-05 (4h/389h30min)
 - reintegrated redesigned of CodeCanvas (3h)
 - reintegrated platform (1h)
+
+2014-03-06 (4h/393h30min)
+- redesigned Transformer (4h)
+
+2014-03-07 (5h/398h30min)
+- completed basic code transformer (5h)
+
+2014-03-08 (30min/399h)
+- consolidated work of last few days (30min)
