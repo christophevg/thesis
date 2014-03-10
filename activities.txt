@@ -430,3 +430,10 @@ activities
 
 2014-03-08 (30min/399h)
 - consolidated work of last few days (30min)
+
+2014-03-09 (30min/399h30min)
+- minor work on tuples (30min)
+
+2014-04-10 (2h/401h30min)
+- added Transformers for Tuples and Constants (1h30min)
+- general clean up and consolidation (30min)
