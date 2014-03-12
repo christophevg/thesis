@@ -434,6 +434,12 @@ activities
 2014-03-09 (30min/399h30min)
 - minor work on tuples (30min)
 
-2014-04-10 (2h/401h30min)
+2014-03-10 (2h/401h30min)
 - added Transformers for Tuples and Constants (1h30min)
 - general clean up and consolidation (30min)
+
+2014-03-11 (3h30min/405h)
+- implemented more transformations (3h30min)
+
+2014-03-12 (1h30min/)
+- finally fixed language visitor bug + added tuple transform caching (1h30min)
