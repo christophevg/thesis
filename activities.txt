@@ -441,5 +441,8 @@ activities
 2014-03-11 (3h30min/405h)
 - implemented more transformations (3h30min)
 
-2014-03-12 (1h30min/)
+2014-03-12 (7h/412h)
 - finally fixed language visitor bug + added tuple transform caching (1h30min)
+- implemented matching in a correct way + various fixes (3h)
+- manual C code experiments for list_ manipulators (1h)
+- added method call transformator + visited update (1h30min)
