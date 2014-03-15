@@ -397,52 +397,66 @@ activities
 - improved CodeCanvas (tagging,...) (2h)
 - improved Builders (Visitable) + integration (1h30min)
 
-2014-02-27 (3h/368h)
+2014-02-27 (3h30min/368h30min)
 - introduced Transformer (1h30min)
 - implemented StructuredType + domain type generation (1h)
 - improved StructuredType handling (30min)
+- meeting with Jef (30min)
 
-2014-02-28 (1h30min/369h30min)
+2014-02-28 (1h30min/370h)
 - started redesign of CodeCanvas (1h30min)
 
-2014-03-01 (6h/375h30min)
+2014-03-01 (6h/376)
 - continued redesign of CodeCanvas (6h)
 
-2014-03-02 (5h30min/381h)
+2014-03-02 (5h30min/381h30min)
 - migrated emitter fw to CodeCanvas (5h30min)
 
-2014-03-03 (2h/383h)
+2014-03-03 (2h/383h30min)
 - continued redesign of CodeCanvas (2h)
 
-2014-03-04 (2h30min/385h30min)
+2014-03-04 (2h30min/386h)
 - continued redesign of CodeCanvas + started reintegration (2h)
 - status reporting to faculty (30min)
 
-2014-03-05 (4h/389h30min)
+2014-03-05 (4h/390h)
 - reintegrated redesigned of CodeCanvas (3h)
 - reintegrated platform (1h)
 
-2014-03-06 (4h/393h30min)
+2014-03-06 (4h/394h)
 - redesigned Transformer (4h)
 
-2014-03-07 (5h/398h30min)
+2014-03-07 (5h/399h)
 - completed basic code transformer (5h)
 
-2014-03-08 (30min/399h)
+2014-03-08 (30min/399h30min)
 - consolidated work of last few days (30min)
 
-2014-03-09 (30min/399h30min)
+2014-03-09 (30min/400h)
 - minor work on tuples (30min)
 
-2014-03-10 (2h/401h30min)
+2014-03-10 (2h/402h)
 - added Transformers for Tuples and Constants (1h30min)
 - general clean up and consolidation (30min)
 
-2014-03-11 (3h30min/405h)
+2014-03-11 (3h30min/405h30min)
 - implemented more transformations (3h30min)
 
-2014-03-12 (7h/412h)
+2014-03-12 (7h/412h30min)
 - finally fixed language visitor bug + added tuple transform caching (1h30min)
 - implemented matching in a correct way + various fixes (3h)
 - manual C code experiments for list_ manipulators (1h)
-- added method call transformator + visited update (1h30min)
+- added method call transformer + visited update (1h30min)
+
+2014-03-13 (4h30min/417h)
+- added more transformers + C-specific Code constructs (2h)
+- investigated static code design (2h)
+- meeting with Jef (30min)
+
+2014-03-14 (8h/425h)
+- setup IEEE article template (2h)
+- research into C code inlining (4h)
+- install/first compile using TinyOS/nesC (2h)
+
+2014-03-15 (30min/425h30min)
+- consolidation past days' work (30min)
