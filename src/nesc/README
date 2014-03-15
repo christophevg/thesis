@@ -1,0 +1,85 @@
+README
+
+Installing nesC stand-alone seems an almost impossible task. I simply couldn't
+find a basic stand-alone hello-world style example for the nesC compiler. I had
+to resort to installing nesC and TinyOS-tools, as described by Brad JC in
+https://github.com/tinyos/nesc/issues/22#issuecomment-30092938 to get something
+to work.
+
+It boils down to this:
+
+Compiling nesc with clang doesn't work, so I need to force it to use gcc.
+
+  git clone https://github.com/tinyos/nesc
+  cd nesc
+  ./Bootstrap
+  ./configure CC=gcc-mp-4.7
+  make
+  sudo make install
+
+step 2: install TinyOS-tools
+
+  git clone https://github.com/tinyos/tinyos-main
+  cd tinyos-main/tools
+  ./Bootstrap
+  ./configure
+  make
+  sudo make install
+
+step 3: install a supported compiler (msp430)
+
+  sudo port install msp430-gcc
+  sudo port install msp430-libc
+
+step 4: create a script to setup your environment
+
+  export TOSROOT=/path-to-downloaded/tinyos-main
+  export TOSDIR="$TOSROOT/tos"
+  export TOSJAVA="$TOSROOT/support/sdk/java"
+  export CLASSPATH=$CLASSPATH:$TOSJAVA:$TOSJAVA/tinyos.jar:.
+  export MAKERULES="$TOSROOT/support/make/Makerules"
+  export PYTHONPATH=$PYTHONPATH:$TOSROOT/support/sdk/python
+
+step 5: create/choose a project and add a minimal Makefile
+
+  $ cd simple/
+  $ ls -l
+  total 24
+  -rw-r--r--@ 1 xtof  staff   42 Mar 15 10:32 Makefile
+  -rw-r--r--@ 1 xtof  staff  105 Mar 15 10:32 SimpleAppC.nc
+  -rw-r--r--@ 1 xtof  staff  134 Mar 15 10:32 SimpleC.nc
+  
+  $ cat Makefile 
+  COMPONENT=SimpleAppC
+  include $(MAKERULES)
+
+step 6: source the environment and build
+
+  $ source ../env.sh 
+  $ make epic
+  mkdir -p build/epic
+      compiling SimpleAppC to a epic binary
+  ncc -o build/epic/main.exe  -Os -fnesc-separator=__ -Wall -Wshadow -Wnesc-all\
+      -target=epic -fnesc-cfile=build/epic/app.c -board= \
+      -DDEFINED_TOS_AM_GROUP=0x22 -DIDENT_APPNAME=\"SimpleAppC\" \
+      -DIDENT_USERNAME=\"xtof\" -DIDENT_HOSTNAME=\"astroboy.local\" \
+      -DIDENT_USERHASH=0xc28aace5L -DIDENT_TIMESTAMP=0x5324490bL \
+      -DIDENT_UIDHASH=0x5afb56c5L  SimpleAppC.nc -lm 
+      compiled SimpleAppC to build/epic/main.exe
+              1166 bytes in ROM
+                 6 bytes in RAM
+  msp430-objcopy --output-target=ihex build/epic/main.exe build/epic/main.ihex
+      writing TOS image
+
+  $ ls -l build/epic/
+  total 240
+  -rw-r--r--  1 xtof  staff  96008 Mar 15 13:35 app.c
+  -rw-r--r--  1 xtof  staff    180 Mar 15 13:35 ident_flags.txt
+  -rwxr-xr-x  1 xtof  staff  10955 Mar 15 13:35 main.exe
+  -rw-r--r--  1 xtof  staff   3496 Mar 15 13:35 main.ihex
+  -rw-r--r--  1 xtof  staff   3856 Mar 15 13:35 tos_image.xml
+
+step 7: simplifying the essential build instruction, using ncc in stead of nescc
+
+  ncc -o /dev/null -Os -fnesc-separator=__ -Wall -Wshadow -Wnesc-all \
+      -target=epic -fnesc-cfile=app.c -board= SimpleAppC.nc -lm
