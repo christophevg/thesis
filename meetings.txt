@@ -166,3 +166,16 @@
 ! binnen 2 weken demo voor professor Hughes
 ! binnen 3 weken presentatie WSN groep: related work
 ! extra afspraak volgende week voor extra status update
+
+2014-03-13
++ Jef Maerien
+
+- status code generator overlopen: ok, laatste stukken
+
+? teksten bekijken door Jef
+  -> rond begin April voor structurele review
+? IEEE template
+  -> van op officiele website
+
+! vergelijking met TinyOS/nesC bekijken
+! tip: lengte veld toevoegen, om skippen toe te laten
