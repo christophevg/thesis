@@ -458,5 +458,6 @@ activities
 - research into C code inlining (4h)
 - install/first compile using TinyOS/nesC (2h)
 
-2014-03-15 (30min/425h30min)
+2014-03-15 (5h30min/430h30min)
 - consolidation past days' work (30min)
+- draft presentation on related work (5h)
