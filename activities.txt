@@ -462,5 +462,9 @@ activities
 - consolidation past days' work (30min)
 - draft presentation on related work (5h)
 
-2014-03-16 (1h30/432h)
+2014-03-16 (6h30/437h)
 - finalized presentation on related work (1h30min)
+- continued implementation of emitter (5h)
+
+2014-03-17 (3h30min/440h30min)
+- implemented argument conversion for nodes_ calls
