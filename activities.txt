@@ -466,5 +466,6 @@ activities
 - finalized presentation on related work (1h30min)
 - continued implementation of emitter (5h)
 
-2014-03-17 (3h30min/440h30min)
-- implemented argument conversion for nodes_ calls
+2014-03-17 (5h30min/442h30min)
+- implemented argument conversion for nodes_ calls (3h30min)
+- implemented tuple constructors + usage (2h)
