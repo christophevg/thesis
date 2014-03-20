@@ -469,3 +469,14 @@ activities
 2014-03-17 (5h30min/442h30min)
 - implemented argument conversion for nodes_ calls (3h30min)
 - implemented tuple constructors + usage (2h)
+
+2014-03-18 (2h/444h30min)
+- C code design experiment on creation/destruction of tuples (2h)
+
+2014-03-19 (2h30min/447h)
+- added tuple constructor/destructors (30min)
+- presentation to WSN group (30min)
+- research on foo-lang implementation of cooperative algorithm (1h30min)
+
+2014-03-20 (2h/449h)
+- completed generation of payload parser handling (2h)
