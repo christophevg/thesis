@@ -478,5 +478,6 @@ activities
 - presentation to WSN group (30min)
 - research on foo-lang implementation of cooperative algorithm (1h30min)
 
-2014-03-20 (2h/449h)
+2014-03-20 (4h/451h)
 - completed generation of payload parser handling (2h)
+- completed generation of executions (2h)
