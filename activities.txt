@@ -481,3 +481,6 @@ activities
 2014-03-20 (4h/451h)
 - completed generation of payload parser handling (2h)
 - completed generation of executions (2h)
+
+2014-03-21 (5h/456h)
+- implemented foo-lib (crypto+time modules, including platform specific) (5h)

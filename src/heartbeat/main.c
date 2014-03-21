@@ -12,12 +12,12 @@
 #include <util/delay.h>
 #include <string.h>
 
-#include "../an-avr-lib/avr.h"
-#include "../an-avr-lib/bool.h"
-#include "../an-avr-lib/serial.h"
-#include "../an-avr-lib/sleep.h"
-#include "../an-avr-lib/xbee.h"
-#include "../an-avr-lib/clock.h"
+#include "moose/avr.h"
+#include "moose/bool.h"
+#include "moose/serial.h"
+#include "moose/sleep.h"
+#include "moose/xbee.h"
+#include "moose/clock.h"
 
 #include "heartbeat.h"
 

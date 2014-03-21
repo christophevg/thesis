@@ -6,7 +6,7 @@
 
 #include "../sha1/sha1.h"
 
-#include "../an-avr-lib/clock.h"
+#include "moose/clock.h"
 #include "heartbeat.h"
 
 // a basic implementation of heartbeat-based neighbour availability monitoring
