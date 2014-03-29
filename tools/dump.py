@@ -1,72 +1,52 @@
-# transmission receiver for XBee
-# Christophe VG <contact@christophe.vg>
+#!/usr/bin/python
 
-# example: 7e 00 0d 90 00 13 a2 00 40 8b 1a 6b 01 c3 01 52 53
-#          frame    
-#             MSB
-#                LSB
-#                   frame type
-#                      64-bit address
-#                                             16-bit address
-#                                                   options
-#                                                       data (R)
-#                                                          checksum
+# a simple script to dump incoming packets
 
 import serial
-import sys
 import time
+
+from xbee import ZigBee
 
 ser = serial.Serial('/dev/tty.usbserial-AD025LL3', 9600)
 
-while(True):
+xbee = ZigBee(ser)
+
+# Continuously read and print packets
+while True:
   try:
-    # wait for start of frame
-    while(0x7e != ord(ser.read())): pass
+    frame = xbee.wait_read_frame()
 
-    # get length MSB (normally zero)
-    length_msb = ord(ser.read())
-    #            LSB (= actual length + 12 bytes of "overhead")
-    length     = ord(ser.read())
-    actual     = int(length)-12;
-  
-    # frame type
-    frame = ser.read()
-  
-    # 64-bit source address = 8 bytes
-    source = []
-    for i in range(8):
-      source.append(ord(ser.read()))
-  
-    # 16-bit source network address
-    source2 = []
-    for i in range(2):
-      source2.append(ord(ser.read()))
-  
-    # options
-    options = ser.read()
+    # unknown frames are dumped and skipped
+    if frame['id'] != "rx":
+      print frame
+      next
 
-    # data
-    data = []
-    for i in range(length-12):
-      data.append(ord(ser.read()))
+    # parse addresses and payload into bytearrays
+    source  = map(ord, frame['source_addr_long'])
+    source2 = map(ord, frame['source_addr'])
+    data    = map(ord, frame['rf_data'])
 
-    # checksum
-    checksum = ser.read()
-
+    # parse out options into dict
+    raw = map(ord, frame['options'])[0]
+    options = {
+      'acked'     : raw & 0x01 == 0x01,
+      'broadcast' : raw & 0x02 == 0x02,
+      'encrypted' : raw & 0x20 == 0x20,
+      'end-device': raw & 0x40 == 0x40
+    }
+    
     # print out frame in a "nice" format ;-)
     print "-" * 80
     print "time    : ", time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime())
-    print "frame   : ", frame.encode("hex")
-    print "length  : ", length, " / actual = ", actual
+    print "length  : ", len(data)
     print "source  : ", ' '.join('%02x'%i for i in source), "/", \
                         ' '.join('%02x'%i for i in source2)
-    print "options : ", options.encode("hex")
+    print "options : ", ' '.join([key for key, value in options.items() if value])
+    print "data    : ", ' '.join('%02x'%i for i in data)
 
-    # data
-    print "data    :", ' '.join(map(str,data))
-
-    print "checksum: ", checksum.encode("hex")
     print "-" * 80
 
   except KeyboardInterrupt:
-    sys.exit(0)
+    break
+
+ser.close()

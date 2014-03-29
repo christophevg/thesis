@@ -1,0 +1,31 @@
+The tools in this directory are used to interact with a coordinator node,
+connected through a USB2Serial connected device.
+
+The scripts use the python-xbee module, which can be obtained e.g. as such:
+
+$ sudo pip install XBee
+
+Running them looks like this:
+
+$ ./dump.py
+--------------------------------------------------------------------------------
+time    :  Sat, 29 Mar 2014 10:38:10 +0000
+length  :  2
+source  :  00 13 a2 00 40 8b 1a 6b / a4 af
+options :  end-device acked
+data    :  00 27
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+time    :  Sat, 29 Mar 2014 10:38:11 +0000
+length  :  2
+source  :  00 13 a2 00 40 8b 1a 6b / a4 af
+options :  end-device acked
+data    :  00 2d
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+time    :  Sat, 29 Mar 2014 10:38:11 +0000
+length  :  25
+source  :  00 13 a2 00 40 8b 1a 6b / a4 af
+options :  broadcast end-device
+data    :  34 00 19 c6 ec f4 ae 96 89 93 c1 ca f9 d0 3a b3 bb b7 f7 26 73 fe b2 
+--------------------------------------------------------------------------------
