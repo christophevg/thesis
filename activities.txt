@@ -484,3 +484,9 @@ activities
 
 2014-03-21 (5h/456h)
 - implemented foo-lib (crypto+time modules, including platform specific) (5h)
+
+2014-03-29 (6h/462h)
+- implemented network part of nodes module (6h)
+
+2014-03-30 (4h/466h)
+- finished unit testing of nodes module's network part (4h)
