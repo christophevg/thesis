@@ -490,3 +490,12 @@ activities
 
 2014-03-30 (4h/466h)
 - finished unit testing of nodes module's network part (4h)
+
+2014-03-31 (2h/468h)
+- creation of 3-node setup with forced topology (2h)
+
+2014-04-01 (30min/468h30min)
+- added some more unit tests to payload parser for off-by-1's (30min)
+
+2014-04-02 (6h/474h30min)
+- written draft of IEEE-style article (up to halfway introducing language) (6h)
