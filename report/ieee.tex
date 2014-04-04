@@ -121,16 +121,16 @@ optimisation of execution of multiple IDS algorithms, thus lowering the
 sequential and iterative execution of algorithms and optimizing the use of the
 wireless radio.
 
-By introducing such a formal, platform-independent language to express IDS
+Introducing such a formal, platform-independent language to express IDS
 algorithms and accompanying this language with a code generation framework,
 offers an end-to-end solution to many of the problems introduced above:
-research output would be directly applicable in a development environment. The
+research output would be directly applicable in a development environment; a
 code generation framework allows developers to simply select algorithms and
-have platform-specific code without any effort. Due to the possibility to
+have platform-specific code without any effort; due to the possibility to
 optimize the use of resources, the impact of introducing IDS on resources in
 WSN can be lowered to such extend that more algorithms can be added, thus
 augmenting the barriers for intruders, which can help to reduce the number of
-successful intrusions.
+undetected intrusions.
 
 The remainder of this paper proceeds as follows: section \ref{section:related}
 introduces the field of IDS in WSN by means of several IDS algorithms from
@@ -155,8 +155,8 @@ should of course be a primary concern. But not all intrusions can be prevented
 and we need to fall back to detecting intrusions. In this section we take a
 look at recent contributions in this field.
 
-Intrusion, or attacks, on computer networks can take many forms. In the case of
-WSN this classification needs to be extended even further. In
+Intrusions, or attacks, on computer networks can take many forms. In the case
+of WSN this classification needs to be extended even further. In
 \cite{padmavathi2009survey} a good overview of both is presented, showing
 clearly that WSN suffer from their wireless-communication and broadcast nature.
 This causes many attacks based on e.g. eavesdropping to be nearly impossible to
@@ -165,18 +165,18 @@ collected information, have happened, the intrusion could possibly be detected
 given the after-effects. This means that we can't cover the entire spectrum and
 need to focus on what is feasible.
 
-Research into IDS in WSN typically focuses around two major topics that
-complement the architecture of WSN: the nodes as single entities and the
-network as a group of such nodes. Both are important because the group cannot
-decide without members that detect malicious behavior and a group-based
-decision is often needed because nodes can easily miss out on certain events
-that could indicate intrusions, due to their wireless and not-always-on nature.
+Research into IDS in WSN typically focuses on two major topics that complement
+the architecture of WSN: the nodes as single entities and the network as a
+group of such nodes. Both are important because the group cannot decide without
+members that detect malicious behavior and a group-based decision is often
+needed because nodes can easily miss out on certain events that could indicate
+intrusions, due to their wireless and not-always-on nature.
 
 \subsection{Detecting Intrusions}
 \label{subsection:detecting}
 
 There are many different ways to construct a taxonomy for intrusion detection,
-but common themes do show. According to \cite{mishra2004intrusion} and
+but common themes do appear. According to \cite{mishra2004intrusion} and
 \cite{ioannis2007towards} there are three major categories: anomaly detection,
 signature or misuse detection, and specification-based detection. In
 \cite{alrajeh2013intrusion} the authors agree mostly with this topology, but
@@ -203,18 +203,15 @@ with adding two additional nodes in the network. When this addition goes
 unnoticed, the wormhole can successfully be constructed. Another attack that is
 related to the wormhole is the sinkhole. When launching a sinkhole attack, as
 described in \cite{krontiris2008launching}, the attacker first needs to
-compromise an existing node. He can achieve this without changing the node's
-software and thus control the node in an external way, e.g. using a laptop.
-Being in control of the node, the attacker will alter the information provided
-to the distributed routing algorithm to make his captured node look
-\emph{attractive} to the surrounding nodes and thus draw as much traffic as
-possible to itself. The sinkhole attack is typically a foundation for other
-routing level attacks, such as selective forwarding, modification of packets or
-even dropping them altogether. In its simplest form, the sinkhole offers the
-attacker with lots of packets to analyse and use to gather information about
-the network and its functionality. Detecting sinkholes is very hard and often
-is only possible based on other attacks that are supported by the sinkhole.
-When the sinkhole is used to implement selective forwarding,
+compromise an existing node. Being in control of the node, the attacker can
+make his captured node look more \emph{attractive} to the surrounding nodes and
+thus draw more traffic to itself. The sinkhole attack is typically a foundation
+for other routing level attacks, such as selective forwarding, modification of
+packets or even dropping them altogether. In its simplest form, the sinkhole
+offers the attacker with lots of packets to analyse and use to gather
+information about the network and its functionality. Detecting sinkholes is
+very hard and often is only possible based on other attacks that are supported
+by the sinkhole. When the sinkhole is used to implement selective forwarding,
 \cite{ngai2006intruder} proposes an algorithm that allows a base station, the
 aggregating master node where all nodes typically send their information to, to
 observe missing data from nodes in the same area in a statistical way.
@@ -235,7 +232,7 @@ information from single nodes into a group-based decision about alleged
 intrusions and intruders.
 
 In \cite{krontiris2009cooperative}, the authors first present a theoretical
-foundation the analyse cooperative algorithms. Given these foundations they
+foundation to analyse cooperative algorithms. Given these foundations they
 continue to present an algorithms consisting of 5 phases. It essentially
 implements a voting system to identify an intruder based on the Guy Fawkes
 protocol \cite{anderson1998new} to exchange suspected intruder information and
@@ -304,20 +301,20 @@ about them and make decisions about the trust to put in them. While performing
 all of these tasks, the algorithms typically also exchange information with
 other nodes to complement their own findings.
 
-If such algorithms would be simply combined in a sequential way, the resulting
+If such algorithms would simply be combined in a sequential way, the resulting
 code would be far from optimal and would consume many of the resources of the
 node it runs on: the repetitive parsing of the received packets would result in
 much longer processing times than needed, while the chattiness of the
-inter-node communication would result the wireless radio being on much more
+inter-node communication would cause the wireless radio to be on more often
 than wanted.
 
-The cost to implement multiple algorithms over and over again, because due to
-the need to optimize the code organisation, would soon outweigh the available
-budget of any WSN implementation. If not, the risk to make mistakes in the
-sometimes complex algorithms or the lack of flexibility to change sets of
-detection algorithms on a regular basis, or simply add a new algorithm in an
-easy way, are all very valid reasons to not go down this way. But we still need
-to be able to add some form of IDS to WSN.
+The cost to implement multiple algorithms over and over again, due to the need
+to optimize the code's organisation, would soon outweigh the available budget
+of any WSN implementation project. If not, the risk to make mistakes in the
+often complex algorithms or the lack of flexibility to change sets of detection
+algorithms on a regular basis, or simply add a new algorithm in an easy way,
+are all very valid reasons to not go down this road. But we still need to be
+able to add some form of IDS to WSN.
 
 \section{Proposed Solution}
 \label{section:solution}
@@ -327,8 +324,8 @@ major contribution would consist in the creation of a software framework that
 accommodated some of the typical usage patterns: a generic payload parser could
 be envisaged that allows algorithms to hook in using callbacks, thus making
 sure that the parsing is only done once and not repeated for each algorithm.
-Secondly, such a framework could collect all outgoing messages and combine them
-in a single outgoing packet at the end of a cycle of the node's event loop.
+Secondly, the framework could collect all outgoing messages and combine them in
+a single outgoing packet at the end of a cycle of the node's event loop.
 
 Such a framework comes with guidelines on how to use it, but still relies on
 the good behaviour of its users. Also, the integration of the algorithms with
@@ -358,7 +355,7 @@ code, optimized for execution and communication.
 
 A formal description of detection algorithms would not only be beneficiary to
 implementers. Also to researchers such medium would offer substantial benefits.
-Formal descriptions of these algorithms not only allows for generation of code,
+Formal descriptions of the algorithms not only allows for generation of code,
 but the same descriptions can be loaded into simulators and be investigated in
 combination with other algorithms \cite{mernik2005and}, formal analysis of the
 algorithms would be an interesting option. Further, describing the algorithms
@@ -371,9 +368,9 @@ more complex algorithms to be abstracted.
 The central component of our proposed solution is a formal description of
 intrusion detection algorithms. This formal description can be realized using a
 domain specific language (DSL). Before actually defining a new language, it is
-important to ensure that the reasons to do so are legit. Too often languages are
-implemented too quickly, where coding conventions or frameworks with well
-thought-out API's fit the bill quiet nicely.
+important to ensure that the reasons to do so are legit. Too often languages
+are implemented too quickly, where coding conventions or frameworks with well
+thought-out API's fit the bill quite nicely.
 
 The line can not be drawn in a black and white fashion and DSL do have
 benefits, but don't come for free \cite{mernik2005and}. Many good reasons why
@@ -415,12 +412,12 @@ functionality like a glove: Erlang \cite{armstrong1993concurrent}. It comes
 with strong communication paradigms, has pattern matching, is concurrent and
 event-driven by nature,\dots and according to \cite{wong1998compiling} it even
 can be translated to C. This road looked very promising, but as with any other
-general purpose language, it was to capable and would allow for constructions
+general purpose language, it was too capable and would allow for constructions
 that would thwart the envisaged optimizations.
 
 Our final conclusion is that a real domain-functionality inspired DSL, that
 permits analysts to express the detection algorithms without overhead and
-without risk of introducing ill behaviour, is the way to go forward.
+without risk of introducing ill behaviour, is the way to move forward.
 
 \subsection{Design Principles for FOO-lang}
 \label{subsection:design}
@@ -440,12 +437,12 @@ Starting from this last requirement, one of the most important things that
 should not be available is \emph{loops}. If we want to control the way lists of
 data are handled, we need control over the loops over that data. In case of
 this specific domain, data is centralized around \emph{nodes}, so loops are
-typically targeting nodes. To meet this restriction and still offer the analyst
-a way to functionally handle nodes, scheduling and events are introduced. In
-stead of explicitly constructing a loop, functionality can be scheduled or
-attached to certain events that happen on the collection of nodes. This way,
-the intended loop is actually abstracted to its functional meaning and can be
-nicely handled and combined with other execution strategies.
+typically targeting \emph{nodes}. To meet this restriction but still offer the
+analyst a way to functionally handle nodes, scheduling and events are
+introduced. In stead of explicitly constructing a loop, functionality can be
+scheduled or attached to certain events that happen on the collection of nodes.
+This way, the intended loop is actually abstracted to its functional meaning
+and can be handled and combined with other execution strategies.
 
 This is actually the core of the language and this is also where it derived its
 name from: Function Organization Optimization.
@@ -502,29 +499,31 @@ Heartbeat can be considered the most elementary intrusion detection algorithm
 possible, that still contains all aspects identified with other more complex
 algorithms.
 
+The underlying concept boils down to availability. As long as we receive
+regular updates from a given node, we trust it. When it fails to produce a
+heartbeat on a regular interval, we
+
 \inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
   {heartbeat.foo}
 \captionof{listing}{Example implementation of \emph{heartbeat}.\label{lst:heartbeat}}
 
-The underlying concept boils down to availability. As long as we receive
-regular updates from a given node, we trust it. When it fails to produce a
-heartbeat on a regular interval, we no longer trust it. The resulting FOO-lang
-code is presented in listing \ref{lst:heartbeat}.
+no longer trust it. The resulting FOO-lang code is presented in listing
+\ref{lst:heartbeat}.
 
 At the top of the listing we see the \emph{module} construct. It marks the
 start of the definition of a group of related constructs.
 
-Next a set of \emph{const}ants is defined. Although not mandatory, use
+Next a set of \emph{const}ants is defined. Although not mandatory, using
 functional names for certain parameters of the algorithm should be considered
 good practice. Here we see that the constants are not typed. They can be, but
 they mustn't. Based on the value, FOO-lang will infer the type.
 
 Although no specific order is mandatory, \emph{import}ing external
 functionality is typically performed close to the start of the module. The
-import states the external module where the functionality comes from. This
-could be a FOO-lang module, but also any other C module with custom defined
-functions. In this case we import functions to compute and compare SHA-1 hashes
-and access to the current time.
+\emph{import} statement includes the external module where the imported
+function comes from. This could be a FOO-lang module, but also any other C
+module with custom defined functions. In this case we import functions to
+compute and compare SHA-1 hashes and access to the current time.
 
 The central concept of the domain are \emph{nodes}. The domain logic will keep
 track of nodes and provide access to them. From a module's point of view, we
@@ -536,45 +535,43 @@ Time to define the actual functionality. This consists of three parts: handling
 incoming information, validating nodes and broadcasting a heartbeat.
 
 Handling incoming data is implemented by responding to an event targeting
-nodes, more specific the \emph{receive} event. In theory, this event can be any
-method that is defined on an object and as such the event-driven system can be
-considered some form of aspect-oriented programming. The signature of the
+\emph{nodes}, more specific the \emph{receive} event. In theory, this event can
+be any method that is defined on an object and as such the event-driven system
+can be considered some form of aspect-orientation. The signature of the
 function that can handle the event is the same as that of the corresponding
 method that triggered the event.
 
 Interesting to note here is the use of the entire nodes domain as a target for
-the event. Not only messages received by our own node will be handled here.
+the event. Not only messages destined for our own node will be handled here.
 Given the wireless communication medium, any node can \emph{overhear}
 communication between two other nodes, given that the sender of those nodes is
 within its range. These messages will also pop up here and can be valuable.
 
 The implementation of the handling function consists of a mix of typical C
-constructs and a few additions. Most notably is the \emph{case} construct that
-allows to define multiple situations that might be handled. It is used to
-handled different situations with the same object, here the payload of an
-incoming packet. The contains method is executed on the payload and takes a
-pattern to match. The pattern consists of a list literal with non-variables and
-variables. The non-variable in this case is an \emph{atom}, and is prefixed
-with a `\#' character. It serves as a uniquely identifiable marker and abstracts
-the underlying implementation. It avoids the use of constants in this case. If
-the contains function encounters the representation of the \emph{heartbeat}
-atom, it will map the other variables in the pattern to the data that follows
-it. Because some of the types of these
-
-\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
-  {reputation.foo}
-\captionof{listing}{Example reputation-based decision making.\label{lst:reputation}}
-
+constructs and a few additions. Most notably is the \emph{case} statement that
+allows to identify different situations that are to be handled for the same
+object, here the payload of an incoming packet. The \emph{contains} method is
+executed on the payload and takes a pattern to match. The pattern consists of a
+list literal with non-variables and variables. The non-variable in this case is
+an \emph{atom}, and is prefixed with a `\#' character. It serves as a uniquely
+identifiable marker and abstracts the underlying implementation. It avoids the
+use of constants in this case. If the \emph{contains} function encounters the
+representation of the \emph{heartbeat} atom, it will map the other variables in
+the pattern to the data that follows it. Because some of the types of these
 variables might not be trivial to infer, it is possible to explicitly express
 these types. In this specific case inference would be possible, based on the
 use of the variable in the following handling code, which is almost completely
 pure C.
 
+\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
+  {reputation.foo}
+\captionof{listing}{Example reputation-based decision making.\label{lst:reputation}}
+
 A second function is defined, along with a scheduled execution strategy.
 FOO-lang here tries to be very fluent in its syntax and therefore the second
 declaration reads exactly as it is meant to be: ``at every validation interval
-with (all) nodes do function ...''. Two constructs here are combined in a
-typical situation: a scheduling using the \emph{@every} annotation and the
+with (all) nodes do function\dots''. Here two constructs are combined in a
+typical pattern: a scheduling using the \emph{@every} annotation and the
 scoped execution of function with the \emph{with} construct. The parameter of
 the handling function is a \emph{node} and the implementation of the function
 can be read completely as pure C code.
@@ -586,17 +583,16 @@ implemented using a named function. The implementation uses the
 heartbeat.
 
 Although this example does not contain all possible constructs and combinations
-of constructs, it is very representative for the typical intrusion detection
+of constructs, it is very representative for a typical intrusion detection
 algorithm and shows in a limited scope the possibilities of FOO-lang.
 
 Listing \ref{lst:reputation} shows the implementation of the reputation-based
 decision algorithm introduced by \cite{ganeriwal2008reputation}. We will not
-comment it in detail, but given the previous elementary \emph{heartbeat}
+comment on it in detail, but given the previous elementary \emph{heartbeat}
 example, the extended functionality used in this example should be trivial to
 understand. The most important additions are the introduction of the
 \emph{don't care} operator `\_' and the use of dynamic pattern matching such as
-$<$ now(). Further does this example expose methods that are defined on
-lists.
+`$<$ now()'. Further does this example expose methods that are defined on lists.
 
 \section{Prototype Code Generator}
 \label{section:prototype}
@@ -608,8 +604,8 @@ actual code generator.
 
 We have build a prototype code generator for FOO-lang using Python and ANTLR
 \cite{antlr3}. The implementation tries to be as generic as possible and is
-based around transformations of abstract syntax trees (AST) an a semantic model
-\cite{fowler2010domain}.
+based around transformations of abstract syntax trees (AST) and a semantic
+model \cite{fowler2010domain}.
 
 The FOO-lang code is parsed using a parser generated by the ANTLR tool. This
 produces an AST, which in its turn is transformed into a semantic model using a
@@ -630,12 +626,12 @@ code model that is constructed from the semantic model typically contains all
 the language features available in FOO-lang. The construction is done partly by
 the generic generator and partly by the \emph{nodes} domain.
 
-The back-end of the code generator aims to be language and platform
-independent. Both language and platform are exchangeable plug-ins to the
-generator. With the initial code model based on the full set of language
-constructs of FOO-lang, it is clear that the transformations that need to be
-performed by these plug-ins are the migration of constructs that are not
-literally available in the target language or platform.
+The code generator aims to be language and platform independent. Both language
+and platform are exchangeable plug-ins to the generator. With the initial code
+model based on the full set of language constructs of FOO-lang, it is clear
+that the transformations that need to be performed by these plug-ins are the
+migration of constructs that are not literally available in the target language
+or platform.
 
 The resulting code model is an AST that can be emitted in the desired language
 and conforming to the target platform.
@@ -644,8 +640,8 @@ and conforming to the target platform.
 \label{section:evaluation}
 
 To evaluate the prototype we have chosen to use a barebone system based on the
-Atmel ATMEGA1284p micro-controller (mcu) \cite{datasheet:atmega1284p} and the
-Digi XBEE S2 Zigbee module \cite{datasheet:xbee}. To drive the hardware a
+Atmel ATMEGA1284p micro-controller \cite{datasheet:atmega1284p} and the Digi
+XBEE S2 Zigbee module \cite{datasheet:xbee}. To drive the hardware a
 minimalistic library was used.
 
 The reason for this at first sight unusual setup is simple though: relying on
@@ -657,7 +653,7 @@ requirements of the generator towards the platform are minimal, don't rely on
 advanced frameworks or operating systems and can therefore be applied in any
 environment, targeting any platform.
 
-For the evaluation we constructed a mini WSN consisting of three nodes: an
+For the evaluation we constructed a small WSN consisting of three nodes: an
 end-device, a router and a coordinator. The end-device and the router were
 completely autonomous nodes, while the coordinator consisted of an XBee module,
 directly connected to a computer via a USB break-out board, allowing serial
@@ -674,14 +670,14 @@ different implementations were also constructed to allow testing with a fully
 cooperating router, a partially failing router and a non-cooperative router.
 
 Two aspects were to be evaluated: functionality and resource usage. On a
-functional level, the nodes performed as expected from the algorithms.
-Heartbeats were correctly broadcast and monitored, reputation computations were
-performed as theoretically expected.
+functional level, the nodes performed as proposed by the algorithms. Heartbeats
+were correctly broadcast and monitored, reputation computations were performed
+as expected.
 
 With respect to resource usage, we analyzed the generated source code to
 confirm that the generated constructions indeed were better than simple
 sequential constructions. At run-time the content of the packets that were sent
-showed that when possible multiple information was aggregated into a single
+showed that where possible multiple messages were aggregated into a single
 packet, thus reducing some of the added chattiness caused by the introduction
 of the IDS algorithms.
 
@@ -694,10 +690,10 @@ concepts at its core, allows focus on the bare essence and reuse of best
 practices at the generation level. The rather limited functional domain of WSN
 proofs to be a wonderful candidate for applying code generation techniques.
 
-The ideas proposed in this paper and the prototype are very basic foundations.
-They show that using code generation techniques can be used to combine
-different, independent algorithms in a fully automated way, while offering
-better resource usage than simply sequentially combining the algorithms.
+The ideas proposed in this paper and the prototype are foundations. They show
+that code generation techniques can be used to combine different, independent
+algorithms in a automated way, while offering better resource usage than simply
+sequentially combining the algorithms.
 
 These preliminary steps open up a broad range of possible tracks to explore. On
 one hand our goal is to collect as many relevant research papers as possible
@@ -715,6 +711,12 @@ combinations. Finding ways to combine as many algorithms as possible in a
 single generated solution will enable implementers of WSN to add a decent level
 of intrusion detection to their solutions with almost a single click.
 
+Another interesting track is that of policy-based generation and deployment.
+Different nodes in the network might benefit from different constellations of
+intrusion algorithms. When detecting a combination of selective forwarding and
+a sinkhole attack \cite{ngai2006intruder}, this algorithm should only be
+deployed on coordinators or base stations.
+
 Finally we hope that this paper might be received as a call-for-participation
 by all IDS in WSN researchers and will lead to an ever growing collection of
 formal descriptions available to those that need them.
@@ -731,37 +733,4 @@ nurturing environment where these ideas could grow.
 \bibliography{referenties}
 
 \end{document}
-
-% \begin{figure}[!t]
-% \centering
-% \includegraphics[width=2.5in]{resources/avr-ram-map.pdf}
-% \caption{Simulation Results}
-% \label{fig_sim1}
-% \end{figure}
-% 
-% \begin{figure*}[H]
-% \centering
-% \subfloat[]{\includegraphics[width=2.5in]{resources/avr-ram-map.pdf}%
-% \label{fig_first_case}}
-% \hfil
-% \subfloat[]{\includegraphics[width=2.5in]{resources/avr-ram-map.pdf}%
-% \label{fig_second_case}}
-% \caption{Simulation results: (a) Case I (b) Case II}
-% \label{fig_sim2}
-% \end{figure*}
-% 
-% \begin{table}[!t]
-% \renewcommand{\arraystretch}{1.3}
-% \caption{An Example of a Table}
-% \label{table_example}
-% \centering
-% \begin{tabular}{|c||c|}
-% \hline
-% One & Two\\
-% \hline
-% Three & Four\\
-% \hline
-% \end{tabular}
-% \end{table}
-
 
