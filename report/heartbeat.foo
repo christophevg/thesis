@@ -1,0 +1,70 @@
+// each algorithm is contained in a single module
+module heartbeat
+
+// basic constants, types are inferred
+const heartbeat_interval     = 1000    // 1000 ms
+const max_last_seen_interval = 1000
+const max_fail_count         =    3
+const validation_interval    = 5000
+
+// imports external functionality
+// requires type information
+from crypto import sha1(byte*)            : byte[20]
+from crypto import sha1_cmp(byte*, byte*) : boolean
+from time   import now()                  : timestamp
+
+// nodes can be extended with module specific data
+extend nodes with {
+  last_seen  : timestamp = 0
+  fail_count : byte      = 0
+  trust      : boolean   = true
+  sequence   : byte      = 0
+}
+
+// event handler when receiving data
+after nodes receive
+do function(from, hop, to, payload) {
+  // payload is a list of bytes
+  case payload {
+    // an atom and three variables following it
+    contains( [ #heartbeat, time:timestamp, sequence,
+                signature:byte[20] ] )
+    {
+      // validate signature
+      if(sha1_cmp(signature, [sequence, time])) {
+        from.last_seen = time
+        from.sequence  = sequence
+      } else {
+        from.fail_count++
+      }
+    }
+  }
+}
+
+// validate nodes using function at a given interval
+@every(validation_interval)
+with nodes do function(node) {
+  // check time that passed since the last heartbeat
+  if(now() - node.last_seen > max_last_seen_interval) {
+    // the heartbeat is late, track this incident
+    node.fail_count++
+  }
+
+  // check number of failures doesn't exceed our limit
+  if( node.fail_count > max_fail_count ) {
+    node.trust = false
+  }
+}
+
+// function to construct and broadcast a heartbeat
+function broadcast_heartbeat(node) {
+  time = now()
+  nodes.broadcast([ #heartbeat, node.sequence, time,
+                   sha1([node.sequence,time]) ])
+  node.sequence++
+}
+
+// our own node will broadcast a heartbeat at every
+// heartbeat interval
+@every(heartbeat_interval)
+with nodes.self do broadcast_heartbeat

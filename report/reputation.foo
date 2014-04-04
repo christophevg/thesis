@@ -1,0 +1,70 @@
+module reputation
+
+const forward_timeout             = 1000
+const validation_interval         = 5000
+const broadcast_interval          = 7500
+const max_fail_count              =    3
+const aging_weight                = 0.98
+const indirect_threshold  : float = 0.9
+
+from time import now() : integer
+
+extend nodes with {
+  queue      : [timestamp, payload]* = []
+  msg_count  : byte                  = 0
+  alpha      : float                 = 0.0
+  beta       : float                 = 0.0
+  trust      : float                 = 0.0
+}
+
+after nodes transmit
+do function(from, to, hop, payload) {
+  if( hop == to ) { return }
+
+  if( ! payload.contains([#reputation]) ) {
+    hop.msg_count++
+  }
+
+  hop.queue.push([now()+forward_timeout, payload])
+}
+
+after nodes receive
+do function(from, to, payload) {
+  case payload {
+    contains( [ #reputation, of:node,
+                alpha:float, beta:float ] )
+    {
+      if( from.trust > indirect_threshold ) {
+        weight = (2*from.alpha) /
+                 (  (from.beta+2)
+                  * (alpha+beta+2)
+                  * 2 *from.alpha)
+        of.alpha += weight * alpha
+        of.beta  += weight * beta
+      }
+    }
+    else
+      from.queue.remove([ _, payload ])
+  }
+}
+
+@every(validation_interval)
+with nodes do function(node) {
+  failures = node.queue.remove([ < now(), _ ])
+  node.alpha = (aging_weight * node.alpha) 
+               + node.msg_count - failures
+  node.beta  = (aging_weight * node.beta )
+               + failures
+  node.trust = (node.alpha + 1) /
+               (node.alpha + node.beta + 2)
+  if(node.trust < 0.25) {
+    node.send([ #excluded ])
+  }
+  node.msg_count = 0
+}
+
+@every(broadcast_interval)
+with nodes do function(node) {
+ nodes.broadcast( [ #reputation, node,
+                    node.alpha, node.beta ] )
+}
