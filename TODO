@@ -1,7 +1,6 @@
 TODO
 
 *** now
-- check missing ref to dargie2010fundamentals
 - add section on development of embedded systems
   - compilation/deployment style:
     - hex + install
