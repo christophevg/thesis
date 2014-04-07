@@ -26,7 +26,8 @@
 
 \title{Lowering the Impact of Intrusion Detection\\
 on Resources in Wireless Sensor Networks\\
-using Code Generation Techniques}
+using a Domain Specific Language\\
+and Code Generation Techniques}
 
 \author{\IEEEauthorblockN{Christophe Van Ginneken, Jef Maerien, Christophe
 Huygens, Danny Hughes, Wouter Joosen}%
@@ -496,20 +497,18 @@ times, the algorithm might want to communicate with other nodes to exchange
 information. Given this structure, we now introduce the \emph{hello world}
 example for FOO-lang: \emph{heartbeat}.
 
+\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
+  {heartbeat.foo}
+\captionof{listing}{Example implementation of \emph{heartbeat}.\label{lst:heartbeat}}
+
 Heartbeat can be considered the most elementary intrusion detection algorithm
 possible, that still contains all aspects identified with other more complex
 algorithms.
 
 The underlying concept boils down to availability. As long as we receive
 regular updates from a given node, we trust it. When it fails to produce a
-heartbeat on a regular interval, we
-
-\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
-  {heartbeat.foo}
-\captionof{listing}{Example implementation of \emph{heartbeat}.\label{lst:heartbeat}}
-
-no longer trust it. The resulting FOO-lang code is presented in listing
-\ref{lst:heartbeat}.
+heartbeat on a regular interval, we no longer trust it. The resulting FOO-lang
+code is presented in listing \ref{lst:heartbeat}.
 
 At the top of the listing we see the \emph{module} construct. It marks the
 start of the definition of a group of related constructs.
@@ -557,16 +556,18 @@ list literal with non-variables and variables. The non-variable in this case is
 an \emph{atom}, and is prefixed with a `\#' character. It serves as a uniquely
 identifiable marker and abstracts the underlying implementation. It avoids the
 use of constants in this case. If the \emph{contains} function encounters the
-representation of the \emph{heartbeat} atom, it will map the other variables in
+representation
+
+\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
+  {reputation.foo}
+\captionof{listing}{Example reputation-based decision making.\label{lst:reputation}}
+
+of the \emph{heartbeat} atom, it will map the other variables in
 the pattern to the data that follows it. Because some of the types of these
 variables might not be trivial to infer, it is possible to explicitly express
 these types. In this specific case inference would be possible, based on the
 use of the variable in the following handling code, which is almost completely
 pure C.
-
-\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
-  {reputation.foo}
-\captionof{listing}{Example reputation-based decision making.\label{lst:reputation}}
 
 A second function is defined, along with a scheduled execution strategy.
 FOO-lang here tries to be very fluent in its syntax and therefore the second
