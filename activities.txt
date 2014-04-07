@@ -505,3 +505,14 @@ activities
 
 2014-04-04 (4h/482h30min)
 - finalized draft of IEEE-style article (4h)
+
+2014-04-05 (30min/483h)
+- restarted work on actual report (30min)
+
+2014-04-06 (6h/489h)
+- wrote abstract (1h)
+- wrote large part of introduction (5h)
+
+2014-04-07 (6h/495h)
+- finalized draft of introduction (3h)
+- finalized sections 2.1 and 2.2, structured section 2.3 (3h)

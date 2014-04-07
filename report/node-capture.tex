@@ -29,7 +29,7 @@ te verkrijgen, zonder dat dit de werking van de \mcu verandert.
 
 Figuur \ref{fig:node-capture-schematic} toont het schema van deze opstelling.
 
-\begin{figure}[hb]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\linewidth]{resources/node-capture-schematic.pdf}
   \caption{Schema van de testopstelling voor knoopverovering.}
@@ -73,7 +73,7 @@ worden.} en twee naar een voeding en aarding geleid moeten worden. Zoals te
 zien is op figuur \ref{fig:node-capture-jtag} worden de vier draden eenvoudig
 op naast elkaar liggende pinnen (24 tot 27) van de \mcu aangesloten.
 
-\begin{figure}[hb]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\linewidth]{resources/node-capture-jtag.pdf}
   \caption{Aansluiting van een JTAG verbinding.}
@@ -84,7 +84,7 @@ De uitvoer van de applicatie wordt weergegeven in listing
 \ref{lst:node-capture-terminal} en toont een terminal applicatie die deze
 uitvoer weergeeft. De applicatie werkt ononderbroken.
 
-\begin{listing}
+\begin{listing}[ht]
   \begin{minted}{console}
 $ screen /dev/tty.usbserial-FTSJ84AI 9600
 counter = 1
@@ -116,7 +116,7 @@ een brug opgezet door middel van
 \ref{lst:node-capture-avarice} toont het opstarten van de brug en het
 beschikbaar maken van de JTAG verbinding via een locale server verbinding.
 
-\begin{listing}
+\begin{listing}[ht]
   \begin{minted}{console}
 $ avarice --mkII --capture --jtag usb:5a:cb :4242
 AVaRICE version 2.13, Oct 29 2013 15:35:57
@@ -136,7 +136,7 @@ Vervolgens kan de standaard foutopspoorder, \ttt{gdb}, gebruikt worden om het
 geheugen van de \mcu te raadplegen en het programma verder te laten lopen.
 Listing \ref{lst:node-capture-gdb} toont deze interactie.
 
-\begin{listing}
+\begin{listing}[ht]
   \begin{minted}{console}
 $ avr-gdb
 GNU gdb 6.8
@@ -163,7 +163,7 @@ gegevens. \ttt{0c} en \ttt{0f} zijn telkens de eerste byte in het geheugen van
 de \ttt{counter} variabele en tonen inderdaad de waarde die de variabele had op
 het moment van de opvraging.
 
-\begin{listing}
+\begin{listing}[ht]
   \begin{minted}{console}
 $ hexdump counter12.bin 
 0000000 0c 00 00 00 00 01 00 00                        
@@ -187,7 +187,7 @@ data geheugen - dat bij de Harvard architectuur gescheiden is van het programma
 geheugen \cite{avr-memory}. Figuur \ref{fig:avr-ram-map} geeft een overzicht
 van de indeling van het data geheugen op een AVR \mcu.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/avr-ram-map.pdf}
   \caption{Indeling van het data geheugen \cite{avr-malloc}.}
@@ -232,6 +232,6 @@ kan het controleren dat deze instellingen geen kwaadaardige acties toelaten.
 Indien wel, kunnen ze er voor zorgen dat ze geen belangrijke informatie
 ontvangen van het netwerk en opslagen in het data geheugen.
 
-Hieruit blijkt dat een minimaal onderdeel van een inbraak detectie-systeem een
+Hieruit blijkt dat een minimaal onderdeel van een inbraakdetectiesysteem een
 controle zal zijn van de instellingen van de \mcu, wat onderdeel kan uitmaken
 van een globaal \emph{anomalie-detectie} subsysteem.

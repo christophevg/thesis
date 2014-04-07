@@ -32,7 +32,7 @@ samenvatting niet op voorhand gekend en berekend worden. Figuur
 \ref{fig:attestation-process} geeft een overzicht van de werking van software
 attestatie en illustreert hoe een wijziging door een aanvaller zich propageert.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/attestation-process.pdf}
   \caption{De werking van software attestatie: een aanvaller heeft een
@@ -149,7 +149,7 @@ op zijn beurt de rootkit en de initi\"ele haak opnieuw door middel van ROP
 instructies installeert. Figuur \ref{fig:attestation-rootkit} toont deze
 werking.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/attestation-rootkit.pdf}
   \caption{De werking van een attestatie ontwijkende rootkit.}
@@ -276,7 +276,7 @@ aanvaller zijn eigen aangepaste kopie van de ICE routine kan laten uitvoeren,
 terwijl de geattesteerde regio zich elders bevindt, waardoor de routine niet
 meer zelf-attesterend is en zijn beginsel verliest.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/attestation-ice-copy.pdf}
   \caption{De legitieme ICE routine is opgeslagen op adres 0x9100 en een

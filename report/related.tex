@@ -2,6 +2,11 @@
 \section{Gerelateerd onderzoek}
 \label{section:related}
 
+Het detecteren van inbraken komt dikwijls neer op het detecteren van abnormaal
+gedrag of algemeen anomalie\"en. Er zijn tal van manieren hoe normaal gedrag
+kan gedefinieerd worden elk met hun voor- en nadelen, beperkingen en successen.
+(\ref{subsection:anomaly}).
+
 Met de komst van draadloze sensornetwerken moesten veel klassieke
 beveiligingstechnieken volledig herbekeken worden. De schaal waarop deze
 netwerken opereren, maar vooral de fysieke toegankelijkheid waren parameters
@@ -32,15 +37,19 @@ de integriteit van een bepaald aspect van een knoop. In dit geval gaat het om
 de inhoud van het geheugen. In het algemeen kan dit beschouwd worden als het
 opsporen van anomalie\"en.
 
-\TODO
+Naast detectiealgoritmen zijn er ook reeds pogingen gedaan om samenvattende
+raamwerken te cre\"eren die het detecteren en verijdelen van aanvallen
+makkelijker moeten maken.
+
+\TODO -> zie ook IEEE article voor overeenkomstigheden van algemeen overzicht
+\TODO \cite{mishra2004intrusion} -> algemeen overzicht met losse pointers
+\TODO \cite{alrajeh2013intrusion} -> algemeen overzicht
 
 In de volgende paragrafen gaan we uitvoerig in op al deze aspecten, omdat ze de
-bouwstenen vormen van een algemeen inbraak detectie raamwerk.
+samen de bouwstenen vormen van een algemeen raamwerk voor inbraakdetectie.
 
+\input{anomaly}
 \input{reputation}
 \input{cooperation}
 \input{attestation}
-
-\TODO
-
-\cite{aschenbruck2012security,kuang2010snds,blilat2012wireless,ramesh2012wireless,valero2012di,perrig2004security,zhang2000intrusion,djenouri2005survey,yu2008framework,rassam2011novel,da2005decentralized,kachirski2003effective,li2008group,mishra2004intrusion,krontiris2008lidea,ioannis2007towards,soliman2012comparative,wang2011integrated,zhijie2012intrusion,zhang2010outlier,krishnan2006intrusion,alrajeh2013intrusion,raza2013svelte,wagner2002mimicry,balasubramaniyan1998architecture,huang1999large,hughes2012looci,maerien2011sasha,paul2009safe,wu2012toward,maerien2013access,matthys2012component,marchang2008collaborative,huang2003cooperative,krontiris2008launching,du2006lad,garg2013candidate,naik2001software,panda2001data}
+\input{framework}

@@ -70,7 +70,7 @@ enkele ge\"integreerde schakeling. Ze worden daarom ook wel
 \emph{systeem-op-een-chip} genoemd. Figuur \ref{fig:motes} toont enkele
 typische sensorknopen.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \begin{subfigure}{.24\textwidth}
   \centering
@@ -160,7 +160,7 @@ verbonden met de co\"ordinator, eventueel opnieuw via andere routers, en zo
 wordt een boomstructuur gevormd. De routers die de clusters van eindknopen
 realiseren worden ook clusterhoofden genoemd.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\linewidth]{resources/topology.pdf}
   \caption{Verschillende mogelijke netwerktoplogie\"en.}
@@ -172,12 +172,12 @@ uniek adres. Eigenlijk meerdere. Zo heeft een ZigBee knoop een uniek adres
 binnen het netwerk waaraan het deelneemt. Dit adres wordt door de co\"ordinator
 van het netwerk toegekend aan een knoop wanneer deze toetreedt tot het netwerk.
 Dit \emph{netwerk adres} bestaat uit 16 bits en laat dus toe om 65534
-verschillende adressen toe te kennen. Het adres 0000\footnote{We hanteren voor
-de notatie van adressen de hexadecimale voorstelling. Elk cijfer stelt een
-groep van 4 bits voor. 4 groepen stellen zo een 16 bit adres voor.} reserveert
-de co\"ordinator voor zichzelf en het adres FFFE wordt typisch gebruikt als het
-zgn. \emph{broadcast adres}, het adres waarnaar een bericht gestuurd wordt dat
-bij alle andere knopen dient afgeleverd te worden.
+verschillende adressen toe te kennen. Het adres \ttt{0x0000}\footnote{We
+hanteren voor de notatie van adressen de hexadecimale voorstelling. Elk cijfer
+stelt een groep van 4 bits voor. 4 groepen stellen zo een 16 bit adres voor.}
+reserveert de co\"ordinator voor zichzelf en het adres \ttt{0xFFFE} wordt
+typisch gebruikt als het zgn. \emph{broadcast adres}, het adres waarnaar een
+bericht gestuurd wordt dat bij alle andere knopen dient afgeleverd te worden.
 
 Maar daarnaast heeft elke ZigBee radio ook een eigen, unieke adres dat
 gegarandeerd overal uniek is. Dit adres bestaat uit 64 bits en wordt
@@ -222,54 +222,158 @@ is het belangrijk dit nog aan te vullen met het feit dat een draadloos
 communicatiemedium inherent fouten met zich meebrengt, en dat berichte verloren
 kunnen gaan.
 
-\subsection{CIA en andere beveiligingsprincipes}
+\subsection{CIA, AAA en andere beveiligingsprincipes}
 \label{subsection:cia}
 
-Wanneer men spreekt over het beveiligen van computers en netwerken, wordt
-veelal gerefereerd naar het CIA beveiligingsmodel. Dit letterwoord staat voor:
-vertrouwelijkheid (Engels: \emph{confidentiality}), integriteit en
-beschikbaarheid (Engels: \emph{availability}).
+Beveiliging is een zeer ruim begrip dat veel aspecten onder zijn vleugels
+draagt. Het is belangrijk deze waaier voor ogen te houden wanneer we
+beveiliging bespreken. Wanneer men spreekt over het beveiligen van computers en
+netwerken, wordt dikwijls gerefereerd naar het CIA beveiligingsmodel. Dit
+letterwoord staat voor: vertrouwelijkheid (Engels: \emph{confidentiality}),
+integriteit en beschikbaarheid (Engels: \emph{availability}).
 
-Om \emph{Vertrouwelijkheid} te garanderen moet beveiliging de nodige
-voorzieningen treffen om er voor te zorgen dat een bericht enkel door de
+Om \emph{vertrouwelijkheid} te garanderen moet beveiliging de nodige
+voorzieningen treffen om er voor te zorgen dat bv. een bericht enkel door de
 bedoelde bestemmeling kan begrepen worden. Onder \emph{integriteit} verstaat
-men het principe dat een bericht niet kan gewijzigd worden, of dat de bedoelde
-bestemmeling van het bericht ten minste als enige kan valideren dat er aan het
-bericht niets gewijzigd is. Maar beveiliging moet ook de \emph{beschikbaarheid}
-van onderdelen van het netwerk garanderen, om er zeker van te zijn dit laatste
-zijn diensten kan blijven aanbieden.
+men het principe dat dat bericht dan weer niet mag gewijzigd kunnen worden, of
+dat de bedoelde bestemmeling van het bericht ten minste kan valideren dat er
+aan het bericht niets gewijzigd is. Maar beveiliging moet ook de
+\emph{beschikbaarheid} van onderdelen van het netwerk garanderen, om er zeker
+van te zijn dit laatste zijn diensten kan blijven aanbieden.
 
-Naast deze drie hoofdpijlers zijn volgende bijkomende principes van belang:
-authenticatie, autorisatie en onweerlegbaarheid (Engels: \emph{nonrepudiation}).
+Het CIA model is zonder meer een belangrijke basis, maar er ontbreken nog veel
+belangrijke aspecten. In \cite{rfc:3198} wordt een gestandaardiseerde
+terminologie voorgesteld voor het defini\"eren van een beveiligingsbeleid.
+Naast de drie hoofdpijlers van het CIA model vinden we zo ook nog een ander
+belangrijk model, namelijk het AAA (Engels: \emph{triple A}): authenticatie,
+autorisatie en vaststellen (Engels: \emph{accounting})
 
 Via \emph{authenticatie} kan de identiteit van een gebruiker of apparaat
 vastgesteld worden, zodat eenduidig kan bepaald worden van wie bv. een bericht
-in het netwerk komt. \emph{Autorisatie} is dan het proces waarbij nagegaan
-wordt of een geauthenticeerde gebruiker een bepaalde handeling mag uitvoeren.
-Door garanties omtrent \emph{onweerlegbaarheid} in te bouwen, kan bv. een
-ontvanger er zeker van zijn dat een zender van een bericht effectief dit
-bericht verstuurd heeft. Digitale handtekeningen kunnen typisch helpen bij het
-garanderen van authenticatie, onweerlegbaarheid en de integriteit.
+in het netwerk komt. \emph{Autorisatie} is daarentegen het proces waarbij
+nagegaan wordt of een gebruiker waarvan de authenticiteit is vastgesteld, een
+bepaalde handeling \emph{mag} uitvoeren. Ten slotte biedt het
+\emph{vaststellen} van alle gebeurtenissen en beslissingen binnen het
+beveiligde domein, een belangrijke bron van informatie om een beleid verder te
+verfijnen en eventueel bij te sturen.
 
-\TODO
+In het kader van beveiliging wordt typisch ook gesproken over een \emph{beleid}
+(Engels: \emph{policy}), waarin de regels waaraan alle spelers binnen het te
+beveiligen domein zich aan dienen te houden of moeten aan gehouden worden.
+Componenten zoals een \emph{policy decision point} (PDP) en een \emph{policy
+enforcement point} (PEP) worden tevens ge\"introduceerd om respectievelijk de
+verantwoordelijkheid voor het beslissen op basis van en uitvoeren van deze
+beslissingen volgens het beleid aan te duiden.
+
+Naast deze zes aspecten, is er ook nog het principe van onweerlegbaarheid
+(Engels: \emph{nonrepudiation}). Door garanties omtrent
+\emph{onweerlegbaarheid} in te bouwen, kan bv. een ontvanger er zeker van zijn
+dat een zender van een bericht effectief dit bericht verstuurd heeft.
+
+Een aantal gekende technieken bieden klassiek oplossingen voor verschillende
+van de hoger vermelde principes: Digitale handtekeningen kunnen helpen bij het
+garanderen van de \emph{authenticiteit}, \emph{onweerlegbaarheid} en
+\emph{integriteit} van een boodschap. Cryptografie kan logischerwijs de
+\emph{vertrouwelijkheid} van berichten garanderen, maar kan ook aan de hand van
+publieke en private sleutels de \emph{authenticiteit} bevestigen, omdat
+berichten slechts kunnen versleuteld worden met de overeenkomstige sleutel van
+het paar.
+
+In hoofdstuk \ref{chapter:achtergrond} gaan we dieper in op de typische
+eigenschappen van sensorknopen en belichten we tal van beveiligingsrisico's
+waaraan DSN blootgesteld zijn. Aan de hand van de zonet beschreven principes
+zullen we zien dat DSN inherent moeilijk te beveiligen zijn en dat het nagenoeg
+onmogelijk is om inbraken te verijdelen.
 
 \subsection{Inbraakdetectie}
 \label{subsection:detection}
 
-\TODO
+Indien het verijdelen van inbraken nagenoeg onmogelijk is, moet een belangrijke
+tweede beveiligingslinie opgetrokken worden: inbraakdetectie.
+
+Indien we niet weten dat een inbraak heeft plaatsgevonden, zullen we enkel
+berusten in een vals gevoel van veiligheid. Het is niet omdat we het niet weten
+dat er inbraakpogingen zijn, dat ze er effectief niet zijn. Misschien moeten we
+zelfs durven stellen dat het belangrijk is om meer te weten dan te verijdelen,
+omdat het tweede in essentie berust op de kennis van het eerste.
+
+Inbraakdetectie is typisch de stille vennoot in een beveiligingsverhaal. Daar
+waar bv. een firewall of authenticatie server actieve toegang ontzegt, zal een
+inbraakdetectiesysteem (IDS) typisch geen actieve rol spelen\footnote{Er zijn
+wel degelijk toepassingen waarbij een IDS informatie kan verschaffen aan bv.
+een firewall. Indien het IDS een inbraakpoging detecteert kan de oorsprong van
+de inbraakpoging door de firewall gebruikt worden om op netwerkniveau toegang
+tot het netwerk te ontzeggen.}. Het IDS zal eerder bewijsmateriaal verzamelen
+om een inbraakpoging degelijk te documenteren. Uit deze informatie kunnen dan
+bijsturingen aan het beleid aangebracht worden, waardoor de actieve componenten
+in de toekomst wel in staat zijn om eventueel inbraakpogingen van die aard te
+verijdelen.
+
+Deze architectuur legt al snel een belangrijk pijnpunt bloot: in een klassiek
+netwerk wordt het netwerk beschermd aan de buitenzijde. De firewall schermt het
+interne netwerk af van aanvallen van buiten het netwerk. Als een
+spreekwoordelijke muur van vuur wordt elke toegang tot het netwerk gelouterd en
+\emph{slechte berichten} worden onherroepelijk verbrand voor ze het netwerk
+kunnen betreden.
+
+Het IDS wordt daarom typisch ook op het interne netwerk aangesloten daar waar
+alle netwerkverkeer dat door de firewall wordt doorgelaten passeert. Alle
+aanvallen die toch nog door de firewall zijn kunnen geraken, kunnen dan door
+het IDS gedetecteerd worden.
+
+Dit lijkt op het eerste zicht een vreemde tegenspraak. Indien het IDS deze
+aanvallen eventueel kan detecteren, waarom wordt deze kennis dan niet gebruikt
+op het niveau van de firewall? De reden ligt in de natuur van de firewall. Deze
+werkt immers hoofdzakelijk op netwerk niveau en bekijken elk netwerkpakket op
+zich. Aanvallen zijn soms een samengang van verschillende van zulke pakketten
+en typisch zelf eerder van pakketten die op zich perfect legaal zijn. Het
+draait hier hoofdzakelijk om de inhoud van de pakketten en de analyse vraagt
+een kennis van de toepassingen waarmee gecommuniceerd wordt. Soms kan zelfs
+slechts aan de inhoud van antwoorden uit het interne netwerk opgemaakt worden
+dat er een inbraak plaatsgevonden heeft. Deze complexiteit is te groot om op
+het niveau van een firewall degelijk te realiseren.
+
+De resultaten van een IDS zullen dikwijls eerder leiden tot verbeteringen aan
+de toepassingen binnen het interne netwerk, zodat deze niet meer vatbaar zijn
+voor het soort inbraken dat gedetecteerd werd.
+
+Wanneer we dit nu afspiegelen op een DSN, merken we al snel dat hier enkele
+fundamentele principes zulk een architectuur onmogelijk maken: een DSN heeft
+geen afgebakende netwerkrand, er is geen uniek punt waar alle netwerkverkeer
+langs passeert en waar een firewall zou kunnen ge\"introduceerd worden, laat
+staan dat er een manier zou zijn om al het interne verkeer op \'e\'en enkele
+plaats te analyseren.
+
+Binnen een DSN is het letterlijke elke knoop voor zichzelf: elke knoop kan
+immers van buitenaf benaderd worden zonder te moeten passeren langs een
+gemeenschappelijk controlepunt.
 
 \section{Probleemstelling}
 \label{section:probleem}
 
-\TODO
+DSN en sensorknopen op zich zijn duidelijk geen makkelijke klanten wanneer het
+beveiliging betreft. Enerzijds hebben ze nagenoeg onvoldoende middellen om zich
+te beschermen en anderzijds is hun situatie zo dat het letterlijk elke knoop
+voor zichzelf is en dat ze nauwelijks kunnen vertrouwen op hun collega knopen.
+
+In dit kader eisen wij, de gebruikers van het DSN, toch dat er voldoende
+garanties worden gegeven zodat we ons voldoende verzekerd voelen om onze meest
+intieme informatie toe te vertrouwen aan deze netwerken.
+
+Aangezien het haast onmogelijk is om inbraakpogingen te verijdelen is het van
+groot belang dat we in staat zijn ze ten minste vast te stellen. Het
+introduceren van een IDS in het DSN is dan weer een directe aanval op de
+essenti\"ele functionaliteit van een sensorknoop, waardoor de mogelijkheden
+sterk beperkt worden.
 
 \section{Doelstelling}
 \label{section:doelstelling}
 
-In de literatuur betreffende ``inbraakdetectie in draadloze sensornetwerken'',
-ligt de nadruk in hoofdzaak op het detecteren van specifieke aanvallen of het
-vaststellen van anomalie\"en in het verwachte gedrag van sensorknopen en/of het
-netwerk dat hen verbindt.
+Zoals we zullen zien in sectie \ref{section:related}, ligt in de literatuur
+betreffende ``inbraakdetectie in draadloze sensornetwerken'' de nadruk in
+hoofdzaak op het detecteren van specifieke aanvallen of het vaststellen van
+anomalie\"en in het verwachte gedrag van sensorknopen en/of het netwerk dat hen
+verbindt.
 
 Deze werken stellen tevens dat het een nagenoeg onmogelijke taak is om alle
 benodigde detectiemechanismen effectief te implementeren. Dit is logisch
@@ -280,15 +384,15 @@ worden en zouden de berekeningen die nodig zijn om verschillende anomalie\"en
 te detecteren gewoonweg te veel energie verbruiken.
 
 Als in deze fase van onderzoek naar systemen om inbraken te detecteren het niet
-mogelijk is om een sluitend intrusie detectie systeem voor draadloze
-sensornetwerken te ambi\"eren, lijkt het opportuun om een stap terug te nemen
-en de focus eerst te leggen op de middelen die nodig zijn om de reeds
-beschreven en mogelijk ook toekomstige oplossingen te realiseren. Is het
-mogelijk om een raamwerk te cre\"eren dat een ontwikkelaar van een sensorknoop
-in staat stelt om een selectie van de in de literatuur beschreven oplossingen
-te implementeren, zonder zich zorgen te moeten maken over de onderliggende
-interactie met andere knopen, het vergaren en opvragen van informatie op
-systeem-niveau,...?
+mogelijk is om een sluitend IDS voor DSN te ambi\"eren, lijkt het opportuun om
+een stap terug te nemen en de focus te leggen op de middelen die nodig zijn om
+de reeds beschreven en mogelijk ook toekomstige oplossingen te realiseren. Is
+het mogelijk om een raamwerk te cre\"eren dat een ontwikkelaar van een
+sensorknoop in staat stelt om een selectie van de in de literatuur beschreven
+oplossingen te implementeren, zonder een diepgaande analyse van de
+onderzoeksliteratuur en zonder zich zorgen te moeten maken over de
+onderliggende interactie met andere knopen, het vergaren en opvragen van
+informatie op systeem-niveau,\dots?
 
 Deze thesis wil zulk een raamwerk ontwerpen, implementeren en de impact ervan
 bepalen. Daartoe zal eerst een lijst gemaakt worden van de verwerkte
