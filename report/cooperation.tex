@@ -245,11 +245,16 @@ algoritme ge\"introduceerd in \cite{krontiris2009cooperative} een goed
 uitgangspunt om te hanteren bij het beschrijven en implementeren van inbraak
 detectie mechanismen.
 
-\TODO \cite{li2008group} -> grouping
+\subsubsection*{Groeperen}
+\label{subsubsection:grouping}
 
-\TODO \cite{huang2003cooperative} -> clustering and state machine (TODO: feature for FOO-lang)
+Een andere aanpak van co\"operatieve algoritmen vertrekt van het groeperen van
+knopen. Deze aanpak wordt toegepast door \cite{li2008group}. Groepering gebeurt
+op basis van nabijheid en tracht sensoren te groeperen die door hun locatie
+gelijkaardige meetwaarden zouden moeten opmeten. De auteurs stellen hiervoor
+een dynamisch $\delta$-algoritme voor.
 
-\TODO \cite{marchang2008collaborative} -> different cooperative algoritms
-
-\TODO \cite{ioannis2007towards}
-
+Metingen van knopen kunnen nu binnen de groep met elkaar vergeleken worden, en
+op statistische wijze kunnen afwijkende resultaten (zie ook sectie
+\ref{subsection:anomaly}) nu eventueel beschouwd worden als abnormaal gedrag en zo
+gerapporteerd worden.

@@ -423,28 +423,22 @@ te krijgen, waardoor hij in staat is om diens opnieuw samengestelde initi\"ele
 waarde te bemachtigen. Nadien is hij in staat om die zelfde knoop te veroveren
 en te voorzien van code die gebruik maakt van de veroverde initi\"ele waarde om
 de pseudo-willekeurige getallen te generen en de lege ruimte opnieuw te
-gebruiken voor zijn eigen doeleinden.
-
-De auteurs beseffen dit probleem ook en stellen daarom een aangepast algoritme
-voor, dat tevens de herberekening van de \emph{checksums} door de attesterende
-buren vermijdt.
+gebruiken voor zijn eigen doeleinden. De auteurs beseffen dit probleem ook en
+stellen daarom een aangepast algoritme voor, dat tevens de herberekening van de
+\emph{checksums} door de attesterende buren vermijdt.
 
 In plaats van de koppels $(i, f(i))$ te versturen naar alle buren, verstuurt de
 knoop nu koppels die bestaan uit een challenge en een berekende \emph{checksum}
 voor die challenge: $(C_i,R_i)$. Deze worden verdeeld onder de buren, die nu
-elk \'e\'en valide combinatie hebben.
-
-Wanneer een knoop nu geattesteerd wordt, zal elk van de buren om de beurt een
-challenge aanbieden aan de knoop. Hierna volgt een stem-ronde op basis van de
-antwoorden.
-
-De complexiteit van deze strategie is veel hoger voor een aanvaller. Geen
-enkele knoop beschikt nu nog over de initi\"ele waarde $S_u$, zelfs niet
-tijdelijk om de validatie te doen. De gedistribueerde validatie berust op
-evenveel unieke controles als er buren zijn. Dit zou de aanvaller verplichten
-om de challenge/response koppels bij elk van de buren te veroveren om zo
-\'e\'en knoop te kunnen voorzien van code die een attestatie zou kunnen
-weerstaan.
+elk \'e\'en valide combinatie hebben. Wanneer een knoop nu geattesteerd wordt,
+zal elk van de buren om de beurt een challenge aanbieden aan de knoop. Hierna
+volgt een stem-ronde op basis van de antwoorden. De complexiteit van deze
+strategie is veel hoger voor een aanvaller. Geen enkele knoop beschikt nu nog
+over de initi\"ele waarde $S_u$, zelfs niet tijdelijk om de validatie te doen.
+De gedistribueerde validatie berust op evenveel unieke controles als er buren
+zijn. Dit zou de aanvaller verplichten om de challenge/response koppels bij elk
+van de buren te veroveren om zo \'e\'en knoop te kunnen voorzien van code die
+een attestatie zou kunnen weerstaan.
 
 \subsubsection*{Conclusies en gevolgen}
 
