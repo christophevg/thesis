@@ -516,3 +516,6 @@ activities
 2014-04-07 (6h/495h)
 - finalized draft of introduction (3h)
 - finalized sections 2.1 and 2.2, structured section 2.3 (3h)
+
+2014-04-08 (2h/497h)
+- processed first batch of review comments + cut large part + 2nd example (2h)
