@@ -179,3 +179,23 @@
 
 ! vergelijking met TinyOS/nesC bekijken
 ! tip: lengte veld toevoegen, om skippen toe te laten
+
+2014-03-27
++ Jef Maerien
+
+- status demo code overlopen
+! focus op tekst tegen volgende keer
+
+2014-04-09
++ Jef Maerien
+
+! TOCH numerieke vergelijking met manuele versie
+  - timing event loop
+  - bytes sent / # packets sent
+  - combined <-> manual
+  - timing 1, timing 2, timing 1+2 -> timing fw
+  - akkoord, beperkte sample, we zouden moeten ... -> strategie
+  - (hex size)
+! IEEE article samen met thesis indienen (6 juni)
+  - 4 a 6 bladzijden
+! thesis zelf 70 bladzijden (zonder bibliografie)

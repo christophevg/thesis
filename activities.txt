@@ -520,3 +520,7 @@ activities
 2014-04-08 (6h/501h)
 - processed first batch of review comments + cut large part + 2nd example (2h)
 - finalized draft of background (4h)
+
+2014-04-09 (1h/502h)
+- meeting Jef (30min)
+- design metering (30min)
