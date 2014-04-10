@@ -524,3 +524,7 @@ activities
 2014-04-09 (1h/502h)
 - meeting Jef (30min)
 - design metering (30min)
+
+2014-04-10 (2h/504h)
+- metering setup research (1h)
+- processed reviewers' comments for IEEE-style article (1h)
