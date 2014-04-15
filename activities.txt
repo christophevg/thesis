@@ -528,3 +528,9 @@ activities
 2014-04-10 (2h/504h)
 - metering setup research (1h)
 - processed reviewers' comments for IEEE-style article (1h)
+
+2014-04-11 (1h/505h)
+- prepared code for metering (1h)
+
+2014-04-15 (1h/506h)
+- prepared PCB layout for demo boards (1h)
