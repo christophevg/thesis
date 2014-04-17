@@ -10,8 +10,9 @@
 #include "moose/bool.h"
 #include "moose/clock.h"
 
-#include "log.h"
-#include "network.h"
+#include "../lib/log.h"
+#include "../lib/network.h"
+
 #include "heartbeat.h"
 
 // internal data

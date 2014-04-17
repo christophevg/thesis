@@ -19,12 +19,13 @@
 #include "moose/xbee.h"
 #include "moose/clock.h"
 
-#include "log.h"
-#include "timing.h"
-#include "network.h"
+#include "../lib/log.h"
+#include "../lib/timing.h"
+#include "../lib/network.h"
+#include "../lib/hardware.h"
+
 #include "heartbeat.h"
 
-#include "hardware.h"
 
 // forward declarations
 void init(void);
