@@ -535,5 +535,6 @@ activities
 2014-04-15 (1h/506h)
 - prepared PCB layout for demo boards (1h)
 
-2014-04-18 (2h/508h)
+2014-04-18 (4h/510h)
 - implemented virtual mesh wrappers : demo/network (2h)
+- wrote appendix on virtual mesh wrappers (2h)
