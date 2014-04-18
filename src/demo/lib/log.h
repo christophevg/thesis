@@ -2,8 +2,8 @@
 // little hack to have a timed log function without the function ;-)
 // author: Christophe VG
 
-// relies on clock_get_millis from moose/clock
-
 #ifndef log
+#include <stdio.h>
+#include "moose/clock.h"
 #define log printf("[%06lu] ", clock_get_millis()); printf
 #endif
