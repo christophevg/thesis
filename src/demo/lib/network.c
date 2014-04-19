@@ -8,49 +8,17 @@
 
 #include "../lib/log.h"
 
-void send_bytes(uint8_t *bytes, uint8_t size) {
-  xbee_tx_t frame;
-
-  frame.size        = size;
-  frame.id          = XB_TX_NO_RESPONSE;
-  frame.address     = DESTINATION;
-  frame.nw_address  = XB_NW_ADDR_UNKNOWN;
-  frame.radius      = XB_MAX_RADIUS;
-  frame.options     = XB_OPT_NONE;
-  frame.data        = bytes;
-
-  xbee_send(&frame);
-}
-
-void broadcast_bytes(uint8_t *bytes, uint8_t size) {
-  xbee_tx_t frame;
-
-  frame.size        = size;
-  frame.id          = XB_TX_NO_RESPONSE;
-  frame.address     = XB_BROADCAST;
-  frame.nw_address  = XB_NW_BROADCAST;
-  frame.radius      = XB_MAX_RADIUS;
-  frame.options     = XB_OPT_NONE;
-  frame.data        = bytes;
-
-  xbee_send(&frame);
-}
-
 void mesh_send(uint16_t from, uint16_t to, uint8_t size, uint8_t* payload) {
   uint16_t hop = xbee_get_parent_address();
-  if(hop == 0xfffe) {
-    // we're the router, our actual parent is the coordinator
+  if(hop == XB_NW_ADDR_UNKNOWN) {   // we're the router, parent = coordinator
     hop = XB_COORDINATOR;
   }
 
   uint8_t* bytes = malloc(3*sizeof(uint16_t)+size);
   // add broadcast hop and destination
-  bytes[0] = (uint8_t)(from >> 8);
-  bytes[1] = (uint8_t)(from);
-  bytes[2] = (uint8_t)(hop >> 8);
-  bytes[3] = (uint8_t)(hop);
-  bytes[4] = (uint8_t)(to >> 8);
-  bytes[5] = (uint8_t)(to);
+  bytes[0] = (uint8_t)(from >> 8);  bytes[1] = (uint8_t)(from);
+  bytes[2] = (uint8_t)(hop >> 8);   bytes[3] = (uint8_t)(hop);
+  bytes[4] = (uint8_t)(to >> 8);    bytes[5] = (uint8_t)(to);
 
   // add the actual payload
   memcpy(&(bytes[6]), payload, size);
@@ -64,6 +32,10 @@ void mesh_send(uint16_t from, uint16_t to, uint8_t size, uint8_t* payload) {
   frame.options     = XB_OPT_NONE;
   frame.data        = bytes;
   xbee_send(&frame);
+}
+
+void mesh_broadcast(uint16_t from, uint8_t size, uint8_t* payload) {
+  mesh_send(from, XB_NW_BROADCAST, size, payload);
 }
 
 mesh_rx_handler_t rx_handler;

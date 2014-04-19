@@ -40,9 +40,13 @@ int main(void) {
   }
 
   // send a packet to our destination (coordinator)
-  uint8_t msg[11] = "hello world";
+  uint8_t msg1[5] = { 0x01, 0x02, 0x03, 0x04, 0x05 };
   log("sending single message\n");
-  mesh_send(address, DESTINATION, 11, msg);
+  mesh_send(address, DESTINATION, 5, msg1);
+  
+  uint8_t msg2[5] = { 0x10, 0x20, 0x30, 0x40, 0x50 };
+  log("broadcasting single message\n");
+  mesh_broadcast(address, 5, msg2);
 
   while(TRUE) {
     xbee_receive();

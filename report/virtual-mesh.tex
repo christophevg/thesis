@@ -69,24 +69,25 @@ registreren.
 
 De werking wordt duidelijk aan de hand van een voorbeeld, waarbij zowel de
 eind-knoop als de router een bericht verzenden naar de co\"ordinator. De
-uitvoer van deze demonstratie is weergegeven in figuur \ref{fig:virtual-mesh}:
-van boven naar onder zien we de uitvier van de eind-knoop, de router en de
-co\"ordinator.
+uitvoer van deze demonstratie is weergegeven in figuren
+\ref{fig:virtual-mesh-end-device}, \ref{fig:virtual-mesh-router} en
+\ref{fig:virtual-mesh-coordinator}. We zien de uitvoer van respectievelijk de
+eind-knoop, de router en de co\"ordinator.
 
 Zowel de eind-knoop als de router gebruiken exact dezelfde code. Na het
 initialiseren van de seri\"ele verbinding en het opzetten van de
 netwerkassociatie, tonen beide knopen eerst hun eigen netwerk adres en dat van
 hun hi\"erarchisch ouderlijke knoop (Engels: \emph{parent}). In dit geval heeft
-de eind-knoop netwerk adres \ttt{4d 83} en de router adres \ttt{fa 7d}. We zien
+de eind-knoop netwerk adres \ttt{ae f5} en de router adres \ttt{fa 7d}. We zien
 dat de eind-knoop inderdaad als \emph{parent} de router opgeeft.
 
 De router geeft als \emph{parent} \ttt{ff fe} aan. Dit adres staat voor een
 onbekend adres. XBee routers geven dit adres standaard terug aangezien het
 \emph{parent} concept voor hen niet bestaat. 
 
-\inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize,firstline=39, firstnumber=39]{c}{../src/demo/lib/network.c}
+\inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize,firstline=11, firstnumber=11]{c}{../src/demo/lib/network.c}
 \vspace{-5mm}
-\captionof{listing}{Simulatie van een maasnetwerk met XBee modules.
+\captionof{listing}{Simulatie van een maasnetwerk met XBee modules. (demo/lib/network.c)
 \label{lst:virtual-mesh}}
 \vspace{3mm}
 
@@ -94,37 +95,37 @@ In deze beperkte simulatieopstelling kunnen we dit adres gelijkstellen aan het
 adres van de co\"ordinator: \ttt{00 00}.
 
 De router zal na associatie met het netwerk, gedurende 20 seconden wachten,
-alvorens zijn eigen bericht te versturen. Gedurende deze tijd kunnen we de
+alvorens zijn eigen berichten te versturen. Gedurende deze tijd kunnen we de
 eind-knoop activeren. Tijdens het wachten, verwerkt de router wel binnenkomende
 berichten. Zoals we kunnen zien was de eind-knoop reeds verbonden met het
-netwerk via de router na een 18tal seconden. De router ontving het bericht van
-de eind-knoop en besliste op basis van de uiteindelijke bestemming om het
-bericht verder te versturen. Dit expliciet doorgestuurde bericht komt zowel toe
-bij de co\"ordinator als de eind-knoop.
+netwerk via de router na een 16-tal seconden. De router ontving de berichten
+van de eind-knoop en besliste op basis van de uiteindelijke bestemming om het
+bericht verder te versturen. Dit expliciet doorgestuurde berichten komen zowel
+toe bij de co\"ordinator als de eind-knoop.
 
-Tot slot, verstuurt ook de router een bericht naar de co\"ordinator. Opnieuw
-ontvangen zowel de co\"ordinator als de eind-knoop dit bericht.
+Tot slot, verstuurt ook de router zijn berichten. Opnieuw ontvangen zowel de
+co\"ordinator als de eind-knoop deze berichten. Op basis van het adres van de
+bestemmeling kunnen de knopen uitmaken dat het over een \emph{broadcast}
+bericht gaat, met bestemming \ttt{ff fe}, opnieuw het onbekende adres, of dat
+het over een gewoon bericht gaat met een effectieve bestemmeling.
 
 \begin{figure}[ht]
-\centering
-\begin{subfigure}{.67\linewidth}
   \centering
   \includegraphics[width=.9\linewidth]{../src/demo/network/end-device.png}
-  \caption{Eind-knoop}
+  \caption{Simulatie van een maasnetwerk: Eind-knoop}
   \label{fig:virtual-mesh-end-device}
-\end{subfigure}
-\begin{subfigure}{.67\linewidth}
+\end{figure}
+
+\begin{figure}[ht]
   \centering
   \includegraphics[width=.9\linewidth]{../src/demo/network/router.png}
-  \caption{Router}
+  \caption{Simulatie van een maasnetwerk: Router}
   \label{fig:virtual-mesh-router}
-\end{subfigure}
-\begin{subfigure}{.67\linewidth}
+\end{figure}
+
+\begin{figure}[ht]
   \centering
   \includegraphics[width=.9\linewidth]{../src/demo/network/coordinator.png}
-  \caption{Coordinator}
+  \caption{Simulatie van een maasnetwerk: Coordinator}
   \label{fig:virtual-mesh-coordinator}
-\end{subfigure}
-\caption{Simulatie van een maasnetwerk op basis van XBee modules.}
-\label{fig:virtual-mesh-output}
 \end{figure}

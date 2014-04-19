@@ -1,5 +1,6 @@
 // network.h
-// simple wrappers around frame-based xbee_send functionality
+// simple wrappers around frame-based xbee_send functionality to simulate
+// meshed network capabilities using XBees
 // author: Christophe VG
 
 #ifndef __NETWORK_H
@@ -11,9 +12,6 @@
 
 // network config
 #define DESTINATION XB_COORDINATOR
-
-void send_bytes(uint8_t *bytes, uint8_t size);
-void broadcast_bytes(uint8_t *bytes, uint8_t size);
 
 // wrapper functions to add virtual routing through a meshed network, using
 // broadcasting and 1-hop messages, to mimic promiscuous operation
