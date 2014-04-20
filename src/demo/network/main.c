@@ -26,14 +26,14 @@ int main(void) {
   uint16_t address = xbee_get_nw_address();
   uint16_t parent  = xbee_get_parent_address();
   
-  log("my address : %02x %02x\n", (uint8_t)(address >> 8), (uint8_t)address);
-  log("my parent  : %02x %02x\n", (uint8_t)(parent  >> 8), (uint8_t)parent );
+  _log("my address : %02x %02x\n", (uint8_t)(address >> 8), (uint8_t)address);
+  _log("my parent  : %02x %02x\n", (uint8_t)(parent  >> 8), (uint8_t)parent );
 
   // if we're a router, give the end device time to get associated
   if(parent == 0xfffe) {
-    log("I'm a router, waiting 20s for end-device to join\n");
+    _log("I'm a router, waiting 20s for end-device to join\n");
     for(int w=1; w<11; w++) {
-      log("waiting 2s (%d/10) ...\n", w);
+      _log("waiting 2s (%d/10) ...\n", w);
       _delay_ms(2000L);
       xbee_receive();
     }
@@ -41,11 +41,11 @@ int main(void) {
 
   // send a packet to our destination (coordinator)
   uint8_t msg1[5] = { 0x01, 0x02, 0x03, 0x04, 0x05 };
-  log("sending single message\n");
+  _log("sending single message\n");
   mesh_send(address, DESTINATION, 5, msg1);
   
   uint8_t msg2[5] = { 0x10, 0x20, 0x30, 0x40, 0x50 };
-  log("broadcasting single message\n");
+  _log("broadcasting single message\n");
   mesh_broadcast(address, 5, msg2);
 
   while(TRUE) {
@@ -62,7 +62,7 @@ void init(void) {
   clock_init();                   // init/start the millis clock
 
   serial_init();                  // initialize use of serial port(s)
-  log("serial link ready...\n");
+  _log("serial link ready...\n");
 
   xbee_init();                    // initialize use of XBee module
 
@@ -71,13 +71,13 @@ void init(void) {
   mesh_on_receive(handle_payload);
 
   xbee_wait_for_association();    // wait until the network is available
-  log("xbee associated...\n");
+  _log("xbee associated...\n");
 }
 
 void handle_payload(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
                     uint8_t size,  uint8_t* payload)
 {
-  log("received:\n");
+  _log("received:\n");
   printf("  source  : %02x %02x\n", (uint8_t)(source >> 8), (uint8_t)source);
   printf("  from    : %02x %02x\n", (uint8_t)(from   >> 8), (uint8_t)from  );
   printf("  hop     : %02x %02x\n", (uint8_t)(hop    >> 8), (uint8_t)hop   );

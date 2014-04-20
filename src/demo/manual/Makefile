@@ -20,6 +20,7 @@ AVRDUDE_PROGRAMMER=jtag2
 
 # external hardware composition ... yummie :-)
 MORE_CDEFS=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
+# MORE_CDEFS+=-DDEBUG
 
 include $(MOOSE_DIR)/Makefile
 

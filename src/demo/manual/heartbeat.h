@@ -29,6 +29,7 @@ typedef struct {
 } heartbeat_node_t;
 
 // interface
+void heartbeat_init(void);
 void heartbeat_step(void);
 void heartbeat_receive(uint16_t source, uint8_t size, uint8_t *payload);
 heartbeat_payload_t heartbeat_create_payload(void);
