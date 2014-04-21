@@ -15,6 +15,8 @@
 
 void mesh_init(void);
 
+bool mesh_child_connected(void);
+
 // wrapper functions to add virtual routing through a meshed network, using
 // broadcasting and 1-hop messages, to mimic promiscuous operation
 void mesh_send(uint16_t from, uint16_t to, uint8_t size, uint8_t* payload);

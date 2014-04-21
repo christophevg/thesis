@@ -20,28 +20,14 @@ void init(void);
 void handle_payload(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
                     uint8_t size,  uint8_t* payload);
 
+uint16_t address, parent;
+
 int main(void) {
   init();
 
-  uint16_t address = xbee_get_nw_address();
-  uint16_t parent  = xbee_get_parent_address();
-  
-  _log("my address : %02x %02x\n", (uint8_t)(address >> 8), (uint8_t)address);
-  _log("my parent  : %02x %02x\n", (uint8_t)(parent  >> 8), (uint8_t)parent );
-
-  // if we're a router, give the end device time to get associated
-  if(parent == 0xfffe) {
-    _log("I'm a router, waiting 20s for end-device to join\n");
-    for(int w=1; w<11; w++) {
-      _log("waiting 2s (%d/10) ...\n", w);
-      _delay_ms(2000L);
-      xbee_receive();
-    }
-  }
-
   // send a packet to our destination (coordinator)
   uint8_t msg1[5] = { 0x01, 0x02, 0x03, 0x04, 0x05 };
-  _log("sending single message\n");
+  _log("sending single message to coordinator\n");
   mesh_send(address, DESTINATION, 5, msg1);
   
   uint8_t msg2[5] = { 0x10, 0x20, 0x30, 0x40, 0x50 };
@@ -72,6 +58,23 @@ void init(void) {
 
   xbee_wait_for_association();    // wait until the network is available
   _log("xbee associated...\n");
+
+  address = xbee_get_nw_address();
+  parent  = xbee_get_parent_address();
+
+  _log("my address : %02x %02x\n", (uint8_t)(address >> 8), (uint8_t)address);
+  _log("my parent  : %02x %02x\n", (uint8_t)(parent  >> 8), (uint8_t)parent );
+
+  mesh_init();
+
+  // if we're a router, give the end device time to get associated
+  if(parent == XB_NW_ADDR_UNKNOWN) {
+    _log("I'm a router, waiting for end-device to join\n");
+    while(! mesh_child_connected() ) {
+      _delay_ms(500L);
+      xbee_receive();
+    }
+  }
 }
 
 void handle_payload(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,

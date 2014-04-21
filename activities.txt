@@ -538,3 +538,14 @@ activities
 2014-04-18 (4h/510h)
 - implemented virtual mesh wrappers : demo/network (2h)
 - wrote appendix on virtual mesh wrappers (2h)
+
+2014-04-19 (3h/513h)
+- added broadcasting to virtual mesh (1h)
+- investigated packet loss with increased network traffic (2h)
+
+2014-04-20 (8h/521h)
+- research on packet loss (5h)
+- redesign mesh wrappers to use unicast (3h)
+
+2014-04-21 (3h/524h)
+- updated appendix on virtual mesh wrappers + demo (3h)
