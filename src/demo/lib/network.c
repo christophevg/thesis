@@ -92,6 +92,9 @@ static void _send(uint64_t address, uint16_t nw_address,
   xbee_send(&frame);  
 }
 
+mesh_tx_handler_t tx_handler;
+void mesh_on_transmit(mesh_tx_handler_t handler) { tx_handler = handler; }
+
 // sending message will require the message to be send to the destination (only
 // the coordinator is a possible destination)
 void mesh_send(uint16_t from, uint16_t to, uint8_t size, uint8_t* payload) {
@@ -104,6 +107,8 @@ void mesh_send(uint16_t from, uint16_t to, uint8_t size, uint8_t* payload) {
     hop64 = other_address;    // other == router address, hop16 == parent
   }
   _send(hop64, hop16, from, hop16, to, size, payload);
+
+  tx_handler(from, hop16, to, size, payload);
 
   // if we're a router, we need to send a copy to our child
   if(router && other_nw_address != XB_NW_ADDR_UNKNOWN) { 

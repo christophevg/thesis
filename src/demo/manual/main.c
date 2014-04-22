@@ -18,11 +18,14 @@
 #include "../lib/timing.h"
 
 #include "heartbeat.h"
+#include "reputation.h"
 
 // forward declarations
 void init(void);
 void receive(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
              uint8_t size,  uint8_t* payload);
+void transmit(uint16_t from, uint16_t hop, uint16_t to,
+              uint8_t size,  uint8_t* payload);
 
 // our own address and that of our parent node
 uint16_t address;
@@ -60,6 +63,7 @@ int main(void) {
   
   measure(
     heartbeat_init();
+    reputation_init();
   );
 
   while(TRUE) {
@@ -68,7 +72,8 @@ int main(void) {
     xbee_receive();
     
     measure(
-      heartbeat_step()
+      heartbeat_step();
+      reputation_step();
     );
 
     xbee_receive();
@@ -91,6 +96,7 @@ void init(void) {
   // setup virtual mesh
   xbee_on_receive(mesh_receive);
   mesh_on_receive(receive);
+  mesh_on_transmit(transmit);
 
   xbee_wait_for_association();    // wait until the network is available
   _log("xbee associated...\n");
@@ -122,6 +128,15 @@ void receive(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
   // }
   // printf("\n");
   measure(
-    heartbeat_receive(from, size, payload);
+    heartbeat_receive(from, hop, to, size, payload);
+    reputation_receive(from, hop, to, size, payload);
+  );
+}
+
+void transmit(uint16_t from, uint16_t hop, uint16_t to,
+              uint8_t size,  uint8_t* payload)
+{
+  measure(
+    reputation_transmit(from, hop, to, size, payload);
   );
 }

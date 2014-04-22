@@ -10,7 +10,10 @@ MORE_SRC = $(MOOSE_DIR)/avr.c    \
 					 $(MOOSE_DIR)/serial.c \
 					 $(MOOSE_DIR)/xbee.c   \
 					 ../../sha1/sha1.c     \
-					 heartbeat.c ../lib/network.c
+					 ../lib/network.c			 \
+					 heartbeat.c 					 \
+					 reputation.c
+
 MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
 
 MCU=atmega1284p

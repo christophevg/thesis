@@ -188,7 +188,7 @@ static heartbeat_node_t* _get_node(uint16_t address) {
 }
 
 static void _log_node(const char* msg, heartbeat_node_t* node) {
-  _log("%s : %02x %02x = seq: %d seen: %lu incidents: %d trust: %d\n",
+  _log("HB: %s : %02x %02x = seq: %d seen: %lu incidents: %d trust: %d\n",
        msg,
        (uint8_t)(node->address >> 8), (uint8_t)node->address,
        node->seq, node->seen, node->incidents, node->trust);

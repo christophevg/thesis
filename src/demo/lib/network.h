@@ -34,4 +34,10 @@ typedef void (*mesh_rx_handler_t)(uint16_t source,
 // and registered through ...
 void mesh_on_receive(mesh_rx_handler_t handler);
 
+// it is also possible to get a copy of all messages that are transmitted
+typedef void (*mesh_tx_handler_t)(uint16_t from, uint16_t to, uint16_t hop,
+                                  uint8_t  size, uint8_t* payload);
+
+void mesh_on_transmit(mesh_tx_handler_t handler);
+
 #endif

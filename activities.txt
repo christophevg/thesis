@@ -550,5 +550,6 @@ activities
 2014-04-21 (3h/524h)
 - updated appendix on virtual mesh wrappers + demo (3h)
 
-2014-04-22 (1h/525h)
+2014-04-22 (4h30min/528h30min)
 - clean up of manual heartbeat module (1h)
+- implemented reputation module manually (draft) (3h30min)
