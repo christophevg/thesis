@@ -1,11 +1,47 @@
 TODO
 
-*** now
-- add section on development of embedded systems
-  - compilation/deployment style:
-    - hex + install
-    - OS process + deployment OTAP
-  - target platform definition
+1. complete manual reputation module implementation
+2. finish code generation
+
+  - prefix function_names and properties with module_name (trust and trust!!)
+  - integrate
+    - add generated/generic? Makefile
+  - case ELSE
+
+  Small TODOs:
+
+  - include "constants.h" (needed: at end include everywhere)
+  - include tuples.h (needed: at end include everywhere)
+  - moose -> init on canvas (#includes)
+    -> @ end .find().append()
+  - include time for time_t
+
+  ISSUES / LIMITATIONS
+
+  - inference of e.g. time, sequence, ... in .contains([#atom, ...])
+    is incorrectly byte => due to earlier idea of payload = byte**
+    -> can be used, but with e.g. limited time information
+  - check typing of matchers -> should be timestamp, but is integer ?!
+
+3. solder motes
+4. clean up coordinate.py
+5. get metrics
+  - xbee: 1) #frames
+          2) bytes sent/received
+  - mcu:  3) time IDS code
+          4) code size (LoC + hex bytes)
+  scope:
+    1) no IDS
+    2) IDS HB
+    3)     reputation
+    4)     HB + reputation
+6. write thesis (+ add metrics to IEEE-style article)
+
+  - add section on development of embedded systems
+    - compilation/deployment style:
+      - hex + install
+      - OS process + deployment OTAP
+    - target platform definition
 
 *** at end
 - make sure illustrations use same font-sizes, colors, ...
