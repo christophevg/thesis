@@ -549,3 +549,6 @@ activities
 
 2014-04-21 (3h/524h)
 - updated appendix on virtual mesh wrappers + demo (3h)
+
+2014-04-22 (1h/525h)
+- clean up of manual heartbeat module (1h)
