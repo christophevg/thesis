@@ -47,7 +47,7 @@ void mesh_init(void) {
   // while we didn't receive any frames from the other side and could record
   // it's address, we keep sending out broadcasts
   while(other_address == XB_COORDINATOR) {
-    _log("join...\n");
+    // _log("join...\n");
     
     xbee_tx_t frame;
     frame.size        = 4;
@@ -112,8 +112,8 @@ void mesh_send(uint16_t from, uint16_t to, uint8_t size, uint8_t* payload) {
 
   // if we're a router, we need to send a copy to our child
   if(router && other_nw_address != XB_NW_ADDR_UNKNOWN) { 
-    _log("sending copy to child %02x %02x\n",
-         (uint8_t)(other_nw_address >> 8), (uint8_t)other_nw_address);
+    // _log("sending copy to child %02x %02x\n",
+    //      (uint8_t)(other_nw_address >> 8), (uint8_t)other_nw_address);
     _send(other_address, other_nw_address, from, hop16, to, size, payload);
   }
 }
@@ -145,8 +145,8 @@ void mesh_receive(xbee_rx_t* frame) {
 
   // if we're a router and not the final destination, pass it on (to our parent)
   if(to != me && router) {
-    _log("forwarding message from %02x %02x to %02x %02x\n",
-         (uint8_t)(from >> 8), (uint8_t)from, (uint8_t)(to >> 8), (uint8_t)to);
+    // _log("forwarding message from %02x %02x to %02x %02x\n",
+    //      (uint8_t)(from >> 8), (uint8_t)from, (uint8_t)(to >> 8), (uint8_t)to);
     mesh_send(from, to, frame->size-6, &(frame->data[6]));
   }
 }

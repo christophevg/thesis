@@ -75,10 +75,11 @@ int main(void) {
     
     xbee_receive();
     
-    measure(
-      heartbeat_step();
-      reputation_step();
-    );
+    measure(heartbeat_step(););
+
+    xbee_receive();
+
+    measure(reputation_step(););
 
     xbee_receive();
     
@@ -117,16 +118,26 @@ void init(void) {
   
   avr_clear_bit(LIGHT_SENSOR_IO,  // make light sensor pin an input pin
                 LIGHT_SENSOR_PIN);
+                
+  // if we're a router, give the end device time to get associated
+  if(parent == XB_NW_ADDR_UNKNOWN) {
+    _log("I'm a router, waiting for end-device to join\n");
+    while(! mesh_child_connected() ) {
+      _delay_ms(500L);
+      xbee_receive();
+    }
+  }
 }
 
 void receive(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
              uint8_t size,  uint8_t* payload)
 {
-  // _log("received:\n");
-  // printf("  source  : %02x %02x\n", (uint8_t)(source >> 8), (uint8_t)source);
-  // printf("  from    : %02x %02x\n", (uint8_t)(from   >> 8), (uint8_t)from  );
-  // printf("  hop     : %02x %02x\n", (uint8_t)(hop    >> 8), (uint8_t)hop   );
-  // printf("  to      : %02x %02x\n", (uint8_t)(to     >> 8), (uint8_t)to    );
+  _log("received: ");
+  printf("  source : %02x %02x ",  (uint8_t)(source >> 8), (uint8_t)source);
+  printf("from : %02x %02x ",  (uint8_t)(from   >> 8), (uint8_t)from  );
+  printf("hop : %02x %02x ",  (uint8_t)(hop    >> 8), (uint8_t)hop   );
+  printf("to : %02x %02x ", (uint8_t)(to     >> 8), (uint8_t)to    );
+  printf("size : %d\n", size);
   // printf("  payload : ");
   // for(uint8_t i=0; i<size; i++) {
   //   if(i && i % 10 == 0) { printf("\n            "); }
@@ -134,8 +145,8 @@ void receive(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
   // }
   // printf("\n");
   measure(
-    heartbeat_receive(from, hop, to, size, payload);
-    reputation_receive(from, hop, to, size, payload);
+    heartbeat_receive(source, from, hop, to, size, payload);
+    reputation_receive(source, from, hop, to, size, payload);
   );
 }
 

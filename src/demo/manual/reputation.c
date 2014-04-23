@@ -97,17 +97,25 @@ void reputation_step(void) {
   }
 }
 
-void reputation_receive(uint16_t from, uint16_t hop, uint16_t to,
+// processing all incoming messages.
+// - reputation sharing info
+// - other messages, forwarded messages to validate forwarding
+//   forwarded means: from == me, 
+void reputation_receive(uint16_t source, 
+                        uint16_t from, uint16_t hop, uint16_t to,
                         uint8_t size, uint8_t *payload)
 {
-  if(from == me) { return; }
+  reputation_node_t* sending_node = _get_node(source);
+  if( sending_node == NULL ) { return; }  // out of storage
 
-  reputation_node_t* from_node = _get_node(from);
-  if( from_node == NULL ) { return; }  // out of storage
-
-  if(size == PAYLOAD_SIZE) {
+  // tracking of MY messages
+  if( from == me ) {
+    _untrack(sending_node, size, payload);
+  } else if(size == PAYLOAD_SIZE) { // other options
     // a reputation message: parse node address, alpha and beta values.
-    reputation_node_t* of = _get_node( (payload[0] << 8) | payload[1] );
+    uint16_t address = ((uint16_t)(payload[0]) << 8) | payload[1];
+    if(address == me) { return; } // we're not interested in other's opinion ;-)
+    reputation_node_t* of = _get_node(address);
     union {
       float value;
       uint8_t b[4];
@@ -121,17 +129,14 @@ void reputation_receive(uint16_t from, uint16_t hop, uint16_t to,
     beta.b[2]  = payload[8];
     beta.b[3]  = payload[9];
 
-    if( from_node->trust > INDIRECT_THRESHOLD ) {
+    if( sending_node->trust > INDIRECT_THRESHOLD ) {
       // taking into account of indirect reputation information
-      float weight = (2 * from_node->alpha) /
-                     ( (from_node->beta+2) * (alpha.value + beta.value + 2) 
-                       * 2 * from_node->alpha );
+      float weight = (2 * sending_node->alpha) /
+                     ( (sending_node->beta+2) * (alpha.value + beta.value + 2) 
+                       * 2 * sending_node->alpha );
       of->alpha += weight * alpha.value;
       of->beta  += weight * beta.value;
     }
-  } else {
-    // some other message we might be tracking...
-    _untrack(from_node, size, payload);
   }
 }
 
@@ -142,9 +147,9 @@ void reputation_transmit(uint16_t from, uint16_t hop, uint16_t to,
   if( hop == XB_COORDINATOR ) { return; } // the coordinator doesn't forward
   
   // we expect to see this same payload again within the forward interval
-  _log("RP: tracking payload from %02x %02x to %02x %02x\n",
+  _log("RP: tracking payload from %02x %02x to %02x %02x : size=%d\n",
        (uint8_t)(hop >> 8), (uint8_t)hop, 
-       (uint8_t)(to  >> 8), (uint8_t)to);
+       (uint8_t)(to  >> 8), (uint8_t)to, size);
   reputation_node_t* node = _get_node(hop);
   if( node == NULL ) { return; }  // out of storage
   _track(node, size, payload);
@@ -169,8 +174,13 @@ static void _validate(void) {
     nodes[n].trust = (nodes[n].alpha + 1)
                    / (nodes[n].alpha + nodes[n].beta + 2);
 
+    _log("RP: validating node %d (%02x %02x) : failures=%d = alpha=%f beta=%f trust=%f\n",
+         n, (uint8_t)(nodes[n].address >> 8), (uint8_t)nodes[n].address,
+         failures, nodes[n].alpha, nodes[n].beta, nodes[n].trust);
+
     // notify bad node
     if(nodes[n].trust < 0.25) {
+      _log("RP: trust lost\n");
       mesh_send(me, nodes[n].address, 8, (uint8_t*)"excluded");
     }
 
@@ -185,13 +195,15 @@ static void _share(void) {
   for(uint8_t n=0; n<node_count; n++) {
     union {
       struct {
-        uint16_t node;
-        float    alpha;
-        float    beta;
+        uint8_t node_msb;   // 1
+        uint8_t node_lsb;   // 1
+        float   alpha;      // 4
+        float   beta;       // 4
       } values;
       uint8_t bytes[PAYLOAD_SIZE];
     } payload;
-    payload.values.node  = nodes[n].address;
+    payload.values.node_msb  = (uint8_t)nodes[n].address >> 8;
+    payload.values.node_lsb  = (uint8_t)nodes[n].address;
     payload.values.alpha = nodes[n].alpha;
     payload.values.beta  = nodes[n].beta;
     mesh_broadcast(me, PAYLOAD_SIZE, payload.bytes);
@@ -220,16 +232,21 @@ static void _untrack(reputation_node_t* node, uint8_t size, uint8_t* payload) {
         memcmp((tracked->payload).data, payload, size) == 0 )
     {
       // found payload, remove it
+      
       if(parent == NULL) {
         node->queue = tracked->next;
       } else {
         parent->next = tracked->next;
       }
+      _log("RP: cleared payload from %02x %02x : size=%d\n",
+           (uint8_t)(node->address >> 8), (uint8_t)node->address, size);
       return;
     }
     parent  = tracked;
     tracked = tracked->next;
   }
+  _log("RP: unexpected payload from %02x %02x\n",
+       (uint8_t)(node->address >> 8), (uint8_t)node->address);
 }
 
 static uint8_t _remove_late(reputation_node_t* node) {
@@ -239,6 +256,9 @@ static uint8_t _remove_late(reputation_node_t* node) {
 
   while(tracked != NULL) {
     if( tracked->timeout < clock_get_millis() ) {
+      _log("RP: late: %02x %02x : size=%d\n",
+           (uint8_t)(node->address >> 8), (uint8_t)node->address,
+           (tracked->payload).size);
       // this one is late
       lates++;
       if(parent == NULL) {

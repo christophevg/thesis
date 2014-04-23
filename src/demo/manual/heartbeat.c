@@ -73,7 +73,7 @@ void heartbeat_step(void) {
   // send a heartbeat
   if( now >= next_heartbeat ) {
     _beat();
-    next_heartbeat = now + HEARTBEAT_INTERVAL;
+    next_heartbeat += HEARTBEAT_INTERVAL;
   }
 
   now = clock_get_millis(); // refresh time, might bring next step closer ;-)
@@ -81,12 +81,13 @@ void heartbeat_step(void) {
   // do background processing
   if( now >= next_processing ) {
     _process();
-    next_processing = now + PROCESSING_INTERVAL;
+    next_processing += PROCESSING_INTERVAL;
   }
 }
 
 // processes payload received information
-void heartbeat_receive(uint16_t from, uint16_t hop, uint16_t to,
+void heartbeat_receive(uint16_t source,
+                       uint16_t from, uint16_t hop, uint16_t to,
                        uint8_t size, uint8_t *payload)
 {
   // skip our own heartbeat messages

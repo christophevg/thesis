@@ -7,7 +7,8 @@
 // public interface
 void heartbeat_init(void);
 void heartbeat_step(void);
-void heartbeat_receive(uint16_t from, uint16_t hop, uint16_t to,
+void heartbeat_receive(uint16_t source,
+                       uint16_t from, uint16_t hop, uint16_t to,
                        uint8_t size, uint8_t *payload);
 
 #endif

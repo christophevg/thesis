@@ -51,11 +51,13 @@ def handle_rx(frame):
   payload = frame["_rf_data"][6:]
   size = len(payload)
 
-  # light reading => size == 2
-  # heartbeat     => size == 25
+  # light reading   => size == 2
+  # reputation info => size == 10
+  # heartbeat       => size == 25
   try:
     {
       2 : _dump_light,
+      10: _dump_reputation,
       25: _dump_heartbeat
     }[len(payload)](from_addr, hop_addr, to_addr, payload);
   except KeyError:
@@ -88,6 +90,15 @@ def _dump_heartbeat(from_addr, hop_addr, to_addr, payload):
   print "HEARTBEAT", time.strftime("%H:%M:%S", time.gmtime()), \
         "from:", from_addr, (" " if to_addr == "00 00" else "B"),  \
         "=", "seq", seq
+
+def _dump_reputation(from_addr, hop_addr, to_addr, payload):
+  # extract node, alpha, beta
+  node  = _ba2str(payload[0:2])
+  alpha = _ba2str(payload[2:6])
+  beta  = _ba2str(payload[6:10])
+  print "REPUTATION", time.strftime("%H:%M:%S", time.gmtime()), \
+        "from:", from_addr, (" " if to_addr == "00 00" else "B"),  \
+        "=", "node", node, "alpha", alpha, "beta", beta
 
 def _dump(type, data):
   # determine max length of a label
