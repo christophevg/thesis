@@ -553,3 +553,6 @@ activities
 2014-04-22 (4h30min/528h30min)
 - clean up of manual heartbeat module (1h)
 - implemented reputation module manually (draft) (3h30min)
+
+2014-04-23 (30min/5239h)
+- added XBee metrics reporting (30min)

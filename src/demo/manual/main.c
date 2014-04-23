@@ -20,25 +20,29 @@
 #include "heartbeat.h"
 #include "reputation.h"
 
+// configuration
+
+#define METRICS_REPORT_INTERVAL 15000
+
 // forward declarations
 void init(void);
 void receive(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
              uint8_t size,  uint8_t* payload);
 void transmit(uint16_t from, uint16_t hop, uint16_t to,
               uint8_t size,  uint8_t* payload);
+void report_metrics(void);
 
 // our own address and that of our parent node
 uint16_t address;
 uint16_t parent;
 
-static unsigned long next_measurement = 0;
-
 void application_step(void) {
-  unsigned long now = clock_get_millis();
-  if( now < next_measurement) { return; }
-  next_measurement = now + 5000;
+  static time_t next_measurement = 0;
 
-  avr_set_bit(STATUS_LED_PORT,      // turn on the green status led
+  if( clock_get_millis() < next_measurement) { return; }
+  next_measurement += 5000;
+
+  avr_set_bit(STATUS_LED_PORT,    // turn on the green status led
               STATUS_LED_PIN);
 
   uint16_t reading;               // the 16-bit reading from the ADC
@@ -77,6 +81,8 @@ int main(void) {
     );
 
     xbee_receive();
+    
+    report_metrics();
   }
 
   return(0);
@@ -139,4 +145,21 @@ void transmit(uint16_t from, uint16_t hop, uint16_t to,
   measure(
     reputation_transmit(from, hop, to, size, payload);
   );
+}
+
+void report_metrics(void) {
+  static time_t next_report = 0;
+  static unsigned long total_frames  = 0,
+                       total_bytes   = 0,
+                       samples       = 0;
+  if(next_report < clock_get_millis()) {
+    xbee_metrics_t metrics = xbee_reset_counters();
+    total_frames += metrics.frames;
+    total_bytes  += metrics.bytes;
+    samples++;
+    _log("xbee: %d frames (avg:%u/tot:%lu) / %i bytes (avg:%u/tot:%lu)\n",
+         metrics.frames, (unsigned int)(total_frames / samples), total_frames,
+         metrics.bytes,  (unsigned int)(total_bytes  / samples), total_bytes);
+    next_report += METRICS_REPORT_INTERVAL;
+  }
 }
