@@ -32,14 +32,10 @@
 
 // private type
 
-typedef struct {
-  uint8_t  size;
-  uint8_t* data;
-} payload_t;
-
 typedef struct tracked {
   time_t          timeout;
-  payload_t       payload;
+  uint8_t         size;
+  uint8_t*        payload;
   struct tracked* next;
 } tracked_t;
 
@@ -53,18 +49,13 @@ typedef struct {
   float      trust;      // to trust or not to trust, that is the question
 } reputation_node_t;
 
-
 // internal data
 
 static reputation_node_t nodes[MAX_NODES];
 static uint8_t           node_count = 0;
 
-// intervals markers
-static time_t next_validation = 0;
-static time_t next_sharing    = 0;
-
 // our own cached address
-uint16_t me;
+static uint16_t me;
 
 // forward declarations of private helper functions
 static void _validate(void);
@@ -78,22 +69,31 @@ static void _log_node(const char* msg, reputation_node_t* node);
 // public interface
 
 void reputation_init(void) {
-  me = xbee_get_nw_address();  
+  me = xbee_get_nw_address();
 }
 
 void reputation_step(void) {
+  // intervals markers
+  static time_t next_validation = 0;
+  static time_t next_sharing    = 0;
+  
+  if(next_validation == 0) {
+    next_validation = clock_get_millis() + VALIDATION_INTERVAL;
+    next_sharing    = clock_get_millis() + SHARING_INTERVAL;
+  }
+
   time_t now = clock_get_millis();
   
   // validate known nodes
   if( now >= next_validation ) {
     _validate();
-    next_validation = now + VALIDATION_INTERVAL;
+    next_validation += VALIDATION_INTERVAL;
   }
   
   // share reputation information
   if( now >= next_sharing ) {
     _share();
-    next_sharing = now + SHARING_INTERVAL;
+    next_sharing += SHARING_INTERVAL;
   }
 }
 
@@ -158,10 +158,8 @@ void reputation_transmit(uint16_t from, uint16_t hop, uint16_t to,
 // private helper functions
 
 static void _validate(void) {
-  _log("RP: validating %d nodes\n", node_count);
-  
   for(uint8_t n=0; n<node_count; n++) {
-    
+    // count late/missing forwards
     uint8_t failures = _remove_late(&nodes[n]);
 
     // update the reputation parameters
@@ -174,9 +172,10 @@ static void _validate(void) {
     nodes[n].trust = (nodes[n].alpha + 1)
                    / (nodes[n].alpha + nodes[n].beta + 2);
 
-    _log("RP: validating node %d (%02x %02x) : failures=%d = alpha=%f beta=%f trust=%f\n",
-         n, (uint8_t)(nodes[n].address >> 8), (uint8_t)nodes[n].address,
-         failures, nodes[n].alpha, nodes[n].beta, nodes[n].trust);
+    _log("RP: validating node %02x %02x : fail=%d/%d : a=%.2f b=%.2f t=%.2f\n",
+         (uint8_t)(nodes[n].address >> 8), (uint8_t)nodes[n].address,
+         failures, nodes[n].msg_count,
+         (double)nodes[n].alpha, (double)nodes[n].beta, (double)nodes[n].trust);
 
     // notify bad node
     if(nodes[n].trust < 0.25) {
@@ -190,8 +189,6 @@ static void _validate(void) {
 }
 
 static void _share(void) {
-  _log("RP: sharing info on %d nodes\n", node_count);
-  
   for(uint8_t n=0; n<node_count; n++) {
     union {
       struct {
@@ -202,7 +199,7 @@ static void _share(void) {
       } values;
       uint8_t bytes[PAYLOAD_SIZE];
     } payload;
-    payload.values.node_msb  = (uint8_t)nodes[n].address >> 8;
+    payload.values.node_msb  = (uint8_t)(nodes[n].address >> 8);
     payload.values.node_lsb  = (uint8_t)nodes[n].address;
     payload.values.alpha = nodes[n].alpha;
     payload.values.beta  = nodes[n].beta;
@@ -214,13 +211,16 @@ static void _track(reputation_node_t* node, uint8_t size, uint8_t* payload) {
   // create tracked payload structure
   tracked_t* tracked = malloc(sizeof(tracked_t));
   tracked->timeout = clock_get_millis() + FORWARD_INTERVAL;
-  (tracked->payload).size = size;
-  (tracked->payload).data = malloc(size*sizeof(uint8_t));
-  memcpy((tracked->payload).data, payload, size);
+  tracked->size = size;
+  tracked->payload = malloc(size*sizeof(uint8_t));
+  memcpy(tracked->payload, payload, size);
 
   // add the tracked payload to the queue - works even with empty list ;-)
   tracked->next = node->queue;
   node->queue   = tracked;
+  
+  // count all tracked messages
+  node->msg_count++;
 }
 
 static void _untrack(reputation_node_t* node, uint8_t size, uint8_t* payload) {
@@ -228,8 +228,8 @@ static void _untrack(reputation_node_t* node, uint8_t size, uint8_t* payload) {
   tracked_t* parent  = NULL;
   
   while(tracked != NULL) {
-    if( (tracked->payload).size == size && 
-        memcmp((tracked->payload).data, payload, size) == 0 )
+    if( tracked->size == size && 
+        memcmp(tracked->payload, payload, size) == 0 )
     {
       // found payload, remove it
       
@@ -258,7 +258,7 @@ static uint8_t _remove_late(reputation_node_t* node) {
     if( tracked->timeout < clock_get_millis() ) {
       _log("RP: late: %02x %02x : size=%d\n",
            (uint8_t)(node->address >> 8), (uint8_t)node->address,
-           (tracked->payload).size);
+           tracked->size);
       // this one is late
       lates++;
       if(parent == NULL) {
@@ -296,7 +296,7 @@ static reputation_node_t* _get_node(uint16_t address) {
 }
 
 static void _log_node(const char* msg, reputation_node_t* node) {
-  _log("RP: %s : %02x %02x = msg_count: %d incidents: %d trust: %f\n",
+  _log("RP: %s : %02x %02x = msg_count: %d incidents: %d trust: %.3f\n",
        msg,
        (uint8_t)(node->address >> 8), (uint8_t)node->address,
        node->msg_count, node->incidents, (double)node->trust);

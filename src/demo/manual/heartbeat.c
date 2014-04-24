@@ -41,19 +41,12 @@ typedef struct {
 
 // internal data
 
-// a heartbeat sequence counter
-static uint8_t heartbeat;
-
 // keep last seen time for each node
 static heartbeat_node_t nodes[MAX_NODES];
 static uint8_t          node_count = 0;
 
-// intervals markers
-static time_t next_heartbeat  = 0,
-              next_processing = 0;
-
 // our own cached address
-uint16_t me;
+static uint16_t me;
 
 // forward declarations of private helper functions
 static void              _beat(void);
@@ -68,6 +61,14 @@ void heartbeat_init(void) {
 }
 
 void heartbeat_step(void) {
+  // intervals markers
+  static time_t next_heartbeat  = 0;
+  static time_t next_processing = 0;
+  if(next_heartbeat == 0) {
+    next_heartbeat = clock_get_millis();
+    next_processing = clock_get_millis() + PROCESSING_INTERVAL;
+  }
+
   time_t now = clock_get_millis();
   
   // send a heartbeat
@@ -114,16 +115,19 @@ void heartbeat_receive(uint16_t source,
     _log_node("receive heartbeat", node);
   } else {
     node->incidents++;
-    _log("FAILED sha1 check\n");
+    _log("HB: FAILED sha1 check\n");
   }
 }
 
 // private helper functions
 
 void _beat(void) {
+  // a heartbeat sequence counter
+  static uint8_t heartbeat = 0;
+
   uint8_t payload[PAYLOAD_SIZE];
 
-  // increase the heartbeat sequence number
+  // add and increase the heartbeat sequence number
   payload[0] = ++heartbeat;
 
   // get the time
@@ -139,7 +143,7 @@ void _beat(void) {
     memcpy(&payload[5], &sha1.hash, SHA1HashSize);
   }
 
-  _log("sending heartbeat : %02x %02x %02x %02x %02x\n",
+  _log("HB: sending heartbeat : %02x %02x %02x %02x %02x\n",
        payload[0], payload[1], payload[2], payload[3], payload[4]);
   mesh_broadcast(me, PAYLOAD_SIZE, payload);
 }

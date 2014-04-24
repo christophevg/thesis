@@ -38,6 +38,7 @@ uint16_t parent;
 
 void application_step(void) {
   static time_t next_measurement = 0;
+  if(next_measurement == 0) { next_measurement = clock_get_millis(); }
 
   if( clock_get_millis() < next_measurement) { return; }
   next_measurement += 5000;
@@ -132,12 +133,12 @@ void init(void) {
 void receive(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
              uint8_t size,  uint8_t* payload)
 {
-  _log("received: ");
-  printf("  source : %02x %02x ",  (uint8_t)(source >> 8), (uint8_t)source);
-  printf("from : %02x %02x ",  (uint8_t)(from   >> 8), (uint8_t)from  );
-  printf("hop : %02x %02x ",  (uint8_t)(hop    >> 8), (uint8_t)hop   );
-  printf("to : %02x %02x ", (uint8_t)(to     >> 8), (uint8_t)to    );
-  printf("size : %d\n", size);
+  // _log("received: ");
+  // printf("  source : %02x %02x ",  (uint8_t)(source >> 8), (uint8_t)source);
+  // printf("from : %02x %02x ",  (uint8_t)(from   >> 8), (uint8_t)from  );
+  // printf("hop : %02x %02x ",  (uint8_t)(hop    >> 8), (uint8_t)hop   );
+  // printf("to : %02x %02x ", (uint8_t)(to     >> 8), (uint8_t)to    );
+  // printf("size : %d\n", size);
   // printf("  payload : ");
   // for(uint8_t i=0; i<size; i++) {
   //   if(i && i % 10 == 0) { printf("\n            "); }
@@ -160,6 +161,9 @@ void transmit(uint16_t from, uint16_t hop, uint16_t to,
 
 void report_metrics(void) {
   static time_t next_report = 0;
+  if(next_report == 0) {
+    next_report = clock_get_millis() + METRICS_REPORT_INTERVAL;
+  }
   static unsigned long total_frames  = 0,
                        total_bytes   = 0,
                        samples       = 0;

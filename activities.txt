@@ -557,3 +557,6 @@ activities
 2014-04-23 (2h30min/531h)
 - added XBee metrics reporting (30min)
 - continued implementation + integration reputation module (2h)
+
+2014-04-24 (2h/533h)
+- finalized manual implementation + integration (2h)
