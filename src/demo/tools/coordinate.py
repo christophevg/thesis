@@ -80,14 +80,14 @@ def _ba2str(bytearray):
   return ' '.join("%02x" % i for i in bytearray)
 
 def _dump_light(from_addr, hop_addr, to_addr, payload):
-  print "LIGHT    ", time.strftime("%H:%M:%S", time.gmtime()), \
+  print "LIGHT     ", time.strftime("%H:%M:%S", time.gmtime()), \
         "from:", from_addr, (" " if to_addr == "00 00" else "B"),  \
         "=", round(((payload[0] << 8) + payload[1]) / 10.24, 2), "%"
 
 def _dump_heartbeat(from_addr, hop_addr, to_addr, payload):
   # extract seq from payload
   seq = payload[0]
-  print "HEARTBEAT", time.strftime("%H:%M:%S", time.gmtime()), \
+  print "HEARTBEAT ", time.strftime("%H:%M:%S", time.gmtime()), \
         "from:", from_addr, (" " if to_addr == "00 00" else "B"),  \
         "=", "seq", seq
 

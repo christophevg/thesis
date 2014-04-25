@@ -560,3 +560,6 @@ activities
 
 2014-04-24 (2h/533h)
 - finalized manual implementation + integration (2h)
+
+2014-04-25 (4h/537h)
+- getting Digilent Discovery+Waveforms to work :-( (4h)
