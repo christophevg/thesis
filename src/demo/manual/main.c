@@ -17,8 +17,15 @@
 
 #include "../lib/timing.h"
 
+#include "config.h"
+
+#ifdef WITH_HEARTBEAT
 #include "heartbeat.h"
+#endif
+
+#ifdef WITH_REPUTATION
 #include "reputation.h"
+#endif
 
 // configuration
 
@@ -65,22 +72,30 @@ void application_step(void) {
 
 int main(void) {
   init();
-  
+
+#if defined(WITH_HEARTBEAT) || defined(WITH_REPUTATION)
   measure(
+#ifdef WITH_HEARTBEAT
     heartbeat_init();
+#endif
+#ifdef WITH_REPUTATION
     reputation_init();
+#endif
   );
+#endif
 
   while(TRUE) {
     application_step();
     
+#ifdef WITH_HEARTBEAT
     xbee_receive();
-    
     measure(heartbeat_step(););
+#endif
 
+#ifdef WITH_REPUTATION
     xbee_receive();
-
     measure(reputation_step(););
+#endif
 
     xbee_receive();
     
@@ -145,36 +160,54 @@ void receive(uint16_t source, uint16_t from, uint16_t hop, uint16_t to,
   //   printf("%02x ", payload[i]);
   // }
   // printf("\n");
+#if defined(WITH_HEARTBEAT) || defined(WITH_REPUTATION)
   measure(
+#ifdef WITH_HEARTBEAT
     heartbeat_receive(source, from, hop, to, size, payload);
+#endif
+#ifdef WITH_REPUTATION
     reputation_receive(source, from, hop, to, size, payload);
+#endif
   );
+#endif
 }
 
 void transmit(uint16_t from, uint16_t hop, uint16_t to,
               uint8_t size,  uint8_t* payload)
 {
+#ifdef WITH_REPUTATION
   measure(
     reputation_transmit(from, hop, to, size, payload);
   );
+#endif
 }
 
 void report_metrics(void) {
-  static time_t next_report = 0;
+         time_t   now         = clock_get_millis();
+  static time_t   next_report = 0;
+
+  // could event-loop cycles
+  static unsigned long cycles      = 0;
+  cycles++;
+
   if(next_report == 0) {
-    next_report = clock_get_millis() + METRICS_REPORT_INTERVAL;
+    next_report = now + METRICS_REPORT_INTERVAL;
   }
   static unsigned long total_frames  = 0,
                        total_bytes   = 0,
                        samples       = 0;
-  if(next_report < clock_get_millis()) {
+  if(next_report < now) {
+
     xbee_metrics_t metrics = xbee_reset_counters();
     total_frames += metrics.frames;
     total_bytes  += metrics.bytes;
     samples++;
-    _log("xbee: %d frames (avg:%u/tot:%lu) / %i bytes (avg:%u/tot:%lu)\n",
+
+    _log("metrics: cycles: %lu (ev:%u us) | xbee: %d frames (avg:%u/tot:%lu) / %i bytes (avg:%u/tot:%lu)\n",
+         cycles, (unsigned int)((now * 1000.0) / cycles),
          metrics.frames, (unsigned int)(total_frames / samples), total_frames,
          metrics.bytes,  (unsigned int)(total_bytes  / samples), total_bytes);
+
     next_report += METRICS_REPORT_INTERVAL;
   }
 }

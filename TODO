@@ -1,12 +1,14 @@
 TODO
 
-1. complete manual reputation module implementation
 2. finish code generation
 
   - prefix function_names and properties with module_name (trust and trust!!)
   - integrate
     - add generated/generic? Makefile
   - case ELSE
+  - after nodes transmit -> on_transmit hook
+  - sending node info: use nw address, not internal id ;-(
+  - missing next pointer in tuple used in list
 
   Small TODOs:
 
@@ -25,9 +27,9 @@ TODO
 
 3. solder motes
 4. clean up coordinate.py
-5. get metrics
+5. get metrics (manual done)
   - xbee: 1) #frames
-          2) bytes sent/received
+          2) bytes sent
   - mcu:  3) time IDS code
           4) code size (LoC + hex bytes)
   scope:

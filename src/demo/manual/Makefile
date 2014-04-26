@@ -1,3 +1,6 @@
+HEARTBEAT=yes
+REPUTATION=yes
+
 PLATFORMS_DIR=../../foo-lang/platforms
 
 INCLUDE_PATH=$(PLATFORMS_DIR)
@@ -9,10 +12,7 @@ MORE_SRC = $(MOOSE_DIR)/avr.c    \
 					 $(MOOSE_DIR)/sleep.c  \
 					 $(MOOSE_DIR)/serial.c \
 					 $(MOOSE_DIR)/xbee.c   \
-					 ../../sha1/sha1.c     \
-					 ../lib/network.c			 \
-					 heartbeat.c 					 \
-					 reputation.c
+					 ../lib/network.c
 
 MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
 
@@ -22,8 +22,18 @@ F_CPU=8000000
 AVRDUDE_PROGRAMMER=jtag2
 
 # external hardware composition ... yummie :-)
-MORE_CDEFS=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
+MORE_CDEFS+=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
 # MORE_CDEFS+=-DDEBUG
+
+ifeq ($(HEARTBEAT), yes)
+MORE_SRC   += heartbeat.c	 ../../sha1/sha1.c
+MORE_CDEFS += -DWITH_HEARTBEAT
+endif
+
+ifeq ($(REPUTATION), yes)
+MORE_SRC   += reputation.c
+MORE_CDEFS += -DWITH_REPUTATION
+endif
 
 include $(MOOSE_DIR)/Makefile
 

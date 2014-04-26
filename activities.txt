@@ -563,3 +563,6 @@ activities
 
 2014-04-25 (4h/537h)
 - getting Digilent Discovery+Waveforms to work :-( (4h)
+
+2014-04-26 (3h/540h)
+- implemented all metrics in software + ran on manual (3h)
