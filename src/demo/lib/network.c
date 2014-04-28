@@ -5,6 +5,7 @@
 #include "network.h"
 
 #include "moose/xbee.h"
+#include "moose/random.h"
 
 #include "../lib/log.h"
 
@@ -144,7 +145,8 @@ void mesh_receive(xbee_rx_t* frame) {
   rx_handler(source, from, hop, to, frame->size-6, &(frame->data[6]));
 
   // if we're a router and not the final destination, pass it on (to our parent)
-  if(to != me && router) {
+  // take into account a failure percentage
+  if(to != me && router && rnd(100) > FORWARD_FAILURE_PCT) {
     // _log("forwarding message from %02x %02x to %02x %02x\n",
     //      (uint8_t)(from >> 8), (uint8_t)from, (uint8_t)(to >> 8), (uint8_t)to);
     mesh_send(from, to, frame->size-6, &(frame->data[6]));

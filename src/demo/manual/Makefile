@@ -1,5 +1,6 @@
-HEARTBEAT=yes
-REPUTATION=yes
+HEARTBEAT   = yes
+REPUTATION  = yes
+FAILURE_PCT = 0
 
 PLATFORMS_DIR=../../foo-lang/platforms
 
@@ -12,6 +13,7 @@ MORE_SRC = $(MOOSE_DIR)/avr.c    \
 					 $(MOOSE_DIR)/sleep.c  \
 					 $(MOOSE_DIR)/serial.c \
 					 $(MOOSE_DIR)/xbee.c   \
+					 $(MOOSE_DIR)/random.c \
 					 ../lib/network.c
 
 MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
@@ -34,6 +36,8 @@ ifeq ($(REPUTATION), yes)
 MORE_SRC   += reputation.c
 MORE_CDEFS += -DWITH_REPUTATION
 endif
+
+MORE_CDEFS += -DFORWARD_FAILURE_PCT=$(FAILURE_PCT)
 
 include $(MOOSE_DIR)/Makefile
 

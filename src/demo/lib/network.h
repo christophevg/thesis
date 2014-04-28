@@ -10,6 +10,10 @@
 
 #include "moose/xbee.h"
 
+#ifndef FORWARD_FAILURE_PCT
+#define FORWARD_FAILURE_PCT 0
+#endif
+
 // network config
 #define DESTINATION XB_COORDINATOR
 
