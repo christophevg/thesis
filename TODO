@@ -2,13 +2,9 @@ TODO
 
 2. finish code generation
 
-  - prefix function_names and properties with module_name (trust and trust!!)
-  - integrate
-    - add generated/generic? Makefile
   - case ELSE
   - after nodes transmit -> on_transmit hook
-  - sending node info: use nw address, not internal id ;-(
-  - missing next pointer in tuple used in list
+  - add manual Makefile
 
   Small TODOs:
 
@@ -44,6 +40,7 @@ TODO
       - hex + install
       - OS process + deployment OTAP
     - target platform definition
+  - add section on TinyOS (comparison code inlining)
 
 *** at end
 - make sure illustrations use same font-sizes, colors, ...

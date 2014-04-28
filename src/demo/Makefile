@@ -2,22 +2,29 @@ FOO-LANG=../foo-lang
 CODECANVAS=$(FOO-LANG)/lib/codecanvas/src
 PY-UTIL=$(FOO-LANG)/lib/py-util/src
 PYTHON=PYTHONPATH=$(CODECANVAS):$(PY-UTIL):$(FOO-LANG) /opt/local/bin/python2.7
+ASTYLE=/opt/local/bin/astyle --style=attach --indent=spaces=2 \
+														 --indent-col1-comments --suffix=none \
+														 --quiet --errors-to-stdout \
+														 --max-code-length=80
 
 FOO=$(PYTHON) $(FOO-LANG)/foo.py
 
 OUTPUT=generated
 SRCS=$(FOO-LANG)/examples/heartbeat.foo $(FOO-LANG)/examples/reputation.foo
 
-all: generate
+all: clean generate beautify
 
 generate: $(OUTPUT)
 	@echo "*** generating code from foo-lang sources:" $(SRCS)
 	@$(FOO) -g code -i -c -o $(OUTPUT) $(SRCS)
 
+beautify:
+	@$(ASTYLE) --recursive "$(OUTPUT)/*"
+
 $(OUTPUT):
 	@mkdir -p $@
 
 clean:
-	@rm-rf $(OUTPUT)
+	@rm -rf $(OUTPUT)
 
 .PHONY: clean generate

@@ -567,3 +567,9 @@ activities
 2014-04-26 (3h30min/540h30min)
 - implemented all metrics in software + ran on manual (3h)
 - restarted work on generator (30min)
+
+2014-04-27 (1h/541h30min)
+- various small fixes due to changes (1h)
+
+2014-04-28 (30min/542h)
+- fixed name clash, missing self-references on tuples,... (30min)
