@@ -4,7 +4,6 @@ TODO
 
   - case ELSE
   - after nodes transmit -> on_transmit hook
-  - add manual Makefile
 
   Small TODOs:
 

@@ -12,14 +12,20 @@ FOO=$(PYTHON) $(FOO-LANG)/foo.py
 OUTPUT=generated
 SRCS=$(FOO-LANG)/examples/heartbeat.foo $(FOO-LANG)/examples/reputation.foo
 
-all: clean generate beautify
+all: clean generate beautify build
 
 generate: $(OUTPUT)
 	@echo "*** generating code from foo-lang sources:" $(SRCS)
 	@$(FOO) -g code -i -c -o $(OUTPUT) $(SRCS)
+	@cp Makefile.gen $(OUTPUT)/Makefile
 
 beautify:
-	@$(ASTYLE) --recursive "$(OUTPUT)/*"
+	@echo "*** beautifying generated sources"
+	@$(ASTYLE) --recursive "$(OUTPUT)/*.*"
+
+build:
+	@echo "*** building generated sources"
+	@(cd $(OUTPUT); make)
 
 $(OUTPUT):
 	@mkdir -p $@
