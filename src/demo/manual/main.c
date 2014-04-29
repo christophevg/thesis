@@ -17,7 +17,7 @@
 
 #include "../lib/timing.h"
 
-#include "config.h"
+#include "../lib/config.h"
 
 #ifdef WITH_HEARTBEAT
 #include "heartbeat.h"
