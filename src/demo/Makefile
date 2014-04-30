@@ -25,7 +25,7 @@ beautify:
 
 build:
 	@echo "*** building generated sources"
-	@(cd $(OUTPUT); make)
+	@(cd $(OUTPUT); make clean all)
 
 $(OUTPUT):
 	@mkdir -p $@
@@ -33,4 +33,4 @@ $(OUTPUT):
 clean:
 	@rm -rf $(OUTPUT)
 
-.PHONY: clean generate
+.PHONY: clean generate beautify build

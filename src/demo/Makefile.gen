@@ -1,5 +1,3 @@
-HEARTBEAT   = yes
-REPUTATION  = yes
 FAILURE_PCT = 0
 
 FOO_LANG_DIR=../../foo-lang
@@ -11,10 +9,11 @@ INCLUDE_PATH=$(PLATFORMS_DIR) -I$(FOO_LIB_DIR) -I.
 MOOSE_DIR=$(PLATFORMS_DIR)/moose
 
 MORE_SRC = $(wildcard $(MOOSE_DIR)/*.c) 					\
-					 ../lib/network.c 											\
-					 $(wildcard $(FOO_LIB_DIR)/*.c) 			  \
-					 $(wildcard $(FOO_LIB_DIR)/moose/*.c)   \
-					 $(wildcard *.c)
+           ../lib/network.c 											\
+           $(filter-out $(FOO_LIB_DIR)/foo-lib/test_all.c \
+                        $(FOO_LIB_DIR)/foo-lib/time.c, $(wildcard $(FOO_LIB_DIR)/foo-lib/*.c))  \
+           $(filter-out $(FOO_LIB_DIR)/foo-lib/moose/test_all.c, $(wildcard $(FOO_LIB_DIR)/foo-lib/moose/*.c)) \
+           $(wildcard *.c)
 
 MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
 
@@ -27,17 +26,9 @@ AVRDUDE_PROGRAMMER=jtag2
 MORE_CDEFS+=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
 # MORE_CDEFS+=-DDEBUG
 
-ifeq ($(HEARTBEAT), yes)
-MORE_SRC   += heartbeat.c	 ../../sha1/sha1.c
-MORE_CDEFS += -DWITH_HEARTBEAT
-endif
-
-ifeq ($(REPUTATION), yes)
-MORE_SRC   += reputation.c
-MORE_CDEFS += -DWITH_REPUTATION
-endif
-
 MORE_CDEFS += -DFORWARD_FAILURE_PCT=$(FAILURE_PCT)
+
+MORE_CDEFS += -DNODES_T_H=node_t.h
 
 include $(MOOSE_DIR)/Makefile
 
@@ -59,3 +50,5 @@ serial-digitus:
 
 serial-logilink:
 	screen /dev/tty.usbserial 9600
+
+.PRECIOUS: MORE_OBJECTS
