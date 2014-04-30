@@ -574,3 +574,10 @@ activities
 2014-04-28 (1h/542h30min)
 - fixed name clash, missing self-references on tuples,... (30min)
 - implemented forward failures' pct (30min)
+
+2014-04-29 (30min/543h)
+- prepared setup of full generation+compilation (30min)
+
+2014-09-30 (6h/549h)
+- completed full generation+compilation (6h)
+
