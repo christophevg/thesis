@@ -8,24 +8,8 @@ INCLUDE_PATH=$(PLATFORMS_DIR)
 
 MOOSE_DIR=$(PLATFORMS_DIR)/moose
 
-MORE_SRC = $(MOOSE_DIR)/avr.c    \
-					 $(MOOSE_DIR)/clock.c  \
-					 $(MOOSE_DIR)/sleep.c  \
-					 $(MOOSE_DIR)/serial.c \
-					 $(MOOSE_DIR)/xbee.c   \
-					 $(MOOSE_DIR)/random.c \
+MORE_SRC = $(wildcard $(MOOSE_DIR)/*.c) \
 					 ../lib/network.c
-
-MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
-
-MCU=atmega1284p
-F_CPU=8000000
-
-AVRDUDE_PROGRAMMER=jtag2
-
-# external hardware composition ... yummie :-)
-MORE_CDEFS+=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
-# MORE_CDEFS+=-DDEBUG
 
 ifeq ($(HEARTBEAT), yes)
 MORE_SRC   += heartbeat.c	 ../../sha1/sha1.c
@@ -38,6 +22,17 @@ MORE_CDEFS += -DWITH_REPUTATION
 endif
 
 MORE_CDEFS += -DFORWARD_FAILURE_PCT=$(FAILURE_PCT)
+
+MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
+
+MCU=atmega1284p
+F_CPU=8000000
+
+AVRDUDE_PROGRAMMER=jtag2
+
+# external hardware composition ... yummie :-)
+MORE_CDEFS+=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
+# MORE_CDEFS+=-DDEBUG
 
 include $(MOOSE_DIR)/Makefile
 
