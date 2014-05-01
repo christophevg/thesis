@@ -8,14 +8,29 @@ INCLUDE_PATH=$(PLATFORMS_DIR) -I$(FOO_LIB_DIR) -I.
 
 MOOSE_DIR=$(PLATFORMS_DIR)/moose
 
-MORE_SRC = $(wildcard $(MOOSE_DIR)/*.c) 					\
-           ../lib/network.c 											\
-           $(filter-out $(FOO_LIB_DIR)/foo-lib/test_all.c \
-                        $(FOO_LIB_DIR)/foo-lib/time.c, $(wildcard $(FOO_LIB_DIR)/foo-lib/*.c))  \
-           $(filter-out $(FOO_LIB_DIR)/foo-lib/moose/test_all.c, $(wildcard $(FOO_LIB_DIR)/foo-lib/moose/*.c)) \
-           $(wildcard *.c)
+MORE_SRC_BASE = $(wildcard $(MOOSE_DIR)/*.c) 					\
+           		  ../lib/network.c 											\
+		            $(filter-out $(FOO_LIB_DIR)/foo-lib/test_all.c \
+		                         $(FOO_LIB_DIR)/foo-lib/time.c, \
+							 							$(wildcard $(FOO_LIB_DIR)/foo-lib/*.c))  \
+		            $(filter-out $(FOO_LIB_DIR)/foo-lib/moose/test_all.c, \
+							  							$(wildcard $(FOO_LIB_DIR)/foo-lib/moose/*.c)) \
+		            $(wildcard *.c)
 
-MORE_OBJECTS = $(patsubst %.c, %.o, $(MORE_SRC))
+MORE_OBJECTS_BASE = $(patsubst %.c, %.o, $(MORE_SRC_BASE))
+
+ifeq ($(wildcard node_t.h),)
+	MORE_SRC = $(filter-out $(FOO_LIB_DIR)/foo-lib/nodes.c \
+													$(FOO_LIB_DIR)/foo-lib/moose/nodes.c, \
+						 							$(MORE_SRC_BASE))
+	MORE_OBJECTS = $(filter-out $(FOO_LIB_DIR)/foo-lib/nodes.o \
+															$(FOO_LIB_DIR)/foo-lib/moose/nodes.o, \
+															$(MORE_OBJECTS_BASE))
+else
+	MORE_CDEFS += -DNODES_T_H=node_t.h
+	MORE_SRC = $(MORE_SRC_BASE)
+	MORE_OBJECTS = $(MORE_OBJECTS_BASE)
+endif
 
 MCU=atmega1284p
 F_CPU=8000000
@@ -27,8 +42,6 @@ MORE_CDEFS+=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
 # MORE_CDEFS+=-DDEBUG
 
 MORE_CDEFS += -DFORWARD_FAILURE_PCT=$(FAILURE_PCT)
-
-MORE_CDEFS += -DNODES_T_H=node_t.h
 
 include $(MOOSE_DIR)/Makefile
 

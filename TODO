@@ -22,7 +22,7 @@ TODO
 
 3. solder motes
 4. clean up coordinate.py
-5. get metrics (manual done)
+5. get metrics (manual done -> redo after code changes/size is off)
   - xbee: 1) #frames
           2) bytes sent
   - mcu:  3) time IDS code

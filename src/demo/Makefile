@@ -10,7 +10,8 @@ ASTYLE=/opt/local/bin/astyle --style=attach --indent=spaces=2 \
 FOO=$(PYTHON) $(FOO-LANG)/foo.py
 
 OUTPUT=generated
-SRCS=$(FOO-LANG)/examples/heartbeat.foo $(FOO-LANG)/examples/reputation.foo
+SRCS+=$(FOO-LANG)/examples/heartbeat.foo 
+SRCS+=$(FOO-LANG)/examples/reputation.foo
 
 all: clean generate beautify build
 

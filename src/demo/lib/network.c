@@ -93,7 +93,7 @@ static void _send(uint64_t address, uint16_t nw_address,
   xbee_send(&frame);  
 }
 
-mesh_tx_handler_t tx_handler;
+mesh_tx_handler_t tx_handler = NULL;
 void mesh_on_transmit(mesh_tx_handler_t handler) { tx_handler = handler; }
 
 // sending message will require the message to be send to the destination (only
@@ -109,7 +109,9 @@ void mesh_send(uint16_t from, uint16_t to, uint8_t size, uint8_t* payload) {
   }
   _send(hop64, hop16, from, hop16, to, size, payload);
 
-  tx_handler(from, hop16, to, size, payload);
+  if(tx_handler != NULL) {
+    tx_handler(from, hop16, to, size, payload);
+  }
 
   // if we're a router, we need to send a copy to our child
   if(router && other_nw_address != XB_NW_ADDR_UNKNOWN) { 
@@ -123,7 +125,7 @@ void mesh_broadcast(uint16_t from, uint8_t size, uint8_t* payload) {
   mesh_send(from, XB_NW_BROADCAST, size, payload);
 }
 
-mesh_rx_handler_t rx_handler;
+mesh_rx_handler_t rx_handler = NULL;
 void mesh_on_receive(mesh_rx_handler_t handler) { rx_handler = handler; }
 
 void mesh_receive(xbee_rx_t* frame) {
@@ -142,7 +144,9 @@ void mesh_receive(xbee_rx_t* frame) {
   uint16_t hop    = frame->data[3] | frame->data[2] << 8;
   uint16_t to     = frame->data[5] | frame->data[4] << 8;
 
-  rx_handler(source, from, hop, to, frame->size-6, &(frame->data[6]));
+  if(rx_handler != NULL) {
+    rx_handler(source, from, hop, to, frame->size-6, &(frame->data[6]));
+  }
 
   // if we're a router and not the final destination, pass it on (to our parent)
   // take into account a failure percentage
