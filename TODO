@@ -5,14 +5,6 @@ TODO
   - case ELSE
   - after nodes transmit -> on_transmit hook
 
-  Small TODOs:
-
-  - include "constants.h" (needed: at end include everywhere)
-  - include tuples.h (needed: at end include everywhere)
-  - moose -> init on canvas (#includes)
-    -> @ end .find().append()
-  - include time for time_t
-
   ISSUES / LIMITATIONS
 
   - inference of e.g. time, sequence, ... in .contains([#atom, ...])

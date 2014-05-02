@@ -1,3 +1,6 @@
+HEARTBEAT=yes
+REPUTATION=yes
+
 FOO-LANG=../foo-lang
 CODECANVAS=$(FOO-LANG)/lib/codecanvas/src
 PY-UTIL=$(FOO-LANG)/lib/py-util/src
@@ -10,14 +13,19 @@ ASTYLE=/opt/local/bin/astyle --style=attach --indent=spaces=2 \
 FOO=$(PYTHON) $(FOO-LANG)/foo.py
 
 OUTPUT=generated
+ifeq ($(HEARTBEAT), yes)
 SRCS+=$(FOO-LANG)/examples/heartbeat.foo 
+endif
+
+ifeq ($(REPUTATION), yes)
 SRCS+=$(FOO-LANG)/examples/reputation.foo
+endif
 
 all: clean generate beautify build
 
 generate: $(OUTPUT)
 	@echo "*** generating code from foo-lang sources:" $(SRCS)
-	@$(FOO) -g code -i -c -o $(OUTPUT) $(SRCS)
+	@$(FOO) -g code -i -c -o $(OUTPUT) -p demo $(SRCS)
 	@cp Makefile.gen $(OUTPUT)/Makefile
 
 beautify:

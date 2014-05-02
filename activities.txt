@@ -578,6 +578,11 @@ activities
 2014-04-29 (30min/543h)
 - prepared setup of full generation+compilation (30min)
 
-2014-09-30 (6h/549h)
+2014-04-30 (6h/549h)
 - completed full generation+compilation (6h)
 
+2014-05-01 (2h30min/551h30min)
+- extracted application logic into includable parts (2h30min)
+
+2014-05-02 (30min/552h)
+- added "demo" platform, to automatically include application logic (30min)
