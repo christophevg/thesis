@@ -586,3 +586,7 @@ activities
 
 2014-05-02 (30min/552h)
 - added "demo" platform, to automatically include application logic (30min)
+
+2014-05-03 (0sec/552h)
+- not today ;-)
+
