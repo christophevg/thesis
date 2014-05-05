@@ -1,19 +1,9 @@
 TODO
 
-2. finish code generation
+6. finish code generation
 
-  - case ELSE
   - after nodes transmit -> on_transmit hook
 
-  ISSUES / LIMITATIONS
-
-  - inference of e.g. time, sequence, ... in .contains([#atom, ...])
-    is incorrectly byte => due to earlier idea of payload = byte**
-    -> can be used, but with e.g. limited time information
-  - check typing of matchers -> should be timestamp, but is integer ?!
-
-3. solder motes
-4. clean up coordinate.py
 5. get metrics (manual done -> redo after code changes/size is off)
   - xbee: 1) #frames
           2) bytes sent
@@ -24,7 +14,8 @@ TODO
     2) IDS HB
     3)     reputation
     4)     HB + reputation
-6. write thesis (+ add metrics to IEEE-style article)
+
+4. write thesis (+ add metrics to IEEE-style article)
 
   - add section on development of embedded systems
     - compilation/deployment style:
@@ -32,7 +23,9 @@ TODO
       - OS process + deployment OTAP
     - target platform definition
   - add section on TinyOS (comparison code inlining)
+  - make sure illustrations use same font-sizes, colors, ...
+  - node-capture: replace ISP programming with JTAG programming
 
-*** at end
-- make sure illustrations use same font-sizes, colors, ...
-- node-capture: replace ISP programming with JTAG programming
+3. clean up coordinate.py
+2. solder motes
+1. prepare demo + presentation
