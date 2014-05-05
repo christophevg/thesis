@@ -593,6 +593,7 @@ activities
 2014-05-04 (2h/554h)
 - added case else up to SM, still needs inferring to complete codegen (2h)
 
-2014-05-05 (4h/558h)
+2014-05-05 (4h30min/558h30min)
 - fixed unit tests + other small things (1h)
 - finished support for case-else (3h)
+- fixed on_transmit handling (30min)

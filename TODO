@@ -1,10 +1,6 @@
 TODO
 
-6. finish code generation
-
-  - after nodes transmit -> on_transmit hook
-
-5. get metrics (manual done -> redo after code changes/size is off)
+5. get metrics
   - xbee: 1) #frames
           2) bytes sent
   - mcu:  3) time IDS code
