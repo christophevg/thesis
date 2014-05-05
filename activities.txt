@@ -590,3 +590,9 @@ activities
 2014-05-03 (0sec/552h)
 - not today ;-)
 
+2014-05-04 (2h/554h)
+- added case else up to SM, still needs inferring to complete codegen (2h)
+
+2014-05-05 (4h/558h)
+- fixed unit tests + other small things (1h)
+- finished support for case-else (3h)
