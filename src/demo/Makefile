@@ -1,5 +1,10 @@
-HEARTBEAT=yes
-REPUTATION=yes
+ifndef HEARTBEAT
+HEARTBEAT=no
+endif
+
+ifndef REPUTATION
+REPUTATION=no
+endif
 
 FOO-LANG=../foo-lang
 CODECANVAS=$(FOO-LANG)/lib/codecanvas/src
@@ -14,11 +19,14 @@ FOO=$(PYTHON) $(FOO-LANG)/foo.py
 
 OUTPUT=generated
 ifeq ($(HEARTBEAT), yes)
-SRCS+=$(FOO-LANG)/examples/heartbeat.foo 
+SRCS+=$(FOO-LANG)/examples/heartbeat.foo
+VARS+=WITH_CRYPTO=yes
+VARS+=WITH_TIME=yes
 endif
 
 ifeq ($(REPUTATION), yes)
 SRCS+=$(FOO-LANG)/examples/reputation.foo
+VARS+=WITH_TIME=yes
 endif
 
 all: clean generate beautify build
@@ -34,7 +42,7 @@ beautify:
 
 build:
 	@echo "*** building generated sources"
-	@(cd $(OUTPUT); make clean all)
+	@(cd $(OUTPUT); $(VARS) make clean all)
 
 $(OUTPUT):
 	@mkdir -p $@

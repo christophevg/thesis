@@ -1,4 +1,14 @@
+ifndef WITH_CRYPTO
+WITH_CRYPTO = no
+endif
+
+ifndef WITH_TIME
+WITH_TIME = no
+endif
+
+ifndef FAILURE_PCT
 FAILURE_PCT = 0
+endif
 
 FOO_LANG_DIR=../../foo-lang
 PLATFORMS_DIR=$(FOO_LANG_DIR)/platforms
@@ -8,13 +18,25 @@ INCLUDE_PATH=$(PLATFORMS_DIR) -I$(FOO_LIB_DIR) -I.
 
 MOOSE_DIR=$(PLATFORMS_DIR)/moose
 
+REMOVE_FOO_LIBS=$(FOO_LIB_DIR)/foo-lib/test_all.c \
+                $(FOO_LIB_DIR)/foo-lib/time.c \
+								$(FOO_LIB_DIR)/foo-lib/moose/test_all.c
+
+ifneq ($(WITH_CRYPTO), yes)
+REMOVE_FOO_LIBS+=$(FOO_LIB_DIR)/foo-lib/sha1.c
+REMOVE_FOO_LIBS+=$(FOO_LIB_DIR)/foo-lib/crypto.c
+endif
+
+ifneq ($(WITH_TIME), yes)
+REMOVE_FOO_LIBS+=$(FOO_LIB_DIR)/foo-lib/moose/time.c
+endif
+
 MORE_SRC_BASE = $(wildcard $(MOOSE_DIR)/*.c) 					\
            		  ../lib/network.c 											\
-		            $(filter-out $(FOO_LIB_DIR)/foo-lib/test_all.c \
-		                         $(FOO_LIB_DIR)/foo-lib/time.c, \
+		            $(filter-out $(REMOVE_FOO_LIBS), \
 							 							$(wildcard $(FOO_LIB_DIR)/foo-lib/*.c))  \
-		            $(filter-out $(FOO_LIB_DIR)/foo-lib/moose/test_all.c, \
-							  							$(wildcard $(FOO_LIB_DIR)/foo-lib/moose/*.c)) \
+		            $(filter-out $(REMOVE_FOO_LIBS), \
+						  							 $(wildcard $(FOO_LIB_DIR)/foo-lib/moose/*.c)) \
 		            $(wildcard *.c)
 
 MORE_OBJECTS_BASE = $(patsubst %.c, %.o, $(MORE_SRC_BASE))

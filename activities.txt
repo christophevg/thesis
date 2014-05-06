@@ -597,3 +597,6 @@ activities
 - fixed unit tests + other small things (1h)
 - finished support for case-else (3h)
 - fixed on_transmit handling (30min)
+
+2014-05-06 (30min/559h)
+- removed unused code from generated build (crypto, time) (30min)

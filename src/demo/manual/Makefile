@@ -1,6 +1,14 @@
-HEARTBEAT   = yes
-REPUTATION  = yes
+ifndef HEARTBEAT
+HEARTBEAT=no
+endif
+
+ifndef REPUTATION
+REPUTATION=no
+endif
+
+ifndef FAILURE_PCT
 FAILURE_PCT = 0
+endif
 
 PLATFORMS_DIR=../../foo-lang/platforms
 
