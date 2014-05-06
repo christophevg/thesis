@@ -31,10 +31,13 @@ endif
 
 all: clean generate beautify build
 
-generate: $(OUTPUT)
+generate: $(OUTPUT) generator
 	@echo "*** generating code from foo-lang sources:" $(SRCS)
 	@$(FOO) -g code -i -c -o $(OUTPUT) -p demo $(SRCS)
 	@cp Makefile.gen $(OUTPUT)/Makefile
+
+generator:
+	@(cd $(FOO-LANG); make parser)
 
 beautify:
 	@echo "*** beautifying generated sources"
