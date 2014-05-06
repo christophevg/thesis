@@ -5,7 +5,7 @@
 
 // our own address and that of our parent node
 uint16_t address;
-#include "foo-lib/external.h"
+#include "external.h"
 #define NODES_T_H_name STR(NODES_T_H)
 #ifdef NODES_T_H
 node_t*  me;        // global reference to "me"

@@ -15,7 +15,7 @@
   _log("xbee associated...\n");
   
   address = xbee_get_nw_address();
-#include "foo-lib/external.h"
+#include "external.h"
 #define NODES_T_H_name STR(NODES_T_H)
 #ifdef __NODES_T_H
   me      = nodes_lookup(address);
