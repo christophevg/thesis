@@ -20,7 +20,8 @@ MOOSE_DIR=$(PLATFORMS_DIR)/moose
 
 REMOVE_FOO_LIBS=$(FOO_LIB_DIR)/foo-lib/test_all.c \
                 $(FOO_LIB_DIR)/foo-lib/time.c \
-								$(FOO_LIB_DIR)/foo-lib/moose/test_all.c
+								$(FOO_LIB_DIR)/foo-lib/moose/test_all.c \
+								$(FOO_LIB_DIR)/foo-lib/moose/nodes.c
 
 ifneq ($(WITH_CRYPTO), yes)
 REMOVE_FOO_LIBS+=$(FOO_LIB_DIR)/foo-lib/sha1.c
@@ -50,7 +51,7 @@ ifeq ($(wildcard node_t.h),)
 															$(MORE_OBJECTS_BASE))
 else
 	MORE_CDEFS += -DNODES_T_H=node_t.h
-	MORE_SRC = $(MORE_SRC_BASE)
+	MORE_SRC = ../lib/nodes.c $(MORE_SRC_BASE)
 	MORE_OBJECTS = $(MORE_OBJECTS_BASE)
 endif
 
