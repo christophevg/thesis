@@ -1,9 +1,13 @@
 ifndef HEARTBEAT
-HEARTBEAT=no
+	HEARTBEAT=no
+else
+	PATCH+=hb
 endif
 
 ifndef REPUTATION
-REPUTATION=no
+	REPUTATION=no
+else
+	patch+=rep
 endif
 
 FOO-LANG=../foo-lang
@@ -29,9 +33,9 @@ SRCS+=$(FOO-LANG)/examples/reputation.foo
 VARS+=WITH_TIME=yes
 endif
 
-all: clean generate beautify build
+all: build
 
-generate: $(OUTPUT) generator
+generate: clean $(OUTPUT) generator
 	@echo "*** generating code from foo-lang sources:" $(SRCS)
 	@$(FOO) -g code -i -c -o $(OUTPUT) -p demo $(SRCS)
 	@cp Makefile.gen $(OUTPUT)/Makefile
@@ -39,13 +43,25 @@ generate: $(OUTPUT) generator
 generator:
 	@(cd $(FOO-LANG); make parser)
 
-beautify:
+beautify: generate
 	@echo "*** beautifying generated sources"
 	@$(ASTYLE) --recursive "$(OUTPUT)/*.*"
 
-build:
+patch: beautify
+ifdef PATCH
+	@echo "*** adding logging statements from $(PATCH).diff"
+	@(cd $(OUTPUT); patch -s < ../$(PATCH).diff)
+endif
+
+make-patch: beatify
+	diff -rupN $(OUTPUT) $(OUTPUT)-$(PATCH)
+
+build: patch
 	@echo "*** building generated sources"
 	@(cd $(OUTPUT); $(VARS) make clean all)
+
+program: build
+	@(cd $(OUTPUT); make program)
 
 $(OUTPUT):
 	@mkdir -p $@

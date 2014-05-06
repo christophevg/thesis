@@ -1,0 +1,51 @@
+diff -rupN generated/main.c generated-hb/main.c
+--- generated/main.c	2014-05-06 20:09:36.000000000 +0200
++++ generated-hb/main.c	2014-05-06 20:07:08.000000000 +0200
+@@ -54,7 +54,15 @@ void nodes_process_incoming_case_0(node_
+   if(sha1_compare(signature, 2, sequence, time)) {
+     from->last_seen = now();
+     from->sequence = sequence;
++    _log("HB: received heartbeat %02x %02x : %i\n",
++         (uint8_t)(from->address >> 8),
++         (uint8_t)(from->address),
++         from->fail_count);
+   } else {
+     from->fail_count++;
++    _log("HB: FAILED sha1 check %02x %02x : %i\n",
++         (uint8_t)(from->address >> 8),
++         (uint8_t)(from->address),
++         from->fail_count);
+   }
+ }
+diff -rupN generated/nodes-heartbeat.c generated-hb/nodes-heartbeat.c
+--- generated/nodes-heartbeat.c	2014-05-06 20:09:36.000000000 +0200
++++ generated-hb/nodes-heartbeat.c	2014-05-06 20:08:35.000000000 +0200
+@@ -1,13 +1,20 @@
+ #include "nodes-heartbeat.h"
++#include "../lib/log.h"
+ void anonymous5(node_t* node) {
+   if((node->last_seen == 0)) {
+     node->last_seen = now();
+   }
+   if(((now() - node->last_seen) > heartbeat_interval)) {
+     node->fail_count++;
++    _log("HB: late heartbeat %02x %02x : %i\n",
++         (uint8_t)(node->address >> 8),
++         (uint8_t)(node->address),
++         node->fail_count);
+   }
+   if((node->fail_count > max_fail_count)) {
+     node->sane = FALSE;
++    _log("HB: trust lost %02x %02x\n",
++         (uint8_t)(node->address >> 8), (uint8_t)(node->address));
+   }
+ }
+ void broadcast_heartbeat(node_t* node) {
+@@ -18,6 +25,7 @@ void broadcast_heartbeat(node_t* node) {
+   } temp0;
+   temp0.value = time;
+   uint8_t* temp1 = sha1(2, node->sequence, time);
++  _log("HB: sending heartbeat %02x\n", node->sequence);
+   nodes_broadcast(27, 0x00, 0x01, node->sequence, temp0.b[0], temp0.b[1],
+                   temp0.b[2], temp0.b[3], temp1[0], temp1[1], temp1[2], temp1[3], temp1[4],
+                   temp1[5], temp1[6], temp1[7], temp1[8], temp1[9], temp1[10], temp1[11],
