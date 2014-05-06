@@ -15,6 +15,7 @@
   _log("xbee associated...\n");
   
   address = xbee_get_nw_address();
+  me      = nodes_lookup(address);
   parent  = xbee_get_parent_address();
   
   _log("my address : %02x %02x\n", (uint8_t)(address >> 8), (uint8_t)address);

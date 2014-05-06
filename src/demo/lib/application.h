@@ -5,6 +5,7 @@
 
 // our own address and that of our parent node
 uint16_t address;
+node_t*  me;        // global reference to "me"
 uint16_t parent;
 
 #define METRICS_REPORT_INTERVAL 15000
