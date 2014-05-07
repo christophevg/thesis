@@ -5,11 +5,6 @@
 
 // our own address and that of our parent node
 uint16_t address;
-#include "external.h"
-#define NODES_T_H_name STR(NODES_T_H)
-#ifdef NODES_T_H
-static node_t*  me;        // global reference to "me"
-#endif 
 uint16_t parent;
 
 #define METRICS_REPORT_INTERVAL 15000

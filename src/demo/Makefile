@@ -37,22 +37,22 @@ SRCS+=$(FOO-LANG)/examples/reputation.foo
 VARS+=WITH_TIME=yes
 endif
 
-all: build
+all: generate beautify patch build program
 
-program: build
+program:
 	@(cd $(OUTPUT); make program)
 
-build: patch
+build:
 	@echo "*** building generated sources"
 	@(cd $(OUTPUT); $(VARS) make clean all)
 
-patch: beautify
+patch:
 ifdef PATCH
 	@echo "*** adding logging statements from $(PATCH).diff"
 	@(cd $(OUTPUT); patch -s < ../$(PATCH).diff)
 endif
 
-beautify: generate
+beautify:
 	@echo "*** beautifying generated sources"
 	@$(ASTYLE) --recursive "$(OUTPUT)/*.*"
 

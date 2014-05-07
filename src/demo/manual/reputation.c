@@ -128,11 +128,12 @@ void reputation_receive(uint16_t source,
     beta.b[2]  = payload[8];
     beta.b[3]  = payload[9];
 
-    if( sending_node->trust > INDIRECT_THRESHOLD ) {
+    reputation_node_t* from_node = _get_node(from);
+    if( from_node->trust > INDIRECT_THRESHOLD ) {
       // taking into account of indirect reputation information
-      float weight = (2 * sending_node->alpha) /
-                     ( (sending_node->beta+2) * (alpha.value + beta.value + 2) 
-                       * 2 * sending_node->alpha );
+      float weight = (2 * from_node->alpha) /
+                     ( (from_node->beta+2) * (alpha.value + beta.value + 2) 
+                       * 2 * from_node->alpha );
       of->alpha += weight * alpha.value;
       of->beta  += weight * beta.value;
     }
