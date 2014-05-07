@@ -1,13 +1,17 @@
 ifndef HEARTBEAT
-	HEARTBEAT=no
+  HEARTBEAT=no
 else
-	PATCH+=hb
+  PATCH=hb
 endif
 
 ifndef REPUTATION
-	REPUTATION=no
+  REPUTATION=no
 else
-	patch+=rep
+ifneq ($(HEARTBEAT), no)
+  PATCH=hb-rep
+else
+  PATCH=rep
+endif
 endif
 
 FOO-LANG=../foo-lang
