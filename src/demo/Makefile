@@ -53,8 +53,9 @@ ifdef PATCH
 	@(cd $(OUTPUT); patch -s < ../$(PATCH).diff)
 endif
 
-make-patch: beatify
-	diff -rupN $(OUTPUT) $(OUTPUT)-$(PATCH)
+make-patch: beautify
+	@echo "*** creating patch"
+	@diff -rupN $(OUTPUT) $(OUTPUT)-$(PATCH) > $(PATCH).diff || exit 0
 
 build: patch
 	@echo "*** building generated sources"

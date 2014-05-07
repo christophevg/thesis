@@ -602,3 +602,6 @@ activities
 - removed unused code from generated build (crypto, time) (30min)
 - added support for global "me" node reference (+failed String support) (2h)
 - various fixes to get generated code working + build improvements (4h)
+
+2014-05-07 (1h30min/566h30min)
+- implemented generation of init_node (1h30min)

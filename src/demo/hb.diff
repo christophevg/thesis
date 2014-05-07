@@ -1,7 +1,7 @@
 diff -rupN generated/main.c generated-hb/main.c
---- generated/main.c	2014-05-06 20:09:36.000000000 +0200
-+++ generated-hb/main.c	2014-05-06 20:07:08.000000000 +0200
-@@ -54,7 +54,15 @@ void nodes_process_incoming_case_0(node_
+--- generated/main.c	2014-05-07 09:41:14.000000000 +0200
++++ generated-hb/main.c	2014-05-07 09:35:52.000000000 +0200
+@@ -51,7 +51,15 @@ void nodes_process_incoming_case_0(node_
    if(sha1_compare(signature, 2, sequence, time)) {
      from->last_seen = now();
      from->sequence = sequence;
@@ -18,15 +18,12 @@ diff -rupN generated/main.c generated-hb/main.c
    }
  }
 diff -rupN generated/nodes-heartbeat.c generated-hb/nodes-heartbeat.c
---- generated/nodes-heartbeat.c	2014-05-06 20:09:36.000000000 +0200
-+++ generated-hb/nodes-heartbeat.c	2014-05-06 20:08:35.000000000 +0200
-@@ -1,13 +1,20 @@
+--- generated/nodes-heartbeat.c	2014-05-07 09:41:14.000000000 +0200
++++ generated-hb/nodes-heartbeat.c	2014-05-07 09:36:55.000000000 +0200
+@@ -1,10 +1,17 @@
  #include "nodes-heartbeat.h"
 +#include "../lib/log.h"
  void anonymous5(node_t* node) {
-   if((node->last_seen == 0)) {
-     node->last_seen = now();
-   }
    if(((now() - node->last_seen) > heartbeat_interval)) {
      node->fail_count++;
 +    _log("HB: late heartbeat %02x %02x : %i\n",
@@ -41,7 +38,7 @@ diff -rupN generated/nodes-heartbeat.c generated-hb/nodes-heartbeat.c
    }
  }
  void broadcast_heartbeat(node_t* node) {
-@@ -18,6 +25,7 @@ void broadcast_heartbeat(node_t* node) {
+@@ -15,6 +22,7 @@ void broadcast_heartbeat(node_t* node) {
    } temp0;
    temp0.value = time;
    uint8_t* temp1 = sha1(2, node->sequence, time);
