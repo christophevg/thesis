@@ -39,17 +39,12 @@ endif
 
 all: build
 
-generate: clean $(OUTPUT) generator
-	@echo "*** generating code from foo-lang sources:" $(SRCS)
-	@$(FOO) -g code -i -c -o $(OUTPUT) -p demo $(SRCS)
-	@cp Makefile.gen $(OUTPUT)/Makefile
+program: build
+	@(cd $(OUTPUT); make program)
 
-generator:
-	@(cd $(FOO-LANG); make parser)
-
-beautify: generate
-	@echo "*** beautifying generated sources"
-	@$(ASTYLE) --recursive "$(OUTPUT)/*.*"
+build: patch
+	@echo "*** building generated sources"
+	@(cd $(OUTPUT); $(VARS) make clean all)
 
 patch: beautify
 ifdef PATCH
@@ -57,16 +52,21 @@ ifdef PATCH
 	@(cd $(OUTPUT); patch -s < ../$(PATCH).diff)
 endif
 
-make-patch: beautify
+beautify: generate
+	@echo "*** beautifying generated sources"
+	@$(ASTYLE) --recursive "$(OUTPUT)/*.*"
+
+generate: $(OUTPUT) generator
+	@echo "*** generating code from foo-lang sources:" $(SRCS)
+	@$(FOO) -g code -i -c -o $(OUTPUT) -p demo $(SRCS)
+	@cp Makefile.gen $(OUTPUT)/Makefile
+
+generator:
+	@(cd $(FOO-LANG); make parser)
+
+diff: beautify
 	@echo "*** creating patch"
 	@diff -rupN $(OUTPUT) $(OUTPUT)-$(PATCH) > $(PATCH).diff || exit 0
-
-build: patch
-	@echo "*** building generated sources"
-	@(cd $(OUTPUT); $(VARS) make clean all)
-
-program: build
-	@(cd $(OUTPUT); make program)
 
 $(OUTPUT):
 	@mkdir -p $@
