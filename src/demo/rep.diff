@@ -1,0 +1,54 @@
+diff -rupN generated/main.c generated-rep/main.c
+--- generated/main.c	2014-05-07 15:45:40.000000000 +0200
++++ generated-rep/main.c	2014-05-07 15:44:46.000000000 +0200
+@@ -58,5 +58,11 @@ void nodes_process_incoming_case_0(node_
+ }
+ void nodes_process_incoming_else(node_t* from, node_t* hop, node_t* to,
+                                  payload_t* payload) {
+-  list_of_tuple_0_ts_remove_match_arg_0(&from->queue, payload);
++  if( list_of_tuple_0_ts_remove_match_arg_0(&from->queue, payload) > 0 ) {
++    _log("RP: cleared payload from %02x %02x : size=%d\n",
++         (uint8_t)(from->address >> 8), (uint8_t)from->address, payload->size);
++  } else {
++    _log("RP: unexpected payload from %02x %02x\n",
++         (uint8_t)(from->address >> 8), (uint8_t)from->address);
++  }
+ }
+diff -rupN generated/nodes-reputation.c generated-rep/nodes-reputation.c
+--- generated/nodes-reputation.c	2014-05-07 15:45:40.000000000 +0200
++++ generated-rep/nodes-reputation.c	2014-05-07 15:45:12.000000000 +0200
+@@ -1,4 +1,5 @@
+ #include "nodes-reputation.h"
++#include "../lib/log.h"
+ void anonymous5(node_t* from, node_t* to, node_t* hop, payload_t* payload) {
+   if((hop == to)) {
+     return;
+@@ -6,16 +7,28 @@ void anonymous5(node_t* from, node_t* to
+   if((hop->address == 0)) {
+     return;
+   }
++  _log("RP: tracking payload from %02x %02x to %02x %02x : size=%d\n",
++       (uint8_t)(hop->address >> 8), (uint8_t)hop->address, 
++       (uint8_t)(to->address  >> 8), (uint8_t)to->address, payload->size);
+   hop->msg_count++;
+   list_of_tuple_0_ts_push(&hop->queue, make_tuple_0_t((now() + forward_timeout),
+                           payload));
+ }
+ void anonymous10(node_t* node) {
+   uint16_t failures = list_of_tuple_0_ts_remove_match_lt_now(&node->queue);
++  if(failures>0) {
++    _log("RP: late: %02x %02x\n",
++         (uint8_t)(node->address >> 8), (uint8_t)node->address);
++  }
+   node->alpha = (((aging_weight * node->alpha) + node->msg_count) - failures);
+   node->beta = ((aging_weight * node->beta) + failures);
+   node->trust = ((node->alpha + 1) / ((node->alpha + node->beta) + 2));
++  _log("RP: validating node %02x %02x : fail=%d/%d : a=%.2f b=%.2f t=%.2f\n",
++       (uint8_t)(node->address >> 8), (uint8_t)node->address,
++       failures, node->msg_count,
++       (double)node->alpha, (double)node->beta, (double)node->trust);
+   if((node->trust < 0.25)) {
++    _log("RP: trust lost\n");
+     nodes_send(node, 2, 0x00, 0x02);
+   }
+   node->msg_count = 0;

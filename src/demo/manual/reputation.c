@@ -64,7 +64,6 @@ static void _track(reputation_node_t* node, uint8_t size, uint8_t* payload);
 static void _untrack(reputation_node_t* node, uint8_t size, uint8_t* payload);
 static uint8_t _remove_late(reputation_node_t* node);
 static reputation_node_t* _get_node(uint16_t address);
-static void _log_node(const char* msg, reputation_node_t* node);
 
 // public interface
 
@@ -256,9 +255,8 @@ static uint8_t _remove_late(reputation_node_t* node) {
 
   while(tracked != NULL) {
     if( tracked->timeout < clock_get_millis() ) {
-      _log("RP: late: %02x %02x : size=%d\n",
-           (uint8_t)(node->address >> 8), (uint8_t)node->address,
-           tracked->size);
+      _log("RP: late: %02x %02x\n",
+           (uint8_t)(node->address >> 8), (uint8_t)node->address);
       // this one is late
       lates++;
       if(parent == NULL) {
@@ -290,14 +288,6 @@ static reputation_node_t* _get_node(uint16_t address) {
   nodes[node_count].msg_count = 0;
   nodes[node_count].incidents = 0;
   nodes[node_count].trust     = 0;
-  _log_node("new node", &nodes[node_count]);
     
   return &nodes[node_count++];
-}
-
-static void _log_node(const char* msg, reputation_node_t* node) {
-  _log("RP: %s : %02x %02x = msg_count: %d incidents: %d trust: %.3f\n",
-       msg,
-       (uint8_t)(node->address >> 8), (uint8_t)node->address,
-       node->msg_count, node->incidents, (double)node->trust);
 }
