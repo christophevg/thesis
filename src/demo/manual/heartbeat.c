@@ -112,10 +112,16 @@ void heartbeat_receive(uint16_t source,
   {
     node->seq  = payload[0];
     node->seen = clock_get_millis();
-    _log_node("receive heartbeat", node);
+    _log("HB: received heartbeat %02x %02x : %i\n",
+         (uint8_t)(from >> 8),
+         (uint8_t)(from),
+          node->incidents);
   } else {
     node->incidents++;
-    _log("HB: FAILED sha1 check\n");
+    _log("HB: FAILED sha1 check %02x %02x : %i\n",
+         (uint8_t)(from >> 8),
+         (uint8_t)(from),
+         node->incidents);
   }
 }
 
@@ -142,9 +148,7 @@ void _beat(void) {
   if(sha1.result == shaSuccess) {
     memcpy(&payload[5], &sha1.hash, SHA1HashSize);
   }
-
-  _log("HB: sending heartbeat : %02x %02x %02x %02x %02x\n",
-       payload[0], payload[1], payload[2], payload[3], payload[4]);
+  _log("HB: sending heartbeat %02x\n", payload[0]);
   mesh_broadcast(me, PAYLOAD_SIZE, payload);
 }
 
@@ -158,12 +162,18 @@ void _process(void) {
     if(nodes[i].trust) {
       if( now - nodes[i].seen > HEARTBEAT_INTERVAL) {
         nodes[i].incidents++;
-        _log_node("late heartbeat", &nodes[i]);
+        _log("HB: late heartbeat %02x %02x : %i\n",
+             (uint8_t)(nodes[i].address >> 8),
+             (uint8_t)(nodes[i].address),
+             nodes[i].incidents);
+        
       }
 
       if( nodes[i].incidents >= MAX_INCIDENTS ) {
         nodes[i].trust = FALSE;
-        _log_node("trust lost", &nodes[i]);
+        _log("HB: trust lost %02x %02x\n",
+             (uint8_t)(nodes[i].address >> 8),
+             (uint8_t)(nodes[i].address));
       }
     }
   }
