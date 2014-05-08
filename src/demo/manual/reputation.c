@@ -281,7 +281,6 @@ static reputation_node_t* _get_node(uint16_t address) {
   }
   // unknown node, create a new one and return that
   if(node_count >= MAX_NODES) {
-    printf("FAIL: max nodes storage reached.\n");
     return NULL;
   }
   nodes[node_count].address   = address;
