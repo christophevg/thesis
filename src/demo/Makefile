@@ -37,7 +37,7 @@ SRCS+=$(FOO-LANG)/examples/reputation.foo
 VARS+=WITH_TIME=yes
 endif
 
-all: generate beautify patch build program
+all: generate beautify patch build
 
 program:
 	@(cd $(OUTPUT); make program)
@@ -73,5 +73,7 @@ $(OUTPUT):
 
 clean:
 	@rm -rf $(OUTPUT)
+	@rm -f ../foo-lib/C/foo-lib/*.o
+	@rm -f lib/*.o
 
 .PHONY: clean generate beautify build
