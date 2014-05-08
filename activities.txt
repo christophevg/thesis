@@ -608,5 +608,6 @@ activities
 - prepared generation of reputation scenario (30min)
 - fixing of various functional changes (3h)
 
-2014-05-08 (2h30min/572h30min)
+2014-05-08 (4h/574h)
 - fixed complete generated reputation scenario (2h30min)
+- performed final measurements and created overview (1h30min)
