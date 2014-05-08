@@ -17,8 +17,8 @@
 
 // configuration
 
-#define PROCESSING_INTERVAL 1000  // process every 1s
 #define HEARTBEAT_INTERVAL  3000  // send out a heartbeat every 3s
+#define PROCESSING_INTERVAL 5000  // process every 1s
 #define MAX_INCIDENTS          3  // number of incidents before trust is gone
 
 #define MAX_NODES              5  // maximum number of tracked neighbours
