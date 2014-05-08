@@ -67,7 +67,23 @@ void nodes_send(node_t* node, uint16_t size, ...) {
   send_size[node->id] += size;
 }
 
-void nodes_io_init(void) {}
+void nodes_io_init(void) {
+  // force a few addresses in the right place
+  // own address == nodes[0]
+  nodes_lookup(xbee_get_nw_address());
+  // broadcast address == nodes[1]
+  nodes_lookup(0xFFFE);
+  // coordinator address == nodes[2]
+  nodes_lookup(0x0000);
+  // parent address == nodes[3]
+  // in case of a router this is again the broadcast address, that's ok
+  // as soon as a child of the router contacts it, it will take this spot
+  // better name could be : address of other end of the line ;-)
+  nodes_lookup(xbee_get_parent_address());
+
+  broadcast_size = 0;
+  for(uint8_t i=0; i<nodes_count(); i++) { send_size[i] = 0; }
+}
 
 void nodes_io_process(void) {
   _broadcast();

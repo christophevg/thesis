@@ -64,7 +64,7 @@ generate: $(OUTPUT) generator
 generator:
 	@(cd $(FOO-LANG); make parser)
 
-diff: beautify
+diff: clean generate beautify
 	@echo "*** creating patch"
 	@diff -rupN $(OUTPUT) $(OUTPUT)-$(PATCH) > $(PATCH).diff || exit 0
 

@@ -607,3 +607,6 @@ activities
 - implemented generation of init_node (1h30min)
 - prepared generation of reputation scenario (30min)
 - fixing of various functional changes (3h)
+
+2014-05-08 (2h30min/572h30min)
+- fixed complete generated reputation scenario (2h30min)
