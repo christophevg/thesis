@@ -1,0 +1,20 @@
+1420	foo-lib/crypto.o
+820	foo-lib/moose/time.o
+8044	foo-lib/nodes.o
+5268	foo-lib/sha1.o
+
+1040	moose/avr.o
+1360	moose/clock.o
+1316	moose/random.o
+1184	moose/serial.o
+1056	moose/sleep.o
+7560	moose/xbee.o
+
+4120	lib/network.o
+
+1440	lists.o
+8732	main.o
+876 node_t.o
+1996	nodes-heartbeat.o
+3660	nodes-reputation.o
+1196	tuples.o

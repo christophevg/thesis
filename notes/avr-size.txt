@@ -1,0 +1,10 @@
+$ avr-size -A main.elf 
+main.elf  :
+section     size      addr
+.data        654   8388864          <- static data (strings,...)
+.text      12652         0          <- instructions
+.bss         939   8389518          <- global/static variables
+.stab      24492         0          <- debugging info
+.stabstr    8166         0          <- debugging info
+.comment      17         0
+Total      46920
