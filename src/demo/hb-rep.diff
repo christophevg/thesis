@@ -1,0 +1,1486 @@
+diff -rupN generated/lists.lst generated-hb-rep/lists.lst
+--- generated/lists.lst	1970-01-01 01:00:00.000000000 +0100
++++ generated-hb-rep/lists.lst	2014-05-08 12:24:39.000000000 +0200
+@@ -0,0 +1,194 @@
++   1               		.file	"lists.c"
++   2               	__SP_H__ = 0x3e
++   3               	__SP_L__ = 0x3d
++   4               	__SREG__ = 0x3f
++   5               	__RAMPZ__ = 0x3b
++   6               	__tmp_reg__ = 0
++   7               	__zero_reg__ = 1
++   8               		.text
++   9               	.global	list_of_tuple_0_ts_push
++  11               	list_of_tuple_0_ts_push:
++  12               	/* prologue: function */
++  13               	/* frame size = 0 */
++  14               	/* stack size = 0 */
++  15               	.L__stack_usage = 0
++  16 0000 FC01      		movw r30,r24
++  17 0002 2081      		ld r18,Z
++  18 0004 3181      		ldd r19,Z+1
++  19 0006 FB01      		movw r30,r22
++  20 0008 3783      		std Z+7,r19
++  21 000a 2683      		std Z+6,r18
++  22 000c FC01      		movw r30,r24
++  23 000e 7183      		std Z+1,r23
++  24 0010 6083      		st Z,r22
++  25 0012 0895      		ret
++  27               	.global	list_of_tuple_0_ts_remove_match_arg_0
++  29               	list_of_tuple_0_ts_remove_match_arg_0:
++  30 0014 AF92      		push r10
++  31 0016 BF92      		push r11
++  32 0018 CF92      		push r12
++  33 001a DF92      		push r13
++  34 001c EF92      		push r14
++  35 001e FF92      		push r15
++  36 0020 0F93      		push r16
++  37 0022 1F93      		push r17
++  38 0024 CF93      		push r28
++  39 0026 DF93      		push r29
++  40               	/* prologue: function */
++  41               	/* frame size = 0 */
++  42               	/* stack size = 10 */
++  43               	.L__stack_usage = 10
++  44 0028 6C01      		movw r12,r24
++  45 002a 5B01      		movw r10,r22
++  46 002c FC01      		movw r30,r24
++  47 002e C081      		ld r28,Z
++  48 0030 D181      		ldd r29,Z+1
++  49 0032 E12C      		mov r14,__zero_reg__
++  50 0034 F12C      		mov r15,__zero_reg__
++  51 0036 00E0      		ldi r16,0
++  52 0038 10E0      		ldi r17,0
++  53 003a 00C0      		rjmp .L3
++  54               	.L7:
++  55 003c 6C81      		ldd r22,Y+4
++  56 003e 7D81      		ldd r23,Y+5
++  57 0040 C501      		movw r24,r10
++  58 0042 0E94 0000 		call equal_payload
++  59 0046 8823      		tst r24
++  60 0048 01F0      		breq .L4
++  61 004a 2E81      		ldd r18,Y+6
++  62 004c 3F81      		ldd r19,Y+7
++  63 004e E114      		cp r14,__zero_reg__
++  64 0050 F104      		cpc r15,__zero_reg__
++  65 0052 01F4      		brne .L5
++  66 0054 F601      		movw r30,r12
++  67 0056 3183      		std Z+1,r19
++  68 0058 2083      		st Z,r18
++  69 005a 00C0      		rjmp .L6
++  70               	.L5:
++  71 005c F701      		movw r30,r14
++  72 005e 3783      		std Z+7,r19
++  73 0060 2683      		std Z+6,r18
++  74               	.L6:
++  75 0062 CE01      		movw r24,r28
++  76 0064 0E94 0000 		call free_tuple_0_t
++  77 0068 0F5F      		subi r16,-1
++  78 006a 1F4F      		sbci r17,-1
++  79               	.L4:
++  80 006c 9E81      		ldd r25,Y+6
++  81 006e 8F81      		ldd r24,Y+7
++  82 0070 7E01      		movw r14,r28
++  83 0072 C92F      		mov r28,r25
++  84 0074 D82F      		mov r29,r24
++  85               	.L3:
++  86 0076 2097      		sbiw r28,0
++  87 0078 01F4      		brne .L7
++  88 007a C801      		movw r24,r16
++  89               	/* epilogue start */
++  90 007c DF91      		pop r29
++  91 007e CF91      		pop r28
++  92 0080 1F91      		pop r17
++  93 0082 0F91      		pop r16
++  94 0084 FF90      		pop r15
++  95 0086 EF90      		pop r14
++  96 0088 DF90      		pop r13
++  97 008a CF90      		pop r12
++  98 008c BF90      		pop r11
++  99 008e AF90      		pop r10
++ 100 0090 0895      		ret
++ 102               	.global	list_of_tuple_0_ts_remove_match_lt_now
++ 104               	list_of_tuple_0_ts_remove_match_lt_now:
++ 105 0092 8F92      		push r8
++ 106 0094 9F92      		push r9
++ 107 0096 AF92      		push r10
++ 108 0098 BF92      		push r11
++ 109 009a CF92      		push r12
++ 110 009c DF92      		push r13
++ 111 009e EF92      		push r14
++ 112 00a0 FF92      		push r15
++ 113 00a2 0F93      		push r16
++ 114 00a4 1F93      		push r17
++ 115 00a6 CF93      		push r28
++ 116 00a8 DF93      		push r29
++ 117               	/* prologue: function */
++ 118               	/* frame size = 0 */
++ 119               	/* stack size = 12 */
++ 120               	.L__stack_usage = 12
++ 121 00aa 5C01      		movw r10,r24
++ 122 00ac FC01      		movw r30,r24
++ 123 00ae C081      		ld r28,Z
++ 124 00b0 D181      		ldd r29,Z+1
++ 125 00b2 812C      		mov r8,__zero_reg__
++ 126 00b4 912C      		mov r9,__zero_reg__
++ 127 00b6 00E0      		ldi r16,0
++ 128 00b8 10E0      		ldi r17,0
++ 129 00ba 00C0      		rjmp .L12
++ 130               	.L16:
++ 131 00bc C880      		ld r12,Y
++ 132 00be D980      		ldd r13,Y+1
++ 133 00c0 EA80      		ldd r14,Y+2
++ 134 00c2 FB80      		ldd r15,Y+3
++ 135 00c4 0E94 0000 		call now
++ 136 00c8 C616      		cp r12,r22
++ 137 00ca D706      		cpc r13,r23
++ 138 00cc E806      		cpc r14,r24
++ 139 00ce F906      		cpc r15,r25
++ 140 00d0 00F4      		brsh .L13
++ 141 00d2 8E81      		ldd r24,Y+6
++ 142 00d4 9F81      		ldd r25,Y+7
++ 143 00d6 8114      		cp r8,__zero_reg__
++ 144 00d8 9104      		cpc r9,__zero_reg__
++ 145 00da 01F4      		brne .L14
++ 146 00dc F501      		movw r30,r10
++ 147 00de 9183      		std Z+1,r25
++ 148 00e0 8083      		st Z,r24
++ 149 00e2 00C0      		rjmp .L15
++ 150               	.L14:
++ 151 00e4 F401      		movw r30,r8
++ 152 00e6 9783      		std Z+7,r25
++ 153 00e8 8683      		std Z+6,r24
++ 154               	.L15:
++ 155 00ea CE01      		movw r24,r28
++ 156 00ec 0E94 0000 		call free_tuple_0_t
++ 157 00f0 0F5F      		subi r16,-1
++ 158 00f2 1F4F      		sbci r17,-1
++ 159               	.L13:
++ 160 00f4 9E81      		ldd r25,Y+6
++ 161 00f6 8F81      		ldd r24,Y+7
++ 162 00f8 4E01      		movw r8,r28
++ 163 00fa C92F      		mov r28,r25
++ 164 00fc D82F      		mov r29,r24
++ 165               	.L12:
++ 166 00fe 2097      		sbiw r28,0
++ 167 0100 01F4      		brne .L16
++ 168 0102 C801      		movw r24,r16
++ 169               	/* epilogue start */
++ 170 0104 DF91      		pop r29
++ 171 0106 CF91      		pop r28
++ 172 0108 1F91      		pop r17
++ 173 010a 0F91      		pop r16
++ 174 010c FF90      		pop r15
++ 175 010e EF90      		pop r14
++ 176 0110 DF90      		pop r13
++ 177 0112 CF90      		pop r12
++ 178 0114 BF90      		pop r11
++ 179 0116 AF90      		pop r10
++ 180 0118 9F90      		pop r9
++ 181 011a 8F90      		pop r8
++ 182 011c 0895      		ret
++ 184               		.ident	"GCC: (GNU) 4.7.2"
++DEFINED SYMBOLS
++                            *ABS*:0000000000000000 lists.c
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:2      *ABS*:000000000000003e __SP_H__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:3      *ABS*:000000000000003d __SP_L__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:4      *ABS*:000000000000003f __SREG__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:5      *ABS*:000000000000003b __RAMPZ__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:6      *ABS*:0000000000000000 __tmp_reg__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:7      *ABS*:0000000000000001 __zero_reg__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:11     .text:0000000000000000 list_of_tuple_0_ts_push
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:29     .text:0000000000000014 list_of_tuple_0_ts_remove_match_arg_0
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cce8RkDf.s:104    .text:0000000000000092 list_of_tuple_0_ts_remove_match_lt_now
++
++UNDEFINED SYMBOLS
++equal_payload
++free_tuple_0_t
++now
+Binary files generated/lists.o and generated-hb-rep/lists.o differ
+diff -rupN generated/main.c generated-hb-rep/main.c
+--- generated/main.c	2014-05-08 12:24:59.000000000 +0200
++++ generated-hb-rep/main.c	2014-05-08 12:24:37.000000000 +0200
+@@ -62,8 +62,16 @@ void nodes_process_incoming_case_0(node_
+   if(sha1_compare(signature, 2, sequence, time)) {
+     from->last_seen = now();
+     from->sequence = sequence;
++    _log("HB: received heartbeat %02x %02x : %i\n",
++         (uint8_t)(from->address >> 8),
++         (uint8_t)(from->address),
++         from->fail_count);
+   } else {
+     from->fail_count++;
++    _log("HB: FAILED sha1 check %02x %02x : %i\n",
++         (uint8_t)(from->address >> 8),
++         (uint8_t)(from->address),
++         from->fail_count);
+   }
+ }
+ void nodes_process_incoming_case_1(node_t* me, node_t* sender, node_t* from,
+diff -rupN generated/main.lst generated-hb-rep/main.lst
+--- generated/main.lst	1970-01-01 01:00:00.000000000 +0100
++++ generated-hb-rep/main.lst	2014-05-08 12:24:37.000000000 +0200
+@@ -0,0 +1,1120 @@
++   1               		.file	"main.c"
++   2               	__SP_H__ = 0x3e
++   3               	__SP_L__ = 0x3d
++   4               	__SREG__ = 0x3f
++   5               	__RAMPZ__ = 0x3b
++   6               	__tmp_reg__ = 0
++   7               	__zero_reg__ = 1
++   8               	.global	__gtsf2
++   9               	.global	__addsf3
++  10               	.global	__mulsf3
++  11               	.global	__divsf3
++  12               		.text
++  13               	.global	nodes_process_incoming_case_1
++  15               	nodes_process_incoming_case_1:
++  16 0000 2F92      		push r2
++  17 0002 3F92      		push r3
++  18 0004 4F92      		push r4
++  19 0006 5F92      		push r5
++  20 0008 6F92      		push r6
++  21 000a 7F92      		push r7
++  22 000c 8F92      		push r8
++  23 000e 9F92      		push r9
++  24 0010 AF92      		push r10
++  25 0012 BF92      		push r11
++  26 0014 CF92      		push r12
++  27 0016 DF92      		push r13
++  28 0018 EF92      		push r14
++  29 001a FF92      		push r15
++  30 001c 0F93      		push r16
++  31 001e 1F93      		push r17
++  32 0020 CF93      		push r28
++  33 0022 DF93      		push r29
++  34 0024 CDB7      		in r28,__SP_L__
++  35 0026 DEB7      		in r29,__SP_H__
++  36 0028 2897      		sbiw r28,8
++  37 002a 0FB6      		in __tmp_reg__,__SREG__
++  38 002c F894      		cli
++  39 002e DEBF      		out __SP_H__,r29
++  40 0030 0FBE      		out __SREG__,__tmp_reg__
++  41 0032 CDBF      		out __SP_L__,r28
++  42               	/* prologue: function */
++  43               	/* frame size = 8 */
++  44               	/* stack size = 26 */
++  45               	.L__stack_usage = 26
++  46 0034 7C01      		movw r14,r24
++  47 0036 1A01      		movw r2,r20
++  48 0038 0E94 0000 		call payload_parser_consume_node
++  49 003c 8C01      		movw r16,r24
++  50 003e 0E94 0000 		call payload_parser_consume_float
++  51 0042 4B01      		movw r8,r22
++  52 0044 5C01      		movw r10,r24
++  53 0046 0E94 0000 		call payload_parser_consume_float
++  54 004a 2B01      		movw r4,r22
++  55 004c 3C01      		movw r6,r24
++  56 004e 2E14      		cp r2,r14
++  57 0050 3F04      		cpc r3,r15
++  58 0052 01F4      		brne .+2
++  59 0054 00C0      		rjmp .L1
++  60 0056 26E6      		ldi r18,lo8(102)
++  61 0058 36E6      		ldi r19,lo8(102)
++  62 005a 46E6      		ldi r20,lo8(102)
++  63 005c 5FE3      		ldi r21,lo8(63)
++  64 005e F101      		movw r30,r2
++  65 0060 6589      		ldd r22,Z+21
++  66 0062 7689      		ldd r23,Z+22
++  67 0064 8789      		ldd r24,Z+23
++  68 0066 908D      		ldd r25,Z+24
++  69 0068 0E94 0000 		call __gtsf2
++  70 006c 1816      		cp __zero_reg__,r24
++  71 006e 04F0      		brlt .+2
++  72 0070 00C0      		rjmp .L1
++  73 0072 F101      		movw r30,r2
++  74 0074 C584      		ldd r12,Z+13
++  75 0076 D684      		ldd r13,Z+14
++  76 0078 E784      		ldd r14,Z+15
++  77 007a F088      		ldd r15,Z+16
++  78 007c A701      		movw r20,r14
++  79 007e 9601      		movw r18,r12
++  80 0080 C701      		movw r24,r14
++  81 0082 B601      		movw r22,r12
++  82 0084 0E94 0000 		call __addsf3
++  83 0088 6983      		std Y+1,r22
++  84 008a 7A83      		std Y+2,r23
++  85 008c 8B83      		std Y+3,r24
++  86 008e 9C83      		std Y+4,r25
++  87 0090 20E0      		ldi r18,0
++  88 0092 30E0      		ldi r19,0
++  89 0094 40E0      		ldi r20,0
++  90 0096 50E4      		ldi r21,lo8(64)
++  91 0098 F101      		movw r30,r2
++  92 009a 6189      		ldd r22,Z+17
++  93 009c 7289      		ldd r23,Z+18
++  94 009e 8389      		ldd r24,Z+19
++  95 00a0 9489      		ldd r25,Z+20
++  96 00a2 0E94 0000 		call __addsf3
++  97 00a6 6D83      		std Y+5,r22
++  98 00a8 7E83      		std Y+6,r23
++  99 00aa 8F83      		std Y+7,r24
++ 100 00ac 9887      		std Y+8,r25
++ 101 00ae A301      		movw r20,r6
++ 102 00b0 9201      		movw r18,r4
++ 103 00b2 C501      		movw r24,r10
++ 104 00b4 B401      		movw r22,r8
++ 105 00b6 0E94 0000 		call __addsf3
++ 106 00ba 20E0      		ldi r18,0
++ 107 00bc 30E0      		ldi r19,0
++ 108 00be 40E0      		ldi r20,0
++ 109 00c0 50E4      		ldi r21,lo8(64)
++ 110 00c2 0E94 0000 		call __addsf3
++ 111 00c6 9B01      		movw r18,r22
++ 112 00c8 AC01      		movw r20,r24
++ 113 00ca 6D81      		ldd r22,Y+5
++ 114 00cc 7E81      		ldd r23,Y+6
++ 115 00ce 8F81      		ldd r24,Y+7
++ 116 00d0 9885      		ldd r25,Y+8
++ 117 00d2 0E94 0000 		call __mulsf3
++ 118 00d6 9B01      		movw r18,r22
++ 119 00d8 AC01      		movw r20,r24
++ 120 00da 0E94 0000 		call __addsf3
++ 121 00de A701      		movw r20,r14
++ 122 00e0 9601      		movw r18,r12
++ 123 00e2 0E94 0000 		call __mulsf3
++ 124 00e6 9B01      		movw r18,r22
++ 125 00e8 AC01      		movw r20,r24
++ 126 00ea 6981      		ldd r22,Y+1
++ 127 00ec 7A81      		ldd r23,Y+2
++ 128 00ee 8B81      		ldd r24,Y+3
++ 129 00f0 9C81      		ldd r25,Y+4
++ 130 00f2 0E94 0000 		call __divsf3
++ 131 00f6 7B01      		movw r14,r22
++ 132 00f8 6C01      		movw r12,r24
++ 133 00fa A501      		movw r20,r10
++ 134 00fc 9401      		movw r18,r8
++ 135 00fe 7F2D      		mov r23,r15
++ 136 0100 9D2D      		mov r25,r13
++ 137 0102 0E94 0000 		call __mulsf3
++ 138 0106 9B01      		movw r18,r22
++ 139 0108 AC01      		movw r20,r24
++ 140 010a F801      		movw r30,r16
++ 141 010c 6585      		ldd r22,Z+13
++ 142 010e 7685      		ldd r23,Z+14
++ 143 0110 8785      		ldd r24,Z+15
++ 144 0112 9089      		ldd r25,Z+16
++ 145 0114 0E94 0000 		call __addsf3
++ 146 0118 F801      		movw r30,r16
++ 147 011a 6587      		std Z+13,r22
++ 148 011c 7687      		std Z+14,r23
++ 149 011e 8787      		std Z+15,r24
++ 150 0120 908B      		std Z+16,r25
++ 151 0122 A301      		movw r20,r6
++ 152 0124 9201      		movw r18,r4
++ 153 0126 6E2D      		mov r22,r14
++ 154 0128 7F2D      		mov r23,r15
++ 155 012a 8C2D      		mov r24,r12
++ 156 012c 9D2D      		mov r25,r13
++ 157 012e 0E94 0000 		call __mulsf3
++ 158 0132 9B01      		movw r18,r22
++ 159 0134 AC01      		movw r20,r24
++ 160 0136 F801      		movw r30,r16
++ 161 0138 6189      		ldd r22,Z+17
++ 162 013a 7289      		ldd r23,Z+18
++ 163 013c 8389      		ldd r24,Z+19
++ 164 013e 9489      		ldd r25,Z+20
++ 165 0140 0E94 0000 		call __addsf3
++ 166 0144 F801      		movw r30,r16
++ 167 0146 618B      		std Z+17,r22
++ 168 0148 728B      		std Z+18,r23
++ 169 014a 838B      		std Z+19,r24
++ 170 014c 948B      		std Z+20,r25
++ 171               	.L1:
++ 172               	/* epilogue start */
++ 173 014e 2896      		adiw r28,8
++ 174 0150 0FB6      		in __tmp_reg__,__SREG__
++ 175 0152 F894      		cli
++ 176 0154 DEBF      		out __SP_H__,r29
++ 177 0156 0FBE      		out __SREG__,__tmp_reg__
++ 178 0158 CDBF      		out __SP_L__,r28
++ 179 015a DF91      		pop r29
++ 180 015c CF91      		pop r28
++ 181 015e 1F91      		pop r17
++ 182 0160 0F91      		pop r16
++ 183 0162 FF90      		pop r15
++ 184 0164 EF90      		pop r14
++ 185 0166 DF90      		pop r13
++ 186 0168 CF90      		pop r12
++ 187 016a BF90      		pop r11
++ 188 016c AF90      		pop r10
++ 189 016e 9F90      		pop r9
++ 190 0170 8F90      		pop r8
++ 191 0172 7F90      		pop r7
++ 192 0174 6F90      		pop r6
++ 193 0176 5F90      		pop r5
++ 194 0178 4F90      		pop r4
++ 195 017a 3F90      		pop r3
++ 196 017c 2F90      		pop r2
++ 197 017e 0895      		ret
++ 199               		.section	.rodata.str1.1,"aMS",@progbits,1
++ 200               	.LC0:
++ 201 0000 5B25 3036 		.string	"[%06lu] "
++ 201      6C75 5D20 
++ 201      00
++ 202               	.LC1:
++ 203 0009 4842 3A20 		.string	"HB: received heartbeat %02x %02x : %i\n"
++ 203      7265 6365 
++ 203      6976 6564 
++ 203      2068 6561 
++ 203      7274 6265 
++ 204               	.LC2:
++ 205 0030 4842 3A20 		.string	"HB: FAILED sha1 check %02x %02x : %i\n"
++ 205      4641 494C 
++ 205      4544 2073 
++ 205      6861 3120 
++ 205      6368 6563 
++ 206               		.text
++ 207               	.global	nodes_process_incoming_case_0
++ 209               	nodes_process_incoming_case_0:
++ 210 0180 AF92      		push r10
++ 211 0182 BF92      		push r11
++ 212 0184 DF92      		push r13
++ 213 0186 EF92      		push r14
++ 214 0188 FF92      		push r15
++ 215 018a 0F93      		push r16
++ 216 018c 1F93      		push r17
++ 217 018e CF93      		push r28
++ 218 0190 DF93      		push r29
++ 219 0192 00D0      		rcall .
++ 220 0194 CDB7      		in r28,__SP_L__
++ 221 0196 DEB7      		in r29,__SP_H__
++ 222               	/* prologue: function */
++ 223               	/* frame size = 2 */
++ 224               	/* stack size = 11 */
++ 225               	.L__stack_usage = 11
++ 226 0198 8C01      		movw r16,r24
++ 227 019a 5A01      		movw r10,r20
++ 228 019c 0E94 0000 		call payload_parser_consume_timestamp
++ 229 01a0 E82E      		mov r14,r24
++ 230 01a2 D92E      		mov r13,r25
++ 231 01a4 6983      		std Y+1,r22
++ 232 01a6 7A83      		std Y+2,r23
++ 233 01a8 0E94 0000 		call payload_parser_consume_byte
++ 234 01ac F82E      		mov r15,r24
++ 235 01ae 84E1      		ldi r24,lo8(20)
++ 236 01b0 90E0      		ldi r25,0
++ 237 01b2 0E94 0000 		call payload_parser_consume_bytes
++ 238 01b6 6981      		ldd r22,Y+1
++ 239 01b8 7A81      		ldd r23,Y+2
++ 240 01ba A016      		cp r10,r16
++ 241 01bc B106      		cpc r11,r17
++ 242 01be 01F4      		brne .+2
++ 243 01c0 00C0      		rjmp .L5
++ 244 01c2 F501      		movw r30,r10
++ 245 01c4 2185      		ldd r18,Z+9
++ 246 01c6 2223      		tst r18
++ 247 01c8 01F4      		brne .+2
++ 248 01ca 00C0      		rjmp .L5
++ 249 01cc DF92      		push r13
++ 250 01ce EF92      		push r14
++ 251 01d0 7F93      		push r23
++ 252 01d2 6F93      		push r22
++ 253 01d4 1F92      		push __zero_reg__
++ 254 01d6 FF92      		push r15
++ 255 01d8 1F92      		push __zero_reg__
++ 256 01da 22E0      		ldi r18,lo8(2)
++ 257 01dc 2F93      		push r18
++ 258 01de 9F93      		push r25
++ 259 01e0 8F93      		push r24
++ 260 01e2 0E94 0000 		call sha1_compare
++ 261 01e6 0FB6      		in __tmp_reg__,__SREG__
++ 262 01e8 F894      		cli
++ 263 01ea DEBF      		out __SP_H__,r29
++ 264 01ec 0FBE      		out __SREG__,__tmp_reg__
++ 265 01ee CDBF      		out __SP_L__,r28
++ 266 01f0 8823      		tst r24
++ 267 01f2 01F0      		breq .L7
++ 268 01f4 0E94 0000 		call now
++ 269 01f8 F501      		movw r30,r10
++ 270 01fa 6483      		std Z+4,r22
++ 271 01fc 7583      		std Z+5,r23
++ 272 01fe 8683      		std Z+6,r24
++ 273 0200 9783      		std Z+7,r25
++ 274 0202 F382      		std Z+3,r15
++ 275 0204 0E94 0000 		call clock_get_millis
++ 276 0208 9F93      		push r25
++ 277 020a 8F93      		push r24
++ 278 020c 7F93      		push r23
++ 279 020e 6F93      		push r22
++ 280 0210 80E0      		ldi r24,lo8(.LC0)
++ 281 0212 90E0      		ldi r25,hi8(.LC0)
++ 282 0214 9F93      		push r25
++ 283 0216 8F93      		push r24
++ 284 0218 0E94 0000 		call printf
++ 285 021c F501      		movw r30,r10
++ 286 021e 8181      		ldd r24,Z+1
++ 287 0220 9281      		ldd r25,Z+2
++ 288 0222 2085      		ldd r18,Z+8
++ 289 0224 1F92      		push __zero_reg__
++ 290 0226 2F93      		push r18
++ 291 0228 9C01      		movw r18,r24
++ 292 022a 3327      		clr r19
++ 293 022c 3F93      		push r19
++ 294 022e 2F93      		push r18
++ 295 0230 1F92      		push __zero_reg__
++ 296 0232 9F93      		push r25
++ 297 0234 80E0      		ldi r24,lo8(.LC1)
++ 298 0236 90E0      		ldi r25,hi8(.LC1)
++ 299 0238 00C0      		rjmp .L11
++ 300               	.L7:
++ 301 023a F501      		movw r30,r10
++ 302 023c 8085      		ldd r24,Z+8
++ 303 023e 8F5F      		subi r24,lo8(-(1))
++ 304 0240 8087      		std Z+8,r24
++ 305 0242 0E94 0000 		call clock_get_millis
++ 306 0246 9F93      		push r25
++ 307 0248 8F93      		push r24
++ 308 024a 7F93      		push r23
++ 309 024c 6F93      		push r22
++ 310 024e 80E0      		ldi r24,lo8(.LC0)
++ 311 0250 90E0      		ldi r25,hi8(.LC0)
++ 312 0252 9F93      		push r25
++ 313 0254 8F93      		push r24
++ 314 0256 0E94 0000 		call printf
++ 315 025a F501      		movw r30,r10
++ 316 025c 8181      		ldd r24,Z+1
++ 317 025e 9281      		ldd r25,Z+2
++ 318 0260 2085      		ldd r18,Z+8
++ 319 0262 1F92      		push __zero_reg__
++ 320 0264 2F93      		push r18
++ 321 0266 9C01      		movw r18,r24
++ 322 0268 3327      		clr r19
++ 323 026a 3F93      		push r19
++ 324 026c 2F93      		push r18
++ 325 026e 1F92      		push __zero_reg__
++ 326 0270 9F93      		push r25
++ 327 0272 80E0      		ldi r24,lo8(.LC2)
++ 328 0274 90E0      		ldi r25,hi8(.LC2)
++ 329               	.L11:
++ 330 0276 9F93      		push r25
++ 331 0278 8F93      		push r24
++ 332 027a 0E94 0000 		call printf
++ 333 027e 0FB6      		in __tmp_reg__,__SREG__
++ 334 0280 F894      		cli
++ 335 0282 DEBF      		out __SP_H__,r29
++ 336 0284 0FBE      		out __SREG__,__tmp_reg__
++ 337 0286 CDBF      		out __SP_L__,r28
++ 338               	.L5:
++ 339               	/* epilogue start */
++ 340 0288 0F90      		pop __tmp_reg__
++ 341 028a 0F90      		pop __tmp_reg__
++ 342 028c DF91      		pop r29
++ 343 028e CF91      		pop r28
++ 344 0290 1F91      		pop r17
++ 345 0292 0F91      		pop r16
++ 346 0294 FF90      		pop r15
++ 347 0296 EF90      		pop r14
++ 348 0298 DF90      		pop r13
++ 349 029a BF90      		pop r11
++ 350 029c AF90      		pop r10
++ 351 029e 0895      		ret
++ 353               	.global	handle_transmit
++ 355               	handle_transmit:
++ 356 02a0 CF92      		push r12
++ 357 02a2 DF92      		push r13
++ 358 02a4 EF92      		push r14
++ 359 02a6 FF92      		push r15
++ 360 02a8 0F93      		push r16
++ 361 02aa 1F93      		push r17
++ 362 02ac CF93      		push r28
++ 363 02ae DF93      		push r29
++ 364               	/* prologue: function */
++ 365               	/* frame size = 0 */
++ 366               	/* stack size = 8 */
++ 367               	.L__stack_usage = 8
++ 368 02b0 EC01      		movw r28,r24
++ 369 02b2 7B01      		movw r14,r22
++ 370 02b4 6A01      		movw r12,r20
++ 371 02b6 C801      		movw r24,r16
++ 372 02b8 622F      		mov r22,r18
++ 373 02ba 70E0      		ldi r23,0
++ 374 02bc 0E94 0000 		call make_payload
++ 375 02c0 8C01      		movw r16,r24
++ 376 02c2 C601      		movw r24,r12
++ 377 02c4 0E94 0000 		call nodes_lookup
++ 378 02c8 6C01      		movw r12,r24
++ 379 02ca C701      		movw r24,r14
++ 380 02cc 0E94 0000 		call nodes_lookup
++ 381 02d0 7C01      		movw r14,r24
++ 382 02d2 CE01      		movw r24,r28
++ 383 02d4 0E94 0000 		call nodes_lookup
++ 384 02d8 9801      		movw r18,r16
++ 385 02da A601      		movw r20,r12
++ 386 02dc B701      		movw r22,r14
++ 387               	/* epilogue start */
++ 388 02de DF91      		pop r29
++ 389 02e0 CF91      		pop r28
++ 390 02e2 1F91      		pop r17
++ 391 02e4 0F91      		pop r16
++ 392 02e6 FF90      		pop r15
++ 393 02e8 EF90      		pop r14
++ 394 02ea DF90      		pop r13
++ 395 02ec CF90      		pop r12
++ 396 02ee 0C94 0000 		jmp anonymous16
++ 398               	.global	__floatunsisf
++ 399               	.global	__fixunssfsi
++ 400               		.section	.rodata.str1.1
++ 401               	.LC3:
++ 402 0056 6D65 7472 		.string	"metrics: cycles: %lu (ev:%u us) | xbee: %d frames (avg:%u/tot:%lu) / %i bytes (avg:%u/tot
++ 402      6963 733A 
++ 402      2063 7963 
++ 402      6C65 733A 
++ 402      2025 6C75 
++ 403               		.text
++ 404               	.global	report_metrics
++ 406               	report_metrics:
++ 407 02f2 2F92      		push r2
++ 408 02f4 3F92      		push r3
++ 409 02f6 4F92      		push r4
++ 410 02f8 5F92      		push r5
++ 411 02fa 6F92      		push r6
++ 412 02fc 7F92      		push r7
++ 413 02fe 8F92      		push r8
++ 414 0300 9F92      		push r9
++ 415 0302 AF92      		push r10
++ 416 0304 BF92      		push r11
++ 417 0306 CF92      		push r12
++ 418 0308 DF92      		push r13
++ 419 030a EF92      		push r14
++ 420 030c FF92      		push r15
++ 421 030e 0F93      		push r16
++ 422 0310 1F93      		push r17
++ 423 0312 CF93      		push r28
++ 424 0314 DF93      		push r29
++ 425 0316 00D0      		rcall .
++ 426 0318 00D0      		rcall .
++ 427 031a CDB7      		in r28,__SP_L__
++ 428 031c DEB7      		in r29,__SP_H__
++ 429               	/* prologue: function */
++ 430               	/* frame size = 4 */
++ 431               	/* stack size = 22 */
++ 432               	.L__stack_usage = 22
++ 433 031e 0E94 0000 		call clock_get_millis
++ 434 0322 6B01      		movw r12,r22
++ 435 0324 7C01      		movw r14,r24
++ 436 0326 8091 0000 		lds r24,cycles.2207
++ 437 032a 9091 0000 		lds r25,cycles.2207+1
++ 438 032e A091 0000 		lds r26,cycles.2207+2
++ 439 0332 B091 0000 		lds r27,cycles.2207+3
++ 440 0336 0196      		adiw r24,1
++ 441 0338 A11D      		adc r26,__zero_reg__
++ 442 033a B11D      		adc r27,__zero_reg__
++ 443 033c 8093 0000 		sts cycles.2207,r24
++ 444 0340 9093 0000 		sts cycles.2207+1,r25
++ 445 0344 A093 0000 		sts cycles.2207+2,r26
++ 446 0348 B093 0000 		sts cycles.2207+3,r27
++ 447 034c 8091 0000 		lds r24,next_report.2206
++ 448 0350 9091 0000 		lds r25,next_report.2206+1
++ 449 0354 A091 0000 		lds r26,next_report.2206+2
++ 450 0358 B091 0000 		lds r27,next_report.2206+3
++ 451 035c 892B      		or r24,r25
++ 452 035e 8A2B      		or r24,r26
++ 453 0360 8B2B      		or r24,r27
++ 454 0362 01F4      		brne .L14
++ 455 0364 D701      		movw r26,r14
++ 456 0366 C601      		movw r24,r12
++ 457 0368 8856      		subi r24,104
++ 458 036a 954C      		sbci r25,-59
++ 459 036c AF4F      		sbci r26,-1
++ 460 036e BF4F      		sbci r27,-1
++ 461 0370 8093 0000 		sts next_report.2206,r24
++ 462 0374 9093 0000 		sts next_report.2206+1,r25
++ 463 0378 A093 0000 		sts next_report.2206+2,r26
++ 464 037c B093 0000 		sts next_report.2206+3,r27
++ 465               	.L14:
++ 466 0380 8091 0000 		lds r24,next_report.2206
++ 467 0384 9091 0000 		lds r25,next_report.2206+1
++ 468 0388 A091 0000 		lds r26,next_report.2206+2
++ 469 038c B091 0000 		lds r27,next_report.2206+3
++ 470 0390 8C15      		cp r24,r12
++ 471 0392 9D05      		cpc r25,r13
++ 472 0394 AE05      		cpc r26,r14
++ 473 0396 BF05      		cpc r27,r15
++ 474 0398 00F0      		brlo .+2
++ 475 039a 00C0      		rjmp .L13
++ 476 039c 0E94 0000 		call xbee_reset_counters
++ 477 03a0 7C83      		std Y+4,r23
++ 478 03a2 6B83      		std Y+3,r22
++ 479 03a4 9A83      		std Y+2,r25
++ 480 03a6 8983      		std Y+1,r24
++ 481 03a8 8091 0000 		lds r24,total_frames.2208
++ 482 03ac 9091 0000 		lds r25,total_frames.2208+1
++ 483 03b0 A091 0000 		lds r26,total_frames.2208+2
++ 484 03b4 B091 0000 		lds r27,total_frames.2208+3
++ 485 03b8 2981      		ldd r18,Y+1
++ 486 03ba 3A81      		ldd r19,Y+2
++ 487 03bc 820F      		add r24,r18
++ 488 03be 931F      		adc r25,r19
++ 489 03c0 A11D      		adc r26,__zero_reg__
++ 490 03c2 B11D      		adc r27,__zero_reg__
++ 491 03c4 8093 0000 		sts total_frames.2208,r24
++ 492 03c8 9093 0000 		sts total_frames.2208+1,r25
++ 493 03cc A093 0000 		sts total_frames.2208+2,r26
++ 494 03d0 B093 0000 		sts total_frames.2208+3,r27
++ 495 03d4 8091 0000 		lds r24,total_bytes.2209
++ 496 03d8 9091 0000 		lds r25,total_bytes.2209+1
++ 497 03dc A091 0000 		lds r26,total_bytes.2209+2
++ 498 03e0 B091 0000 		lds r27,total_bytes.2209+3
++ 499 03e4 860F      		add r24,r22
++ 500 03e6 971F      		adc r25,r23
++ 501 03e8 A11D      		adc r26,__zero_reg__
++ 502 03ea B11D      		adc r27,__zero_reg__
++ 503 03ec 8093 0000 		sts total_bytes.2209,r24
++ 504 03f0 9093 0000 		sts total_bytes.2209+1,r25
++ 505 03f4 A093 0000 		sts total_bytes.2209+2,r26
++ 506 03f8 B093 0000 		sts total_bytes.2209+3,r27
++ 507 03fc 8091 0000 		lds r24,samples.2210
++ 508 0400 9091 0000 		lds r25,samples.2210+1
++ 509 0404 A091 0000 		lds r26,samples.2210+2
++ 510 0408 B091 0000 		lds r27,samples.2210+3
++ 511 040c 0196      		adiw r24,1
++ 512 040e A11D      		adc r26,__zero_reg__
++ 513 0410 B11D      		adc r27,__zero_reg__
++ 514 0412 8093 0000 		sts samples.2210,r24
++ 515 0416 9093 0000 		sts samples.2210+1,r25
++ 516 041a A093 0000 		sts samples.2210+2,r26
++ 517 041e B093 0000 		sts samples.2210+3,r27
++ 518 0422 0E94 0000 		call clock_get_millis
++ 519 0426 9F93      		push r25
++ 520 0428 8F93      		push r24
++ 521 042a 7F93      		push r23
++ 522 042c 6F93      		push r22
++ 523 042e 80E0      		ldi r24,lo8(.LC0)
++ 524 0430 90E0      		ldi r25,hi8(.LC0)
++ 525 0432 9F93      		push r25
++ 526 0434 8F93      		push r24
++ 527 0436 0E94 0000 		call printf
++ 528 043a 6091 0000 		lds r22,total_bytes.2209
++ 529 043e 7091 0000 		lds r23,total_bytes.2209+1
++ 530 0442 8091 0000 		lds r24,total_bytes.2209+2
++ 531 0446 9091 0000 		lds r25,total_bytes.2209+3
++ 532 044a 8090 0000 		lds r8,samples.2210
++ 533 044e 9090 0000 		lds r9,samples.2210+1
++ 534 0452 A090 0000 		lds r10,samples.2210+2
++ 535 0456 B090 0000 		lds r11,samples.2210+3
++ 536 045a 2090 0000 		lds r2,total_frames.2208
++ 537 045e 3090 0000 		lds r3,total_frames.2208+1
++ 538 0462 4090 0000 		lds r4,total_frames.2208+2
++ 539 0466 5090 0000 		lds r5,total_frames.2208+3
++ 540 046a 1091 0000 		lds r17,cycles.2207
++ 541 046e 0091 0000 		lds r16,cycles.2207+1
++ 542 0472 7090 0000 		lds r7,cycles.2207+2
++ 543 0476 6090 0000 		lds r6,cycles.2207+3
++ 544 047a 9F93      		push r25
++ 545 047c 8F93      		push r24
++ 546 047e 7F93      		push r23
++ 547 0480 6F93      		push r22
++ 548 0482 A501      		movw r20,r10
++ 549 0484 9401      		movw r18,r8
++ 550 0486 0E94 0000 		call __udivmodsi4
++ 551 048a 3F93      		push r19
++ 552 048c 2F93      		push r18
++ 553 048e FC81      		ldd r31,Y+4
++ 554 0490 FF93      		push r31
++ 555 0492 2B81      		ldd r18,Y+3
++ 556 0494 2F93      		push r18
++ 557 0496 5F92      		push r5
++ 558 0498 4F92      		push r4
++ 559 049a 3F92      		push r3
++ 560 049c 2F92      		push r2
++ 561 049e B101      		movw r22,r2
++ 562 04a0 C201      		movw r24,r4
++ 563 04a2 A501      		movw r20,r10
++ 564 04a4 9401      		movw r18,r8
++ 565 04a6 0E94 0000 		call __udivmodsi4
++ 566 04aa 3F93      		push r19
++ 567 04ac 2F93      		push r18
++ 568 04ae 3A81      		ldd r19,Y+2
++ 569 04b0 3F93      		push r19
++ 570 04b2 8981      		ldd r24,Y+1
++ 571 04b4 8F93      		push r24
++ 572 04b6 C701      		movw r24,r14
++ 573 04b8 B601      		movw r22,r12
++ 574 04ba 0E94 0000 		call __floatunsisf
++ 575 04be 20E0      		ldi r18,0
++ 576 04c0 30E0      		ldi r19,0
++ 577 04c2 4AE7      		ldi r20,lo8(122)
++ 578 04c4 54E4      		ldi r21,lo8(68)
++ 579 04c6 0E94 0000 		call __mulsf3
++ 580 04ca 6B01      		movw r12,r22
++ 581 04cc 7C01      		movw r14,r24
++ 582 04ce 612F      		mov r22,r17
++ 583 04d0 702F      		mov r23,r16
++ 584 04d2 872D      		mov r24,r7
++ 585 04d4 962D      		mov r25,r6
++ 586 04d6 0E94 0000 		call __floatunsisf
++ 587 04da 9B01      		movw r18,r22
++ 588 04dc AC01      		movw r20,r24
++ 589 04de C701      		movw r24,r14
++ 590 04e0 B601      		movw r22,r12
++ 591 04e2 0E94 0000 		call __divsf3
++ 592 04e6 0E94 0000 		call __fixunssfsi
++ 593 04ea 7F93      		push r23
++ 594 04ec 6F93      		push r22
++ 595 04ee 6F92      		push r6
++ 596 04f0 7F92      		push r7
++ 597 04f2 0F93      		push r16
++ 598 04f4 1F93      		push r17
++ 599 04f6 80E0      		ldi r24,lo8(.LC3)
++ 600 04f8 90E0      		ldi r25,hi8(.LC3)
++ 601 04fa 9F93      		push r25
++ 602 04fc 8F93      		push r24
++ 603 04fe 0E94 0000 		call printf
++ 604 0502 8091 0000 		lds r24,next_report.2206
++ 605 0506 9091 0000 		lds r25,next_report.2206+1
++ 606 050a A091 0000 		lds r26,next_report.2206+2
++ 607 050e B091 0000 		lds r27,next_report.2206+3
++ 608 0512 8856      		subi r24,104
++ 609 0514 954C      		sbci r25,-59
++ 610 0516 AF4F      		sbci r26,-1
++ 611 0518 BF4F      		sbci r27,-1
++ 612 051a 8093 0000 		sts next_report.2206,r24
++ 613 051e 9093 0000 		sts next_report.2206+1,r25
++ 614 0522 A093 0000 		sts next_report.2206+2,r26
++ 615 0526 B093 0000 		sts next_report.2206+3,r27
++ 616 052a 0FB6      		in __tmp_reg__,__SREG__
++ 617 052c F894      		cli
++ 618 052e DEBF      		out __SP_H__,r29
++ 619 0530 0FBE      		out __SREG__,__tmp_reg__
++ 620 0532 CDBF      		out __SP_L__,r28
++ 621               	.L13:
++ 622               	/* epilogue start */
++ 623 0534 0F90      		pop __tmp_reg__
++ 624 0536 0F90      		pop __tmp_reg__
++ 625 0538 0F90      		pop __tmp_reg__
++ 626 053a 0F90      		pop __tmp_reg__
++ 627 053c DF91      		pop r29
++ 628 053e CF91      		pop r28
++ 629 0540 1F91      		pop r17
++ 630 0542 0F91      		pop r16
++ 631 0544 FF90      		pop r15
++ 632 0546 EF90      		pop r14
++ 633 0548 DF90      		pop r13
++ 634 054a CF90      		pop r12
++ 635 054c BF90      		pop r11
++ 636 054e AF90      		pop r10
++ 637 0550 9F90      		pop r9
++ 638 0552 8F90      		pop r8
++ 639 0554 7F90      		pop r7
++ 640 0556 6F90      		pop r6
++ 641 0558 5F90      		pop r5
++ 642 055a 4F90      		pop r4
++ 643 055c 3F90      		pop r3
++ 644 055e 2F90      		pop r2
++ 645 0560 0895      		ret
++ 647               		.section	.rodata.str1.1
++ 648               	.LC4:
++ 649 00b6 7365 7269 		.string	"serial link ready..."
++ 649      616C 206C 
++ 649      696E 6B20 
++ 649      7265 6164 
++ 649      792E 2E2E 
++ 650               	.LC5:
++ 651 00cb 7862 6565 		.string	"xbee associated..."
++ 651      2061 7373 
++ 651      6F63 6961 
++ 651      7465 642E 
++ 651      2E2E 00
++ 652               	.LC6:
++ 653 00de 6D79 2061 		.string	"my address : %02x %02x\n"
++ 653      6464 7265 
++ 653      7373 203A 
++ 653      2025 3032 
++ 653      7820 2530 
++ 654               	.LC7:
++ 655 00f6 6D79 2070 		.string	"my parent  : %02x %02x\n"
++ 655      6172 656E 
++ 655      7420 203A 
++ 655      2025 3032 
++ 655      7820 2530 
++ 656               	.LC8:
++ 657 010e 4927 6D20 		.string	"I'm a router, waiting for end-device to join"
++ 657      6120 726F 
++ 657      7574 6572 
++ 657      2C20 7761 
++ 657      6974 696E 
++ 658               		.text
++ 659               	.global	init
++ 661               	init:
++ 662 0562 CF93      		push r28
++ 663 0564 DF93      		push r29
++ 664               	/* prologue: function */
++ 665               	/* frame size = 0 */
++ 666               	/* stack size = 2 */
++ 667               	.L__stack_usage = 2
++ 668 0566 0E94 0000 		call avr_init
++ 669 056a 0E94 0000 		call avr_adc_init
++ 670 056e 0E94 0000 		call clock_init
++ 671 0572 0E94 0000 		call serial_init
++ 672 0576 0E94 0000 		call clock_get_millis
++ 673 057a 9F93      		push r25
++ 674 057c 8F93      		push r24
++ 675 057e 7F93      		push r23
++ 676 0580 6F93      		push r22
++ 677 0582 C0E0      		ldi r28,lo8(.LC0)
++ 678 0584 D0E0      		ldi r29,hi8(.LC0)
++ 679 0586 DF93      		push r29
++ 680 0588 CF93      		push r28
++ 681 058a 0E94 0000 		call printf
++ 682 058e 80E0      		ldi r24,lo8(.LC4)
++ 683 0590 90E0      		ldi r25,hi8(.LC4)
++ 684 0592 0E94 0000 		call puts
++ 685 0596 0E94 0000 		call xbee_init
++ 686 059a 80E0      		ldi r24,lo8(gs(mesh_receive))
++ 687 059c 90E0      		ldi r25,hi8(gs(mesh_receive))
++ 688 059e 0E94 0000 		call xbee_on_receive
++ 689 05a2 0E94 0000 		call xbee_wait_for_association
++ 690 05a6 0E94 0000 		call clock_get_millis
++ 691 05aa 9F93      		push r25
++ 692 05ac 8F93      		push r24
++ 693 05ae 7F93      		push r23
++ 694 05b0 6F93      		push r22
++ 695 05b2 DF93      		push r29
++ 696 05b4 CF93      		push r28
++ 697 05b6 0E94 0000 		call printf
++ 698 05ba 80E0      		ldi r24,lo8(.LC5)
++ 699 05bc 90E0      		ldi r25,hi8(.LC5)
++ 700 05be 0E94 0000 		call puts
++ 701 05c2 0E94 0000 		call xbee_get_nw_address
++ 702 05c6 9093 0000 		sts address+1,r25
++ 703 05ca 8093 0000 		sts address,r24
++ 704 05ce 0E94 0000 		call xbee_get_parent_address
++ 705 05d2 9093 0000 		sts parent+1,r25
++ 706 05d6 8093 0000 		sts parent,r24
++ 707 05da 0E94 0000 		call clock_get_millis
++ 708 05de 9F93      		push r25
++ 709 05e0 8F93      		push r24
++ 710 05e2 7F93      		push r23
++ 711 05e4 6F93      		push r22
++ 712 05e6 DF93      		push r29
++ 713 05e8 CF93      		push r28
++ 714 05ea 0E94 0000 		call printf
++ 715 05ee 8091 0000 		lds r24,address
++ 716 05f2 9091 0000 		lds r25,address+1
++ 717 05f6 9C01      		movw r18,r24
++ 718 05f8 3327      		clr r19
++ 719 05fa 3F93      		push r19
++ 720 05fc 2F93      		push r18
++ 721 05fe 1F92      		push __zero_reg__
++ 722 0600 9F93      		push r25
++ 723 0602 80E0      		ldi r24,lo8(.LC6)
++ 724 0604 90E0      		ldi r25,hi8(.LC6)
++ 725 0606 9F93      		push r25
++ 726 0608 8F93      		push r24
++ 727 060a 0E94 0000 		call printf
++ 728 060e 0E94 0000 		call clock_get_millis
++ 729 0612 9F93      		push r25
++ 730 0614 8F93      		push r24
++ 731 0616 7F93      		push r23
++ 732 0618 6F93      		push r22
++ 733 061a DF93      		push r29
++ 734 061c CF93      		push r28
++ 735 061e 0E94 0000 		call printf
++ 736 0622 8091 0000 		lds r24,parent
++ 737 0626 9091 0000 		lds r25,parent+1
++ 738 062a 9C01      		movw r18,r24
++ 739 062c 3327      		clr r19
++ 740 062e 3F93      		push r19
++ 741 0630 2F93      		push r18
++ 742 0632 1F92      		push __zero_reg__
++ 743 0634 9F93      		push r25
++ 744 0636 80E0      		ldi r24,lo8(.LC7)
++ 745 0638 90E0      		ldi r25,hi8(.LC7)
++ 746 063a 9F93      		push r25
++ 747 063c 8F93      		push r24
++ 748 063e 0E94 0000 		call printf
++ 749 0642 8DB7      		in r24,__SP_L__
++ 750 0644 9EB7      		in r25,__SP_H__
++ 751 0646 8496      		adiw r24,36
++ 752 0648 0FB6      		in __tmp_reg__,__SREG__
++ 753 064a F894      		cli
++ 754 064c 9EBF      		out __SP_H__,r25
++ 755 064e 0FBE      		out __SREG__,__tmp_reg__
++ 756 0650 8DBF      		out __SP_L__,r24
++ 757 0652 0E94 0000 		call mesh_init
++ 758 0656 0898      		cbi 0x1,0
++ 759 0658 8091 0000 		lds r24,parent
++ 760 065c 9091 0000 		lds r25,parent+1
++ 761 0660 0296      		adiw r24,2
++ 762 0662 01F0      		breq .L17
++ 763               	.L20:
++ 764 0664 0E94 0000 		call nodes_init
++ 765 0668 80E0      		ldi r24,lo8(gs(payload_parser_parse))
++ 766 066a 90E0      		ldi r25,hi8(gs(payload_parser_parse))
++ 767 066c 0E94 0000 		call mesh_on_receive
++ 768 0670 80E0      		ldi r24,lo8(gs(handle_transmit))
++ 769 0672 90E0      		ldi r25,hi8(gs(handle_transmit))
++ 770 0674 0E94 0000 		call mesh_on_transmit
++ 771 0678 80E0      		ldi r24,lo8(gs(anonymous18))
++ 772 067a 90E0      		ldi r25,hi8(gs(anonymous18))
++ 773 067c 0E94 0000 		call payload_parser_register_all
++ 774 0680 1F92      		push __zero_reg__
++ 775 0682 81E0      		ldi r24,lo8(1)
++ 776 0684 8F93      		push r24
++ 777 0686 1F92      		push __zero_reg__
++ 778 0688 1F92      		push __zero_reg__
++ 779 068a 1F92      		push __zero_reg__
++ 780 068c C2E0      		ldi r28,lo8(2)
++ 781 068e CF93      		push r28
++ 782 0690 80E0      		ldi r24,lo8(gs(nodes_process_incoming_case_0))
++ 783 0692 90E0      		ldi r25,hi8(gs(nodes_process_incoming_case_0))
++ 784 0694 9F93      		push r25
++ 785 0696 8F93      		push r24
++ 786 0698 0E94 0000 		call payload_parser_register
++ 787 069c 1F92      		push __zero_reg__
++ 788 069e CF93      		push r28
++ 789 06a0 1F92      		push __zero_reg__
++ 790 06a2 1F92      		push __zero_reg__
++ 791 06a4 1F92      		push __zero_reg__
++ 792 06a6 CF93      		push r28
++ 793 06a8 80E0      		ldi r24,lo8(gs(nodes_process_incoming_case_1))
++ 794 06aa 90E0      		ldi r25,hi8(gs(nodes_process_incoming_case_1))
++ 795 06ac 9F93      		push r25
++ 796 06ae 8F93      		push r24
++ 797 06b0 0E94 0000 		call payload_parser_register
++ 798 06b4 8DB7      		in r24,__SP_L__
++ 799 06b6 9EB7      		in r25,__SP_H__
++ 800 06b8 4096      		adiw r24,16
++ 801 06ba 0FB6      		in __tmp_reg__,__SREG__
++ 802 06bc F894      		cli
++ 803 06be 9EBF      		out __SP_H__,r25
++ 804 06c0 0FBE      		out __SREG__,__tmp_reg__
++ 805 06c2 8DBF      		out __SP_L__,r24
++ 806 06c4 00C0      		rjmp .L21
++ 807               	.L17:
++ 808 06c6 0E94 0000 		call clock_get_millis
++ 809 06ca 9F93      		push r25
++ 810 06cc 8F93      		push r24
++ 811 06ce 7F93      		push r23
++ 812 06d0 6F93      		push r22
++ 813 06d2 DF93      		push r29
++ 814 06d4 CF93      		push r28
++ 815 06d6 0E94 0000 		call printf
++ 816 06da 80E0      		ldi r24,lo8(.LC8)
++ 817 06dc 90E0      		ldi r25,hi8(.LC8)
++ 818 06de 0E94 0000 		call puts
++ 819 06e2 0F90      		pop __tmp_reg__
++ 820 06e4 0F90      		pop __tmp_reg__
++ 821 06e6 0F90      		pop __tmp_reg__
++ 822 06e8 0F90      		pop __tmp_reg__
++ 823 06ea 0F90      		pop __tmp_reg__
++ 824 06ec 0F90      		pop __tmp_reg__
++ 825 06ee 00C0      		rjmp .L18
++ 826               	.L19:
++ 827 06f0 8FEF      		ldi r24,lo8(799999)
++ 828 06f2 94E3      		ldi r25,hi8(799999)
++ 829 06f4 2CE0      		ldi r18,hlo8(799999)
++ 830 06f6 8150      		1: subi r24,1
++ 831 06f8 9040      		sbci r25,0
++ 832 06fa 2040      		sbci r18,0
++ 833 06fc 01F4      		brne 1b
++ 834 06fe 00C0      		rjmp .
++ 835 0700 0000      		nop
++ 836 0702 0E94 0000 		call xbee_receive
++ 837               	.L18:
++ 838 0706 0E94 0000 		call mesh_child_connected
++ 839 070a 8823      		tst r24
++ 840 070c 01F0      		breq .L19
++ 841 070e 00C0      		rjmp .L20
++ 842               	.L21:
++ 843               	/* epilogue start */
++ 844 0710 DF91      		pop r29
++ 845 0712 CF91      		pop r28
++ 846 0714 0895      		ret
++ 848               		.section	.rodata.str1.1
++ 849               	.LC9:
++ 850 013b 6C69 6768 		.string	"light reading: %02x %02x\n"
++ 850      7420 7265 
++ 850      6164 696E 
++ 850      673A 2025 
++ 850      3032 7820 
++ 851               		.text
++ 852               	.global	application_step
++ 854               	application_step:
++ 855 0716 0F93      		push r16
++ 856 0718 1F93      		push r17
++ 857 071a CF93      		push r28
++ 858 071c DF93      		push r29
++ 859 071e 00D0      		rcall .
++ 860 0720 CDB7      		in r28,__SP_L__
++ 861 0722 DEB7      		in r29,__SP_H__
++ 862               	/* prologue: function */
++ 863               	/* frame size = 2 */
++ 864               	/* stack size = 6 */
++ 865               	.L__stack_usage = 6
++ 866 0724 8091 0000 		lds r24,next_measurement.2221
++ 867 0728 9091 0000 		lds r25,next_measurement.2221+1
++ 868 072c A091 0000 		lds r26,next_measurement.2221+2
++ 869 0730 B091 0000 		lds r27,next_measurement.2221+3
++ 870 0734 892B      		or r24,r25
++ 871 0736 8A2B      		or r24,r26
++ 872 0738 8B2B      		or r24,r27
++ 873 073a 01F4      		brne .L23
++ 874 073c 0E94 0000 		call clock_get_millis
++ 875 0740 6093 0000 		sts next_measurement.2221,r22
++ 876 0744 7093 0000 		sts next_measurement.2221+1,r23
++ 877 0748 8093 0000 		sts next_measurement.2221+2,r24
++ 878 074c 9093 0000 		sts next_measurement.2221+3,r25
++ 879               	.L23:
++ 880 0750 0E94 0000 		call clock_get_millis
++ 881 0754 0091 0000 		lds r16,next_measurement.2221
++ 882 0758 1091 0000 		lds r17,next_measurement.2221+1
++ 883 075c 2091 0000 		lds r18,next_measurement.2221+2
++ 884 0760 3091 0000 		lds r19,next_measurement.2221+3
++ 885 0764 6017      		cp r22,r16
++ 886 0766 7107      		cpc r23,r17
++ 887 0768 8207      		cpc r24,r18
++ 888 076a 9307      		cpc r25,r19
++ 889 076c 00F0      		brlo .L22
++ 890 076e D901      		movw r26,r18
++ 891 0770 C801      		movw r24,r16
++ 892 0772 8857      		subi r24,120
++ 893 0774 9C4E      		sbci r25,-20
++ 894 0776 AF4F      		sbci r26,-1
++ 895 0778 BF4F      		sbci r27,-1
++ 896 077a 8093 0000 		sts next_measurement.2221,r24
++ 897 077e 9093 0000 		sts next_measurement.2221+1,r25
++ 898 0782 A093 0000 		sts next_measurement.2221+2,r26
++ 899 0786 B093 0000 		sts next_measurement.2221+3,r27
++ 900 078a 289A      		sbi 0x5,0
++ 901 078c 80E0      		ldi r24,0
++ 902 078e 0E94 0000 		call avr_adc_read
++ 903 0792 9983      		std Y+1,r25
++ 904 0794 8A83      		std Y+2,r24
++ 905 0796 0E94 0000 		call clock_get_millis
++ 906 079a 9F93      		push r25
++ 907 079c 8F93      		push r24
++ 908 079e 7F93      		push r23
++ 909 07a0 6F93      		push r22
++ 910 07a2 80E0      		ldi r24,lo8(.LC0)
++ 911 07a4 90E0      		ldi r25,hi8(.LC0)
++ 912 07a6 9F93      		push r25
++ 913 07a8 8F93      		push r24
++ 914 07aa 0E94 0000 		call printf
++ 915 07ae 8A81      		ldd r24,Y+2
++ 916 07b0 1F92      		push __zero_reg__
++ 917 07b2 8F93      		push r24
++ 918 07b4 8981      		ldd r24,Y+1
++ 919 07b6 1F92      		push __zero_reg__
++ 920 07b8 8F93      		push r24
++ 921 07ba 80E0      		ldi r24,lo8(.LC9)
++ 922 07bc 90E0      		ldi r25,hi8(.LC9)
++ 923 07be 9F93      		push r25
++ 924 07c0 8F93      		push r24
++ 925 07c2 0E94 0000 		call printf
++ 926 07c6 9E01      		movw r18,r28
++ 927 07c8 2F5F      		subi r18,-1
++ 928 07ca 3F4F      		sbci r19,-1
++ 929 07cc 42E0      		ldi r20,lo8(2)
++ 930 07ce 60E0      		ldi r22,0
++ 931 07d0 70E0      		ldi r23,0
++ 932 07d2 8091 0000 		lds r24,address
++ 933 07d6 9091 0000 		lds r25,address+1
++ 934 07da 0E94 0000 		call mesh_send
++ 935 07de 2898      		cbi 0x5,0
++ 936 07e0 0FB6      		in __tmp_reg__,__SREG__
++ 937 07e2 F894      		cli
++ 938 07e4 DEBF      		out __SP_H__,r29
++ 939 07e6 0FBE      		out __SREG__,__tmp_reg__
++ 940 07e8 CDBF      		out __SP_L__,r28
++ 941               	.L22:
++ 942               	/* epilogue start */
++ 943 07ea 0F90      		pop __tmp_reg__
++ 944 07ec 0F90      		pop __tmp_reg__
++ 945 07ee DF91      		pop r29
++ 946 07f0 CF91      		pop r28
++ 947 07f2 1F91      		pop r17
++ 948 07f4 0F91      		pop r16
++ 949 07f6 0895      		ret
++ 951               	.global	nodes_scheduler_init
++ 953               	nodes_scheduler_init:
++ 954               	/* prologue: function */
++ 955               	/* frame size = 0 */
++ 956               	/* stack size = 0 */
++ 957               	.L__stack_usage = 0
++ 958 07f8 40E0      		ldi r20,lo8(gs(anonymous5))
++ 959 07fa 50E0      		ldi r21,hi8(gs(anonymous5))
++ 960 07fc 68E8      		ldi r22,lo8(-120)
++ 961 07fe 73E1      		ldi r23,lo8(19)
++ 962 0800 80E0      		ldi r24,0
++ 963 0802 90E0      		ldi r25,0
++ 964 0804 0E94 0000 		call nodes_schedule_all
++ 965 0808 40E0      		ldi r20,lo8(gs(broadcast_heartbeat))
++ 966 080a 50E0      		ldi r21,hi8(gs(broadcast_heartbeat))
++ 967 080c 68EB      		ldi r22,lo8(-72)
++ 968 080e 7BE0      		ldi r23,lo8(11)
++ 969 0810 80E0      		ldi r24,0
++ 970 0812 90E0      		ldi r25,0
++ 971 0814 0E94 0000 		call nodes_schedule_own
++ 972 0818 40E0      		ldi r20,lo8(gs(anonymous23))
++ 973 081a 50E0      		ldi r21,hi8(gs(anonymous23))
++ 974 081c 68E8      		ldi r22,lo8(-120)
++ 975 081e 73E1      		ldi r23,lo8(19)
++ 976 0820 80E0      		ldi r24,0
++ 977 0822 90E0      		ldi r25,0
++ 978 0824 0E94 0000 		call nodes_schedule_all
++ 979 0828 40E0      		ldi r20,lo8(gs(anonymous24))
++ 980 082a 50E0      		ldi r21,hi8(gs(anonymous24))
++ 981 082c 6CE4      		ldi r22,lo8(76)
++ 982 082e 7DE1      		ldi r23,lo8(29)
++ 983 0830 80E0      		ldi r24,0
++ 984 0832 90E0      		ldi r25,0
++ 985 0834 0C94 0000 		jmp nodes_schedule_all
++ 987               		.section	.text.startup,"ax",@progbits
++ 988               	.global	main
++ 990               	main:
++ 991               	/* prologue: function */
++ 992               	/* frame size = 0 */
++ 993               	/* stack size = 0 */
++ 994               	.L__stack_usage = 0
++ 995 0000 0E94 0000 		call init
++ 996 0004 0E94 0000 		call nodes_scheduler_init
++ 997               	.L28:
++ 998 0008 0E94 0000 		call application_step
++ 999 000c 0E94 0000 		call nodes_process
++ 1000 0010 0E94 0000 		call xbee_receive
++ 1001 0014 0E94 0000 		call report_metrics
++ 1002 0018 00C0      		rjmp .L28
++ 1004               		.comm	parent,2,1
++ 1005               		.comm	address,2,1
++ 1006               		.local	cycles.2207
++ 1007               		.comm	cycles.2207,4,1
++ 1008               		.local	next_report.2206
++ 1009               		.comm	next_report.2206,4,1
++ 1010               		.local	total_frames.2208
++ 1011               		.comm	total_frames.2208,4,1
++ 1012               		.local	total_bytes.2209
++ 1013               		.comm	total_bytes.2209,4,1
++ 1014               		.local	samples.2210
++ 1015               		.comm	samples.2210,4,1
++ 1016               		.local	next_measurement.2221
++ 1017               		.comm	next_measurement.2221,4,1
++ 1018               		.ident	"GCC: (GNU) 4.7.2"
++ 1019               	.global __do_copy_data
++ 1020               	.global __do_clear_bss
++DEFINED SYMBOLS
++                            *ABS*:0000000000000000 main.c
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:2      *ABS*:000000000000003e __SP_H__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:3      *ABS*:000000000000003d __SP_L__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:4      *ABS*:000000000000003f __SREG__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:5      *ABS*:000000000000003b __RAMPZ__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:6      *ABS*:0000000000000000 __tmp_reg__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:7      *ABS*:0000000000000001 __zero_reg__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:15     .text:0000000000000000 nodes_process_incoming_case_1
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:209    .text:0000000000000180 nodes_process_incoming_case_0
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:355    .text:00000000000002a0 handle_transmit
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:406    .text:00000000000002f2 report_metrics
++                             .bss:0000000000000000 cycles.2207
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:1007   .bss:0000000000000004 next_report.2206
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:1009   .bss:0000000000000008 total_frames.2208
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:1011   .bss:000000000000000c total_bytes.2209
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:1013   .bss:0000000000000010 samples.2210
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:661    .text:0000000000000562 init
++                            *COM*:0000000000000002 address
++                            *COM*:0000000000000002 parent
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:854    .text:0000000000000716 application_step
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:1015   .bss:0000000000000014 next_measurement.2221
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:953    .text:00000000000007f8 nodes_scheduler_init
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//cclzphK7.s:990    .text.startup:0000000000000000 main
++
++UNDEFINED SYMBOLS
++__gtsf2
++__addsf3
++__mulsf3
++__divsf3
++payload_parser_consume_node
++payload_parser_consume_float
++payload_parser_consume_timestamp
++payload_parser_consume_byte
++payload_parser_consume_bytes
++sha1_compare
++now
++clock_get_millis
++printf
++make_payload
++nodes_lookup
++anonymous16
++__floatunsisf
++__fixunssfsi
++xbee_reset_counters
++__udivmodsi4
++avr_init
++avr_adc_init
++clock_init
++serial_init
++puts
++xbee_init
++mesh_receive
++xbee_on_receive
++xbee_wait_for_association
++xbee_get_nw_address
++xbee_get_parent_address
++mesh_init
++nodes_init
++payload_parser_parse
++mesh_on_receive
++mesh_on_transmit
++anonymous18
++payload_parser_register_all
++payload_parser_register
++xbee_receive
++mesh_child_connected
++avr_adc_read
++mesh_send
++anonymous5
++nodes_schedule_all
++broadcast_heartbeat
++nodes_schedule_own
++anonymous23
++anonymous24
++nodes_process
++__do_copy_data
++__do_clear_bss
+Binary files generated/main.o and generated-hb-rep/main.o differ
+diff -rupN generated/node_t.lst generated-hb-rep/node_t.lst
+--- generated/node_t.lst	1970-01-01 01:00:00.000000000 +0100
++++ generated-hb-rep/node_t.lst	2014-05-08 12:24:39.000000000 +0200
+@@ -0,0 +1,58 @@
++   1               		.file	"node_t.c"
++   2               	__SP_H__ = 0x3e
++   3               	__SP_L__ = 0x3d
++   4               	__SREG__ = 0x3f
++   5               	__RAMPZ__ = 0x3b
++   6               	__tmp_reg__ = 0
++   7               	__zero_reg__ = 1
++   8               		.text
++   9               	.global	init_node
++  11               	init_node:
++  12 0000 CF93      		push r28
++  13 0002 DF93      		push r29
++  14               	/* prologue: function */
++  15               	/* frame size = 0 */
++  16               	/* stack size = 2 */
++  17               	.L__stack_usage = 2
++  18 0004 EC01      		movw r28,r24
++  19 0006 1B82      		std Y+3,__zero_reg__
++  20 0008 0E94 0000 		call now
++  21 000c 6C83      		std Y+4,r22
++  22 000e 7D83      		std Y+5,r23
++  23 0010 8E83      		std Y+6,r24
++  24 0012 9F83      		std Y+7,r25
++  25 0014 1886      		std Y+8,__zero_reg__
++  26 0016 81E0      		ldi r24,lo8(1)
++  27 0018 8987      		std Y+9,r24
++  28 001a 1B86      		std Y+11,__zero_reg__
++  29 001c 1A86      		std Y+10,__zero_reg__
++  30 001e 1C86      		std Y+12,__zero_reg__
++  31 0020 1D86      		std Y+13,__zero_reg__
++  32 0022 1E86      		std Y+14,__zero_reg__
++  33 0024 1F86      		std Y+15,__zero_reg__
++  34 0026 188A      		std Y+16,__zero_reg__
++  35 0028 198A      		std Y+17,__zero_reg__
++  36 002a 1A8A      		std Y+18,__zero_reg__
++  37 002c 1B8A      		std Y+19,__zero_reg__
++  38 002e 1C8A      		std Y+20,__zero_reg__
++  39 0030 1D8A      		std Y+21,__zero_reg__
++  40 0032 1E8A      		std Y+22,__zero_reg__
++  41 0034 1F8A      		std Y+23,__zero_reg__
++  42 0036 188E      		std Y+24,__zero_reg__
++  43               	/* epilogue start */
++  44 0038 DF91      		pop r29
++  45 003a CF91      		pop r28
++  46 003c 0895      		ret
++  48               		.ident	"GCC: (GNU) 4.7.2"
++DEFINED SYMBOLS
++                            *ABS*:0000000000000000 node_t.c
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//ccowNfdA.s:2      *ABS*:000000000000003e __SP_H__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//ccowNfdA.s:3      *ABS*:000000000000003d __SP_L__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//ccowNfdA.s:4      *ABS*:000000000000003f __SREG__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//ccowNfdA.s:5      *ABS*:000000000000003b __RAMPZ__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//ccowNfdA.s:6      *ABS*:0000000000000000 __tmp_reg__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//ccowNfdA.s:7      *ABS*:0000000000000001 __zero_reg__
++/var/folders/gx/c6hmwkz12xjd_83mv1ljcdvc0000gn/T//ccowNfdA.s:11     .text:0000000000000000 init_node
++
++UNDEFINED SYMBOLS
++now
+Binary files generated/node_t.o and generated-hb-rep/node_t.o differ
+diff -rupN generated/nodes-heartbeat.c generated-hb-rep/nodes-heartbeat.c
+--- generated/nodes-heartbeat.c	2014-05-08 12:24:59.000000000 +0200
++++ generated-hb-rep/nodes-heartbeat.c	2014-05-08 12:24:55.000000000 +0200
+@@ -1,10 +1,17 @@
+ #include "nodes-heartbeat.h"
++#include "../lib/log.h"
+ void anonymous5(node_t* node) {
+   if(((now() - node->last_seen) > heartbeat_interval)) {
+     node->fail_count++;
++    _log("HB: late heartbeat %02x %02x : %i\n",
++         (uint8_t)(node->address >> 8),
++         (uint8_t)(node->address),
++         node->fail_count);
+   }
+   if((node->fail_count > max_fail_count)) {
+     node->sane = FALSE;
++    _log("HB: trust lost %02x %02x\n",
++         (uint8_t)(node->address >> 8), (uint8_t)(node->address));
+   }
+ }
+ void broadcast_heartbeat(node_t* node) {
+@@ -15,6 +22,7 @@ void broadcast_heartbeat(node_t* node) {
+   } temp0;
+   temp0.value = time;
+   uint8_t* temp1 = sha1(2, node->sequence, time);
++  _log("HB: sending heartbeat %02x\n", node->sequence);
+   nodes_broadcast(27, 0x00, 0x01, node->sequence, temp0.b[0], temp0.b[1],
+                   temp0.b[2], temp0.b[3], temp1[0], temp1[1], temp1[2], temp1[3], temp1[4],
+                   temp1[5], temp1[6], temp1[7], temp1[8], temp1[9], temp1[10], temp1[11],
+diff -rupN generated/nodes-reputation.c generated-hb-rep/nodes-reputation.c
+--- generated/nodes-reputation.c	2014-05-08 12:24:59.000000000 +0200
++++ generated-hb-rep/nodes-reputation.c	2014-05-08 12:24:37.000000000 +0200
+@@ -1,4 +1,5 @@
+ #include "nodes-reputation.h"
++#include "../lib/log.h"
+ void anonymous16(node_t* from, node_t* hop, node_t* to, payload_t* payload) {
+   if((hop == to)) {
+     return;
+@@ -6,6 +7,9 @@ void anonymous16(node_t* from, node_t* h
+   if((hop->address == 0)) {
+     return;
+   }
++  _log("RP: tracking payload from %02x %02x to %02x %02x : size=%d\n",
++       (uint8_t)(hop->address >> 8), (uint8_t)hop->address,
++       (uint8_t)(to->address  >> 8), (uint8_t)to->address, payload->size);
+   hop->msg_count++;
+   list_of_tuple_0_ts_push(&hop->queue, make_tuple_0_t((now() + forward_timeout),
+                           payload));
+@@ -15,14 +19,29 @@ void anonymous18(node_t* me, node_t* sen
+   if((from != me)) {
+     return;
+   }
+-  list_of_tuple_0_ts_remove_match_arg_0(&sender->queue, payload);
++  if( list_of_tuple_0_ts_remove_match_arg_0(&sender->queue, payload) > 0 ) {
++    _log("RP: cleared payload from %02x %02x : size=%d\n",
++         (uint8_t)(from->address >> 8), (uint8_t)from->address, payload->size);
++  } else {
++    _log("RP: unexpected payload from %02x %02x\n",
++         (uint8_t)(from->address >> 8), (uint8_t)from->address);
++  }
+ }
+ void anonymous23(node_t* node) {
+   uint16_t failures = list_of_tuple_0_ts_remove_match_lt_now(&node->queue);
++  if(failures>0) {
++    _log("RP: late: %02x %02x\n",
++         (uint8_t)(node->address >> 8), (uint8_t)node->address);
++  }
++  _log("RP: validating node %02x %02x : fail=%d/%d : a=%.2f b=%.2f t=%.2f\n",
++       (uint8_t)(node->address >> 8), (uint8_t)node->address,
++       failures, node->msg_count,
++       (double)node->alpha, (double)node->beta, (double)node->trust);
+   node->alpha = (((aging_weight * node->alpha) + node->msg_count) - failures);
+   node->beta = ((aging_weight * node->beta) + failures);
+   node->trust = ((node->alpha + 1) / ((node->alpha + node->beta) + 2));
+   if((node->trust < 0.25)) {
++    _log("RP: trust lost\n");
+     nodes_send(node, 2, 0x00, 0x03);
+   }
+   node->msg_count = 0;
