@@ -612,5 +612,6 @@ activities
 - fixed complete generated reputation scenario (2h30min)
 - performed final measurements and created overview (1h30min)
 
-2014-05-09 (2h/576h)
+2014-05-09 (3h30min/577h30min)
 - finalized IEEE-style article by adding numerical analysis (2h)
+- reviewed article (1h30min)

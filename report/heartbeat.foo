@@ -22,7 +22,7 @@ extend nodes with {
 
 // event handler when receiving data
 after nodes receive
-do function(from, hop, to, payload) {
+do function(me, sender, from, hop, to, payload) {
   case payload {   // payload is a list of bytes
     // an atom and three variables following it
     contains( [ #heartbeat, time:timestamp, sequence,

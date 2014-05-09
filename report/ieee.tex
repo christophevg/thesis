@@ -59,12 +59,12 @@ impact of each algorithm by itself.
 
 A Wireless sensor network (WSN) is constructed using large numbers of
 autonomous embedded devices, called nodes or motes, referring to their
-dust-like scale. Their autonomy is rather absolute, being most of the time
-battery-powered and deployed in open terrain. Examples of WSNs include
-monitoring systems in volcanic regions or flood areas. Preliminary successes
-have now even steered researchers towards the introduction of WSNs in cities
-and homes, thus creating smart cities \cite{schaffers2011smart} and smart homes
-\cite{chan2008review}.
+dust-like availability. Their autonomy is rather absolute, being most of the
+time battery-powered and deployed in open terrain. Examples of WSNs include
+monitoring systems in volcanic regions\cite{werner2006deploying} or flood
+areas\cite{hughes2006gridstix}. Preliminary successes have now even steered
+researchers towards the introduction of WSNs in cities and homes, thus creating
+smart cities \cite{schaffers2011smart} and smart homes \cite{chan2008review}.
 
 Due to their involvement in more and more personal applications, securing these
 nodes should be a priority. When we entrust these autonomous systems with some
@@ -100,7 +100,7 @@ This introduces an inherent problem for IDS. These systems not only typically
 require a lot of resources to store detection information and have to execute
 their algorithms over and over again, but they also want to inspect every
 single network packet that's passing by. This way they not only would like the
-node to be powered-on all the time, they also need constant access to the
+node to be powered-on all the time, they also require constant access to the
 wireless radio, which turns out to be the number one energy-consumer of a node.
 Introducing IDS in a WSN turns out to be a battle for resources.
 
@@ -132,21 +132,21 @@ allowing more algorithms to be added, thus augmenting the barriers, which can
 help to reduce the number of undetected intrusions.
 
 The remainder of this paper proceeds as follows: section \ref{section:related}
-introduces the field of IDS in WSNs. Section \ref{section:problem} describes
-the problem space in detail. Section \ref{section:solution} introduces our
-proposed overall solution, further detailed in sections \ref{section:foo-lang}
-and \ref{section:prototype}, which respectively present our domain specific
-language, FOO-lang, as well as a prototype implementation of a code generator
-framework to complement the language. Section \ref{section:evaluation}
-evaluates the prototype implementation and determines if the theoretical merits
-of introducing FOO-lang, are actually viable. Finally, section
-\ref{section:conclusions} presents our conclusions and proposes topics for
-future research.
+introduces research regarding IDS in WSNs. Section \ref{section:problem}
+describes the problem space in detail. Section \ref{section:solution}
+introduces our proposed overall solution, further detailed in sections
+\ref{section:foo-lang} and \ref{section:prototype}, which respectively present
+our domain specific language, FOO-lang, as well as a prototype implementation
+of a code generator framework to complement the language. Section
+\ref{section:evaluation} evaluates the prototype implementation and determines
+if the theoretical merits of introducing FOO-lang, are actually viable.
+Finally, section \ref{section:conclusions} presents our conclusions and
+proposes topics for future research.
 
 \section{Related Work}
 \label{section:related}
 
-Securing any network initially tries to prevent intrusions. This should of
+When securing any network one tries to prevent intrusions. This should of
 course be the primary concern. But not all intrusions can be prevented and we
 need to fall back on detecting intrusions. In this section we look at recent
 contributions in this field.
@@ -154,12 +154,12 @@ contributions in this field.
 Intrusions of computer networks can take many forms. In the case of WSNs this
 classification needs to be extended even further. In
 \cite{padmavathi2009survey} a good overview of both is presented, showing
-clearly that WSNs suffer from their wireless and broadcast nature. This causes
-many attacks based on e.g. eavesdropping to be nearly undetectable while they
-are happening. Only when the actual intrusions, based on the covertly collected
-information, have happened, the intrusion could possibly be detected based on
-the after-effects. This means that we can't cover the entire spectrum and need
-to focus on what is feasible.
+clearly that WSNs suffer from their wireless and broadcasting nature. This
+causes many attacks based on e.g. eavesdropping to be nearly undetectable while
+they are happening. Only when the actual intrusions, based on the covertly
+collected information, have happened, the intrusion could possibly be detected
+based on the after-effects. This means that we can't cover the entire spectrum
+and need to focus on what is feasible.
 
 Research into IDS in WSNs typically focuses on two major topics that complement
 the architecture of WSNs: the nodes as single entities and the network as a
@@ -219,7 +219,7 @@ amongst others presented in \cite{wood2002denial} and \cite{djenouri2005survey}.
 
 As in many other situations, a group is often stronger than the sum of its
 individual components. This is surely the case for WSNs. Because not all nodes
-are always actively participating in the network, some nodes might miss queues
+are always actively participating in the network, some nodes might miss clues
 that would otherwise lead them to detect intrusions. It is hardly impossible
 for a single node to detect a complex attack by itself. Therefore a second
 important research topic consists of cooperative algorithms to combine
@@ -266,13 +266,13 @@ most ingenious algorithm to perform software-based attestation.
 
 The problem of introducing IDS in WSNs is much broader than simply the
 implementation of a software component. It starts at the very foundations of
-WSNs. In contrast with for example SNORT \cite{roesch1999snort}, there is
-currently no community based collection of algorithms that can be implemented.
-The reason is mostly due to the lack of a central/external location where all
-network traffic can be analyzed out-of-band. It's not possible to create a
-single entity that will monitor the entire WSN as is the case in a classic
-wired network. Therefore, all algorithms typically evolve independently,
-without any cohesion.
+WSNs. In contrast with for example SNORT\cite{roesch1999snort}, the de facto
+standard with respect to IDS in classic networks, there is currently no
+community based collection of algorithms that can be implemented. The reason is
+mostly due to the lack of a central/external location where all network traffic
+can be analyzed out-of-band. It's not possible to create a single entity that
+will monitor the entire WSN as is the case in a classic wired network.
+Therefore, all algorithms typically evolve independently, without any cohesion.
 
 Even more, all of these algorithms lack a common, formal notation. In the case
 of SNORT, a detection language is provided and new signatures are added on a
@@ -304,11 +304,11 @@ than wanted.
 
 The cost to implement multiple algorithms over and over again, due to the need
 to optimize the code's organisation, would soon outweigh the available budget
-of any WSN implementation project. If not, the risk to make mistakes in the
-often complex algorithms or the lack of flexibility to change sets of detection
-algorithms on a regular basis, or simply add a new algorithm in an easy way,
-are all very valid reasons to not go down this road. Then, how can we add some
-form of IDS in WSNs?
+of any WSN implementation project. If not, the risk to make mistakes due to
+misinterpreting the often complex algorithms or the lack of flexibility to
+change sets of detection algorithms on a regular basis, or simply add a new
+algorithm in an easy way, are all very valid reasons to not go down this road.
+Then, how can we add some form of IDS in WSNs?
 
 \section{Proposed Solution}
 \label{section:solution}
@@ -435,7 +435,7 @@ scheduled or attached to certain events that happen on the collection of nodes.
 This way, the intended loop is actually abstracted to its functional meaning
 and can be handled and combined with other execution strategies.
 
-This is the actual core of the language and it is also where its named derived
+This is the actual core of the language and it is also where its name derived
 from: Function Organization Optimization.
 
 A second important feature of the language is that it should feel natural.
@@ -515,8 +515,8 @@ generator.
 
 We have built a prototype code generator for FOO-lang using Python and ANTLR
 \cite{antlr3}. The implementation tries to be as generic as possible and is
-based on transformations of abstract syntax trees (AST) and a semantic model
-\cite{fowler2010domain}.
+based on transformations using the visitor pattern of abstract syntax trees
+(AST) and a semantic model \cite{fowler2010domain}.
 
 The FOO-lang code is parsed using a parser generated by the ANTLR tool. This
 produces an AST, which in its turn is transformed into a semantic model using a
@@ -551,10 +551,10 @@ and conforming to the target platform.
 \label{section:evaluation}
 
 To evaluate the prototype we have chosen to use a system based on the Atmel
-ATMEGA1284p micro-controller \cite{datasheet:atmega1284p} and the Digi XBEE S2
-Zigbee module \cite{datasheet:xbee}. To drive the hardware a minimalistic
-library was used, wrapping the technical calls to the components in more easy
-to use functions.
+ATMEGA1284p micro-controller \cite{datasheet:atmega1284p} and the Digi XBee S2
+Zigbee module \cite{manual:xbee}. To drive the hardware a minimalistic library
+was used, wrapping the technical calls to the components in more easy to use
+functions.
 
 The reason for this at first sight unusual setup is simple: relying on basic
 hardware and software allows us to validate that the generator is capable of
@@ -572,23 +572,23 @@ directly connected to a computer via a USB break-out board, allowing serial
 access via a terminal.
 
 We started from a basic application that measures light intensity and reports
-it to the coordinator. The application was written manually and was also
-generated. On top of this baseline we added two intrusion detection related
-algorithms: a heartbeat, that allows nodes to validate each other's continuous
-presence, and a reputation-building algorithm that checks if a parent node is
-cooperative and actually forwards messages with a destination further down the
-network.
+it to the coordinator. The application was both written manually and generated.
+On top of this baseline we added two intrusion detection related algorithms: a
+heartbeat, that allows nodes to validate each other's continuous presence, and
+a reputation-building algorithm that checks if a parent node is cooperative and
+actually forwards messages with a destination further down the
+network\cite{ganeriwal2008reputation}.
 
 Three criteria were evaluated: the image size of the resulting compiled code,
 the network usage in number of frames and bytes and the time required to
-perform the entire event loop. These metrics were collected in four situations:
-without IDS algorithms, with a heartbeat, with reputation-tracking and with
-both algorithms implemented.
+perform once cycle of the event loop. These metrics were collected in four
+situations: without IDS algorithms, with a heartbeat, with reputation-tracking
+and with both algorithms implemented.
 
 In case of the manual implementation, both algorithms were constructed as
-standalone modules, that were sequentially included in the base-application.
-The code generator was provided with FOO-lang descriptions of the algorithms
-and generated all four cases.
+standalone modules and sequentially included in the base-application. The code
+generator was provided with FOO-lang descriptions of the algorithms and
+generated all four cases.
 
 Before looking at the results, it is very important to put these results in a
 proper perspective. Comparing manually written code to generated code is no
@@ -601,7 +601,7 @@ code bases are constructed with the same intentions and practices. We believe
 we have achieved this and have taken honest decisions while constructing the
 implementations, making them reasonably comparable. Numerical analysis of the
 implementation allows us to get at least a preliminary supporting confirmation
-with respect to our thesis proposition.
+with respect to our proposition.
 
 Tables \ref{tbl:manual} and \ref{tbl:generated} show the collected data
 respectively for the manual and the generated implementation. The base case is
@@ -649,7 +649,7 @@ higher than simply the sum.
 In the case of the generated implementation, this no longer holds: although
 that even the individual increases due to adding a single algorithm are higher
 than in the manual case, the result for the implementation of both algorithms
-is less than the sum of both. Here we clearly see the effect of reuse of the
+is less than the sum of both. Here we clearly see the effect of reusing the
 framework that comes with FOO-lang. The same goes for all other metrics. Maybe
 most remarkable is the effect on the time of one event loop cycle: both
 algorithms by itself add 150\% with respect to the base case, but when
@@ -680,7 +680,7 @@ algorithms is also presented.
 
 When comparing the results of both implementations we first can conclude that
 the generator produces exactly the same code for the base case. We couldn't
-measure and real differences between both implementation.
+measure any real differences between both implementations.
 
 Secondly, we see that the framework that comes with the generated code adds to
 the size of the resulting image. But the cost is almost constant and is
@@ -706,8 +706,9 @@ interesting improvements.
 WSN nodes typically respond to events in their environment or perform their
 tasks at clearly scheduled intervals. Applying a language that has these
 concepts at its core, allows focus on the bare essence and reuse of best
-practices at the generation level. The rather limited functional domain of WSNs
-proofs to be a wonderful candidate for applying code generation techniques.
+practices at the generation level. The rather limited functional domain of IDS
+in WSNs proofs to be a wonderful candidate for applying code generation
+techniques.
 
 The ideas proposed in this paper and the prototype are foundations. They show
 that code generation techniques can be used to combine different, independent
