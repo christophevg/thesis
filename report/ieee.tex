@@ -15,9 +15,9 @@
 % additional packages and utility commands
 \usepackage{minted}
 
-\usepackage{lineno}
-\setlength\linenumbersep{1mm}
-\linenumbers
+% \usepackage{lineno}
+% \setlength\linenumbersep{1mm}
+% \linenumbers
 
 \begin{document}
 
@@ -571,27 +571,134 @@ completely autonomous nodes, while the coordinator consisted of an XBee module,
 directly connected to a computer via a USB break-out board, allowing serial
 access via a terminal.
 
-The end-device implements the heartbeat and reputation algorithms and monitors
-if the router actually forwards its messages. Next to the IDS logic a
-light-sensor is being processed and its readings are forwarded to the
-coordinator.
+We started from a basic application that measures light intensity and reports
+it to the coordinator. The application was written manually and was also
+generated. On top of this baseline we added two intrusion detection related
+algorithms: a heartbeat, that allows nodes to validate each other's continuous
+presence, and a reputation-building algorithm that checks if a parent node is
+cooperative and actually forwards messages with a destination further down the
+network.
 
-The router is also implemented using both algorithms, to allow both the
-end-node and the router to monitor each others' heartbeat. For the router
-different implementations were also constructed to allow testing with a fully
-cooperating router, a partially failing router and a non-cooperative router.
+Three criteria were evaluated: the image size of the resulting compiled code,
+the network usage in number of frames and bytes and the time required to
+perform the entire event loop. These metrics were collected in four situations:
+without IDS algorithms, with a heartbeat, with reputation-tracking and with
+both algorithms implemented.
 
-Two aspects were to be evaluated: functionality and resource usage. On a
-functional level, the nodes performed as proposed by the algorithms. Heartbeats
-were correctly broadcast and monitored, reputation computations were performed
-as expected.
+In case of the manual implementation, both algorithms were constructed as
+standalone modules, that were sequentially included in the base-application.
+The code generator was provided with FOO-lang descriptions of the algorithms
+and generated all four cases.
 
-With respect to resource usage, we analyzed the generated source code to
-confirm that the generated constructions indeed were better than simple
-sequential implementations. At run-time the content of the packets that were
-sent showed that where possible multiple messages were aggregated into a single
-packet, thus reducing some of the added chattiness caused by the introduction
-of the IDS algorithms.
+Before looking at the results, it is very important to put these results in a
+proper perspective. Comparing manually written code to generated code is no
+exact science. It can always be argued that the quality of the two code bases
+is not comparable and that the manual code always can be improved. This is not
+only true, but is also our personal believe.
+
+Still it might be interesting to look at the numbers anyway, given that both
+code bases are constructed with the same intentions and practices. We believe
+we have achieved this and have taken honest decisions while constructing the
+implementations, making them reasonably comparable. Numerical analysis of the
+implementation allows us to get at least a preliminary supporting confirmation
+with respect to our thesis proposition.
+
+Tables \ref{tbl:manual} and \ref{tbl:generated} show the collected data
+respectively for the manual and the generated implementation. The base case is
+presented in absolute values, while the implementations with the added
+algorithms are presented as relative values.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{lrrrr}
+  \hline
+      & base & heartbeat & reputation & both\\
+  \hline
+  size (bytes) & 10500 & 148\% & 127\% & 175\%\\
+  frames & 20 & 255\% & 160\% & 315\%\\
+  bytes & 476 & 406\% & 181\% & 487\%\\
+  time ($\mu$s) & 48 & 196\% & 183\% & 310\%\\
+  \hline
+  \end{tabular}
+  \caption{Results for the manual implementation.}
+  \label{tbl:manual}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{lrrrr}
+  \hline
+         & base & heartbeat & reputation & both\\
+  \hline
+  size (bytes) & 10496 & 175\% & 156\% & 200\%\\
+  frames & 20 & 245\% & 160\% & 275\%\\
+  bytes & 476 & 399\% & 186\% & 454\%\\
+  time ($\mu$s) & 48 & 252\% & 252\% & 288\%\\
+  \hline
+  \end{tabular}
+  \caption{Results for the generated implementation.}
+  \label{tbl:generated}
+\end{table}
+
+From these raw results, we learn that adding algorithms manually to the
+base-application, results in linear increases. The impact of both algorithms is
+simply the sum of the impact of each algorithm by itself. In the case of the
+time to perform one cylce of the event loop, the total time is even a bit
+higher than simply the sum.
+
+In the case of the generated implementation, this no longer holds: although
+that even the individual increases due to adding a single algorithm are higher
+than in the manual case, the result for the implementation of both algorithms
+is less than the sum of both. Here we clearly see the effect of reuse of the
+framework that comes with FOO-lang. The same goes for all other metrics. Maybe
+most remarkable is the effect on the time of one event loop cycle: both
+algorithms by itself add 150\% with respect to the base case, but when
+combined, the impact hardly increases. Here we learn that the introduced
+framework is responsible for the initial overhead, but it clearly pays for
+itself when adding more algorithms.
+
+Table \ref{tbl:summary} compares the two situations by subtracting the manual
+case from the generated case, showing the positive or negative impact of the
+generated code. A relative value for the entire implementation with both
+algorithms is also presented.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{lrrrrr}
+  \hline
+                & base & heartbeat & reputation & both  & result \\
+  \hline
+  size (bytes)  & -4    & 2822     & 3070       & 2664  & 115\%  \\
+  frames        & 0     & -2       & 0          & -8    & 87\%   \\
+  bytes         & 0     & -36      & 24         & -156  & 93\%   \\
+  time ($\mu$s) & 0     & 27       & 33         & -11   & 93\%   \\
+  \hline
+  \end{tabular}
+  \caption{Comparison of both implementations.}
+  \label{tbl:summary}
+\end{table}
+
+When comparing the results of both implementations we first can conclude that
+the generator produces exactly the same code for the base case. We couldn't
+measure and real differences between both implementation.
+
+Secondly, we see that the framework that comes with the generated code adds to
+the size of the resulting image. But the cost is almost constant and is
+relatively lower when algorithms are combined. With roughly 3KB of additional
+overhead, or 15\% in this simple case, this impact is affordable.
+
+From a functional point of view, the generated code lives up to the
+expectactions: both the number of frames as the bytes sent benefit from well
+organized code and reuse of a common framework.
+
+Finally we see that both algorithms by itself add an equal amount of time to
+the processing of a single event loop cycle, but when combined, the event loop
+is about 7\% faster than in the manual case.
+
+Without any effort to optimize the framework code, nor leveraging knowledge
+about the specific algorithms, this very basic generated code shows that the
+proposed principles are not only theoretically feasible but actually result in
+interesting improvements.
 
 \section{Conclusions and Future Work}
 \label{section:conclusions}

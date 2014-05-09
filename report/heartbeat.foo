@@ -2,10 +2,9 @@
 module heartbeat
 
 // basic constants, types are inferred
-const heartbeat_interval     = 1000    // 1000 ms
-const max_last_seen_interval = 1000
-const max_fail_count         =    3
+const heartbeat_interval     = 3000    // 3 sec
 const validation_interval    = 5000
+const max_fail_count         =    3
 
 // imports external functionality
 // requires type information
@@ -15,21 +14,23 @@ from time   import now()                  : timestamp
 
 // nodes can be extended with module specific data
 extend nodes with {
-  last_seen  : timestamp = 0
+  sequence   : byte      = 0
+  last_seen  : timestamp = now()
   fail_count : byte      = 0
   trust      : boolean   = true
-  sequence   : byte      = 0
 }
 
 // event handler when receiving data
 after nodes receive
 do function(from, hop, to, payload) {
-  // payload is a list of bytes
-  case payload {
+  case payload {   // payload is a list of bytes
     // an atom and three variables following it
     contains( [ #heartbeat, time:timestamp, sequence,
                 signature:byte[20] ] )
     {
+      // skip our own or from untrusted
+      if(from == me or !from.trust) { return }
+
       // validate signature
       if(sha1_cmp(signature, [sequence, time])) {
         from.last_seen = time
@@ -64,7 +65,6 @@ function broadcast_heartbeat(node) {
   node.sequence++
 }
 
-// our own node will broadcast a heartbeat at every
-// heartbeat interval
+// broadcast a heartbeat at every heartbeat interval
 @every(heartbeat_interval)
 with nodes.self do broadcast_heartbeat
