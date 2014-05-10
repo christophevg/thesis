@@ -245,8 +245,10 @@ Het CIA model is zonder meer een belangrijke basis, maar er ontbreken nog veel
 belangrijke aspecten. In \citep{rfc:3198} wordt een gestandaardiseerde
 terminologie voorgesteld voor het defini\"eren van een beveiligingsbeleid.
 Naast de drie hoofdpijlers van het CIA model vinden we zo ook nog een ander
-belangrijk model, namelijk het AAA (Engels: \emph{triple A}): authenticatie,
-autorisatie en vaststellen (Engels: \emph{accounting})
+belangrijk model, namelijk het AAA model voor autorisatie bij
+internet-gerelateerde diensten (Engels: \emph{triple A}) \citep{rfc:2904}. De
+afkorting staat voor authenticatie, autorisatie en vaststellen (Engels:
+\emph{accounting})
 
 Via \emph{authenticatie} kan de identiteit van een gebruiker of apparaat
 vastgesteld worden, zodat eenduidig kan bepaald worden van wie bv. een bericht
@@ -259,16 +261,19 @@ verfijnen en eventueel bij te sturen.
 
 In het kader van beveiliging wordt typisch ook gesproken over een \emph{beleid}
 (Engels: \emph{policy}), waarin de regels waaraan alle spelers binnen het te
-beveiligen domein zich aan dienen te houden of moeten aan gehouden worden.
-Componenten zoals een \emph{policy decision point} (PDP) en een \emph{policy
-enforcement point} (PEP) worden tevens ge\"introduceerd om respectievelijk de
-verantwoordelijkheid voor het beslissen op basis van en uitvoeren van deze
-beslissingen volgens het beleid aan te duiden.
+beveiligen domein zich aan dienen te houden of moeten aan gehouden worden. Het
+AAA model hanteert een beleid as zijn centrale gegeven en definieert
+componenten zoals een \emph{policy information point} (PIP), \emph{policy
+decision point} (PDP) en een \emph{policy enforcement point} (PEP). Deze
+componenten kunnen aanduiden waar de verantwoordelijkheid ligt om
+respectievelijk de juiste informatie aan te leveren omtrent het beleid,
+beslissingen te treffen volgens het beleid en deze beslissingen effectief uit
+te voeren.
 
-Naast deze zes aspecten, is er ook nog het principe van onweerlegbaarheid
-(Engels: \emph{nonrepudiation}). Door garanties omtrent
-\emph{onweerlegbaarheid} in te bouwen, kan bv. een ontvanger er zeker van zijn
-dat een zender van een bericht effectief dit bericht verstuurd heeft.
+Naast deze aspecten, is er ook nog het principe van onweerlegbaarheid (Engels:
+\emph{nonrepudiation}). Door garanties omtrent \emph{onweerlegbaarheid} in te
+bouwen, kan bv. een ontvanger er zeker van zijn dat een zender van een bericht
+effectief dit bericht verstuurd heeft.
 
 Een aantal gekende technieken bieden klassiek oplossingen voor verschillende
 van de hoger vermelde principes: Digitale handtekeningen kunnen helpen bij het
@@ -279,11 +284,11 @@ publieke en private sleutels de \emph{authenticiteit} bevestigen, omdat
 berichten slechts kunnen versleuteld worden met de overeenkomstige sleutel van
 het paar.
 
-In hoofdstuk \ref{chapter:achtergrond} gaan we dieper in op de typische
-eigenschappen van sensorknopen en belichten we tal van beveiligingsrisico's
-waaraan DSN blootgesteld zijn. Aan de hand van de zonet beschreven principes
-zullen we zien dat DSN inherent moeilijk te beveiligen zijn en dat het nagenoeg
-onmogelijk is om inbraken te verijdelen.
+In hoofdstukken \ref{chapter:achtergrond} en \ref{chapter:probleemstelling}
+gaan we dieper in op de typische eigenschappen van sensorknopen en belichten we
+tal van beveiligingsrisico's waaraan DSN blootgesteld zijn. Aan de hand van de
+zonet beschreven principes zullen we zien dat DSN inherent moeilijk te
+beveiligen zijn en dat het nagenoeg onmogelijk is om inbraken te verijdelen.
 
 \subsection{Inbraakdetectie}
 \label{subsection:detection}

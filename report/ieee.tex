@@ -32,7 +32,7 @@ and Code Generation Techniques}
 
 \author{\IEEEauthorblockN{Christophe Van Ginneken, Jef Maerien, Christophe
 Huygens, Danny Hughes, Wouter Joosen}%
-\IEEEauthorblockA{iMinds - DistriNet - KULeuven\\
+\IEEEauthorblockA{iMinds - DistriNet - KU Leuven\\
 B-3001, Leuven, Belgium\\
 Christophe.VanGinneken@student.kuleuven.be,\{firstname.lastname\}@cs.kuleuven.be}}
 
@@ -425,11 +425,11 @@ important that the language restricts the user without limiting his
 expressiveness or making certain expressions unintuitive.
 
 Starting from this last requirement, one of the most important things that
-should not be available is \emph{loops}. If we want to control the way lists of
-data are handled, we need control over the loops targeting that data. In case
-of this specific domain, data is centralized around \emph{nodes}, so loops are
-typically targeting \emph{nodes}. To meet this restriction but still offer the
-user a way to functionally handle nodes, scheduling and events are
+should not be available are \emph{loops}. If we want to control the way lists
+of data are handled, we need control over the loops targeting that data. In
+case of this specific domain, data is centralized around \emph{nodes}, so loops
+are typically targeting \emph{nodes}. To meet this restriction but still offer
+the user a way to functionally handle nodes, scheduling and events are
 introduced. Instead of explicitly constructing a loop, functionality can be
 scheduled or attached to certain events that happen on the collection of nodes.
 This way, the intended loop is actually abstracted to its functional meaning
@@ -451,14 +451,14 @@ objects though. The \emph{nodes} domain controls the availability of these
 objects, creating them and providing them to the functions that are defined.
 
 To avoid typical constructions that require loops, the concept of pattern
-matching is introduced. Here a pattern of non-variables and variables can be
+matching is introduced. A pattern of non-variables and variables can be
 provided to functions that support them. If such a function can match the
 non-variable part of the pattern, the variables in the pattern take on the
 corresponding values of the data against which the match was performed. It is
 obvious that this will typically be used to analyze incoming data when
-communicating between nodes. Often used in conjunction with this functionality
-are list literals, that allow to combine different (non-)variables. So these
-are also available in FOO-lang.
+communicating between nodes. List literals are often used in conjunction with
+this functionality and allow to combine different (non-)variables; these are
+therefore also available in FOO-lang.
 
 To allow complex code to be introduced, FOO-lang provides a way to import
 external functionality. This feature is provided through a statement that
@@ -527,7 +527,7 @@ to easily populate the model.
 
 The initial model is an exact representation of the FOO-lang code that was
 parsed. This means for example that not all types are well defined. A second
-visitor, now targeting the semantic model, is used to check all types and try
+visitor, now targeting the semantic model, is used to check all types and tries
 to infer those that are still marked \emph{unknown}.
 
 With all types known, the model is semantically complete and we can move to the
@@ -550,7 +550,7 @@ and conforming to the target platform.
 \section{Evaluation}
 \label{section:evaluation}
 
-To evaluate the prototype we have chosen to use a system based on the Atmel
+To evaluate the prototype we chose to use a system based on the Atmel
 ATMEGA1284p micro-controller \cite{datasheet:atmega1284p} and the Digi XBee S2
 Zigbee module \cite{manual:xbee}. To drive the hardware a minimalistic library
 was used, wrapping the technical calls to the components in more easy to use
@@ -572,7 +572,7 @@ directly connected to a computer via a USB break-out board, allowing serial
 access via a terminal.
 
 We started from a basic application that measures light intensity and reports
-it to the coordinator. The application was both written manually and generated.
+it to the coordinator. The application was written both manually and generated.
 On top of this baseline we added two intrusion detection related algorithms: a
 heartbeat, that allows nodes to validate each other's continuous presence, and
 a reputation-building algorithm that checks if a parent node is cooperative and
@@ -586,24 +586,23 @@ situations: without ID algorithms, with a heartbeat, with reputation-tracking
 and with both algorithms implemented.
 
 In case of the manual implementation, both algorithms were constructed as
-standalone modules and sequentially included in the base-application. The code
-generator was provided with FOO-lang descriptions of the algorithms and
-generated all four cases.
+standalone modules and sequentially called from the base-application's
+event loop. The code generator was provided with FOO-lang descriptions of the
+algorithms and generated all four cases.
 
-Before looking at the results, it is very important to put these results in a
+Before reviewing the results, it is very important to put these results in a
 proper perspective. Comparing manually written code to generated code is no
-exact science. It can always be argued that the quality of the two code bases
-is not comparable and that the manual code always can be improved. This is not
-only true, but is also our personal believe.
+exact science. One can always argue that the quality of the two code bases is
+not comparable and that the manual code always can be improved.
 
-Still it might be interesting to look at the numbers anyway, given that both
-code bases are constructed with the same intentions and practices. We believe
-we have achieved this and have taken honest decisions while constructing the
-implementations, making them reasonably comparable. Numerical analysis of the
-implementation allows us to get at least a preliminary supporting confirmation
-with respect to our proposition.
+Still it might be interesting to look at the numbers, given that both code
+bases are constructed with the same intentions and practices. We believe we
+have achieved this and have taken honest decisions while constructing the
+implementations, making them comparable. Numerical analysis of the
+implementation offers us a preliminary estimation of the effect of our proposed
+solution.
 
-Tables \ref{tbl:manual} and \ref{tbl:generated} show the collected data
+corollaryTables \ref{tbl:manual} and \ref{tbl:generated} show the collected data
 respectively for the manual and the generated implementation. The base case is
 presented in absolute values, while the implementations with the added
 algorithms are presented as relative values.
@@ -641,10 +640,10 @@ algorithms are presented as relative values.
 \end{table}
 
 From these raw results, we learn that adding algorithms manually to the
-base-application, results in linear increases. The impact of both algorithms is
-simply the sum of the impact of each algorithm by itself. In the case of the
-time to perform one cylce of the event loop, the total time is even a bit
-higher than simply the sum.
+base-application, results in a cumulative increase. The impact of both
+algorithms is simply the sum of the impact of each algorithm by itself. In the
+case of the time required to execute one cycle of the event loop, the total
+time is even a bit higher than simply the sum.
 
 In the case of the generated implementation, this no longer holds: although
 that even the individual increases due to adding a single algorithm are higher
@@ -658,9 +657,9 @@ framework is responsible for the initial overhead, but it clearly pays for
 itself when adding more algorithms.
 
 Table \ref{tbl:summary} compares the two situations by subtracting the manual
-case from the generated case, showing the positive or negative impact of the
-generated code. A relative value for the entire implementation with both
-algorithms is also presented.
+case from the generated case, showing the impact of the code generation. A
+relative value for the entire implementation with both algorithms is also
+presented.
 
 \begin{table}[H]
   \centering
@@ -693,7 +692,7 @@ organized code and reuse of a common framework.
 
 Finally we see that both algorithms by itself add an equal amount of time to
 the processing of a single event loop cycle, but when combined, the event loop
-is about 7\% faster than in the manual case.
+is about 7\% faster compared to the manual case.
 
 Without any effort to optimize the framework code, nor leveraging knowledge
 about the specific algorithms, this very basic generated code shows that the
@@ -724,12 +723,12 @@ prototype level up to production quality. Next, many optimizations can be added
 to it: functional code inlining, continuation-passing style code
 structuring,\dots
 
-But on a higher level, other challenges are also prominently present: having
+On a higher level, other challenges are also prominently present: having
 formal, platform-independent descriptions of algorithms, allows for simulation
 and thorough analysis of their behaviour, both by themselves and in
 combinations. Finding ways to combine as many algorithms as possible in a
 single generated solution will enable implementers of WSNs to add a decent
-level of intrusion detection to their solutions with almost a single click.
+level of intrusion detection to their solutions.
 
 Another interesting track is that of policy-based generation and deployment.
 Different nodes in the network might benefit from different configurations of

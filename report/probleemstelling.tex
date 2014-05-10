@@ -5,35 +5,69 @@
 
 Uit de bespreking van de context waarin deze thesis kadert, wordt duidelijk dat
 inbraakdetectie bij draadloze sensornetwerken een dimensie complexer kan zijn
-dan de overeenkomstige oplossingen in een klassiek netwerk. Ook de vergelijking
-met de reeds bestudeerde mobiele ad-hoc netwerken houdt niet stand. De
-bestaande technologie\"en en oplossingen kunnen blijkbaar moeilijk rechtstreeks
-toegepast worden.
+dan de overeenkomstige oplossingen in een klassiek computer netwerk. In dit
+hoofdstuk nemen we het volledige probleemgebied in beschouwing en duiden we de
+essenti\"ele pijnpunten aan. Op basis van deze situatieschets zullen we in het
+volgende hoofdstuk dan een oplossing voorstellen die beantwoordt aan deze
+probleemstelling.
 
-In dit hoofdstuk wil ik deze probleemstelling in detail bestuderen. Hierbij
-vertrekken we in \ref{section:motes} van het lijdend voorwerp van deze thesis,
-de sensorknoop. Wat maakt dit embedded systeem zo verschillend?
+De wereld van DSN bestaat uit meer dan louter de sensorknopen waar we
+logischerwijs direct aan denken. Toegegeven, ze zijn natuurlijk de elementaire
+bouwsteen en vormen daarmee ook het eerst belangrijke niveau. In sectie
+\ref{section:problem-hardware} vertrekken met we ons onderzoek bij de hardware,
+ofwel de sensorknoop zelf.
 
-Sectie \ref{section:ids} gaat dieper in op de algemene problematiek van
-inbraakdetectie en tracht uit de achtergrondinformatie de link te leggen naar
-de sensorknopen.
+Hardware zonder software is zoals een cafe zonder bier. \'E\'en niveau boven de
+hardware vinden we de software die de sensorknoop in staat stelt om zijn taken
+uit te voeren. In sectie \ref{section:problem-software} bekijken we de software
+in het algemeen, waarbij zowel het besturingssysteem als de toepassing aan bod
+komt.
 
-Nog een stap hoger op de abstractieschaal komen we in sectie
-\ref{section:algorithms} bij het beschrijven van de detectiealgoritmen. Ook op
-dit niveau zullen we constateren dat belangrijke aspecten van het probleem
-reeds ontstaan.
+Naast de infrastructuur hebben we natuurlijk nood aan de nodige software om aan
+inbraakdetectie te doen. De eerste stap van elke ontwikkeling is een analyse
+van het probleem en een beschrijving van de beoogde implementatie. In het geval
+van inbraakdetectie in DSN, moeten we ons hier voorlopig nog beroepen op
+onderzoek. Sectie \ref{section:problem-research} vertrekt daarom vanuit de
+situatie van onderzoekers.
+
+Met een sensorknoop voorzien van software onder de arm en een analyse en
+beschrijving van algoritmes te beschikking, hebben we nog iemand nodig om de
+nodige inbraakdetectie-software op een correcte manier te bouwen. Sectie
+\ref{section:problem-develop} bekijkt het probleem door de ogen van de
+ontwikkelaar.
+
+Tot slot is de ontwikkelaar zelden de eigenaar of uitbater van het netwerk. Op
+het hoogste niveau vinden we de persoon die uiteindelijk de reden is van het
+bestaan van de sensorknopen, de software en het netwerk als een geheel. De
+problemen op het niveau van de uitbating worden bekeken in sectie
+\ref{section:problem-operations}.
+
 
 \section{Sensorknopen}
-\label{section:motes}
+\label{section:problem-hardware}
 
 \TODO
 
-\section{Inbraakdetectie}
-\label{section:ids}
+- static <-> MANET
+- wireless network/broadcasting <-> peer-peer (MANET)
+- node capture
+
+\section{Software}
+\label{section:problem-software}
 
 \TODO
 
-\section{Detectiealgoritmen}
-\label{section:algorithms}
+\section{Onderzoek}
+\label{section:problem-research}
+
+\TODO
+
+\section{Ontwikkeling}
+\label{section:problem-develop}
+
+\TODO
+
+\section{Uitbating}
+\label{section:problem-operations}
 
 \TODO
