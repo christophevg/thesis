@@ -9,7 +9,7 @@ uitsluiten is een heel ander ding.
 
 Een veel voorkomend onderwerp daarom is dat van co\"operatie tussen knopen om
 in overleg te bepalen of en welke andere knoop uitgesloten moet worden uit het
-netwerk. In \cite{krontiris2009cooperative} wordt hiertoe eerst langs een
+netwerk. In \citep{krontiris2009cooperative} wordt hiertoe eerst langs een
 theoretische weg gezocht naar de nodige en voldoende voorwaarden voor
 inbraakdetectie. Vervolgens wordt er een praktisch omkaderend algoritme
 voorgesteld om op co\"operatieve manier aan inbraak detectie te doen.
@@ -110,18 +110,18 @@ knopen $b$ en $d$ inderdaad geen buren, maar beide verdenken knoop $a$.
 \subsubsection*{Algoritme}
 \label{subsubsection:cooperation-algorithm}
 
-Naast een theoretisch model, introduceren \cite{krontiris2009cooperative}
+Naast een theoretisch model, introduceren \citep{krontiris2009cooperative}
 tevens een algoritme dat kan dienen als raamwerk voor co\"operatieve
 inbraakdetectie. Het algoritme bestaat uit vier tot vijf fasen: initialisatie,
 stemming, publicatie van gebruikte sleutels, ontmaskeren van de aanvaller en
 optioneel het inroepen van informatie uit de externe kring. Het is in essentie
 een implementatie van het Guy Fawkes protocol, beschreven in
-\cite{anderson1998new}, dat toelaat om een reeks van berichten te authenticeren
+\citep{anderson1998new}, dat toelaat om een reeks van berichten te authenticeren
 op basis van \'e\'en initi\"eel gedeelde sleutel.
 
 Tijdens de initialisatie fase krijgt elke knoop een unieke sleutel, $K_l$. Aan
 de hand van deze sleutel wordt een \'e\'en-richtingsketting van langte $l$
-gemaakt van sleutels door het toepassen van bv. SHA1 \cite{rfc:3174} hashing
+gemaakt van sleutels door het toepassen van bv. SHA1 \citep{rfc:3174} hashing
 toe te passen: $\{K_0, K_1, \dots K_{l-1}\}$ waarbij $\forall k \in [1..l] :
 K_{k-1} = SHA1(K_k)$. Daarnaast worden ook naburige knopen gezocht tot twee
 knopen ver en wordt sleutel $K_0$ gecommuniceerd aan al deze buren. De
@@ -132,7 +132,7 @@ Tijdens de stemming brengen alle knopen een stem uit van de vorm $m_v(s),$ $
 MAC_{K_j}(m_v(s))$. $m_v(s)$ bestaat uit een lijst van knopen die door knoop
 $s$ beschouwd worden als mogelijke aanvallers, of uitgedrukt aan de hand van
 het theoretische model: $m_v(s) = D(s)$. De $MAC_{K_j}()$ functie is een zgn.
-\emph{Message Authentication Code} \cite{rfc:2104} en wordt meestal berekend
+\emph{Message Authentication Code} \citep{rfc:2104} en wordt meestal berekend
 door het toepassen van een \'e\'en-richtings-hashfunctie toe te passen op de
 boodschap. Typisch wordt er aan de boodschap een unieke, wederzijds gekende
 identificatie toegevoegd, zodat de ontvanger van een boodschap deze
@@ -185,7 +185,7 @@ het initi\"ele voorbeeld.
 
 Het routering algoritme is gebaseerd op de totale kost van het pad naar het
 basisstation en komt daarmee overeen met het MultiHopLQI routering algoritme
-beschreven in o.a. \cite{krontiris2008launching}. In dit werk wordt ook de zgn.
+beschreven in o.a. \citep{krontiris2008launching}. In dit werk wordt ook de zgn.
 \emph{Sinkhole Attack} voorgesteld. We nemen deze aanval als voorbeeld.
 
 \begin{figure}[ht]
@@ -241,7 +241,7 @@ ge\"identificeerde aanvaller.
 Dit voorbeeld is, net zoals de vele andere beschreven voorbeelden, uitermate
 specifiek en dient louter ter illustratie van het fragiele karakter van een
 co\"operatief algoritme. Desalniettemin bieden de concepten en het omkaderende
-algoritme ge\"introduceerd in \cite{krontiris2009cooperative} een goed
+algoritme ge\"introduceerd in \citep{krontiris2009cooperative} een goed
 uitgangspunt om te hanteren bij het beschrijven en implementeren van inbraak
 detectie mechanismen.
 
@@ -249,7 +249,7 @@ detectie mechanismen.
 \label{subsubsection:grouping}
 
 Een andere aanpak van co\"operatieve algoritmen vertrekt van het groeperen van
-knopen. Deze aanpak wordt toegepast door \cite{li2008group}. Groepering gebeurt
+knopen. Deze aanpak wordt toegepast door \citep{li2008group}. Groepering gebeurt
 op basis van nabijheid en tracht sensoren te groeperen die door hun locatie
 gelijkaardige meetwaarden zouden moeten opmeten. De auteurs stellen hiervoor
 een dynamisch $\delta$-algoritme voor.

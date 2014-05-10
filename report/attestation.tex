@@ -49,7 +49,7 @@ vertrouwen en de knoop uit te sluiten.
 
 \subsubsection*{Implementaties}
 
-SWATT werd voorgesteld in \cite{seshadri2004swatt}. Het is een attestatie
+SWATT werd voorgesteld in \citep{seshadri2004swatt}. Het is een attestatie
 procedure die een \emph{checksum} berekent over nagenoeg alle geheugenlocaties,
 echter wel in willekeurige volgorde. Anderzijds houdt SWATT ook rekening houdt
 met de tijd die de attestatie routine op de knoop nodig heeft om de
@@ -57,7 +57,7 @@ met de tijd die de attestatie routine op de knoop nodig heeft om de
 werking van de attestatie routine te verstoren, zou op te merken zijn in een
 vertraging.
 
-Met SCUBA in \cite{seshadri2006scuba} en SAKE in \cite{seshadri2008sake} werd
+Met SCUBA in \citep{seshadri2006scuba} en SAKE in \citep{seshadri2008sake} werd
 verder gebouwd op de SWATT techniek met het oog op een beveiligde distributie
 van programma code en het veilig uitwisselen van sleutels. Samen met SCUBA en
 SAKE werd ook \emph{Indisputable Code Execution} of ICE ge\"introduceerd. Daar
@@ -85,12 +85,12 @@ veilige omstandigheden als de ICE routine uitgevoerd worden.
 
 \subsubsection*{Evaluatie}
 
-De beweringen rond SWATT en ICE werden in \cite{castelluccia2009difficulty}
+De beweringen rond SWATT en ICE werden in \citep{castelluccia2009difficulty}
 onder de loep genomen en verschillende manieren om deze vormen van
 integriteits-controle te omzeilen werden voorgesteld. Ondanks het feit dat
 verschillende interessante aspecten van de attestatie technieken werden
 belicht, werden te snel veronderstellingen rond beide implementaties gemaakt en
-werd in \cite{perrig2010refutation} een weerwoord gegeven.
+werd in \citep{perrig2010refutation} een weerwoord gegeven.
 
 Desalniettemin zijn de ontwijkingstechnieken die voorgesteld werden zeer
 interessante voorbeelden van de mogelijkheden die een aanvaller heeft tegen
@@ -113,7 +113,7 @@ genoemd.
 
 Om het probleem van leeg programma geheugen en de bijhorende uitnodiging aan
 het adres van de aanvaller om zich eenvoudig te kunnen verschuilen, aan te
-pakken, stelelen o.a. \cite{yang2007distributed,seshadri2008sake} voor om dit
+pakken, stelelen o.a. \citep{yang2007distributed,seshadri2008sake} voor om dit
 geheugen voor dat het op een knoop wordt geplaatst, op te vullen met
 willekeurige waarden. Op deze manier heeft de aanvaller geen vrije ruimte om
 zijn code in te plaatsen.
@@ -137,9 +137,9 @@ geheugen veelal niet kan uitgevoerd worden, blijft het mogelijk om programma
 code in het data geheugen op te slagen en te kopi\"eren naar het programma
 geheugen.
 
-De \emph{rootkit} voorgesteld in \cite{castelluccia2009difficulty} hanteert dit
+De \emph{rootkit} voorgesteld in \citep{castelluccia2009difficulty} hanteert dit
 principe. Door middel van de \emph{Return Operation Programming} (ROP)
-techniek, o.a. beschreven in \cite{prandini2012return}, kan een aanvaller met
+techniek, o.a. beschreven in \citep{prandini2012return}, kan een aanvaller met
 eerste haak bij aanvang van de attestatie code in het programma geheugen, zijn
 eigen rootkit uit het programma geheugen laten verwijderen. Na deze operatie is
 het programma geheugen opnieuw intact en zal de originele attestatie routine
@@ -159,20 +159,20 @@ werking.
 Het verbergen van de rootkit en het herstellen van het programma geheugen in
 zijn oorspronkelijke staat blijkt slechts een overhead van ongeveer 0.3\% op te
 leveren t.o.v. bv. de SWATT attestatie techniek voorgesteld in
-\cite{seshadri2004swatt}. Deze techniek controleert tevens de tijd dat de
+\citep{seshadri2004swatt}. Deze techniek controleert tevens de tijd dat de
 attestatie routine nodig had om de checksum te berekenen. Indien deze te lang
 duurt dan schrijft SWATT dit toe aan de overhead ge\"introduceerd door
 mogelijke kwaadaardige code. Een verhoging met 0.3\% is mogelijk te weinig om
 tot deze conclusie te komen.
 
 Deze aanval richt zich nu louter op de attestatie routine, maar zoals in
-\cite{perrig2010refutation} aangegeven wordt, it SWATT slechts een deel van een
+\citep{perrig2010refutation} aangegeven wordt, it SWATT slechts een deel van een
 volledige software attestatie en focust zich op het effectief attesteren van
 code in het geheugen, niet op de omringende context. In een volledige
 opstelling zou een attestatie procedure de het terugkeer adres op de stack mee
 kunnen nemen in de attestatie.
 
-\cite{castelluccia2009difficulty} beschrijven zelf enkele mogelijke pistes
+\citep{castelluccia2009difficulty} beschrijven zelf enkele mogelijke pistes
 waarmee een attestatie routine zichzelf zou kunnen beschermen tegen een
 dergelijke rootkit. Een eerste zou op het einde van zijn implementatie het data
 geheugen volledig leeg kunnen maken en vervolgens, zonder een terugkeer
@@ -206,7 +206,7 @@ opleveren voor de vaststeller, maar dit is dan evengoed een voorspelbaar
 resultaat voor de aanvaller en kunnen opnieuw geheugen schaduwende technieken
 gebruikt worden.
 
-Naast SWATT werd in \cite{castelluccia2009difficulty} ook een
+Naast SWATT werd in \citep{castelluccia2009difficulty} ook een
 aanvalsmogelijkheid tegen ICE voorgesteld. Het \emph{checksum} algoritme van
 ICE is zo geconstrueerd dat het niet mogelijk is om bij elke geheugentoegang na
 te gaan of er een doorverwijzing moet gebeuren of niet. Maar het is wel
@@ -286,7 +286,7 @@ meer zelf-attesterend is en zijn beginsel verliest.
   \label{fig:attestation-ice-copy}
 \end{figure}
 
-In \cite{perrig2010refutation} bevestigen de auteurs van ICE dat er fouten zijn
+In \citep{perrig2010refutation} bevestigen de auteurs van ICE dat er fouten zijn
 geslopen in de finale definitie van ICE en dat ze opportuniteiten hebben laten
 liggen om deze aanval tegen te gaan.
 
@@ -319,7 +319,7 @@ als een initi\"eel startpunt gebruikt worden om een keten van vertrouwen op te
 bouwen.
 
 Maar een extra TPM op een reeds beladen \mcu, is soms gewoon niet mogelijk.
-Daarom stelt \cite{krauss2007detecting} voor om de mogelijkheden van een TPM op
+Daarom stelt \citep{krauss2007detecting} voor om de mogelijkheden van een TPM op
 de cluster hoofden (\ref{subsection:zigbee}), afgekort tot CH, binnen het
 netwerk te gebruiken. Aangezien deze per definitie voorzien zijn om meer
 energie te verbruiken, kan de bijkomende kost op dit niveau verantwoord worden.
@@ -343,7 +343,7 @@ ongewijzigd is sinds de installatie van het netwerk. Tijdens deze installatie
 zal zo'n CH met zijn TPM een keten van hashes maken en deze blokkeren in de
 TPM. Dit is een techniek die \emph{sealing}\footnote{Dit is slechts \'e\'en van
 de basiscomponenten van een TPM. De volledige TPM functionaliteit wordt o.a. in
-\cite{parno2010bootstrapping} toegelicht in het kader van de mogelijkheden die
+\citep{parno2010bootstrapping} toegelicht in het kader van de mogelijkheden die
 een TPM biedt om als initi\"ele bron van vertrouwen gebruikt te worden.}
 genoemd wordt. De TPM zal deze hashes alleen vrijgeven indien deze de
 configuratie van de CH kan valideren als ongewijzigd.
@@ -393,7 +393,7 @@ In \ref{subsection:cooperation} zagen we reeds een implementatie van het Guy
 Fawkes protocol, waardoor een groep van knopen toch een stemming konden houden
 in het bijzijn van veroverde knopen. Een andere voorbeeld van een co\"operatief
 algoritme binnen de context van software attestatie wordt voorgesteld in
-\cite{yang2007distributed}. Om te vermijden dat aanvallers het lege programma
+\citep{yang2007distributed}. Om te vermijden dat aanvallers het lege programma
 geheugen gebruiken om een kopie van de originele software van een knoop op te
 slaan, wordt voordat een knoop in gebruik wordt genomen, deze lege ruimte
 opgevuld met pseudo-willekeurige getallen. Dit gebeurt voor knoop $u$ op basis

@@ -21,6 +21,7 @@ TODO
   - add section on TinyOS (comparison code inlining)
   - make sure illustrations use same font-sizes, colors, ...
   - node-capture: replace ISP programming with JTAG programming
+  - captions -> add short caption for LoF
 
 3. clean up coordinate.py
 2. solder motes

@@ -17,9 +17,9 @@ interessant kunnen zijn en kan men zich louter hierop focussen bij een poging
 om de knoop te veroveren.
 
 In de testopstelling voor dit experiment maken we gebruik van een Atmel
-ATMEGA1284p \cite{datasheet:atmega1284p}. Dit is een representatieve \mcu met
+ATMEGA1284p \citep{datasheet:atmega1284p}. Dit is een representatieve \mcu met
 128KB programmeerbaar geheugen en 16KB werkgeheugen, die bv. gebruikt wordt in
-de populaire Atmel RZRAVEN ontwikkelingskit \cite{manual:rzraven}. We kiezen
+de populaire Atmel RZRAVEN ontwikkelingskit \citep{manual:rzraven}. We kiezen
 ervoor om de ATMEGA1284p volledig te ontdoen van enige context, om zo tevens de
 algemeenheid van het probleem te illustreren.
 
@@ -39,7 +39,7 @@ Figuur \ref{fig:node-capture-schematic} toont het schema van deze opstelling.
 De \mcu is via een USART\footnote{USART staat voor \emph{Universal
 synchronous/asynchronous receiver/transmitter} dat in staat voor de vertaling
 van gegevens tussen een parallelle en seri\"ele voorstelling.} poort verbonden
-met een MAX232 \cite{datasheet:max232} die de USART signalen omzet naar een
+met een MAX232 \citep{datasheet:max232} die de USART signalen omzet naar een
 RS-232\footnote{RS-232 is een seri\"ele communicatiestandaard, typisch gebruikt
 tussen computers en randapparatuur, maar ook kan dienen als eenvoudige data
 verbinding tussen twee computers.} compatibele communicatie.
@@ -64,7 +64,7 @@ geheugen van de node wordt opgeslagen.
 
 De aanval bestaat er in dit geval in om de knoop te verbinden met een
 hardwarematige foutopspoorder, zoals de Atmel JTAGICE mkII
-\cite{manual:jtagicemkii}. Dit kan bv. gebeuren aan de hand van een JTAG
+\citep{manual:jtagicemkii}. Dit kan bv. gebeuren aan de hand van een JTAG
 verbinding. Dit is een verbinding met tien draden, waarvan er vier aangesloten
 moeten worden op de \mcu\footnote{Normaal gezien worden er 5 aangesloten. De
 vijfde verbinding is de zgn. \ttt{RESET} aansturing. Aangezien we bij deze
@@ -184,13 +184,13 @@ was mogelijk mits enige voorkennis i.v.m. de gecompileerde code. De
 \ttt{counter} variabele is een globale variabele en komt daarom terecht in de
 \ttt{.bss} data sectie. Deze sectie heeft standaard een vaste plaats in het
 data geheugen - dat bij de Harvard architectuur gescheiden is van het programma
-geheugen \cite{avr-memory}. Figuur \ref{fig:avr-ram-map} geeft een overzicht
+geheugen \citep{avr-memory}. Figuur \ref{fig:avr-ram-map} geeft een overzicht
 van de indeling van het data geheugen op een AVR \mcu.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/avr-ram-map.pdf}
-  \caption{Indeling van het data geheugen \cite{avr-malloc}.}
+  \caption{Indeling van het data geheugen \citep{avr-malloc}.}
   \label{fig:avr-ram-map}
 \end{figure}
 
