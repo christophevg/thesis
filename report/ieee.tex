@@ -14,6 +14,7 @@
 
 % additional packages and utility commands
 \usepackage{minted}
+\usepackage{flushend}
 
 % \usepackage{lineno}
 % \setlength\linenumbersep{1mm}
@@ -41,30 +42,29 @@ Christophe.VanGinneken@student.kuleuven.be,\{firstname.lastname\}@cs.kuleuven.be
   
 Introducing intrusion detection in wireless sensor networks proves to be a
 battle for resources. Implementing and optimizing a collection of detection
-algorithms to match available resources without increasing production costs
-beyond proportion, might very well be an unacceptable economic burden. This
-paper introduces a domain specific language to formally describe such
-algorithms and proposes the use of code generation techniques to automate the
-production of detection software. This automated process allows for the
-optimization of resource usage, more specifically the optimization of the
-execution of algorithms and the use of the energy-costly wireless radio. A
-prototype code generator has been constructed to show that these techniques can
-be implemented effectively, combining different intrusion detection algorithms
-in such way that they impose less impact on the resources than the sum of the
-impact of each algorithm by itself.
+algorithms to match available resources might very well be an unacceptable
+economic burden. This paper introduces a domain specific language to formally
+describe such algorithms and proposes the use of code generation techniques to
+automate the production of detection software. This automated process allows
+for the optimization of resource usage. Specifically the optimization of the
+execution time of the algorithms and the use of the energy-costly wireless
+radio are prime candidates. A prototype code generator was realized to show
+that these techniques can be implemented effectively, combining different
+intrusion detection algorithms in such way that they impose less impact on the
+resources than the sum of the impact of each algorithm by itself.
 
 \end{abstract}
 
 \section{Introduction}
 
-A Wireless sensor network (WSN) is constructed using large numbers of
-autonomous embedded devices, called nodes or motes, referring to their
-dust-like availability. Their autonomy is rather absolute, being most of the
-time battery-powered and deployed in open terrain. Examples of WSNs include
-monitoring systems in volcanic regions\cite{werner2006deploying} or flood
-areas\cite{hughes2006gridstix}. Preliminary successes have now even steered
-researchers towards the introduction of WSNs in cities and homes, thus creating
-smart cities \cite{schaffers2011smart} and smart homes \cite{chan2008review}.
+A wireless sensor network (WSN) is constructed using a large number of
+autonomous embedded devices, also called nodes. Their autonomy is rather
+absolute, being most of the time battery-powered and deployed in open terrain.
+Examples of WSNs include monitoring systems in volcanic regions
+\cite{werner2006deploying} or flood areas \cite{hughes2006gridstix}.
+Preliminary successes have now even steered researchers towards the
+introduction of WSNs in cities and homes, thus creating smart cities
+\cite{schaffers2011smart} and smart homes \cite{chan2008review}.
 
 Due to their involvement in more and more personal applications, securing these
 nodes should be a priority. When we entrust these autonomous systems with some
@@ -82,13 +82,13 @@ wireless communication, offer a plethora of possibilities
 \cite{padmavathi2009survey} to attack them, ranging from low-level meddling
 with the routing of packets in the network, up to the application level.
 
-Securing nodes against intrusions should be a primary objective. But often this
-turns out to be impossible and intrusions are sometimes only noticed
-post-mortem. When prevention is not guaranteed, a second line of defence
-consists in the detection of intrusions, allowing the introduction of reactive
-systems to prevent future problematic situations. These intrusion detection
-systems (IDS) are well-known in classic networked environments, but are not
-easily transferred to the world of WSNs \cite{zhang2000intrusion}
+Preventing intrusions should be a primary objective. Often this turns out to be
+impossible and intrusions are sometimes only noticed post-mortem. When
+prevention is not guaranteed, a second line of defence consists in the
+detection of intrusions, allowing the introduction of reactive systems to
+prevent future problematic situations. These intrusion detection (ID) systems
+(IDS) are well-known in classic networked environments, but are not easily
+transferred to the world of WSNs \cite{zhang2000intrusion}
 \cite{djenouri2005survey}, mostly due to the wireless and ad-hoc nature of the
 networks and the lack of a central point where communication can be monitored.
 
@@ -102,26 +102,26 @@ their algorithms over and over again, but they also want to inspect every
 single network packet that's passing by. This way they not only would like the
 node to be powered-on all the time, they also require constant access to the
 wireless radio, which turns out to be the number one energy-consumer of a node.
-Introducing IDS in a WSN turns out to be a battle for resources.
+Introducing ID in WSNs turns out to be a battle for resources.
 
 Finally, besides the technical resources, there is also an economic resource
 that plays an important part here. Given the same limited functionality, adding
 a complex piece like an IDS, might raise the production cost well above
-acceptable levels. The fact that IDS algorithms are currently in a mere state
-of research, would currently require a developer to read through many research
-papers, making a selection of algorithms and implement them from scratch. Even
-if implementations for each of these algorithms would be available, the chance
-that they are applicable to the target platform is a big if. Integrating these
-algorithms is in itself already a complex matter.
+acceptable levels. The fact that ID algorithms for WSN are currently in a mere
+state of research, would currently require a developer to read through many
+research papers, making a selection of algorithms and implement them from
+scratch. Even if implementations for each of these algorithms would be
+available, the chance that they are applicable to the target platform is a big
+\emph{if}. Even simply integrating them can be a complex task.
 
-Our contribution to IDS in WSNs is the introduction of a domain specific
-language (DSL) to formally describe IDS algorithms. The DSL is node-oriented
+Our contribution to ID in WSNs is the introduction of a domain specific
+language (DSL) to formally describe ID algorithms. The DSL is node-oriented
 with a strong focus on inter-node communication and aims to allow for the
-optimisation of execution of multiple IDS algorithms, thus lowering the
+optimisation of execution of multiple ID algorithms, thus lowering the
 sequential and iterative execution of algorithms and reducing the use of the
 wireless radio.
 
-Introducing such a formal, platform-independent language to express IDS
+Introducing such a formal, platform-independent language to express ID
 algorithms and accompanying this language with a code generation framework,
 offers an end-to-end solution to many of the problems introduced above.
 Research output would be directly applicable in a development environment and a
@@ -132,24 +132,24 @@ allowing more algorithms to be added, thus augmenting the barriers, which can
 help to reduce the number of undetected intrusions.
 
 The remainder of this paper proceeds as follows: section \ref{section:related}
-introduces research regarding IDS in WSNs. Section \ref{section:problem}
+introduces research regarding ID in WSNs. Section \ref{section:problem}
 describes the problem space in detail. Section \ref{section:solution}
 introduces our proposed overall solution, further detailed in sections
 \ref{section:foo-lang} and \ref{section:prototype}, which respectively present
 our domain specific language, FOO-lang, as well as a prototype implementation
 of a code generator framework to complement the language. Section
 \ref{section:evaluation} evaluates the prototype implementation and determines
-if the theoretical merits of introducing FOO-lang, are actually viable.
-Finally, section \ref{section:conclusions} presents our conclusions and
-proposes topics for future research.
+if the theoretical merits of introducing FOO-lang, are actually viable. Our
+conclusions and proposed topics for future research are presented in section
+\ref{section:conclusions}.
 
 \section{Related Work}
 \label{section:related}
 
-When securing any network one tries to prevent intrusions. This should of
-course be the primary concern. But not all intrusions can be prevented and we
-need to fall back on detecting intrusions. In this section we look at recent
-contributions in this field.
+When securing any network one tries to prevent intrusions. This should be the
+primary concern, but not all intrusions can be prevented and we need to fall
+back on detecting intrusions. In this section we look at recent contributions
+in this field.
 
 Intrusions of computer networks can take many forms. In the case of WSNs this
 classification needs to be extended even further. In
@@ -158,10 +158,10 @@ clearly that WSNs suffer from their wireless and broadcasting nature. This
 causes many attacks based on e.g. eavesdropping to be nearly undetectable while
 they are happening. Only when the actual intrusions, based on the covertly
 collected information, have happened, the intrusion could possibly be detected
-based on the after-effects. This means that we can't cover the entire spectrum
-and need to focus on what is feasible.
+based on the after-effects. So we can't cover the entire spectrum and need to
+focus on what is feasible.
 
-Research into IDS in WSNs typically focuses on two major topics that complement
+Research into ID in WSNs typically focuses on two major topics that complement
 the architecture of WSNs: the nodes as single entities and the network as a
 group of such nodes. Both are important because the group cannot make a
 decision without members that detect malicious behaviour and a group-based
@@ -204,7 +204,7 @@ forwarding, modification of packets or even dropping them altogether. In its
 simplest form, the sinkhole offers the attacker with lots of packets to analyze
 and use to gather information about the network and its functionality.
 
-Detecting sinkholes is very hard and often is only possible based on other
+Detecting sinkholes is very hard and is often only possible based on other
 attacks that are supported by the sinkhole. When the sinkhole is used to
 implement selective forwarding, \cite{ngai2006intruder} proposes an algorithm
 that allows a base station, the aggregating master node to which all nodes
@@ -229,11 +229,11 @@ intrusions.
 In \cite{krontiris2009cooperative}, the authors first present a theoretical
 foundation to analyze cooperative algorithms. Given these foundations they
 continue to present an algorithm consisting of 5 phases. It essentially
-implements a voting system to identify an intruder based on the Guy Fawkes
-protocol \cite{anderson1998new} to exchange suspected intruder information and
-allow distributed authentication of those so-called votes. Based on these
-authenticated votes, a distributed decision can be made about the commonly
-identified intruder.
+implements a voting system based on the Guy Fawkes protocol
+\cite{anderson1998new} to identify an intruder. It enables the exchange of
+suspected intruder information and allows distributed authentication of those
+\emph{votes}. Based on these authenticated votes, a distributed decision can be
+made about the commonly identified intruder.
 
 A distributed, cooperative algorithm can sometimes be implemented locally. This
 is illustrated by the reputation-based detection algorithm introduced in
@@ -245,8 +245,8 @@ their own, often partial, observations.
 \subsection{Software Attestation}
 \label{subsection:attestation}
 
-A research topic that lives parallel to the detection/cooperation duality is
-software attestation. Software attestation basically offers algorithms for
+A research topic that exists in parallel to the detection and cooperation
+duality is software attestation. Software attestation offers algorithms for
 exchanging information about the software that is running on a node, and aims
 to identify nodes that can no longer prove that their content is unaltered.
 Examples of evolving algorithms to implement this functionality include SWATT
@@ -264,9 +264,9 @@ most ingenious algorithm to perform software-based attestation.
 \section{Problem Analysis}
 \label{section:problem}
 
-The problem of introducing IDS in WSNs is much broader than simply the
+The problem of introducing ID in WSNs is much broader than simply the
 implementation of a software component. It starts at the very foundations of
-WSNs. In contrast with for example SNORT\cite{roesch1999snort}, the de facto
+WSNs. In contrast with for example SNORT \cite{roesch1999snort}, the de facto
 standard with respect to IDS in classic networks, there is currently no
 community based collection of algorithms that can be implemented. The reason is
 mostly due to the lack of a central/external location where all network traffic
@@ -279,8 +279,8 @@ of SNORT, a detection language is provided and new signatures are added on a
 regular basis, creating an ever growing rule base, capable of detecting even
 the newest attacks out there.
 
-If implementers of a WSN want to add IDS to their network, and therefore to the
-nodes in the network, they are facing no small task: first they need to collect
+If implementers of a WSN want to add ID to their network, and therefore to the
+nodes in the network, they are facing no small task: they need to gather
 research papers, from which they need to extract the proposed algorithms. Even
 if the papers would come with an implementation of their algorithm, the chance
 that the implementation matches the target platform of the newly created WSN is
@@ -289,7 +289,7 @@ slim.
 Simply implementing the different algorithms in sequence, or reusing existing
 implementations if they would be available, is also no valid option. All of
 these algorithms typically perform the same actions: first they analyze each
-incoming packet and collect information about nodes, and secondly at given
+incoming packet and collect information about nodes. Secondly, at given
 intervals, they iterate all known nodes, checking the aggregated information
 about them and making decisions about the trust to put in them. The algorithms
 typically also exchange information with other nodes to complement their own
@@ -308,7 +308,7 @@ of any WSN implementation project. If not, the risk to make mistakes due to
 misinterpreting the often complex algorithms or the lack of flexibility to
 change sets of detection algorithms on a regular basis, or simply add a new
 algorithm in an easy way, are all very valid reasons to not go down this road.
-Then, how can we add some form of IDS in WSNs?
+Then, how can we add some form of an IDS to WSNs?
 
 \section{Proposed Solution}
 \label{section:solution}
@@ -347,14 +347,14 @@ simply select a set of algorithms, feed their formal description to the code
 generator and obtain platform-specific code, optimized for execution and
 communication.
 
-A formal description of detection algorithms would not only be beneficiary to
-implementers. Also to researchers such medium would offer substantial benefits.
-Formal descriptions of the algorithms not only allows for generation of code,
-but the same descriptions can be loaded into simulators and be investigated in
-combination with other algorithms \cite{mernik2005and}. Another interesting
-option would be that of formal analysis of the algorithms. Further, describing
-the algorithms in a platform-independent way, would increase their usefulness
-and allow for more complex algorithms to be abstracted.
+A formal description of ID algorithms would not only be beneficiary to
+implementers, but also to researchers. Formal descriptions of the algorithms
+allow for automated generation of code, but the same descriptions can also be
+loaded into simulators and be investigated in combination with other algorithms
+\cite{mernik2005and}. Another interesting option would be that of formal
+analysis of the algorithms. Further, describing the algorithms in a
+platform-independent way, would increase their usefulness and allow for more
+complex algorithms to be abstracted.
 
 \section{Introducing FOO-lang}
 \label{section:foo-lang}
@@ -487,7 +487,7 @@ algorithm might want to communicate with other nodes to exchange information.
 Given this structure, we now introduce the \emph{hello world} example for
 FOO-lang: \emph{heartbeat}.
 
-It can be considered the most elementary IDS algorithm possible, still
+It can be considered the most elementary ID algorithm possible, still
 containing all aspects of a generic algorithm. It deals with availability: as
 long as we receive regular updates from a node, we trust it. When it fails to
 produce a \emph{heartbeat}, we no longer trust it. The resulting FOO-lang code
@@ -499,19 +499,19 @@ background and common knowledge about other languages and programming
 paradigms. Most language constructs are borrowed from other languages, like
 annotations using the `@' symbol or atoms with the `\#' prefix.
 
-\vspace{1cm}
-
-\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
-  {heartbeat.foo}
-\captionof{listing}{Example implementation of \emph{heartbeat}.\label{lst:heartbeat}}
-
-\section{Prototype Code Generator}
-\label{section:prototype}
-
 Defining a language is one thing. It should of course also be possible to
 generate code from it that actually addresses the problems we identified
 before. In case of a language, the real proof is in building an actual code
 generator.
+
+\vspace{1.2cm}
+
+\inputminted[linenos,xleftmargin=2mm,numbersep=1mm,frame=lines,framesep=2mm,fontsize=\footnotesize,fontfamily=courier]{js}
+  {heartbeat.foo}
+\captionof{listing}{Example implementation of a \emph{heartbeat}.\label{lst:heartbeat}}
+
+\section{Prototype Code Generator}
+\label{section:prototype}
 
 We have built a prototype code generator for FOO-lang using Python and ANTLR
 \cite{antlr3}. The implementation tries to be as generic as possible and is
@@ -582,7 +582,7 @@ network\cite{ganeriwal2008reputation}.
 Three criteria were evaluated: the image size of the resulting compiled code,
 the network usage in number of frames and bytes and the time required to
 perform once cycle of the event loop. These metrics were collected in four
-situations: without IDS algorithms, with a heartbeat, with reputation-tracking
+situations: without ID algorithms, with a heartbeat, with reputation-tracking
 and with both algorithms implemented.
 
 In case of the manual implementation, both algorithms were constructed as
@@ -706,7 +706,7 @@ interesting improvements.
 WSN nodes typically respond to events in their environment or perform their
 tasks at clearly scheduled intervals. Applying a language that has these
 concepts at its core, allows focus on the bare essence and reuse of best
-practices at the generation level. The rather limited functional domain of IDS
+practices at the generation level. The rather limited functional domain of ID
 in WSNs proofs to be a wonderful candidate for applying code generation
 techniques.
 
@@ -738,7 +738,7 @@ forwarding and a sinkhole attack \cite{ngai2006intruder}, this algorithm should
 only be deployed on coordinators or base stations, not on end-nodes.
 
 Finally we hope that this paper might act as a call-for-participation by all
-IDS in WSNs researchers and will lead to an ever growing collection of formal
+ID in WSNs researchers and will lead to an ever growing collection of formal
 descriptions available to those that need them.
 
 \section*{Acknowledgements}

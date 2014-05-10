@@ -615,3 +615,6 @@ activities
 2014-05-09 (3h30min/577h30min)
 - finalized IEEE-style article by adding numerical analysis (2h)
 - reviewed article (1h30min)
+
+2014-05-10 (1h/578h30min)
+- restart writing phase (1h)
