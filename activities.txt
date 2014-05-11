@@ -619,3 +619,6 @@ activities
 2014-05-10 (3h30min/581h)
 - restart writing phase (3h)
 - processed (final) review of IEEE-style article by K (30min)
+
+2014-05-11 (3h/584h)
+- wrote problem-statement: hardware, software, research (3h)
