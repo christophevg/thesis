@@ -293,10 +293,54 @@ werd gevonden waar werken van verschillende auteurs samen worden gebracht.
 \section{Ontwikkeling}
 \label{section:problem-develop}
 
-Dit vormt de basis waarvan ontwikkelaars dienen te vertrekken, indien zijn een
-vorm van IDS willen toevoegen aan een nieuw te ontwikkelen DSN. 
+Deze literatuur vormt de basis waarvan ontwikkelaars dienen te vertrekken.
+Indien zij een vorm van IDS willen toevoegen aan een nieuw te ontwikkelen DSN,
+moeten zij actief op zoek gaan naar artikels die detectiealgoritmen
+beschrijven, ze lezen, begrijpen, het kaf van het koren scheiden en vervolgens
+deze analyse omzetten in \emph{bruikbare} programmacode.
 
-\TODO
+Uit de enkele voorbeelden die we eerder zagen, kunnen we reeds opmaken dat
+zelfs de elementairste algoritmen toch al aardig wat werk met zich meebrengen.
+Vermenigvuldig dat met een aantal algoritmen om een redelijke dekking te
+bekomen en het werk om een IDS te voorzien overstijgt het effectieve
+functionele sensor-gerelateerde werk dat feitelijk de enige bedoeling is van de
+ontwikkeling. Vanuit een project/economisch standpunt zal het toevoegen van een
+IDS aan het DSN op deze manier snel sneuvelen, tenzij het project functioneel
+inherent om beveiliging draait.
+
+In tegenstelling tot andere takken van de informatica en software ontwikkeling,
+kan er in het geval van inbraakdetectie in een DSN, geen gebruik gemaakt worden
+van bestaande implementaties en kan een ontwikkelaar niet eenvoudig een
+bibliotheek importeren en met een eenvoudige oproep een detectiealgoritme
+toevoegen aan zijn toepassing. In de voorgaande sectie zagen we waarom het
+onderzoek hier geen bruikbaar materiaal aanlevert.
+
+Zelfs indien dit wel het geval zou zijn, zou de ontwikkeling van het gehele IDS
+nog leiden tot feitelijk onbruikbare resultaten. Indien \'e\'en van de
+drijfveren van de ontwikkelaars is om de levensduur van een enkele batterij
+optimaal te benutten, zou het eenvoudig hergebruiken van bestaande bibliotheken
+van algoritmen, geen optie mogen zijn. De enige (economisch) verantwoorde
+manier om deze bibliotheken toe te voegen aan de applicatie is om deze \'e\'en
+voor \'e\'en aan te roepen en hun ding te laten doen.
+
+Maar aangezien elk van deze algoritmen typisch alle netwerkverkeer wil
+inspecteren, af en toe een lijst van gekende knopen wil overlopen om te kijken
+of er zich geen aberraties voordoen en tussendoor informatie willen uitwisselen
+met andere knopen, zal er al snel veel redundant werk gebeuren. Als elk
+algoritme op zijn beurt een binnenkomend netwerkpakket gaan analyseren wordt
+deze technisch \emph{dure} operaties vele malen extra uitgevoerd. Het zelfde
+geldt voor het overlopen van de lijst van gekende knopen, die praktisch voor
+alle algoritmen dezelfde zal zijn. Tot slot is het onafhankelijk versturen van
+berichten een redelijke belasting van de draadloze radio, welke typisch de
+grootste energieverslinder is en die dat men zo spaarzaam mogelijk wil
+activeren.
+
+Daarnaast zijn andere aspecten zoals het ontdubbelde geheugengebruik en veel
+gedeelde programmalogica ook op zijn minst nadelig met het oog op de middelen
+waarover een knoop zal moeten beschikken. Indien het toevoegen van een IDS er
+voor zorgt dat er een bijkomende kost ontstaat om de hardware te verbeteren,
+zal er misschien al snel gekozen worden om minder algoritmen toe te voegen en
+staat de minimale vorm van reactieve beveiliging weer op de helling.
 
 Naast deze problematiek is er nog de ontwikkeling van de software op zich.
 Uiteindelijk komt dit nog steeds neer op de C programmeertaal, die zeer dicht
@@ -307,13 +351,59 @@ zal ook de ontwikkeling van deze software in een stroomversnelling terecht
 komen en zal een bredere groep ontwikkelaars moeten aangesproken worden. De
 kans dat elk van hen een C-guru zal zijn, is op zijn minst klein.
 
-\TODO
+Ook dit aspect heeft geleid tot nader onderzoek en verschillende
+gespecialiseerde talen hebben reeds hun opwachting gemaakt. Een eerste zagen we
+reeds in de context van TinyOS, dat nesC \citep{gay2003nesc} gebruikt, een
+component-geori\"enteerde uitbreiding van C. Binnen het zelfde project werd ook
+TinyScript \citep{levis2004tinyscript} ge\"introduceerd; een imperatieve, op
+Basic ge\"inspireerde taal met dynamische typering en elementaire controle
+structuren zoals condities en lussen. De doelstelling is om de complexiteit van
+de onderliggende nesC taal te verbergen voor minder technische analisten.
 
-= gespecialiseerde talen : \citep{bai2009archetype}
+Maar ook fundamenteel andere talen trachtten een antwoord te bieden aan de
+discrepantie tussen de relatief lage complexiteit van de toepassing en
+detectiealgoritmen en de soms complexe implementatie binnen een op momenten
+barbaarse ontwikkelomgeving.
+
+\'E\'en van de doelstellingen van het ABSYNTH project \citep{url:absynth} is om
+domein experten controle te geven over de ontwikkeling van software voor DSN.
+Om dit te realiseren hanteren ze talen, compilers en synthese technieken. De
+WASP2 taal \citep{bai2009archetype} werd ontworpen in het kader van dit
+project. WASP2 is \'e\'en uit een aantal talen die opteerden om
+database-geori\"enteerde talen als voorbeeld te nemen. Ze zijn getypeerd door
+een zeer herkenbare syntax, ontleend aan SQL. Deze keuze is misschien niet zo
+onverwacht. Door een sensorknoop te abstraheren tot een aantal bronnen van
+gegevens - in database termen tabellen - kan inderdaad veel van de
+programmalogica geschreven worden in de vorm van zoekopdrachten.
+
+Het feit dat de laatste wapenfeiten van dit project dateren van 2012, doet
+vermoeden dat de aanpak niet echt succesvol is geweest in operationele middens.
+Indien deze gemeenschappelijke basis tussen domein experten/onderzoekers en
+ontwikkelaars geen bestaande draagvlak kan genieten, zal elke poging om een
+totaal nieuwe omgeving en/of taal aan te bieden alleen maar falen.
 
 \section{Uitbating}
 \label{section:problem-operations}
 
-\TODO
+Het belang van de controle door domein experten brengt ons bij een laatste
+groep mensen die toch graag controle wil hebben over een DSN: de eigenaar of
+uitbater van het netwerk.
 
-- diversiteit -> standards emerge (zigduino)
+Het beeld dat de eigenaar een \'e\'enmalige opdracht geeft tot ontwikkeling kan
+misschien te verdedigen zijn in projecten waar weinig tot geen beveiliging
+genoodzaakt is, maar bij meer kritische applicaties waar er effectief een IDS
+voorzien wordt in het netwerk, is dit zeker niet meer van toepassing.
+
+Een IDS kan, zeker in het kader van een DSN, geen statisch gegeven zijn. De
+uitbater van een netwerk zal, indien het inzetten van een IDS serieus wordt
+genomen, genoodzaakt zijn om de set van algoritmen over tijd aan te passen.
+Wanneer we bv. nogmaals kijken naar SNORT \citep{roesch1999snort}, dan zien we
+dat ook bij deze centrale IDS er regelmatige updates gebeuren van de patronen
+die gedetecteerd kunnen worden. Dit zal niet anders zijn bij een IDS in een DSN.
+
+Indien de uitbater voor elk van deze aanpassingen terug moet gaan naar de
+ontwikkelaar, zal dit snel een onwerkbare en vooral onrealistische situatie met
+zich meebrengen. Een uitbater moet in staat zijn om op een flexibele manier het
+IDS van zijn DSN te configureren en te voorzien van nieuwe of bijgewerkte
+detectiealgoritmen. Net zoals een klassiek IDS, zou een IDS voor een DSN
+eigenlijk als een aparte entiteit moeten kunnen beheerd worden.
