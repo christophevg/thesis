@@ -319,6 +319,28 @@ up-to-date IDS te voorzien.
 Het is uiteraard een groot economisch voordeel indien er voor de ontwikkeling
 geen tussenkomst nodig is van een (manuele) ontwikkelaar.
 
+Een dergelijk platform kan nog verder uitgebouwd worden. Zo kan de code
+generator in principe ook ingezet worden om ook de softewarebibliotheek te
+genereren. Dit zou enerzijds betekenen dat ook hier niet langer extra werk
+bestaat in het opstellen en onderhouden ervan. Maar dit biedt nog een
+opportuniteit.
+
+\'E\'en van de eigenschappen van de generator moet tevens zijn het
+optimaliseren van de werking van de programmacode. Elementaire voorbeelden zijn
+het zgn. \emph{inline}'en van programmacode, waarbij functieoproepen
+uitgespaard worden en de opgeroepen code in de plaats van de oproep gekopieerd
+wordt. Dit vraagt soms enkele bytes meer programmacode, maar het uitsparen van
+de functieoproep kan er voor zorgen dat de \mcu veel minder lang moet werken.
+
+Dat deze toepassing valabel is, wordt aangetoond door TinyOS
+\citep{levis2005tinyos}. De oorspronkelijke nesC code wordt immers herschreven
+tot standaard C code, welke vervolgens gecompileerd wordt. Bij deze omzetting
+worden nagenoeg alle functieoproepen \emph{inline} geplaatst.
+
+Indien dus de softwarebibliotheek ook, net zoals de DSL code als invoer van de
+code generator wordt beschouwd, zal deze code inherent mee geoptimaliseerd
+worden en afgestemd zijn op de eigenlijke algoritmes.
+
 \section{Conclusie}
 \label{section:solution-conclusion}
 
