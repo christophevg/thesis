@@ -624,5 +624,7 @@ activities
 - wrote problem-statement: hardware, software, research (3h)
 - completed problem statement: development, operations (1h30min)
 
-2014-05-12 (4h/589h30min)
+2014-05-12 (5h/590h30min)
 - completed solutionstrategy (4h)
+- additional touch-ups to solutionstrategy (30min)
+- prepared draft architecture diagrams (30min)
