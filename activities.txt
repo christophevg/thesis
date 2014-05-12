@@ -623,3 +623,6 @@ activities
 2014-05-11 (4h30min/585h30min)
 - wrote problem-statement: hardware, software, research (3h)
 - completed problem statement: development, operations (1h30min)
+
+2014-05-12 (4h/589h30min)
+- completed solutionstrategy (4h)
