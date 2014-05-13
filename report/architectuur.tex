@@ -72,47 +72,177 @@ de platform-onafhankelijkheid.
 \subsection{Centrale opslagplaats}
 \label{subsection:arch-repository}
 
-\TODO
+Al deze platform-onafhankelijke en formele beschrijvingen van
+detectiealgoritmen, kunnen vervolgens samengebracht worden in een centrale
+opslagplaats. Het hoeft geen betoog dat hiervoor een website kan voorzien
+worden, die als portaal kan dienen. Een heel aantal klassieke voorzieningen
+kunnen hierbij getroffen worden: zoekmogelijkheden, gebruiksstatistieken,
+commentaar, samenwerkmogelijkheden,\dots
+
+Allerhande integraties kunnen voorzien worden om op transparante wijze met
+zoveel mogelijk de facto standaard diensten te kunnen samenwerken. Hierbij
+denken we aan diensten die opslag van programmacode aanbieden, of meer algemeen
+opslag van bestanden, tot processturingsplatformen of probleemopvolgsystemen.
+
+De toegang tot de broncode van de algoritmen moet enerzijds mogelijk zijn via
+de visuele website, maar moet zeker geautomatiseerd ge\"integreerd kunnen
+worden, zodat bv. compilatieprocessen de laatste versie van een algoritme
+kunnen downloaden zonder tussenkomst van een persoon.
 
 \subsection{Code generator}
 \label{subsection:arch-codegen}
 
-\TODO
+Het kloppend hart van de oplossing bestaat uit de code generator. Deze
+accepteert de in FOO-lang geschreven algoritmes en vormt deze om tot
+georganiseerde code voor het geselecteerde platform, eventueel voor een gegeven
+taal,\dots
+
+De generator moet de doelstellingen van de oplossinsstrategie implementeren en
+de resulterende code op zo'n manier structureren dat deze minder impact heeft
+op de werking van de sensorknoop.
+
+Om een volledig geautomatiseerde werking toe te laten is het belangrijk dat de
+aansturing van de generator in zo'n een context mogelijk is. De configuratie
+van de generator moet via een bestand of aan de hand van oproepparameters
+gespecificeerd kunnen worden, zonder verdere menselijke tussenkomst.
 
 \subsection{Uitbatingsbeleid}
 \label{subsection:arch-policy}
 
-\TODO
+Een volledig geautomatiseerde oplossing laat toe om een uitbatingsbeleid te
+introduceren op veel fijnere schaal. Het wordt immers mogelijk om zelfs per
+sensorknoop een ``persoonlijk'' configuratie te gaan onderhouden, bouwen en te
+verspreiden.
+
+Hierbij komt de oplossing ook te gemoed aan bv. de nood van sommige algoritmes
+om op verschillende soorten knopen verschillende functionaliteit te voorzien.
+Maar vanuit een uitbatingsbeleid is dit een groot voordeel. Naast de
+optimalisatie van het gebruik van de middelen van \'e\'en knoop, kan nu ook een
+spreiding over verschillende knopen helpen om het gemiddeld aantal algoritmen
+per knoop te verlagen en zelfs dynamisch op regelmatige tijdstippen te wijzigen.
+
+Indien gecombineerd met voorzieningen die OTAP toelaten, kan het
+gedistribueerde IDS op elk ogenblik gewijzigd worden. Tal van mogelijkheden
+ontstaan zo.
 
 \subsection{Ontwikkeling en integratie}
 \label{subsection:arch-integration}
 
-\TODO
+Naast het IDS is er natuurlijk nog de eigenlijke toepassing die op de
+sensorknoop zal ge\"installeerd en uitgebaat worden. Ook deze moet optimaal
+verwerkt kunnen worden in het samenstellingsproces.
+
+De minimale vereisten zijn dat het generatieproces duidelijke markeringen in de
+resulterende code achterlaat, zodat de integratie met de toepassinscode
+mogelijk is. Deze markeringen kunnen ook voorzien worden in de vorm van
+invoegdirectieven die tijdens het compilatieproces bijkomende bestanden kan
+opnemen zonder verdere tussenkomst van een ontwikkelaar.
+
+\subsection{Verdere opportuniteiten}
+\label{subsection:arch-opportunities}
+
+Met een centrale opslagplaats en een volledige automatiseerbare code generatie
+en compilatieproces, zijn tal van ondersteunende toepassingen denkbaar.
+
+Een voorbeeld dat van groot belang kan zijn voor onderzoekers is een
+gestandaardiseerde simulatieomgeving. Deze zou kunnen opgebouwd worden met de
+code generator, voorzien van een implementatie voor een virtueel platform, die
+bruikbare code genereert voor de simulatieomgeving. Een integratie zou kunnen
+bestaan in een implementatie in Javascript, wat toelaat om de simulatie toe te
+voegen aan de centrale opslagplaats en dynamisch verschillende combinaties van
+algoritmen uit de centrale opslagplaats te testen voor ze te integreren in een
+echte omgeving.
 
 \subsection{Scope}
 \label{subsection:arch-scope}
 
-\TODO
+De voorgaande hoogniveau functionele analyse toont vooral aan dat met de
+basiscomponenten veel andere opportuniteiten in bereik liggen. Het is
+belangrijk om deze opportuniteiten in het vizier te houden, zodat er geen
+uitgesloten worden door de implementatie.
+
+De minimale set aan basiscomponenten zal ook in deze thesis verder uitgewerkt
+worden aan de hand van een prototype. Het betreft de code generator met
+ondersteuning voor een eerste platform en programmeertaal combinatie.
 
 \section{Technische architectuur}
 \label{section:arch-technical}
 
-\TODO
+Figuur \ref{fig:arch-technical} toont de vertaling van de beoogde functionele
+scope naar meer technische componenten. 
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=\linewidth]{resources/arch-technical.pdf}
+  \includegraphics[width=0.7\linewidth]{resources/arch-technical.pdf}
   \caption{Technische architectuur}
   \label{fig:arch-technical}
 \end{figure}
 
+De verwerking verloopt als volgt: een parser analyseert de FOO-lang broncode en
+produceert een zgn. abstracte syntax boomvoorstelling (Engels: \emph{Abstract
+Syntax Tree} (AST). Deze AST wordt vervolgens ingeladen in een semantisch model
+(SM) \citep{fowler2010domain}. Door middel van verschillende transformaties
+wordt dit SM model vervolledigd (bv. type deductie) en vervolgens omgezet in
+een code model (CM). Ook dit CM zal opnieuw door middel van verschillende
+transformaties omgezet worden in een structuur die te vergelijken is met een
+AST en toelaat om rechtstreeks omgezet te worden in programmacode.
+
 \subsection{Semantisch model}
 \label{subsection:arch-semantic-model}
 
-\TODO \citep{fowler2010domain}
+Een semantisch model bevat de volledige semantisch correcte voorstelling van de
+boogde functionaliteit. In die optiek vertoont het sterke overeenkomsten met
+een klassiek domein model \citep{fowler2010domain}. Omdat dit laatste echter
+veel rijker is aan functionaliteit en een semantisch model typisch meer
+informatie-geori\"enteerd is, wordt er een onderscheid gemaakt in de naamgeving.
+
+Het model is volledig ge\"ent op het domein waarvoor het opgebouwd wordt. In
+figuur \ref{fig:arch-semantic-model} is een sterk vereenvoudigde voorstelling
+van het SM voor het inbraakdetectie domein weergegeven. Het bevat alle
+functionele aspecten die nodig geacht worden om het domein functioneel te
+beschrijven.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[angle=90,width=0.865\linewidth]{resources/semantic.pdf}
+  \caption{Semantisch model}
+  \label{fig:arch-semantic-model}
+\end{figure}
+
+Op het hoogste niveau herkennen we het model als alles omvattende entiteit.
+Hieronder worden de modules geplaatst, die overeenkomen met telkens \'e\'en
+algoritme. Modules bevatten functionaliteit in de vorm van
+functiebeschrijvingen.
+
+Het centrale concept is dat van de uitvoeringsstrategie (Engels:
+\emph{Execution Strategy})\footnote{Er is geopteerd om in de programmacode van
+de generator een Engelstalige terminologie aan te houden.}. Deze verbindt
+functionaliteit met de knopen. Verschillende soorten strategie\"en zijn
+voorzien: een reactie op een gebeurtenis (\emph{Handler}) en een weerkerende
+actie (\emph{Every}).
+
+Op een lager niveau wordt de functionaliteit beschreven aan de hand van een
+syntax die nauw aansluit bij deze van de C programmeertaal. Deze is echter wel
+uitgebreid met constructies van een hoger abstractieniveau, om op een
+functionelere manier om te kunnen gaan met de entiteiten uit het domein.
 
 \subsection{Code model}
 \label{subsection:arch-code-model}
 
-\TODO
+Via verschillende transformaties, wordt het SM omgezet in een CM. Deze overstap
+vertaalt in essentie de functionele concepten naar overeenkomstige patronen in
+een semantiek die direct aanleunt bij programmeertalen.
+
+Het code model voorziet een hi\"erarchie van een compilatie unit, met daaronder
+modules en binnen elke module secties. Dit is een abstracte voorstelling van
+respectievelijk de gehele compilatie, de functionele modules en de bestanden
+waaruit die modules opgebouwd zullen worden. In termen van de C programmeertaal
+is dit het geheel van C en aanverwante bestanden, het concept van een C module
+en op het laagste niveau de effectieve C en hoofding bestanden.
+
+Een sectie bestaat dan uit \'e\'en of meerdere code constructies: functie
+declaraties, expressies, statements,\dots Deze code constructies zijn rijker
+dan bv. de C programmeertaal. Het zal de taak zijn van opeenvolgende
+transformaties om deze niet-gekende constructies voor een bepaald platform
+en/of programmeertaal om te vormen naar wel ondersteunde constructies.
 
