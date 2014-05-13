@@ -3,75 +3,83 @@
 \chapter{Architectuur}
 \label{chapter:architectuur}
 
-Ofschoon het domein van inbraakdetectie goed afgelijnd lijkt, werd uit de
-analyse van de probleemstelling snel duidelijk dat in het geval van draadloze
-sensornetwerken, de situatie enigszins complexer blijkt te zijn dan men op het
-eerste zicht zou mogen verwachten. De conclusie van de probleemstelling is dat
-vooral het onderzoek naar inbraakdetectie in draadloze sensornetwerken
-feitelijk nog in zijn kinderschoenen staat en dat de stap naar
-industrialisering nog niet genomen is.
+De oplossingsstrategie stelt voor om een uitwendige DSL te combineren met code
+generatie om zo een volledig geautomatiseerde keten te bekomen van onderzoek
+tot uitbating. Dit hoofdstuk bekijkt de oplossing vanuit een architectuur
+oogpunt.
 
-De daarbij horende gestructureerde manier van werken en het streven naar een
-geformaliseerde manier van werken ontbreken nog duidelijk en noodzaken daarom
-een holistische aanpak. De oplossingsstrategie vertrekt van dit gegeven en
-wordt in sectie \ref{section:strategy} uitgewerkt tot een totaaloplossing.
+In sectie \ref{section:arch-functional} overlopen we de functionaliteit van de
+oplossing en identificeren de verschillende functionele componenten en de
+onderlinge relaties. Dit overzicht identificeert tevens de scope die zal
+aangehouden worden in het vervolg van deze thesis.
 
-Deze strategie wordt in secties \ref{section:funcarch} en
-\ref{section:techarch} uitgewerkt in de vorm van respectievelijk een
-functionele en technische architectuur.
-
-\section{Oplossingsstrategie}
-\label{section:strategy}
-
-\TODO
+De functionele architectuur wordt in sectie \ref{section:arch-technical}
+uitgewerkt in een technische architectuur. Hier wordt het functionele proces
+opgedeeld in technische componenten en worden de verschillende interne
+informatiestromen, -manipulaties en -opslagvormen.
 
 \section{Functionele architectuur}
-\label{section:funcarch}
+\label{section:arch-functional}
 
-In een functionele analyse gaan we in essentie op zoek naar de manier waarop de
-beoogde functionaliteit kan bereikt worden. In dit geval betreft het het zoeken
-naar een manier waarop het mogelijk is om detectiealgoritmen van verschillende
-bronnen te combineren tot een geheel dat minder eisen stelt tov. een
-sensorknoop, dan wanneer mijn de verschillende algoritmen sequentieel hun ding
-laat doen.
+Figuur \ref{fig:arch-functional} geeft een overzicht van de voorgestelde
+oplossing.
 
-\subsection{Manuele programmatie}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{resources/arch-functional.pdf}
+  \caption{Functionele architectuur}
+  \label{fig:arch-functional}
+\end{figure}
 
-In zijn eenvoudigste vorm kan een oplossing voor het probleem bestaan in het
-defini\"eren van regels waar men zich moet aan houden bij het implementeren van
-detectiealgoritmes. Zo is het in theorie perfect mogelijk voor een programmeur
-om de extra belasting die de implementatie van verschillende detectiealgortimen
-met zich meebrengt te minimaliseren door voorafgaand een goede analyse te maken
-en op systematische wijze deze om te zetten in goed georganiseerde code.
-
-Gedistribueerde afspraken zonder centrale controle werken zelden. De
-ongebondenheid laat nog steeds toe om terug te vallen op klassieke
-implementaties.
-
-\subsection{Code generatie}
+\subsection{FOO-lang}
+\label{subsection:arch-foo-lang}
 
 \TODO
 
-\subsection{Semantisch model}
+\subsection{Centrale opslagplaats}
+\label{subsection:arch-repository}
 
 \TODO
 
-\citep{fowler2010domain}
+\subsection{Code generator}
+\label{subsection:arch-codegen}
 
-\subsection{Domein specifieke taal}
+\TODO
 
+\subsection{Uitbatingsbeleid}
+\label{subsection:arch-policy}
 
+\TODO
+
+\subsection{Ontwikkeling en integratie}
+\label{subsection:arch-integration}
+
+\TODO
+
+\subsection{Scope}
+\label{subsection:arch-scope}
+
+\TODO
 
 \section{Technische architectuur}
-\label{section:techarch}
+\label{section:arch-technical}
 
 \TODO
 
-\subsection{Python}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{resources/arch-technical.pdf}
+  \caption{Technische architectuur}
+  \label{fig:arch-technical}
+\end{figure}
 
-\TODO
+\subsection{Semantisch model}
+\label{subsection:arch-semantic-model}
 
-\subsection{ANTLR}
+\TODO \citep{fowler2010domain}
+
+\subsection{Code model}
+\label{subsection:arch-code-model}
 
 \TODO
 

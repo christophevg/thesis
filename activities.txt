@@ -628,3 +628,6 @@ activities
 - completed solutionstrategy (4h)
 - additional touch-ups to solutionstrategy (30min)
 - prepared draft architecture diagrams (30min)
+
+2014-05-13 (1h30min/592h)
+- added structure of chapter on architecture (1h30min)
