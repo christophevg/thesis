@@ -1,3 +1,5 @@
+%!TEX root=masterproef.tex
+
 % enkele persoonlijke commands
 
 \newcommand{\TODO}{\textbf{\color{red}TODO}}
@@ -26,3 +28,8 @@
 \renewcommand{\algorithmicfunction}{\textbf{functie}}
 % custom Let command
 \newcommand*\Let[2]{\State #1 $\gets$ #2}
+
+% listing numbering x.y
+\renewcommand{\thelisting}{\thechapter.\arabic{listing}}
+% restart listing numering for each chapter
+\counterwithin*{listing}{chapter}
