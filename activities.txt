@@ -629,5 +629,11 @@ activities
 - additional touch-ups to solutionstrategy (30min)
 - prepared draft architecture diagrams (30min)
 
-2014-05-13 (1h30min/592h)
+2014-05-13 (4h/594h30min)
 - added structure of chapter on architecture (1h30min)
+- completed very draft chapter on architecture (2h30min)
+
+2014-05-14 (5h30min/600h)
+- created temp appendix on foo-lang grammer (45min)
+- fixed up some latex (15min)
+- wrote half of implementation chapter (4h30min)
