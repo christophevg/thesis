@@ -1,0 +1,212 @@
+/* converted on Wed May 14, 2014, 08:38 (UTC+02) by antlr_3-to-w3c v0.33.722 which is Copyright (c) 2011-2013 by Gunther Rademacher <grd@gmx.net> */
+
+start    ::= modules? EOF
+modules  ::= module*
+module   ::= 'module' identifier instructions?
+instructions
+         ::= instruction*
+instruction
+         ::= declaration
+           | directive
+           | extension
+declaration
+         ::= annotated_declaration
+           | constant_declaration
+           | event_handler_declaration
+           | function_declaration
+annotated_declaration
+         ::= annotation apply_declaration
+           | annotation function_declaration
+annotation
+         ::= '@' function_call_expression
+apply_declaration
+         ::= 'with' scoping 'do' function_expression
+constant_declaration
+         ::= 'const' name_type_value
+event_handler_declaration
+         ::= event_timing scoping function_expression 'do' function_expression
+scoping  ::= domain '.' identifier
+           | domain
+domain   ::= identifier
+event_timing
+         ::= 'before'
+           | 'after'
+function_prototype
+         ::= identifier '(' function_param_type_list? ')' ':' type
+function_param_type_list
+         ::= type ( ',' type )*
+function_declaration
+         ::= 'function' identifier '(' function_param_list? ')' function_body
+function_expression
+         ::= 'function' identifier? '(' function_param_list? ')' function_body
+           | identifier
+function_param_list
+         ::= identifier ( ',' identifier )*
+function_body
+         ::= block_statement
+statements
+         ::= statement*
+statement
+         ::= block_statement
+           | assignment_statement
+           | increment_statement
+           | decrement_statement
+           | if_statement
+           | case_statement
+           | call_expression
+           | 'return'
+block_statement
+         ::= '{' '}'
+           | '{' statement+ '}'
+assignment_statement
+         ::= variable_expression ( '=' | '+=' | '-=' ) expression
+increment_statement
+         ::= variable_expression '++'
+decrement_statement
+         ::= variable_expression '--'
+if_statement
+         ::= 'if' '(' expression ')' statement 'else' statement
+           | 'if' '(' expression ')' statement
+case_statement
+         ::= 'case' expression '{' case_clauses? '}'
+case_clauses
+         ::= case_clause*
+case_clause
+         ::= function_call_expression block_statement
+           | 'else' statement
+expression
+         ::= logical_expression
+logical_expression
+         ::= or_expression
+or_expression
+         ::= and_expression ( 'or' and_expression )*
+and_expression
+         ::= equality_expression ( 'and' equality_expression )*
+equality_expression
+         ::= order_expression ( ( '==' | '!=' ) order_expression )*
+order_expression
+         ::= additive_expression ( ( '<' | '<=' | '>' | '>=' ) additive_expression )*
+additive_expression
+         ::= multiplicative_expression ( ( '+' | '-' ) multiplicative_expression )*
+multiplicative_expression
+         ::= unary_expression ( ( '*' | '/' | '%' ) unary_expression )*
+unary_expression
+         ::= '!'? primary_expression
+primary_expression
+         ::= '(' logical_expression ')'
+           | literal
+           | call_expression
+           | variable_expression
+           | atom
+           | matching_expression
+call_expression
+         ::= method_call_expression
+           | function_call_expression
+method_call_expression
+         ::= object_expression '.' function_call_expression
+function_call_expression
+         ::= identifier '(' argument_list? ')'
+argument_list
+         ::= expression ( ',' expression )*
+variable_expression
+         ::= property_expression
+           | identifier ':' type
+           | identifier
+property_expression
+         ::= object_expression '.' identifier
+object_expression
+         ::= identifier '.' identifier
+           | identifier
+           | object_literal
+directive
+         ::= import_directive
+import_directive
+         ::= 'from' identifier 'import' function_prototype
+extension
+         ::= 'extend' domain 'with' object_literal
+literal  ::= numeric_literal
+           | boolean_literal
+           | object_literal
+           | list_literal
+boolean_literal
+         ::= 'true'
+           | 'false'
+numeric_literal
+         ::= INTEGER
+           | FLOAT
+object_literal
+         ::= '{' property_literal_list? '}'
+property_literal_list
+         ::= property_literal property_literal*
+property_literal
+         ::= name_type_exp
+name_type_value
+         ::= identifier optional_type '=' literal
+name_type_exp
+         ::= identifier optional_type '=' expression
+optional_type
+         ::= ':' type
+           |
+atom     ::= '#' identifier
+matching_expression
+         ::= dontcare
+           | comparison
+dontcare ::= '_'
+comparison
+         ::= comparator expression
+comparator
+         ::= '<'
+           | '<='
+           | '>'
+           | '>='
+           | '=='
+           | '!='
+           | '!'
+list_literal
+         ::= '[' ']'
+           | '[' expression ( ',' expression )* ']'
+type     ::= amount_type
+           | many_type '*'
+           | many_type
+           | basic_type
+           | tuple_type '*'
+           | tuple_type
+many_type
+         ::= basic_type '*'
+basic_type
+         ::= type_identifier
+type_identifier
+         ::= 'byte'
+           | 'integer'
+           | 'float'
+           | 'boolean'
+           | 'timestamp'
+           | identifier
+tuple_type
+         ::= '[' type ( ',' type )* ']'
+amount_type
+         ::= basic_type '[' INTEGER ']'
+identifier
+         ::= ID
+           | 'from'
+           | 'import'
+           | 'with'
+           | 'use'
+           | 'extend'
+_        ::= COMMENT
+           | WS
+          /* ws: definition */
+
+<?TOKENS?>
+
+INTEGER  ::= '0'
+           | [1-9] [0-9]*
+FLOAT    ::= [0-9]+ '.' [0-9]*
+ID       ::= ( [a-z] | [A-Z] | '_' ) ( [a-z] | [A-Z] | '_' | [0-9] )*
+COMMENT? ::= '//' [^#xA#xD]* #xD? #xA
+           | '/*' .* '*/'
+WS       ::= ' '
+           | #x9
+           | #xD
+           | #xA
+EOF      ::= $

@@ -1,0 +1,9 @@
+foo grammar
+
+---
+
+found via: http://stackoverflow.com/questions/18436796/generate-bnf-diagrams-from-an-antlr-grammar
+
+- use http://bottlecaps.de/convert to convert it to W3C notation,
+- with the result, proceed to http://bottlecaps.de/rr/ui for generating syntax
+  diagrams.
