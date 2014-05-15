@@ -72,7 +72,7 @@ niet voor alle overige code konden bijgewerkt worden.
 \label{section:devel-foo-lang}
 
 Maar de echte belangrijke taal in dit geval is niet Python, maar FOO-lang.
-Listing \ref{lst:hello.foo} toont de implementatie van een elementair voorbeeld
+Codevoorbeeld \ref{lst:hello.foo} toont de implementatie van een elementair voorbeeld
 in FOO-lang. Aan de hand van dit voorbeeld introduceren we nu de typische
 bouwstenen van FOO-lang en doorlopen we het hele generatieproces.
 
@@ -156,7 +156,7 @@ Naast het herhaaldelijk uitvoeren van een functie is het ook mogelijk om een
 functie te koppelen aan een gebeurtenis in de context van het domein en de
 knopen. In plaats van de \ttt{with ... do} constructie is het ook mogelijk om
 een voor of na (\ttt{before} en \ttt{after}) de uitvoering van een functie
-binnen het kader van het domein, een functie uit te voeren. Listing
+binnen het kader van het domein, een functie uit te voeren. Codevoorbeeld
 \ref{lst:foo-event_handler} geeft een eenvoudig voorbeeld waarbij we ontvangen
 berichten tellen als deze aan ons geadresseerd waren.
 
@@ -180,7 +180,7 @@ worden en niet eerst met een naam gedefinieerd worden.
 
 Het \ttt{case statement} laat toe om eenzelfde expressie te evalueren in
 verschillende situaties. Typisch gebruik voor deze constructie is het
-analyseren van ontvangen gegevens. Listing \ref{lst:foo-case} illustreert dit.
+analyseren van ontvangen gegevens. Codevoorbeeld \ref{lst:foo-case} illustreert dit.
 
 \begin{listing}[ht]
   \begin{minted}{javascript}
@@ -256,7 +256,7 @@ dit geval is de lijst een deel van het patroon.
 \subsubsection{Patroon koppeling}
 
 Door middel van patronen kan er een kopping gemaakt worden tussen gegevens. In
-het voorbeeld in listing \ref{lst:foo-case} accepteert de \ttt{contains}
+het voorbeeld in codevoorbeeld \ref{lst:foo-case} accepteert de \ttt{contains}
 methode op een \emph{lijst} een patroon. Dit patroon is een lijst en bestaat
 uit variabele en niet-variabele elementen. De \ttt{contains} methode zal
 trachten de niet-variabele elementen herkennen in de lijst en vervolgens bij
@@ -265,7 +265,7 @@ en de waarden in de oorspronkelijke lijst.
 
 \subsubsection{Complexe types}
 
-In listing \ref{lst:hello.foo} zagen we reeds kort een voorbeeld van typering.
+In codevoorbeeld \ref{lst:hello.foo} zagen we reeds kort een voorbeeld van typering.
 De \ttt{sequence} eigenschap werd getypeerd als een \ttt{byte}. Naast
 \ttt{byte} zijn er ook nog \ttt{integer}, \ttt{float}, \ttt{boolean} en
 \ttt{timestamp} als standaard eenvoudige types.
@@ -278,7 +278,7 @@ een \ttt{*} achter het type. Zo kunnen lijsten van een bepaald type
 gedefinieerd worden. Gecombineerd met het \emph{tuple} type, ontstaat zo bv. de
 mogelijkheid om lijsten van \emph{records} te defini\"eren.
 
-In listing \ref{lst:foo-complex_type} wordt het \ttt{nodes} domein uitgebreid
+In codevoorbeeld \ref{lst:foo-complex_type} wordt het \ttt{nodes} domein uitgebreid
 met een \ttt{inbox} eigenschap. Deze bestaat uit meerdere \emph{tuples} die op
 hun beurt bestaan uit een \ttt{timestamp} en meerdere \ttt{bytes}.
 

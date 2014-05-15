@@ -44,7 +44,7 @@ RS-232\footnote{RS-232 is een seri\"ele communicatiestandaard, typisch gebruikt
 tussen computers en randapparatuur, maar ook kan dienen als eenvoudige data
 verbinding tussen twee computers.} compatibele communicatie.
 
-Listing \ref{lst:node-capture} toont de functionaliteit die op de \mcu
+Codevoorbeeld \ref{lst:node-capture} toont de functionaliteit die op de \mcu
 ge\"implementeerd werd: een globale variabele, \ttt{counter}, wordt eindeloos
 verhoogd. Na elke verhoging wordt de waarde via de USART en de RS-232
 verbinding naar een terminal verzonden. 
@@ -85,7 +85,7 @@ De uitvoer van de applicatie wordt weergegeven in listing
 uitvoer weergeeft. De applicatie werkt ononderbroken.
 
 \begin{listing}[ht]
-  \begin{minted}{console}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
 $ screen /dev/tty.usbserial-FTSJ84AI 9600
 counter = 1
 counter = 2
@@ -112,12 +112,12 @@ van de standaard foutopsporingssoftware
 
 Aangezien deze niet standaard met een JTAG verbinding kan werken, werd tevens
 een brug opgezet door middel van
-\ttt{avarice}\footnote{http://avarice.sourceforge.net}. Listing
+\ttt{avarice}\footnote{http://avarice.sourceforge.net}. Codevoorbeeld
 \ref{lst:node-capture-avarice} toont het opstarten van de brug en het
 beschikbaar maken van de JTAG verbinding via een locale server verbinding.
 
 \begin{listing}[ht]
-  \begin{minted}{console}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
 $ avarice --mkII --capture --jtag usb:5a:cb :4242
 AVaRICE version 2.13, Oct 29 2013 15:35:57
 
@@ -128,16 +128,17 @@ JTAG config starting.
 Waiting for connection on port 4242.
 Connection opened by host 127.0.0.1, port 58521.
   \end{minted}
+  \vspace{-5mm}
   \caption{\ttt{avarice} brug tussen JTAG-gebaseerde foutopspoorder en \ttt{gdb}.}
   \label{lst:node-capture-avarice}
 \end{listing}
 
 Vervolgens kan de standaard foutopspoorder, \ttt{gdb}, gebruikt worden om het
 geheugen van de \mcu te raadplegen en het programma verder te laten lopen.
-Listing \ref{lst:node-capture-gdb} toont deze interactie.
+Codevoorbeeld \ref{lst:node-capture-gdb} toont deze interactie.
 
 \begin{listing}[ht]
-  \begin{minted}{console}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
 $ avr-gdb
 GNU gdb 6.8
 ...
@@ -154,17 +155,18 @@ Program received signal SIGINT, Interrupt.
 (gdb) c
 Continuing.
   \end{minted}
+  \vspace{-5mm}
   \caption{\ttt{gdb} interactie met de \mcu.}
   \label{lst:node-capture-gdb}
 \end{listing}
 
-Listing \ref{lst:node-capture-hexdump} toont de inhoud van de veroverde
+Codevoorbeeld \ref{lst:node-capture-hexdump} toont de inhoud van de veroverde
 gegevens. \ttt{0c} en \ttt{0f} zijn telkens de eerste byte in het geheugen van
 de \ttt{counter} variabele en tonen inderdaad de waarde die de variabele had op
 het moment van de opvraging.
 
 \begin{listing}[ht]
-  \begin{minted}{console}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
 $ hexdump counter12.bin 
 0000000 0c 00 00 00 00 01 00 00                        
 0000008
@@ -173,6 +175,7 @@ $ hexdump counter15.bin
 0000000 0f 00 00 00 00 01 00 00                        
 0000008
   \end{minted}
+  \vspace{-5mm}
   \caption{Interpretatie van de gedownloade geheugenplaatsen.}
   \label{lst:node-capture-hexdump}
 \end{listing}
