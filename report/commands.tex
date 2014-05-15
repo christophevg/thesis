@@ -29,7 +29,6 @@
 % custom Let command
 \newcommand*\Let[2]{\State #1 $\gets$ #2}
 
-% listing numbering x.y
-\renewcommand{\thelisting}{\thechapter.\arabic{listing}}
-% restart listing numering for each chapter
-\counterwithin*{listing}{chapter}
+% change title of list of listings
+\renewcommand*{\listoflistingscaption}{Lijst van codevoorbeelden}
+\renewcommand*{\listingscaption}{Codevoorbeeld}
