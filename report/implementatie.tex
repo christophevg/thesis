@@ -78,7 +78,7 @@ bouwstenen van FOO-lang en doorlopen we het hele generatieproces.
 
 \inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{js}{../src/foo-lang/examples/hello.foo}
 \vspace{-5mm}
-\captionof{listing}{Elementair voorbeeld in FOO-lang: hello.foo
+\captionof{listing}{Elementair voorbeeld in FOO-lang: \ttt{hello.foo}
   \label{lst:hello.foo}}
 \vspace{3mm}
 
@@ -161,7 +161,7 @@ binnen het kader van het domein, een functie uit te voeren. Codevoorbeeld
 berichten tellen als deze aan ons geadresseerd waren.
 
 \begin{listing}[ht]
-  \begin{minted}{javascript}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{javascript}
 after nodes receive do function(me, sender, from, hop, to, payload) {
   if(to == me) {
     me.msg_count++
@@ -183,7 +183,7 @@ verschillende situaties. Typisch gebruik voor deze constructie is het
 analyseren van ontvangen gegevens. Codevoorbeeld \ref{lst:foo-case} illustreert dit.
 
 \begin{listing}[ht]
-  \begin{minted}{javascript}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{javascript}
 after nodes receive do function(me, sender, from, hop, to, payload) {
   case payload {
     contains([#marker1, value]) {
@@ -213,7 +213,7 @@ constructie op basis van \ttt{if statements}, zoals weergegeven in listing
 \ref{lst:foo-case-if}.
 
 \begin{listing}[ht]
-  \begin{minted}{javascript}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{javascript}
 after nodes receive do function(me, sender, from, hop, to, payload) {
   if payload.contains([#marker1, value]) {
     sender.msg_sent1++
@@ -283,7 +283,7 @@ met een \ttt{inbox} eigenschap. Deze bestaat uit meerdere \emph{tuples} die op
 hun beurt bestaan uit een \ttt{timestamp} en meerdere \ttt{bytes}.
 
 \begin{listing}[ht]
-  \begin{minted}{javascript}
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{javascript}
 extend nodes with {
   inbox : [timestamp, byte*]* = []
 }
@@ -303,9 +303,9 @@ FOO-lang zou op dit ogenblik tevens een herschrijven van de grammatica vragen.
 \section{Code generator}
 \label{section:devel-codegen}
 
-Met FOO-lang onder de arm, kunnen we algoritmes beschrijven. Deze FOO-lang code
-moet vervolgens door de code generator omgezet worden in een gewone
-programmeertaal. In het geval van dit prototype is dat C.
+Met FOO-lang zijn we nu in staat om inbraaddetectiealgoritmes te beschrijven.
+Deze FOO-lang code moet vervolgens door de code generator omgezet worden in een
+gewone programmeertaal. In het geval van dit prototype is dat C.
 
 \subsection{Opbouw}
 
@@ -319,37 +319,372 @@ de oplossing.
   \label{fig:devel-component-overview}
 \end{figure}
 
-\TODO
+Intern bestaat de hele oplossing uit twee grote delen: het semantische en het
+code gedeelte. Binnen het semantische gedeelte vinden we het SM terug. Dit
+model kan benaderd worden door middel van een zgn. \emph{visitor}, een
+implementatie van het \emph{visitor pattern}. Aan de hand van deze
+\emph{visitor} kunnen transformaties van het model gerealiseerd worden.
+
+Het SM is de primaire invoer voor de generator. Die kan zijn werk slechts
+vervullen door middel van een compositie met \emph{platform-} en
+\emph{domeininformatie}, een vertaler (Engels: \emph{Translator}) die elementen
+uit het semantische gedeelte kan omzetten naar overeenkomstige elementen in het
+code gedeelte en de uiteindelijk beoogde programmeertaal (Engels:
+\emph{Language}).
+
+De programmeertaal maakt deel uit van het CM. Dit is op zijn beurt opgebouwd
+uit een hi\"erarchie van vier niveaus. De structuur van de beoogde code wordt
+weergegeven door de compilatie \emph{unit}, de \emph{modules} en de
+\emph{secties}, waarbij de unit staat voor het geheel, de modules voor
+functioneel samenhangende delen en de secties zorgen voor een fysieke opdeling
+in bv. bestanden. De juiste realisatie van deze hi\"erarchie wordt overgelaten
+aan de implementatie van de taal die hier betekenis kan aan geven.
+
+Op het laagste niveau van het CM vinden we de \emph{instructies}. Deze kunnen
+gebruikt worden om de effectieve code voor te stellen. Er bestaat in het CM per
+definitie een overeenkomstige instructie voor elk element uit het SM. Aangezien
+het SM functioneel rijker is dan de meeste programmeertalen, zal na constructie
+van het initi\"ele CM, door middel van transformaties, alternatieven
+ge\"implementeerd moeten worden binnen de mogelijkheden van de uiteindelijke
+programmeertaal.
 
 \subsection{ANTLR}
 \label{subsection:devel-antlr}
 
-\TODO
+Maar alles begint bij het inladen van de FOO-lang bronbestanden in het SM. Dit
+gebeurt door middel van een \emph{parser} die de tekstuele voorstelling
+analyseert en de taal-eigen constructies er uit puurt. Het resultaat van deze
+stap is de constructie van een boomstructuur die de juiste semantische
+betekenis van de verschillende constructie structureel weergeeft. Zo'n
+boomstructuur is een AST. Figuur \ref{fig:devel-ast} toont de AST van het
+elementaire voorbeeld uit codevoorbeeld \ref{lst:hello.foo}.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth]{resources/hello_ast.pdf}
-  \caption{Een AST}
+  \caption{De AST van het elementaire voorbeeld, \ttt{hello.foo}}
   \label{fig:devel-ast}
 \end{figure}
 
-\TODO
+We herkennen duidelijk de inhoud van het codevoorbeeld: op het hoogste niveau
+zien we de module met een naam, de definitie van een constante, een uitbreiding
+van het domein, een functie definitie en een geannoteerde applicatie van een
+functie op een domein. De AST is ontdaan van alle ondersteunende syntax zoals
+aanduidingen voor blokken code,\dots en bevat louter de semantische inhoud.
 
 \subsection{Interfaces}
 \label{subsection:devel-codegen-interfaces}
 
-\TODO
+Voor we het SM en het CM in detail bekijken, kijken we eerst naar de interfaces
+die de code generator ter beschikking stelt.
 
-- api
-- foo
+\subsubsection{foo.py}
+
+Op het hoogste niveau biedt de generator een commandolijn interface (CLI) aan
+in de vorm van een Python script: \ttt{foo.py}. Codevoorbeeld \ref{lst:foo.py-help}
+toont de uitvoering van het script die een overzicht geeft van de mogelijkheden.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
+$ source setpath.sh
+$ ./foo.py --help
+usage: foo.py [-h] [-v] [-c] [-i] [-g FORMAT] [-o OUTPUT] [-l LANGUAGE]
+              [-p PLATFORM]
+              [sources [sources ...]]
+
+Command-line tool to interact with foo-lang and its code generation
+facilities.
+
+positional arguments:
+  sources               the source files in foo-lang
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         output info on what's happening
+  -c, --check           perform model checking
+  -i, --infer           perform model type inferring
+  -g FORMAT, --generate FORMAT
+                        output format (choices: none, ast, ast-dot, sm-dot,
+                        foo, code / default: none)
+  -o OUTPUT, --output OUTPUT
+                        output directory (default: .)
+  -l LANGUAGE, --language LANGUAGE
+                        when format=code: target language (choices: c /
+                        default: c)
+  -p PLATFORM, --platform PLATFORM
+                        when format=code: target platform (choices: moose,
+                        demo / default: moose)
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Informatie over de werking van \ttt{foo.py}}
+  \label{lst:foo.py-help}
+\end{listing}
+
+De CLI biedt toegang tot alle aspecten van de generator: model controle
+(\ttt{check}), type deductie (\ttt{infer}), het uitvoerformaat, waar de uitvoer
+moet geplaatst worden, welke taal gebruikt moet worden en voor welk platform de
+generatie moet gebeuren.
+
+De lijst van mogelijke uitvoerformaten bestaat uit: \ttt{none}, \ttt{ast},
+\ttt{ast-dot}, \ttt{sm-dot}, \ttt{foo} en \ttt{code}.
+
+Formaat \ttt{ast} toont een hierarchisch overzicht van de AST op het scherm in
+tekstuele vorm, zoals weergegeven in codevoorbeeld \ref{lst:foo.py-ast}. De
+uitvoer van \ttt{ast-dot} zagen we in essentie reeds eerder in figuur
+\ref{fig:devel-ast}. De uitvoer is feitelijk code die als invoer kan dienen
+voor GraphViz \citep{url:graphviz}, een open bron project dat zich
+specialiseert in het visualiseren van graafgeori\"enteerde gegevens, zoals deze
+AST met een boomstructuur. Door middel van het \ttt{dot} commando kan
+vervolgens van deze code een visuele voorstelling gemaakt worden.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
+$ source setpath.sh
+$ ./foo.py -g ast examples/hello.foo 
+ROOT
+  MODULE
+    IDENTIFIER
+      hello
+    CONST
+      IDENTIFIER
+        interval
+      UNKNOWN_TYPE
+      INTEGER_LITERAL
+        1000
+    EXTEND
+...
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Tekstuele uitvoer van een AST}
+  \label{lst:foo.py-ast}
+\end{listing}
+
+Overeenkomstig bestaat er ook de mogelijkheid om een visuele voorstelling te
+maken van het SM, door middel van het \ttt{sm-dot} formaat. Om controles te
+doen betreffende de goede verwerking van de FOO-lang broncode kan een ingelezen
+set van modules ook opnieuw als FOO-code uitgevoerd worden.
+
+Tot slot is er nog het \ttt{code} formaat, dat de generator vraagt om
+effectieve code te genereren. Hierbij dienen dan ook de overige opties
+eventueel ingevuld te worden: uitvoerlocatie, taal en platform.
+
+\subsubsection{API}
+
+Het \ttt{foo.py} Python script is slechts een CLI-verpakking rond de Python
+API. Deze biedt alle functionaliteit aan in de vorm van een Python module met
+een imperatieve interface. Codevoorbeeld \ref{lst:codegen-api} toont de interface
+van deze module.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{python}
+def create_model():
+  ...
+  return model
+
+def parse(string, noprint=False):
+  ...
+  return parser
+
+def infer(model, silent=False):
+  ...
+
+def check(model, silent=False):
+  ...
+
+def generate(model, args):
+  ...
+
+def load(string, model=None):
+  ...
+  return model
+  \end{minted}
+  \vspace{-5mm}
+  \caption{API van de code generator}
+  \label{lst:codegen-api}
+\end{listing}
+
+In volgorde zien we de verschillende fasen uit het generatie proces: het
+aanmaken van een (leeg) model, het parsen van de broncode, het deduceren van
+onbekende types, het controleren of een model volledig in orde is en
+uiteindelijk het genereren van de code. De bijkomende \ttt{load} functie
+combineert de \ttt{create\_model} en \ttt{parse} functionaliteit in \'e\'en
+handige functie.
+
+De API laat toe om de generator vanuit Python aan te spreken en eventueel
+verder te integreren in een uitgebreider compilatieproces, of om andere
+interfaces te voorzien (visuele gebruikersinterfaces zoals bv. een
+webinterface,\dots).
+
+De API biedt toegang tot de entiteiten op het hoogste niveau, zoals de parser,
+de model-entiteit uit het SM,\dots De volledige openheid van Python code laat
+verder toe om dieper door te dringen en elk aspect van het bv. model te
+ondervragen of zelfs te wijzigen.
+
+Beide onderliggende modellen zijn echter volledig ondervraagbaar aan de hand
+van een \emph{visitor}. Deze worden door de generator veelvuldig gebruikt,
+zelfs voor kleine operaties en bieden een veel aantrekkelijkere interface om
+met de modellen te werken dan het ruwweg volgen van eigenschappen en methoden
+doorheen het model.
 
 \subsection{Semantisch model}
 \label{subsection:devel-semantic-model}
 
-\TODO
+De AST wordt door een eerste \emph{visitor} ingeladen in het SM. Dit is in
+essentie een eenvoudige vertaling van de boomstructuur naar de overeenkomstige
+elementen in het SM. Het resultaat kan opnieuw gevisualiseerd worden door
+middel van GraphViz, zoals weergegeven in figuur \ref{fig:hello.sm}.
 
-- inferrer
-- checker
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{resources/hello_sm.pdf}
+  \caption{Het SM van het elementaire voorbeeld, \ttt{hello.foo}}
+  \label{fig:hello.sm}
+\end{figure}
+
+Bij deze visualisatie is gebruikgemaakt van een kleurencodering. Het SM kan
+veel meer informatie bevatten dan de AST, zoals onder meer typering. Hierdoor
+wordt de visualisatie van het SM ook een stuk groter. Dankzij de kleuren is het
+makkelijker om het diagram te interpreteren.
+
+De belangrijkste kleur is zonder meer de rode kleur. Deze geeft problemen aan
+in het model. In dit geval betreft het onbekende types. Dit is in deze fase van
+het generatieproces normaal aangezien typering in FOO-lang optioneel is. Deze
+eerste versie van het SM bevat daarom nog niet alle types.
+
+Een ander deel dat lijkt te ontbreken in dit diagram is de uitbreiding van het
+domein. In het voorbeeld werd immers een eigenschap \ttt{sequence} toegevoegd.
+Aangezien dit een uitbreiding is van het domein, zal deze terug te vinden zijn
+in de eigen instantie van het domein voor deze module. In figuur
+\ref{fig:hello.sm} is dit domein beperkt tot een referentie in een gele kleur.
+Figuur \ref{fig:nodes.sm} toont de volledige inhoud van wat zich hierachter
+verschuilt.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[angle=90,width=0.7\linewidth]{resources/nodes_sm.pdf}
+  \caption{Het knopendomein in het SM voor \ttt{hello.foo} }
+  \label{fig:nodes.sm}
+\end{figure}
+
+Dit is een groot stuk van het SM en behelst verschillende types en functie
+declaraties die door het knopendomein ge\"introduceerd worden in het SM. Hier
+zien we tevens de uitbreiding met de extra \ttt{sequence} eigenschap.
+
+\subsubsection{Type deductie}
+
+De volgende stap in het generatieproces bestaat erin om de nog onbekende types
+te deduceren op basis van andere informatie uit het SM. Dit gebeurt aan de hand
+van de \ttt{inferrer module}. Dit is een implementatie van de \emph{visitor}
+voor het SM die nagaat dat alle types gekend zijn. Voor onbekende types wordt,
+afhankelijk van de plaats van het type op verschillende manieren op zoek gegaan
+naar een juiste typering.
+
+De eenvoudigste methode bouwt terwijl het model doorlopen wordt een overzicht
+op van gekende types die ontstaan door de declaratie van variabelen,\dots
+Indien een onbekend type wordt gevonden, consulteert de \ttt{inferrer module}
+dit overzicht. Indien een referentie naar een eerdere declaratie gevonden
+wordt, kan het type eenvoudig gededuceerd worden.
+
+In een aantal gevallen is de deductie niet rechtstreeks af te lezen uit
+eenvoudige declaraties en moet er naar andere mogelijke combinaties gekeken
+worden. Voorbeelden hiervan zijn bv. functie declaraties die gebruikt worden
+als reactie op een gebeurtenis. De gebeurtenis specificeert hoe de reagerende
+functie gedeclareerd is. Op basis van de omkaderende gebeurtenis moet
+vervolgens het overeenkomstige prototype van de functie opgezocht en gekoppeld
+worden.
+
+Na het succesvol uitvoeren van deze type deductie zijn de voordien onbekende
+types gekend en is het model volledig. Figuur \ref{fig:hello.sm-inferred} toont
+hetzelfde SM als voordien, echter nu met volledig gekende typering.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{resources/hello_sm_inferred.pdf}
+  \caption{Het SM van het elementaire voorbeeld, \ttt{hello.foo}, na type deductie}
+  \label{fig:hello.sm-inferred}
+\end{figure}
+
+Ofschoon men verwacht dat deze fase geen structurele wijzigingen aanbrengt aan
+het SM, zien we in dit geval toch dat er een vijftal elementen uit het model
+verdwenen lijken te zijn. Dit is nochtans een gewoon voorbeeld van deductie. Na
+het inladen van het initi\"ele model werd de (enige) uitvoeringsstrategie
+gekoppeld aan een functie-expressie (\emph{FunctionExp}) genaamd, \ttt{step}.
+Op dit ogenblik was er over step niets meer geweten. De declaratie van step was
+wel eerder gebeurd, maar het is pas in de deductiefase dat het onbekende type
+van deze functie opgezocht werd. Deel van het type is tevens de declaratie
+ervan. Tijdens de deductie-fase wordt deze gekoppeld aan de eerdere declaratie,
+waardoor dat in figuur \ref{fig:hello.sm-inferred} deze functiedeclaratie niet
+meer volledig getoond wordt, maar nu als een referentie naar de \ttt{step}
+functie opgenomen is.
+
+\subsubsection{Model controle}
+
+De \ttt{inferrer module} tracht alle onbekende types te deduceren. Hiermee
+moeten normaal gezien de overblijvende problemen opgelost zijn. Een tweede
+ondersteunende module is de \ttt{checker module} or model controle module. Deze
+overloopt ook aan de hand van een \emph{visitor} het hele model en controleert
+of alles in orde is.
+
+De \ttt{checker module} is typisch nuttig bij het schrijven van FOO-lang code
+en kan dienen als syntax en semantisch controle. Wanneer er bv. een schrijffout
+gemaakt wordt in de naam van een variabele of functie, kan dit soms niet direct
+opvallen. FOO-lang maakt bv. automatisch declaraties voor variabelen aan
+wanneer zij voor het eerste gebruikt worden en nog niet eerder gedeclareerd
+werden. De \ttt{checker module} kan bv. voor deze situaties waarschuwingen
+geven, die kunnen helpen bij het schrijven van de FOO-lang broncode.
+
+Ter illustratie toont codevoorbeeld \ref{lst:checker} de uitvoer van het
+\ttt{hello.foo} voorbeeld. Hier is echter een \emph{fout} gemaakt in de naam
+van de toegepast functie: in plaats van \ttt{step} wordt verwezen naar
+\ttt{step2}.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
+$ source setpath.sh
+$ ./foo.py --check examples/hello.foo
+foo-checker: failure: constant type is Unknown : interval
+    stack:
+      Model > Module(hello) > Constant(interval)
+    env:
+      interval : Constant(interval)
+      
+foo-checker: failure: parameter type is Unknown : node
+    stack:
+      Model > Module(hello) > FunctionDecl(step) > Parameter(node)
+    env:
+      node : Parameter(node)
+        nodes : Nodes(nodes)
+        interval : Constant(interval)
+        step : FunctionDecl(step)
+      
+foo-checker: failure: function return type is Unknown : step
+    stack:
+      Model > Module(hello) > FunctionDecl(step)
+    env:
+      nodes : Nodes(nodes)
+      interval : Constant(interval)
+      step : FunctionDecl(step)
+      
+foo-checker: failure: FunctionExp type is Unknown : step2
+    stack:
+      Model > Module(hello) > Every(AllNodes(nodes)) > FunctionExp(step2:UnknownType)
+    env:
+      nodes : Nodes(nodes)
+      interval : Constant(interval)
+      step : FunctionDecl(step)
+      
+foo-checker: failure: FunctionExp has no definition. : step2
+    stack:
+      Model > Module(hello) > Every(AllNodes(nodes)) > FunctionExp(step2:UnknownType)
+    env:
+      nodes : Nodes(nodes)
+      interval : Constant(interval)
+      step : FunctionDecl(step)
+  \end{minted}
+  \vspace{-5mm}
+  \caption{API van de code generator}
+  \label{lst:codegen-api}
+\end{listing}
 
 \subsection{Code model}
 \label{subsection:devel-code-model}

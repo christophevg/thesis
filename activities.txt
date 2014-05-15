@@ -637,3 +637,6 @@ activities
 - created temp appendix on foo-lang grammer (45min)
 - fixed up some latex (15min)
 - wrote half of implementation chapter (4h30min)
+
+2014-05-15 (4h/604h)
+- completed semantic model part of implementation chapter (4h)
