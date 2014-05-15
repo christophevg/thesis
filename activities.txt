@@ -638,8 +638,9 @@ activities
 - fixed up some latex (15min)
 - wrote half of implementation chapter (4h30min)
 
-2014-05-15 (7h45min/607h45min)
+2014-05-15 (8h15min/608h15min)
 - completed semantic model part of implementation chapter (4h)
 - completed code model part of implementation chapter (2h)
 - completed transformations part of implementation chapter (1h30min)
 - completed chapter on implementation (15min)
+- prepared missing section on actual generated code + code in appendix (30min)
