@@ -1,0 +1,155 @@
+%!TEX root=masterproef.tex
+
+\subsection{Interfaces}
+\label{subsection:devel-codegen-interfaces}
+
+Voor we het SM en het CM in detail bekijken, kijken we eerst naar de interfaces
+die de code generator ter beschikking stelt.
+
+\subsubsection{foo.py}
+
+Op het hoogste niveau biedt de generator een commandolijn interface (CLI) aan
+in de vorm van een Python script: \ttt{foo.py}. Codevoorbeeld \ref{lst:foo.py-help}
+toont de uitvoering van het script die een overzicht geeft van de mogelijkheden.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
+$ source setpath.sh
+$ ./foo.py --help
+usage: foo.py [-h] [-v] [-c] [-i] [-g FORMAT] [-o OUTPUT] [-l LANGUAGE]
+              [-p PLATFORM]
+              [sources [sources ...]]
+
+Command-line tool to interact with foo-lang and its code generation
+facilities.
+
+positional arguments:
+  sources               the source files in foo-lang
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         output info on what's happening
+  -c, --check           perform model checking
+  -i, --infer           perform model type inferring
+  -g FORMAT, --generate FORMAT
+                        output format (choices: none, ast, ast-dot, sm-dot,
+                        foo, code / default: none)
+  -o OUTPUT, --output OUTPUT
+                        output directory (default: .)
+  -l LANGUAGE, --language LANGUAGE
+                        when format=code: target language (choices: c /
+                        default: c)
+  -p PLATFORM, --platform PLATFORM
+                        when format=code: target platform (choices: moose,
+                        demo / default: moose)
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Informatie over de werking van \ttt{foo.py}}
+  \label{lst:foo.py-help}
+\end{listing}
+
+De CLI biedt toegang tot alle aspecten van de generator: model controle
+(\ttt{check}), type deductie (\ttt{infer}), het uitvoerformaat, waar de uitvoer
+moet geplaatst worden, welke taal gebruikt moet worden en voor welk platform de
+generatie moet gebeuren.
+
+De lijst van mogelijke uitvoerformaten bestaat uit: \ttt{none}, \ttt{ast},
+\ttt{ast-dot}, \ttt{sm-dot}, \ttt{foo} en \ttt{code}.
+
+Formaat \ttt{ast} toont een hierarchisch overzicht van de AST op het scherm in
+tekstuele vorm, zoals weergegeven in codevoorbeeld \ref{lst:foo.py-ast}. De
+uitvoer van \ttt{ast-dot} zagen we in essentie reeds eerder in figuur
+\ref{fig:devel-ast}. De uitvoer is feitelijk code die als invoer kan dienen
+voor GraphViz \citep{url:graphviz}, een open bron project dat zich
+specialiseert in het visualiseren van graafgeori\"enteerde gegevens, zoals deze
+AST met een boomstructuur. Door middel van het \ttt{dot} commando kan
+vervolgens van deze code een visuele voorstelling gemaakt worden.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
+$ source setpath.sh
+$ ./foo.py -g ast examples/hello.foo 
+ROOT
+  MODULE
+    IDENTIFIER
+      hello
+    CONST
+      IDENTIFIER
+        interval
+      UNKNOWN_TYPE
+      INTEGER_LITERAL
+        1000
+    EXTEND
+...
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Tekstuele uitvoer van een AST}
+  \label{lst:foo.py-ast}
+\end{listing}
+
+Overeenkomstig bestaat er ook de mogelijkheid om een visuele voorstelling te
+maken van het SM, door middel van het \ttt{sm-dot} formaat. Om controles te
+doen betreffende de goede verwerking van de FOO-lang broncode kan een ingelezen
+set van modules ook opnieuw als FOO-code uitgevoerd worden.
+
+Tot slot is er nog het \ttt{code} formaat, dat de generator vraagt om
+effectieve code te genereren. Hierbij dienen dan ook de overige opties
+eventueel ingevuld te worden: uitvoerlocatie, taal en platform.
+
+\subsubsection{API}
+
+Het \ttt{foo.py} Python script is slechts een CLI-verpakking rond de Python
+API. Deze biedt alle functionaliteit aan in de vorm van een Python module met
+een imperatieve interface. Codevoorbeeld \ref{lst:codegen-api} toont de interface
+van deze module.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{python}
+def create_model():
+  ...
+  return model
+
+def parse(string, noprint=False):
+  ...
+  return parser
+
+def infer(model, silent=False):
+  ...
+
+def check(model, silent=False):
+  ...
+
+def generate(model, args):
+  ...
+
+def load(string, model=None):
+  ...
+  return model
+  \end{minted}
+  \vspace{-5mm}
+  \caption{API van de code generator}
+  \label{lst:codegen-api}
+\end{listing}
+
+In volgorde zien we de verschillende fasen uit het generatie proces: het
+aanmaken van een (leeg) model, het parsen van de broncode, het deduceren van
+onbekende types, het controleren of een model volledig in orde is en
+uiteindelijk het genereren van de code. De bijkomende \ttt{load} functie
+combineert de \ttt{create\_model} en \ttt{parse} functionaliteit in \'e\'en
+handige functie.
+
+De API laat toe om de generator vanuit Python aan te spreken en eventueel
+verder te integreren in een uitgebreider compilatieproces, of om andere
+interfaces te voorzien (visuele gebruikersinterfaces zoals bv. een
+webinterface,\dots).
+
+De API biedt toegang tot de entiteiten op het hoogste niveau, zoals de parser,
+de model-entiteit uit het SM,\dots De volledige openheid van Python code laat
+verder toe om dieper door te dringen en elk aspect van het bv. model te
+ondervragen of zelfs te wijzigen.
+
+Beide onderliggende modellen zijn echter volledig ondervraagbaar aan de hand
+van een \emph{visitor}. Deze worden door de generator veelvuldig gebruikt,
+zelfs voor kleine operaties en bieden een veel aantrekkelijkere interface om
+met de modellen te werken dan het ruwweg volgen van eigenschappen en methoden
+doorheen het model.
