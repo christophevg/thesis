@@ -1,18 +1,6 @@
 TODO
 
-5. get metrics
-  - xbee: 1) #frames
-          2) bytes sent
-  - mcu:  3) time IDS code
-          4) code size (LoC + hex bytes)
-  scope:
-    1) no IDS
-    2) IDS HB
-    3)     reputation
-    4)     HB + reputation
-
-4. write thesis (+ add metrics to IEEE-style article)
-
+4. write thesis
   - add section on development of embedded systems
     - compilation/deployment style:
       - hex + install

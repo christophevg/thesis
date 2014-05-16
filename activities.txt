@@ -645,5 +645,6 @@ activities
 - completed chapter on implementation (15min)
 - prepared missing section on actual generated code + code in appendix (30min)
 
-2014-05-16 (1h45min/610h)
+2014-05-16 (8h45min/617h)
 - added missing final section on actual generated code (1h45min)
+- completed chapter on evaluation (7h)

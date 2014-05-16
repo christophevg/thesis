@@ -40,7 +40,7 @@ endif
 all: generate beautify patch build
 
 program:
-	@(cd $(OUTPUT); make program)
+	@(cd $(OUTPUT); $(VARS) make program)
 
 build:
 	@echo "*** building generated sources"
