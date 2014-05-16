@@ -1,6 +1,235 @@
 %!TEX root=masterproef.tex
 
-\subsection{Generatie}
-\label{subsection:devel-generation}
+\section{Generatie}
+\label{section:generation}
 
-\TODO
+Alle voorgaande structurele componenten zorgen samen voor het generatieproces.
+Dit proces accepteert FOO-lang broncode, importeert die in het SM,
+transformeert die in een CM en uiteindelijk wordt dat CM uitgevoerd als
+effectieve programmacode.
+
+Bijlage \ref{appendix:hello-srcs} bevat de belangrijkste gegenereerde code voor
+het elementaire voorbeeld, \ttt{hello.foo}. We overlopen enkele aspecten van
+deze laatste stap in het generatieproces en tonen hoe de verschillende
+componenten bijdragen tot bepaalde van de patroonmatige constructies.
+
+\subsection{main.c}
+
+Deze platform-implementatie gaat uit van de eenvoudigste opzet, op basis van
+een expliciete \emph{event loop} (regels 18 tot 24). Verder voorziet de
+generatie aan de hand van commentaar enkele instructies voor de gebruiker om
+applicatie-specifieke code toe te voegen of om het gebruikte onderliggende
+raamwerk te initialiseren (zie respectievelijk regels 9 en 4 in de broncode van
+\ttt{main.c}).
+
+We merken vooral de functie-oproepen op naar functies met een
+``\ttt{nodes\_}''-prefix. Deze gaan naar de \ttt{nodes} knoopgeori\"enteerde
+module die deel uitmaakt van de FOO-lib softwarebibliotheek. Op regel 28 zien
+we bv. de registratie van de uitvoerstrategie die na het verstrijken van een
+intervaltijd telkens de functie \ttt{step} zal oproepen.
+
+Die \ttt{interval} constante is gedefinieerd in het \ttt{constants.h} bestand,
+samen met eventueel andere constanten. De generator tracht om functioneel
+verwante zaken bij elkaar te plaatsen. Zo gaan dus alle constanten in \'e\'en
+bestand, maar ook het importeren van functionaliteit wordt gecentraliseerd om
+de te genereren code eenvoudiger te maken. Zo worden bv. alle nodig
+\emph{\#include} opdrachten ook in \'e\'en \ttt{includes.h} bestand
+samengebracht.
+
+\subsection{node\_t.h en node\_t.c}
+
+H\'et centrale gegeven is natuurlijk de voorstelling van een sensorknoop. De
+generator zal de informatie uit verschillende FOO-lang modules trachten samen
+te brengen tot \'e\'en gemeenschappelijk voorstelling.
+
+Standaard heeft een knoop twee eigenschappen, nodig voor de interne werking van
+de \ttt{nodes} module: een unieke, interne identificatie (\ttt{id}) en het
+netwerkadres van de knoop (\ttt{address}). Daarnaast voegt de generator alle
+uitgebreide eigenschappen toe en maakt van het geheel een structuur en een
+\ttt{node\_t} type.
+
+Naast de declaratie van het type, wordt ook een functie voorzien om een nieuwe
+knoop te initialiseren. Deze functie bevat opdrachten die overeenkomen met de
+gedefinieerde initi\"ele waarden van de eigenschappen.
+
+\subsection{nodes-\emph{module}.h en nodes-\emph{module}.c}
+
+Tot slot zal de generator het \ttt{nodes} domein de kans bieden om voor elke
+FOO-lang module een CM module te maken. Hierin wordt de functionaliteit die
+eigen is aan de module ondergebracht. Typisch vinden we hier de functies terug
+die eerder gekoppeld werden aan een uitvoerstrategie.
+
+In het geval van het voorbeeld is dit de \ttt{step} functie.
+
+\subsection{Communicatie}
+
+Aan het elementaire voorbeeld ontbreekt natuurlijk \'e\'en heel belangrijk
+aspect: communicatie. Er worden geen berichten verstuurd, noch ontvangen. De
+generator zal het versturen van berichten delegeren naar de \ttt{nodes} FOO-lib
+module en zal voor het verwerken van ontvangen berichten functies registreren
+bij diezelfde module. Deze worden vervolgens opgeroepen indien een binnenkomend
+bericht voldoet aan de eisen voor die specifieke verwerkingsfunctie.
+
+Codevoorbeelden \ref{lst:comm.foo} en \ref{lst:comm.c} illustreren het typische
+communicatiepatroon en de overeenkomstige generatie.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{javascript}
+after nodes receive do function(me, sender, from, hop, to, payload) {
+  // payload is a list of data. we can consider one or more cases
+  case payload {
+    // e.g. we can check if we find an atom and three variables after is
+    contains( [ #heartbeat, time:timestamp, sequence, signature:byte[20] ] ) {
+      ...
+    }
+  }
+}
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Verwerking van een binnenkomend bericht in FOO-lang}
+  \label{lst:comm.foo}
+\end{listing}
+
+Via een uitvoerstrategie wordt een (anonieme) functie gekoppeld aan het
+ontvangen van een bericht door een knoop. Vervolgens wordt gecontroleerd op
+verschillende mogelijke patronen. Een bericht dat een \ttt{\#heartbeat}
+\emph{atoom} bevat, zal de volgende bytes koppelen aan drie variabelen:
+\ttt{time}, \ttt{sequence} en \ttt{signature}.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{c}
+void init(void) {
+  ...
+  payload_parser_register(nodes_process_incoming_case_0, 2, 0x00, 0x01);
+  ...
+}
+...
+void nodes_process_incoming_case_0(node_t* me, node_t* sender, node_t* from,
+                                   node_t* hop, node_t* to, payload_t* payload) {
+  // extract variables from payload
+  uint32_t time = payload_parser_consume_timestamp();
+  uint8_t sequence = payload_parser_consume_byte();
+  uint8_t* signature = payload_parser_consume_bytes(20);
+  ...
+}
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Gegenereerde code voor een binnenkomend bericht}
+  \label{lst:comm.c}
+\end{listing}
+
+De generator zal de verwerking van een binnenkomend bericht detecteren en dit
+uit elkaar halen en structureren aan de hand van een functie en een registratie
+van die functie.
+
+Het \emph{atoom} is hier omgezet in twee opeenvolgende bytes: \ttt{0x00, 0x01}.
+Wanneer de algemene parser deze sequentie ontmoet, zal
+\ttt{nodes\_process\_incoming\_case\_0} opgeroepen worden. De signatuur van
+deze functie bevat alle informatie over het bericht ivm afzender,
+bestemmeling,\dots
+
+Het vervolg van het gezochte patroon vinden we hier tevens terug. De drie
+variabelen worden gedeclareerd en ge\"initialiseerd door middel van een aantal
+functies die de volgende bytes uit het bericht zullen omzetten naar een
+gewenste voorstelling.
+
+\subsection{\emph{Tuples}, lijsten en meer patroonherkenning}
+
+Net zoals het \ttt{node\_t} type, worden voor \emph{tuples} ook structuren
+aangemaakt en functies gegenereerd die de behandeling van het \emph{tuple}-type
+toelaten. Alle declaraties van de types en de definities van de manipulerende
+functies worden samengebracht in respectievelijk \ttt{tuples.h} en
+\ttt{tuples.c}. Codevoorbeeld \ref{lst:tuples.h} toont de typische module
+interface van een gegenereerd \emph{tuple}.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{c}
+typedef struct tuple_0_t {
+  uint32_t elem_0;
+  payload_t* elem_1;
+  struct tuple_0_t* next;
+} tuple_0_t;
+tuple_0_t* make_tuple_0_t(uint32_t elem_0, payload_t* elem_1);
+void free_tuple_0_t(tuple_0_t* tuple);
+tuple_0_t* copy_tuple_0_t(tuple_0_t* source);
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Gegenereerde code voor een \emph{tuple}}
+  \label{lst:tuples.h}
+\end{listing}
+
+Aangezien een \emph{tuple} in FOO-lang gedefinieerd wordt op basis van types,
+worden standaardnamen gebruikt voor de elementen. Tevens voorziet een
+verwijzing naar zichzelf, om de constructie van lijsten toe te laten. Drie
+functies bieden de mogelijkheid om een \emph{tuple} aan te maken, vrij te geven
+of te kopi\"eren.
+
+\emph{Tuples} worden meestal in combinatie met lijsten gebruikt. Codevoorbeeld
+\ref{lst:lists.c} toont enkele fragmenten uit de generatie van functies om lijsten
+te onderhouden.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{c}
+void list_of_tuple_0_ts_push(tuple_0_t** list, tuple_0_t* item) {
+  item->next = *list;
+  *list = item;
+}
+...
+uint16_t list_of_tuple_0_ts_remove_match_lt_now(tuple_0_t** list) {
+  ...
+  while((iter != NULL)) {
+    if((iter->elem_0 < now())) {
+      ...
+    }
+  }
+}
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Gegenereerde code voor manipulatie van lijsten}
+  \label{lst:lists.c}
+\end{listing}
+
+De eerste functie voegt een instantie van het \emph{tuple}-type toe aan een
+lijst van dat type. Hierbij wordt de eerder gedefinieerde verwijzing gebruikt.
+
+Het tweede voorbeeld is iets complexer. Het betreft een functie om een element
+uit diezelfde lijst te verwijderen. De conditie om zo'n element te verwijderen
+zit ingebakken in de functie, zowel in de naam als in de logica. De oorsprong
+hiervan kunnen we terugvinden in de overeenkomstige FOO-lang broncode:
+\mint{javascript}| failures = node.queue.remove([ < now(), _ ]) |
+
+Met deze opdracht wordt de eigenschap \ttt{queue} op een knoop object
+geraadpleegd. Deze eigenschap is gedeclareerd als een lijst van het voorgaande
+\emph{tuple}-type. Het argument van de \ttt{remove} methode, is een patroon dat
+bestaat uit een conditie \ttt{< now()} en een ``\_'' die
+syntactisch aanduidt dat alle waarden op deze positie in het \emph{tuple} goed
+zijn.
+
+De generator zal zo'n patroon analyseren en trachten om specifieke code te
+genereren. Een alternatief zou zijn om generieke lijst-functies op te namen in
+FOO-lib. Vervolgens zouden de condities, ge\"implementeerd als kleine
+gegenereerde functies, meegegeven kunnen worden aan de generieke functies. Deze
+kleine functies zouden dan opgeroepen kunnen worden om de effectieve condities
+te testen.
+
+In het prototype is hier gekozen om een voorbeeld te introduceren van
+\emph{inlining}. Het gebruiken van functie verwijzingen zou het genereren wel
+eenvoudiger maken, doch de kost die gepaard gaat met het herhaaldelijk oproepen
+van de verwijzing naar de functie met de conditie zou een serieuze belasting
+voor de \mcu met zich meebrengen. In het kader van dit probleem werden testen
+gedaan die uitwezen dat het verschil tussen het gebruik van een verwijzing en
+het \emph{inline}'en van deze code eenvoudig kan oplopen tot een factor 3000.
+
+\vspace{5mm}
+
+Het feit dat het dankzij codegeneratie die start op een functioneel niveau
+mogelijk is om zulke optimalisaties door te voeren, illustreert de kracht en de
+mogelijkheden die code generatie voor dit soort van problemen kan bieden.
+
+De generatiepatronen die ge\"implementeerd zijn in dit prototype zijn niet
+volledig en zeker niet geoptimaliseerd. Alleen hier al liggen grote
+opportuniteiten tot verbetering. De doelstelling was om code te genereren die
+vergelijkbaar was met overeenkomstige manuele code. In een volgend hoofdstuk
+willen we immers beide implementaties vergelijken en zien of the theoretische
+winst die de beter georganiseerde gegenereerde code zou moeten opleveren, zich
+ook effectief in praktijk manifesteert.

@@ -17,24 +17,26 @@ prototype.
 
 Daarna wordt FOO-lang in meer detail bekeken in sectie
 \ref{section:devel-foo-lang}. Aan de hand van voorbeelden en de grammatica
-introduceren we de taal, de mogelijkheden die ze biedt alsook de beperkingen
-die ze introduceert. Een elementair voorbeeld wordt vervolgens als rode draad
-doorheen het hoofdstuk gebruikt om de volledige generatie van FOO-lang
-beschrijving tot C programmacode te illustreren aan de hand van een effectief
-voorbeeld.
+introduceren we de taal. Een elementair voorbeeld wordt vervolgens als rode
+draad doorheen het hoofdstuk gebruikt om de volledige generatie van een
+FOO-lang beschrijving tot C programmacode te illustreren.
 
 Sectie \ref{section:devel-codegen} belicht de generator met in hoofdzaak de
-tweeledige taxonomie van het SM en het CM. De verschillende transformaties die
-uitgevoerd worden op beide modellen worden kort samengevat en het onderliggende
-implementatie van het \emph{visitor} patroon \citep{gamma1994design} wordt
-toegelicht.
+tweeledige hi\"erarchi van het SM en het CM. Ook het principe van
+transformaties wordt kort samengevat en de onderliggende implementatie van het
+\emph{visitor} patroon \citep{gamma1994design} wordt toegelicht.
 
 De generator wordt vergezeld van gemeenschappelijke basisfunctionaliteit in de
 vorm een softwarebibliotheek, genaamd FOO-lib. Sectie
-\ref{section:devel-foo-lib} overloopt kort de verschillende modules en kadert
-het geheel in de context van de generator en de taal.
+\ref{section:devel-foo-lib} kadert dit in de context van de generator en de
+taal.
+
+Tot slot bekijken we het resultaat van de samengang van al deze componenten. In
+sectie \ref{section:generation} bekijken we de gegenereerde code en zien we hoe
+de generator de code structureert en vormgeeft.
 
 \input{python}
 \input{foo-lang}
 \input{codegen}
 \input{foo-lib}
+\input{generation}

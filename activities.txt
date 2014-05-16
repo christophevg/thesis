@@ -644,3 +644,6 @@ activities
 - completed transformations part of implementation chapter (1h30min)
 - completed chapter on implementation (15min)
 - prepared missing section on actual generated code + code in appendix (30min)
+
+2014-05-16 (1h45min/610h)
+- added missing final section on actual generated code (1h45min)
