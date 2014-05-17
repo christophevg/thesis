@@ -648,3 +648,6 @@ activities
 2014-05-16 (8h45min/617h)
 - added missing final section on actual generated code (1h45min)
 - completed chapter on evaluation (7h)
+
+2014-05-17 (3h/620h)
+- reviewed preface, abstract & introduction (3h)

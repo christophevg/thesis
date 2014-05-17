@@ -10,6 +10,10 @@ TODO
   - make sure illustrations use same font-sizes, colors, ...
   - node-capture: replace ISP programming with JTAG programming
   - captions -> add short caption for LoF
+  - afkortingen verzamelen
+  - consistentie:
+    - algoritmen / algoritmes
+    - frames -> pakketten
 
 3. clean up coordinate.py
 2. solder motes
