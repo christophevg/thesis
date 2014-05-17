@@ -1,7 +1,7 @@
 %!TEX root=masterproef.tex
 
-\section{Knoopverovering}
-\label{section:node-capture}
+\chapter{Knoopverovering}
+\label{appendix:node-capture}
 
 Zoals reeds beschreven in de inleiding en in de situering hiervoorafgaand, is
 de fysieke toegankelijkheid van knopen een re\"eel en groot probleem voor
@@ -9,7 +9,7 @@ draadloze sensornetwerken. In de volgende paragrafen illustreren we hoe
 eenvoudig het is om een knoop te veroveren en dat de knoop en zijn netwerk hier
 nagenoeg niets van kunnen merken.
 
-\subsection{Situatie en doel}
+\section{Situatie en doel}
 
 Het hart van elke draadloze sensornetwerk knoop is de microcontroller of \mcu.
 Door zijn ge\"integreerde architectuur bevat deze nagenoeg alle onderdelen die
@@ -60,7 +60,7 @@ bemachtigen, zonder dat de werking van het programma onderbroken wordt. Deze
 variabele staat hier natuurlijk symbool voor eender welk gegeven dat in het
 geheugen van de node wordt opgeslagen.
 
-\subsection{Uitvoeren van de aanval}
+\section{Uitvoeren van de aanval}
 
 De aanval bestaat er in dit geval in om de knoop te verbinden met een
 hardwarematige foutopspoorder, zoals de Atmel JTAGICE mkII
@@ -180,7 +180,7 @@ $ hexdump counter15.bin
   \label{lst:node-capture-hexdump}
 \end{listing}
 
-\subsection{Geheugens en geheugenplaatsen}
+\section{Geheugens en geheugenplaatsen}
 
 In de \ttt{gdb} sessie worden expliciete adressen in het geheugen gebruikt. Dit
 was mogelijk mits enige voorkennis i.v.m. de gecompileerde code. De
@@ -212,7 +212,7 @@ einde van het oorspronkelijke beeld en het begin van het data geheugen te
 vergelijken, kunnen we de \ttt{.data} sectie bepalen, als ook het begin van de
 \ttt{.bss} sectie.
 
-\subsection{Conclusies en gevolgen}
+\section{Conclusies en gevolgen}
 
 In bovenstaande paragrafen werd aan de hand van een beperkt voorbeeld
 ge\"illustreerd hoe met standaard ontwikkelingsmiddelen, doelbewust het

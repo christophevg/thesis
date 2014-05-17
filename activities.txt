@@ -649,5 +649,6 @@ activities
 - added missing final section on actual generated code (1h45min)
 - completed chapter on evaluation (7h)
 
-2014-05-17 (3h/620h)
+2014-05-17 (5h/622h)
 - reviewed preface, abstract & introduction (3h)
+- partial review of landscape (2h)
