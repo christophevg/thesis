@@ -5,8 +5,8 @@ clear all;
 
 source('common.conf.m');
 
-global plot_legend = ['0% failure'; '5% failure'; '10% failure'; '30% failure'; ...
-                      '0% with 2nd'; '5% with 2nd'; '10% with 2nd'; '30% with 2nd'];
+global plot_legend = ['0% fouten'; '5% fouten'; '10% fouten'; '30% fouten'; ...
+                      '0% met 2e hand'; '5% met 2e hand'; '10% met 2e hand'; '30% met 2e hand'];
 global plot_colors = ['-r'; '-g'; '-b'; '-m'; ...
                       '--r'; '--g'; '--b'; '--m' ];
 
