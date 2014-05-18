@@ -49,71 +49,9 @@ aanpassen.
 \label{fig:reputation-cooperation}
 \end{figure}
 
-Gegeven knopen $i$ en $j$, met $\alpha_j$, het aantal observaties van acties van
-knoop $j$ dat als co\"operatief werd beschouwd, en $\beta_j$, het aantal niet
-co\"operatieve acties, toont men aan dat de reputatie van knoop $j$ wordt
-weergegeven door een beta distributie van $\alpha_j$ en $\beta_j$:
-
-\begin{equation} \label{eq:reputation-beta}
-R_{ij} \sim Beta(\alpha_j+1, \beta_j+1)
-\end{equation}
-
-Van deze reputatie kan vervolgens een vertrouwen bepaald worden van knoop $i$
-ten opzichte van knoop $j$ als volgt: 
-
-\begin{equation} \label{eq:reputation-trust}
-\begin{array}{rcl}
-T_{ij} & = & E(R_{ij}) \\
-       & = & E(Beta(\alpha_j+1, \beta_j+1)) \\
-       & = & \frac{\alpha_j+1}{\alpha_j+\beta_j+2} \\
-\end{array}
-\end{equation}
-
-$\alpha_j$ en $\beta_j$ evolueren doorheen de tijd. Hierbij dienen enerzijds
-nieuwe observaties binnen afzonderlijke tijdspannes beschouwd te worden, maar
-moet ook een wegingsfactor toegepast worden op de oude waarden om er voor te
-zorgen dat een historisch opgebouwd beeld niet dominant blijft en nieuwe
-wijzigingen in het gedrag overstemt. Gegeven $r$ het aantal co\"operatieve
-observaties in een bepaalde tijdspanne en $s$ het aantal niet-co\"operatieve
-observaties in diezelfde tijdspanne worden de nieuwe waarden voor $\alpha_j$ en
-$\beta_j$ gegeven door:
-
-\begin{equation} \label{eq:reputation-update-direct}
-\begin{array}{rcl}
-\alpha^{new}_j & = & (w_{age} \times \alpha_j) + r \\
-\beta^{new}_j  & = & (w_{age} \times \beta_j) + s \\
-\end{array}
-\end{equation}
-
-Hierbij is $w_{age}$ een factor ($< 1$) die zorgt voor een afname van de
-belangrijkheid van de oudere informatie.
-
-Naast deze eigen directe observaties, kunnen ook indirecte observaties door
-naburige knopen in beschouwing genomen worden. Voor zo'n naburige knoop, $k$,
-zal een knoop $i$ eveneens een vertrouwen $T_{ik}$ kunnen bepalen op basis van
-$\alpha_k$ en $\beta_k$. Knoop $k$ kan vervolgens zijn eigen informatie met
-betrekking tot de reputatie van knoop $j$ kenbaar maken als $\alpha^k_j$ en
-$\beta^k_j$. Knoop $i$ kan vervolgens zijn parameters bijwerken als volgt:
-
-\begin{equation} \label{eq:reputation-update-indirect}
-\begin{array}{rrcl}
-& \alpha^{new}_j & = & \alpha_j + ( w^k_{rep} \times \alpha^k_j ) \\
-& \beta^{new}_j  & = & \beta_j  + ( w^k_{rep} \times \beta^k_j )  \\
-met \\
-& w^k_{rep}      & = & \frac{2 \alpha_k}{(\beta_k+2) (\alpha^k_j+\beta^k_j+2)+2 \alpha_k} \\
-\end{array}
-\end{equation}
-
-De factor $w^k_{rep}$ zorgt er voor dat de opname van indirecte informatie van
-knoop $k$ in verhouding tot zijn reputatie zal gebeuren.
-
-Enkele bijkomende regels beschermen tegen typische problemen gerelateerd aan
-deze aanpak: een knoop accepteert slechts indirecte informatie van een andere,
-indien deze knoop zelf als vertrouwd wordt beschouwd. Hierbij wordt een
-drempelwaarde ($TH_{SHI}$) gehanteerd. Verder wordt enkel positieve informatie
-uitgewisseld, om negatieve be\"invloeding te vermijden. Tot slot wordt tevens
-alleen directe informatie uitgewisseld, om de onafhankelijkheid van de
-informatie te garanderen.
+Op basis van deze situatie stellen de auteurs dat reputatie van een knoop kan
+weergegeven worden aan de hand van een beta distributie. Bijlage
+\ref{appendix:reputation} bespreekt de mathematische onderbouw.
 
 De auteurs vermelden zelf een zeer belangrijk probleem: omdat knopen constant
 moeten luisteren naar de acties van naburige knopen, moeten zij constant actief

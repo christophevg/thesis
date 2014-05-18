@@ -1,5 +1,3 @@
-/* converted on Wed May 14, 2014, 08:38 (UTC+02) by antlr_3-to-w3c v0.33.722 which is Copyright (c) 2011-2013 by Gunther Rademacher <grd@gmx.net> */
-
 start    ::= modules? EOF
 modules  ::= module*
 module   ::= 'module' identifier instructions?

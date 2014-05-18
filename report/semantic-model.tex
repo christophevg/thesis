@@ -30,19 +30,12 @@ domein. In het voorbeeld werd immers een eigenschap \ttt{sequence} toegevoegd.
 Aangezien dit een uitbreiding is van het domein, zal deze terug te vinden zijn
 in de eigen instantie van het domein voor deze module. In figuur
 \ref{fig:hello.sm} is dit domein beperkt tot een referentie in een gele kleur.
-Figuur \ref{fig:nodes.sm} toont de volledige inhoud van wat zich hierachter
-verschuilt.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[angle=90,width=0.7\linewidth]{resources/nodes_sm.pdf}
-  \caption{Het knopendomein in het SM voor \ttt{hello.foo} }
-  \label{fig:nodes.sm}
-\end{figure}
+De volledig inhoud van wat zich hierachter verschuilt, is opgenomen in bijlage
+\ref{section:nodes.sm}.
 
 Dit is een groot stuk van het SM en behelst verschillende types en functie
 declaraties die door het knopendomein ge\"introduceerd worden in het SM. Hier
-zien we tevens de uitbreiding met de extra \ttt{sequence} eigenschap.
+vinden we tevens de uitbreiding met de extra \ttt{sequence} eigenschap.
 
 \subsubsection{Type deductie}
 
@@ -106,56 +99,3 @@ opvallen. FOO-lang maakt bv. automatisch declaraties voor variabelen aan
 wanneer zij voor het eerste gebruikt worden en nog niet eerder gedeclareerd
 werden. De \ttt{checker module} kan bv. voor deze situaties waarschuwingen
 geven, die kunnen helpen bij het schrijven van de FOO-lang broncode.
-
-Ter illustratie toont codevoorbeeld \ref{lst:checker} de uitvoer van het
-\ttt{hello.foo} voorbeeld. Hier is echter een \emph{fout} gemaakt in de naam
-van de toegepast functie: in plaats van \ttt{step} wordt verwezen naar
-\ttt{step2}.
-
-\begin{listing}[ht]
-  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
-$ source setpath.sh
-$ ./foo.py --check examples/hello.foo
-foo-checker: failure: constant type is Unknown : interval
-    stack:
-      Model > Module(hello) > Constant(interval)
-    env:
-      interval : Constant(interval)
-      
-foo-checker: failure: parameter type is Unknown : node
-    stack:
-      Model > Module(hello) > FunctionDecl(step) > Parameter(node)
-    env:
-      node : Parameter(node)
-        nodes : Nodes(nodes)
-        interval : Constant(interval)
-        step : FunctionDecl(step)
-      
-foo-checker: failure: function return type is Unknown : step
-    stack:
-      Model > Module(hello) > FunctionDecl(step)
-    env:
-      nodes : Nodes(nodes)
-      interval : Constant(interval)
-      step : FunctionDecl(step)
-      
-foo-checker: failure: FunctionExp type is Unknown : step2
-    stack:
-      Model > Module(hello) > Every(AllNodes(nodes)) > FunctionExp(step2:UnknownType)
-    env:
-      nodes : Nodes(nodes)
-      interval : Constant(interval)
-      step : FunctionDecl(step)
-      
-foo-checker: failure: FunctionExp has no definition. : step2
-    stack:
-      Model > Module(hello) > Every(AllNodes(nodes)) > FunctionExp(step2:UnknownType)
-    env:
-      nodes : Nodes(nodes)
-      interval : Constant(interval)
-      step : FunctionDecl(step)
-  \end{minted}
-  \vspace{-5mm}
-  \caption{Uitvoer van de \ttt{checker module} voor \ttt{hello.foo}}
-  \label{lst:checker}
-\end{listing}

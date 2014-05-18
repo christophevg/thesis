@@ -1,10 +1,11 @@
 %!TEX root=masterproef.tex
 
-\chapter{C code voor \ttt{hello.foo}}
+\chapter{\ttt{hello.foo}}
 \label{appendix:hello-srcs}
 
 Deze bijlage bevat de belangrijkste gegenereerde code van \ttt{hello.foo},
-ge\"introduceerd in hoofdstuk \ref{chapter:implementatie}.
+ge\"introduceerd in hoofdstuk \ref{chapter:implementatie}, als ook een
+visualisatie van het knopendomein in het SM.
 
 \section{main.c}
 \vspace{-5mm}
@@ -127,3 +128,17 @@ void step(node_t* node) {
   \vspace{-5mm}
   \caption{Generatie van \ttt{hello.foo}: nodes-hello.c}
 \end{listing}
+
+\section{Het knopendomein in het SM}
+\label{section:nodes.sm}
+
+Figuur \ref{fig:nodes.sm} toont de volledige inhoud van het knopendomein, zoals
+dit gedefinieerd is in het geval van \ttt{hello.foo}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[angle=90,width=0.7\linewidth]{resources/nodes_sm.pdf}
+  \caption{Het knopendomein in het SM voor \ttt{hello.foo} }
+  \label{fig:nodes.sm}
+\end{figure}
+

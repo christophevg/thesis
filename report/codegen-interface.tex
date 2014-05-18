@@ -56,36 +56,13 @@ generatie moet gebeuren.
 De lijst van mogelijke uitvoerformaten bestaat uit: \ttt{none}, \ttt{ast},
 \ttt{ast-dot}, \ttt{sm-dot}, \ttt{foo} en \ttt{code}.
 
-Formaat \ttt{ast} toont een hierarchisch overzicht van de AST op het scherm in
-tekstuele vorm, zoals weergegeven in codevoorbeeld \ref{lst:foo.py-ast}. De
-uitvoer van \ttt{ast-dot} zagen we in essentie reeds eerder in figuur
-\ref{fig:devel-ast}. De uitvoer is feitelijk code die als invoer kan dienen
-voor GraphViz \citep{url:graphviz}, een open bron project dat zich
-specialiseert in het visualiseren van graafgeori\"enteerde gegevens, zoals deze
-AST met een boomstructuur. Door middel van het \ttt{dot} commando kan
+Formaat \ttt{ast} toont een hi\"erarchisch overzicht van de AST op het scherm
+in tekstuele vorm. De uitvoer van \ttt{ast-dot} zagen we in essentie reeds
+eerder in figuur \ref{fig:devel-ast}. De uitvoer is feitelijk code die als
+invoer kan dienen voor GraphViz \citep{url:graphviz}, een open bron project dat
+zich specialiseert in het visualiseren van graafgeori\"enteerde gegevens, zoals
+deze AST met een boomstructuur. Door middel van het \ttt{dot} commando kan
 vervolgens van deze code een visuele voorstelling gemaakt worden.
-
-\begin{listing}[ht]
-  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
-$ source setpath.sh
-$ ./foo.py -g ast examples/hello.foo 
-ROOT
-  MODULE
-    IDENTIFIER
-      hello
-    CONST
-      IDENTIFIER
-        interval
-      UNKNOWN_TYPE
-      INTEGER_LITERAL
-        1000
-    EXTEND
-...
-  \end{minted}
-  \vspace{-5mm}
-  \caption{Tekstuele uitvoer van een AST}
-  \label{lst:foo.py-ast}
-\end{listing}
 
 Overeenkomstig bestaat er ook de mogelijkheid om een visuele voorstelling te
 maken van het SM, door middel van het \ttt{sm-dot} formaat. Om controles te

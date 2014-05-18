@@ -47,67 +47,6 @@ sensorknopen. De conclusie is dat er een balans moet gevonden worden tussen de
 mogelijkheden van datamining algoritmen voor het detecteren van afwijkingen en
 de verhouding van hun noden ten opzichte van de middelen van de knopen.
 
-Figuur \ref{fig:outlier-detection-taxonomy} geeft een overzicht van de
-taxonomie die de auteurs opstelden specifiek voor DSN.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=\linewidth]{resources/outlier-detection-taxonomy.pdf}
-  \caption[Taxonomie voor detectie van afwijkingen.]{Een taxonomie voor technieken om afwijkingen te detecteren. \citep{zhang2010outlier}}
-  \label{fig:outlier-detection-taxonomy}
-\end{figure}
-
-Verder worden ook enkele tekortkomingen van detectietechnieken besproken. Zo
-wordt opgemerkt dat dikwijls gekeken wordt naar losse meetwaarden, terwijl een
-sensorknoop meerdere sensorwaarden kan aanbieden. Het gebeurt echter vaak dat
-er nauwelijks een anomalie kan opgemerkt worden wanneer men naar \'e\'en enkele
-meetwaarde kijkt, maar wanneer men de verschillende meetwaarden samen bekijkt,
-dat er zich opvallende aberraties kunnen voordoen.
-
-Wanneer naburige sensorknopen worden beschouwd om relaties tussen knopen te
-gebruiken om meetwaarden af te wegen ten opzichte van elkaar, blijkt dat er
-dikwijls problematische keuzes gemaakt worden met betrekking tot de reikwijdte
-van de buurt of in het geval van tijd tot de grootte van de voortschrijdende
-tijdspanne die in beschouwing wordt genomen.
-
-Gerelateerd hieraan is ook de foute veronderstelling dat knopen een vaste
-locatie hebben en niet verplaatst worden. Maar ook het manueel kiezen van
-drempelwaarden en het vaag defini\"eren van het verschil tussen gebeurtenissen
-en fouten leidt dikwijls tot problemen.
-
-De auteurs bieden ook een overzicht van eisen die gesteld moeten worden aan
-detectiealgoritmes voor anomali\"en. Ofschoon er weinig verrassingen tussen
-zitten, is het toch een interessante en nuttige lijst omdat deze duidelijke
-eisen en impliciete voorwaarden stelt voor goede algoritmes. Indien mogelijk
-willen we deze eigenschappen als constructieve beperkingen opnemen in ons
-raamwerk.
-
-\begin{itemize}
-
-  \item Verwerking van gegevens moet gedistribueerd kunnen gebeuren, om zo de
-  communicatiekost laag te houden.
-
-  \item Het algoritme moet kunnen werken op basis van een continue stroom aan
-  gegevens.
-
-  \item De detectiegraad moet hoog zijn en de foutenmarge laag.
-
-  \item Het algoritme moet zich zonder manuele interventie kunnen configureren
-  en later ook opereren omdat het moeilijk is op voorhand een stabiele
-  configuratie voor een DSN op te stellen.
-
-  \item Als een sensorknoop over meerdere sensoren beschikt, moeten de
-  resultaten ook samen bekeken worden.
-
-  \item Schaalbaarheid is een belangrijke factor aangezien sensorknopen soms in
-  groten getale worden ingezet.
-
-  \item Algoritmes moeten rekening houden met de afhankelijkheden tussen de
-  eigenschappen van de meetwaarden, als ook met de ruimte- en tijd-correlaties
-  tussen de observaties van naburige knopen.
-
-\end{itemize}
-
 \subsubsection*{Neurale netwerken}
 \label{subsubsection:neuralnetworks}
 
@@ -126,52 +65,10 @@ het hoofd te bieden: DoS en passieve informatie vergaring en vergelijken
 hierbij een aanpak op basis van een neuraal netwerk en hun eigen aanpak op
 basis van encryptie op basis van symmetrische sleutels.
 
-Hun oplossing maakt gebruik van de technische aspecten van het verzenden van
-berichten over het draadloze medium. Het principe van een draadloze
-radioverbinding laat slechts \'e\'en zender tegelijkertijd toe. In sectie
-\ref{subsubsection:mac} belichtten we reeds kort deze principes en de mogelijk
-problemen die hierbij kunnen ontstaan indien deelnemers aan het netwerk zich
-niet houden aan de afspraken omtrent het opstarten van communicatie. Daarom
-voorzien de meeste DSN een zgn. \emph{carrier sens multiple access with
-collision avoidance} (CSMA/CA) mechanisme. Dit berust op het uitwisselen van
-\emph{ready to send} (RTS) en \emph{clear to send} (CTS) berichten.
-
-Wanneer een knoop gegevens wil versturen zal het dit aankondigen met een RTS
-pakket en dus aangeven dat het klaar staat om deze gegevens te versturen. Een
-andere knoop die dit pakket ontvangt zal antwoorden met een CTS pakket en zo
-aan de vragende knoop bevestigen dat het zijn beurt is om zijn gegevens te
-verzenden. Zowel het RTS pakket als het CTS pakket zorgen er voor dat andere
-knopen wachten met het verzenden van informatie en uiteindelijk zal \'e\'en CTS
-pakket toekomen bij de oorspronkelijke initiator van het RTS pakket, waarna
-deze zijn gegevens kan versturen met de garantie dat andere knopen het medium
-niet zullen verstoren.
-
-Op basis van eerder onderzoek stellen de auteurs dat het mogelijk is om een DoS
-te detecteren op basis van drie parameters: $R_c$ is het aantal conflicten
-(Engels: \emph{collisions}) die zich voordoen bij een knoop gedurende een
-seconde, $R_t$ is het aantal RTS pakketten die succesvol ontvangen worden door
-een knoop per seconde en $T_w$ die de gemiddelde wachttijd weergeeft van een
-pakket in de MAC buffer voor het effectief verzonden wordt.
-
-Voor hun eigen simulatie gebruiken de auteurs alleen de waarden van $R_c$ em
-$R_t$. In hun voorbereidend werk bleek $T_w$ geen invloed te hebben. Ze
-gebruikten een vrij standaard \emph{meerlagig percetron} (MLP), wat algemeen
-beschouwd wordt als het populairste neurale netwerk om te leren onder toezicht.
-
-Naast de aanpak op basis van neurale netwerken, voorzien de auteurs tevens een
-oplossing op basis van encryptie door middel van symmetrische sleutels. Ze gaan
-er van uit dat een aanvaller geen weet heeft van het gebruik van een 8 bits
-gedeelde sleutel en dat hij daarom nooit op een correcte manier gegevens over
-het netwerk zal kunnen versturen en daarom ook nooit succesvol een DoS zal
-kunnen initi\"eren noch passief (nuttige) gegevens kunnen verzamelen.
-
-Deze veronderstellingen zijn op zijn minst na\"ief. Zowel de beperkte grootte
-van de sleutel als de veronderstelling dat een aanvaller het gebruik van
-encryptie niet zou kunnen achterhalen, wijzen op een inschattingsfout van de
-onderzoekers in kwestie.
-
-Hun werk toont echter wel aan dat een aanpak met neurale netwerken eenvoudig te
-realiseren is en een valabele piste kan zijn om anomaliedetectie te doen.
+Ofschoon dat sommige van hun veronderstelling na\"ief zijn (zo baseren ze zich
+op een gedeelde geheime sleutel van 8 bits), toont hun werk wel aan dat een
+aanpak met neurale netwerken eenvoudig te realiseren is en een valabele piste
+kan zijn om anomaliedetectie te doen.
 
 \subsubsection*{Voorspellingen}
 \label{subsubsection:predictions}

@@ -67,10 +67,8 @@ Het voorgaande voorbeeld gebruikt slechts een kleine subset van de volledige
 mogelijkheden van FOO-lang. De volledige grammatica van FOO-lang, zoals
 gedefinieerd in het kader van dit prototype, is opgenomen in bijlage
 \ref{appendix:foo-lang-grammar}. Deze bijlage bevat de \emph{Extended
-Backus-Naur Form} (EBNF) die de taal eenduidig bepaalt, alsook een visualisatie
-van de verschillende regels.
-
-We bespreken hier kort enkele constructies die nog niet eerder voorkwamen.
+Backus-Naur Form} (EBNF) die de taal eenduidig bepaalt. We bespreken hier kort
+enkele constructies die eerder nog niet voorkwamen.
 
 \subsubsection{Importeren van functionaliteit}
 
@@ -140,27 +138,6 @@ basis van de inhoud. Als in een berichte \ttt{\#marker1} wordt gevonden wordt
 \ttt{msg\_sent1} verhoogd, in het geval van \ttt{\#marker2}, \ttt{msg\_sent2}
 en anders \ttt{msg\_other}.
 
-Deze constructie is in feite een mooiere syntax voor een overeenkomstige
-constructie op basis van \ttt{if statements}, zoals weergegeven in listing
-\ref{lst:foo-case-if}.
-
-\begin{listing}[ht]
-  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{javascript}
-after nodes receive do function(me, sender, from, hop, to, payload) {
-  if payload.contains([#marker1, value]) {
-    sender.msg_sent1++
-  } else if payload.contains([#marker2, value]) {
-    sender.msg_sent2++
-  } else {
-    sender.msg_other++
-  }
-}
-  \end{minted}
-  \vspace{-5mm}
-  \caption{Alternatieve constructie voor verschillende situaties}
-  \label{lst:foo-case-if}
-\end{listing}
-
 Dit voorbeeld introduceert tevens nog drie andere belangrijke constructies: het
 \emph{atom}, lijsten en patroon koppeling.
 
@@ -224,10 +201,3 @@ extend nodes with {
   \caption{Voorbeeld van een complex type}
   \label{lst:foo-complex_type}
 \end{listing}
-
-\subsubsection{Strings}
-
-Grote afwezige in deze versie van FOO-lang zijn strings. Dit lijkt initieel
-contra-intu\"itief, maar bij nader inzien zijn strings niet echt van toepassing
-in het domein van inbraakdetectie in DSN. De introductie van strings in
-FOO-lang zou op dit ogenblik tevens een herschrijven van de grammatica vragen.
