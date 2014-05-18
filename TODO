@@ -1,17 +1,10 @@
 TODO
 
-4. write thesis
-  - add section on development of embedded systems
-    - compilation/deployment style:
-      - hex + install
-      - OS process + deployment OTAP
-    - target platform definition
-  - add section on TinyOS (comparison code inlining)
-  - make sure illustrations use same font-sizes, colors, ...
-  - node-capture: replace ISP programming with JTAG programming
+4. finalize thesis:
+  - clean up UML diagrams
   - captions -> add short caption for LoF
   - afkortingen verzamelen
-  - consistentie:
+  - tekst consistentie:
     - algoritmen / algoritmes
     - frames -> pakketten
 

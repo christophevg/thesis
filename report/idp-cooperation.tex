@@ -1,6 +1,6 @@
 %!TEX root=masterproef.tex
 
-\chapter{IDP en Co\"operatieve }
+\chapter{IDP en een co\"operatief algoritme}
 \label{appendix:idp-cooperation}
 
 \citep{krontiris2009cooperative} beschrijft enerzijds een theoretische model
@@ -50,29 +50,17 @@ aan de hand van enkele voorbeelden:
 \centering
 \begin{subfigure}{.49\textwidth}
   \centering
-\[ \entrymodifiers={}
- \xymatrix@!=0.75pc {
- *{}                                      & *{} & *-=++[o][F]{b} \ar@<0.7ex>[dll]\\
- *-=++[F]{a} \ar@<0.7ex>[urr] \ar@<0.7ex>[drr]& *{} & *{}                        \\
- *{}                                      & *{} & *-=++[o][F]{c} \ar@<0.7ex>[ull]\\
- }
-\]
+  \includegraphics[width=.8\linewidth]{./resources/idp-nc-s1.pdf}
   \caption{}
   \label{fig:idp-examples-1}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
   \centering
-\[ \entrymodifiers={}
- \xymatrix@!=0.75pc {
- *{} & *{} & *{}                                      & *{} & *-=++[o][F]{b} \ar@<0.7ex>[dll] \ar[dd]\\
- *-=++[o][F]{d} \ar@<0.7ex>[rr] & *{} & *-=++[F]{a} \ar@<0.7ex>[ll] \ar@<0.7ex>[urr] \ar@<0.7ex>[drr]& *{} & *{} \\
- *{} & *{} & *{}                                      & *{} & *-=++[o][F]{c} \\
- }
-\]
+  \includegraphics[width=.8\linewidth]{./resources/idp-nc-s2.pdf}
   \caption{}
   \label{fig:idp-examples-2}
 \end{subfigure}
-\caption{Voorbeelden van de toepassing van IDC en NC. Vierkante knopen zijn
+\caption{Voorbeelden van de toepassing van IDC en NC. Rode knopen zijn
 aanvallers, omcirkelde knopen zijn gealarmeerd. $x \rightarrow y$ betekent dat
 knoop $x$ knoop y verdenkt.}
 \label{fig:idp-examples}

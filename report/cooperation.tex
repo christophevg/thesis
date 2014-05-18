@@ -53,29 +53,13 @@ beschreven in o.a. \citep{krontiris2008launching}. In dit werk wordt ook de zgn.
 \centering
 \begin{subfigure}{.49\textwidth}
   \centering
-\[ \entrymodifiers={-=++[o][F]}
- \xymatrix@!=0.75pc {
-*{} & e \ar@{->}[l]_{100} & *{} & f \ar@{->}[ll]_{50}   & *{} \\
-*{} & *{} & *{} &  *{} & b \ar@{->}[lu]_{35} \ar@{.}[ld]_{20} \ar@{.}[dd]^{30}  \\
-*{} & d \ar@{->}[uu]^{75} \ar@{.}[dd]_{75}  & *{} &    a \ar@{->}[lluu]_{80} \ar@{.}[lldd]^{80} \ar@{.}[ll]_{50} & *{} \\
-*{} & *{} & *{} &  *{} & c \ar@{.}[lu]^{20} \ar@{->}[ld]^{35} \\
-*{} & h \ar@{->}[l]^{105}  & *{} &  g \ar@{->}[ll]^{50}  & *{} \\
-  }
-\]
+  \includegraphics[width=.8\linewidth]{./resources/sinkhole-before.pdf}
   \caption{Initi\"ele topologie, routes en kosten}
   \label{fig:sinkhole-ripple-1}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
   \centering
-\[ \entrymodifiers={-=++[o][F]}
- \xymatrix@!=0.75pc {
-*{} & e \ar@{->}[l]_{100} & *{} & f \ar@{->}[ll]_{50}   & *{} \\
-*{} & *{} & *{} &  *{} & b \ar@{.}[lu]_{35} \ar@{~>}[ld]_{20} \ar@{.}[dd]^{30}  \\
-*{} & *-=++[F]{d} \ar@{~>}[l]^{50} \ar@{.}[uu]^{75} \ar@{.}[dd]_{75}  & *{} &    a \ar@{.}[lluu]_{80} \ar@{.}[lldd]^{80} \ar@{~>}[ll]_{50} & *{} \\
-*{} & *{} & *{} &  *{} & c \ar@{~>}[lu]^{20} \ar@{.}[ld]^{35} \\
-*{} & h \ar@{->}[l]^{105}  & *{} &  g \ar@{->}[ll]^{50}  & *{} \\
-  }
-\]
+  \includegraphics[width=.8\linewidth]{./resources/sinkhole-after.pdf}
   \caption{Knoop $d$ kondigt ``betere'' route aan.}
   \label{fig:sinkhole-ripple-2}
 \end{subfigure}
