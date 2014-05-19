@@ -199,3 +199,13 @@
 ! IEEE article samen met thesis indienen (6 juni)
   - 4 a 6 bladzijden
 ! thesis zelf 70 bladzijden (zonder bibliografie)
+
+2014-05-22
++ Jef Maerien
+
+? IEEE-stijl artikel -> toevoegen aan thesis tekst ?
+? fiche : idem
+? cover : apart aanleveren aan kopiecenter ? -> gewone cover dan weglaten ?
+? assessoren
+? UDC
+? titel Jef
