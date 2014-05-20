@@ -657,3 +657,6 @@ activities
 - stripped 41 pages from main text (3h30min)
 - made all figures consistent (4h)
 - cleaned up graphs for reputation (1h)
+
+2014-05-20 (1h30min/632h)
+- touch-ups to please the academic style (1h30min)

@@ -11,15 +11,15 @@ voorbeelden als de implementatie van de taal en generator zijn zo uitgewerkt
 dat ze als realistische referentie kunnen dienen en dat de resultaten het
 potentieel waarborgen.
 
-Het hoofdstuk wordt ingeleid met een korte sectie, \ref{section:devel-python},
-over Python, de programmeertaal die werd gekozen voor de implementatie van het
-prototype.
+Sectie \ref{section:devel-python} start dit hoofdstuk wordt met een korte
+inleiding van Python, de programmeertaal die werd gekozen voor de implementatie
+van het prototype.
 
-Daarna wordt FOO-lang in meer detail bekeken in sectie
-\ref{section:devel-foo-lang}. Aan de hand van voorbeelden en de grammatica
-introduceren we de taal. Een elementair voorbeeld wordt vervolgens als rode
-draad doorheen het hoofdstuk gebruikt om de volledige generatie van een
-FOO-lang beschrijving tot C programmacode te illustreren.
+Sectie \ref{section:devel-foo-lang} bekijkt vervolgens FOO-lang in meer detail.
+Aan de hand van voorbeelden en de grammatica introduceren we de voorgestelde
+taal. Een elementair voorbeeld wordt doet vervolgens dienst als rode draad
+doorheen het hoofdstuk om de volledige generatie van een FOO-lang beschrijving
+tot C programmacode te illustreren.
 
 Sectie \ref{section:devel-codegen} belicht de generator met in hoofdzaak de
 tweeledige hi\"erarchi van het SM en het CM. Ook het principe van
@@ -27,13 +27,16 @@ transformaties wordt kort samengevat en de onderliggende implementatie van het
 \emph{visitor} patroon \citep{gamma1994design} wordt toegelicht.
 
 De generator wordt vergezeld van gemeenschappelijke basisfunctionaliteit in de
-vorm een softwarebibliotheek, genaamd FOO-lib. Sectie
-\ref{section:devel-foo-lib} kadert dit in de context van de generator en de
-taal.
+vorm een softwarebibliotheek, genaamd FOO-lib.
 
-Tot slot bekijken we het resultaat van de samengang van al deze componenten. In
-sectie \ref{section:generation} bekijken we de gegenereerde code en zien we hoe
-de generator de code structureert en vormgeeft.
+Sectie \ref{section:devel-foo-lib} introduceert vervolgens de
+softwarebibliotheek die de gegenereerde code vergezeld, genaamd FOO-lib. Ze
+biedt toegang tot de gemeenschappelijke basisfunctionaliteit en vervangt
+verschillende problematische patronen die kunnen ontstaan door slecht
+gestructureerde code.
+
+Sectie \ref{section:generation} gaat tot slot dieper in op de generatie zelf en
+bekijkt het resultaat: de programmacode. 
 
 \input{python}
 \input{foo-lang}

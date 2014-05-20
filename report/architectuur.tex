@@ -8,15 +8,15 @@ generatie om zo een volledig geautomatiseerde keten te bekomen van onderzoek
 tot uitbating. Dit hoofdstuk bekijkt de oplossing vanuit een architectuur
 oogpunt.
 
-In sectie \ref{section:arch-functional} overlopen we de functionaliteit van de
-oplossing en identificeren de verschillende functionele componenten en de
+Sectie \ref{section:arch-functional} bekijkt de functionaliteit van de
+oplossing en identificeert de verschillende functionele componenten met hun
 onderlinge relaties. Dit overzicht identificeert tevens de scope die zal
 aangehouden worden in het vervolg van deze masterproef.
 
-De functionele architectuur wordt in sectie \ref{section:arch-technical}
-uitgewerkt in een technische architectuur. Hier wordt het functionele proces
-opgedeeld in technische componenten en worden de verschillende interne
-informatiestromen, -manipulaties en -opslagvormen.
+Sectie \ref{section:arch-technical} werkt vervolgens deze functionele uit in
+een technische architectuur. Hier wordt het functionele proces opgedeeld in
+technische componenten en worden de verschillende interne informatiestromen,
+-manipulaties en -opslagvormen.
 
 \section{Functionele architectuur}
 \label{section:arch-functional}
@@ -69,7 +69,7 @@ maar moet op zijn minst optioneel zijn en indien nodig voorzien worden als een
 beperkte set van functionele types. Dit is ook een belangrijke voorwaarde voor
 de platform-onafhankelijkheid.
 
-\subsection{Centrale opslagplaats}
+\subsection{Centrale opslag}
 \label{subsection:arch-repository}
 
 Al deze platform-onafhankelijke en formele beschrijvingen van
@@ -89,7 +89,7 @@ de visuele website, maar moet zeker geautomatiseerd ge\"integreerd kunnen
 worden, zodat bv. compilatieprocessen de laatste versie van een algoritme
 kunnen downloaden zonder tussenkomst van een persoon.
 
-\subsection{Code generator}
+\subsection{Code generatie}
 \label{subsection:arch-codegen}
 
 Het kloppend hart van de oplossing bestaat uit de code generator. Deze
@@ -106,7 +106,7 @@ aansturing van de generator in zo'n een context mogelijk is. De configuratie
 van de generator moet via een bestand of aan de hand van oproepparameters
 gespecificeerd kunnen worden, zonder verdere menselijke tussenkomst.
 
-\subsection{Uitbatingsbeleid}
+\subsection{Uitbating: beleid en verspreiding}
 \label{subsection:arch-policy}
 
 Een volledig geautomatiseerde oplossing laat toe om een uitbatingsbeleid te
@@ -125,7 +125,7 @@ Indien gecombineerd met voorzieningen die OTAP toelaten, kan het
 gedistribueerde IDS op elk ogenblik gewijzigd worden. Tal van mogelijkheden
 ontstaan zo.
 
-\subsection{Ontwikkeling en integratie}
+\subsection{Ontwikkeling}
 \label{subsection:arch-integration}
 
 Naast het IDS is er natuurlijk nog de eigenlijke toepassing die op de
@@ -133,7 +133,7 @@ sensorknoop zal ge\"installeerd en uitgebaat worden. Ook deze moet optimaal
 verwerkt kunnen worden in het samenstellingsproces.
 
 De minimale vereisten zijn dat het generatieproces duidelijke markeringen in de
-resulterende code achterlaat, zodat de integratie met de toepassinscode
+resulterende code achterlaat, zodat de integratie met de toepassingscode
 mogelijk is. Deze markeringen kunnen ook voorzien worden in de vorm van
 invoegdirectieven die tijdens het compilatieproces bijkomende bestanden kan
 opnemen zonder verdere tussenkomst van een ontwikkelaar.
@@ -141,7 +141,7 @@ opnemen zonder verdere tussenkomst van een ontwikkelaar.
 \subsection{Verdere opportuniteiten}
 \label{subsection:arch-opportunities}
 
-Met een centrale opslagplaats en een volledige automatiseerbare code generatie
+Met een centrale opslagplaats en een volledige geautomatiseerde code generatie
 en compilatieproces, zijn tal van ondersteunende toepassingen denkbaar.
 
 Een voorbeeld dat van groot belang kan zijn voor onderzoekers is een
@@ -161,9 +161,9 @@ basiscomponenten veel andere opportuniteiten in bereik liggen. Het is
 belangrijk om deze opportuniteiten in het vizier te houden, zodat er geen
 uitgesloten worden door de implementatie.
 
-De minimale set aan basiscomponenten zal ook in deze masterproef verder uitgewerkt
-worden aan de hand van een prototype. Het betreft de code generator met
-ondersteuning voor een eerste platform en programmeertaal combinatie.
+De minimale set aan basiscomponenten zal ook in deze masterproef verder
+uitgewerkt worden aan de hand van een prototype. Het betreft de code generator
+met ondersteuning voor een eerste platform en programmeertaal combinatie.
 
 \section{Technische architectuur}
 \label{section:arch-technical}
@@ -178,20 +178,18 @@ scope naar meer technische componenten.
   \label{fig:arch-technical}
 \end{figure}
 
+\subsection{Parser}
+
 De verwerking verloopt als volgt: een parser analyseert de FOO-lang broncode en
 produceert een zgn. abstracte syntax boomvoorstelling (Engels: \emph{Abstract
 Syntax Tree} (AST). Deze AST wordt vervolgens ingeladen in een semantisch model
-(SM) \citep{fowler2010domain}. Door middel van verschillende transformaties
-wordt dit SM model vervolledigd (bv. type deductie) en vervolgens omgezet in
-een code model (CM). Ook dit CM zal opnieuw door middel van verschillende
-transformaties omgezet worden in een structuur die te vergelijken is met een
-AST en toelaat om rechtstreeks omgezet te worden in programmacode.
+(SM) \citep{fowler2010domain}.
 
 \subsection{Semantisch model}
 \label{subsection:arch-semantic-model}
 
-Een semantisch model bevat de volledige semantisch correcte voorstelling van de
-boogde functionaliteit. In die optiek vertoont het sterke overeenkomsten met
+Een semantisch model bevat de volledige en semantisch correcte voorstelling van
+de boogde functionaliteit. In die optiek vertoont het sterke overeenkomsten met
 een klassiek domein model \citep{fowler2010domain}. Omdat dit laatste echter
 veel rijker is aan functionaliteit en een semantisch model typisch meer
 informatie-geori\"enteerd is, wordt er een onderscheid gemaakt in de naamgeving.
@@ -218,12 +216,25 @@ syntax die nauw aansluit bij deze van de C programmeertaal. Deze is echter wel
 uitgebreid met constructies van een hoger abstractieniveau, om op een
 functionelere manier om te kunnen gaan met de entiteiten uit het domein.
 
+\subsection{Type deductie en andere transformaties}
+
+Door middel van verschillende transformaties wordt dit SM model vervolledigd.
+Een eerste stap is het deduceren van ontbrekende types. Het resultaat is een
+volledig getypeerd SM en garandeert een correcte behandeling, eventueel in het
+kader van een sterk getypeerde programmeertaal, zoals C.
+
+Een tweede stap is een vertaling van het SM naar een CM. Dit CM staat dichter
+bij de uiteindelijk te genereren code en meer technische van aard. Deze
+vertaling is het resultaat van verschillende transformaties uitgevoerd op het
+SM door de generieke code generator zelf, het platform en de domeinspecifieke
+implementatie.
+
 \subsection{Code model}
 \label{subsection:arch-code-model}
 
-Via verschillende transformaties, wordt het SM omgezet in een CM. Deze overstap
-vertaalt in essentie de functionele concepten naar overeenkomstige patronen in
-een semantiek die direct aanleunt bij programmeertalen.
+Via de verschillende transformaties, wordt het SM omgezet in een CM. Deze
+overstap vertaalt in essentie de functionele concepten naar overeenkomstige
+patronen in een semantiek die direct aanleunt bij programmeertalen.
 
 Het code model voorziet een hi\"erarchie van een compilatie unit, met daaronder
 modules en binnen elke module secties. Dit is een abstracte voorstelling van
@@ -238,3 +249,10 @@ dan bv. de C programmeertaal. Het zal de taak zijn van opeenvolgende
 transformaties om deze niet-gekende constructies voor een bepaald platform
 en/of programmeertaal om te vormen naar wel ondersteunde constructies.
 
+\subsection{Code generatie}
+
+De laatste stap in het proces bestaat uit de eigenlijke generatie van
+programmeercode. Deze vertrekt van het CM en is ook opgebouwd aan de hand van
+transformaties. Hier is de beoogde programmeertaal de belangrijkste bron voor
+transformaties. Het resultaat is een CM dat \'e\'en-op-\'e\'en vertaalbaar is
+naar programmacode en zo in essentie kan beschouwd worden als een AST.

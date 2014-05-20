@@ -7,17 +7,34 @@ Uit de probleemstelling in voorgaand hoofdstuk moeten we spijtig genoeg
 concluderen dat er weinig in het voordeel van het bouwen van een IDS voor een
 WSN spreekt. Op elk niveau, van de hardware van de knoop en de elementaire
 software die het netwerk vormgeeft, tot de onderzoeker, ontwikkelaar en
-uitbater van het netwerk, zijn er obstakels te identificeren.
+uitbater van het netwerk, zijn er obstakels te identificeren. Dit hoofdstuk
+volgt opnieuw de verschillende stappen in de keten en tracht een antwoord aan
+te bieden dat tegemoet komt aan de ge\"identificeerde problemen.
 
-Het probleem is zelfs zo fundamenteel van aard dat het principieel onmogelijk
-is om een sluitende oplossing te realiseren, en toch is het belangrijk om aan
-inbraakdetectie te doen, zij het niet om toekomstige aanvallen te verijdelen,
-dan gewoon al om te weten dat er mogelijk problemen zijn en hiermee rekening
-te houden bij de interpretatie van de gegevens.
+Sectie \ref{section:solution-node-wsn} stelt dat het ontbreken van een dominant
+hardwareplatform er toe leidt dat de oplossing flexibel moet zijn t.o.v.
+verschillende platformen.
 
-In dit hoofdstuk volgen we opnieuw de verschillende stappen in de keten en
-trachten een antwoord op te bouwen dat tegemoet komt aan de ge\"identificeerde
-problemen.
+Sectie \ref{section:solution-software} veralgemeent deze eis naar het niveau
+van de software, omdat er bv. ook geen overheersend besturingssysteem
+beschikbaar is.
+
+Sectie \ref{section:solution-proglang} evalueert de mogelijkheid om de C
+programmeertaal te hanteren als gemeenschappelijke en gestandaardiseerde taal
+om detectiealgoritmes te beschrijven.
+
+Sectie \ref{section:solution-library} introduceert softwarebibliotheken als een
+oplossing voor gemeenschappelijke logica en het centraliseren van iteratieve
+processen.
+
+Sectie \ref{section:solution-dsl} argumenteert dat een domeinspecifieke taal
+een afdoende oplossing kan zijn om aan de hand van een formele en
+platformonafhankelijke beschrijving van algoritmen een brug te slagen tussen
+onderzoek en ontwikkeling.
+
+Sectie \ref{section:solution-codegen} stelt tot slotte dat code generatie een
+geformaliseerd proces kan automatiseren en kan tegemoet komen aan de overige
+problemen in het kader van het ontwikkelingsproces.
 
 \section{Hardware en netwerk}
 \label{section:solution-node-wsn}
@@ -186,20 +203,3 @@ louter op syntactisch/technisch vlak aan \emph{inlining} doen, maar ook op
 functioneel vlak. Indien dus de softwarebibliotheek ook, net zoals de DSL code
 als invoer van de code generator wordt beschouwd, zal deze code inherent mee
 geoptimaliseerd worden en afgestemd zijn op de eigenlijke algoritmes.
-
-\section{Conclusie}
-\label{section:solution-conclusion}
-
-Met een platformonafhankelijke DSL en code generatie kunnen onderzoekers zich
-focussen op de functionele kant van hun algoritmes. Deze formele beschrijvingen
-kunnen vervolgens door ontwikkelaars en uitbaters van een DSN direct
-toegepast worden.
-
-Maar de mogelijkheden gaan breder: onderzoekers kunnen met de code generatie
-tevens een gemeenschappelijk simulatieplatform bouwen, waar nieuwe algoritmen
-kunnen samengebracht worden en getest worden op een objectieve en vooral
-uniforme manier. Het wordt nu mogelijk om een centrale verzameling van
-algoritmes aan te leggen, die uitbaters kunnen raadplegen.
-
-De mogelijkheden die bv. door SNORT worden geboden kunnen op deze manier ook
-gerealiseerd worden voor een gedecentraliseerde IDS.
