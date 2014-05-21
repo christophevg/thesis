@@ -203,7 +203,7 @@
 2014-05-22
 + Jef Maerien
 
-? IEEE-stijl artikel -> toevoegen aan thesis tekst ?
+? IEEE-stijl artikel -> toevoegen aan (afgedrukte) thesis tekst ?
 ? fiche : idem
 ? cover : apart aanleveren aan kopiecenter ? -> gewone cover dan weglaten ?
 ? assessoren
