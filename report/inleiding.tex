@@ -34,15 +34,18 @@ bedreiging introduceren. In deze masterproef duiken we in de wereld van
 draadloze sensornetwerken en willen we nagaan of en hoe we deze kunnen voorzien
 van bescherming tegen minder goede bedoelingen.
 
-In dit eerste hoofdstuk introduceren we in sectie \ref{section:wsn} draadloze
-sensornetwerken. Hoe zijn ze opgebouwd? Wat zijn de mogelijkheden en
-beperkingen? In sectie \ref{section:beveiligen} verschuift de nadruk naar
-beveiliging: Wat zijn de gevaren? Hoe kunnen deze vastgesteld worden? Hoe
-kunnen sensorknopen beschermd worden?
+Sectie \ref{section:wsn} introduceert draadloze sensornetwerken. Hoe zijn ze
+opgebouwd? Wat zijn de mogelijkheden en beperkingen? 
 
-Verder wordt in sectie \ref{section:probleem} het feitelijke probleem
-gedefini\"eerd en wordt in sectie \ref{section:doelstelling} een doelstelling
-voorgesteld. Na dit hoofdstuk liggen alle speelstukken op tafel.
+Sectie \ref{section:beveiligen} legt de nadruk op beveiliging: Wat zijn de
+gevaren? Hoe kunnen deze vastgesteld worden? Hoe kunnen sensorknopen beschermd
+worden?
+
+Sectie \ref{section:probleem} brengt beide aspecten samen en vat de
+probleemstelling samen.
+
+Sectie \ref{section:doelstelling} legt tot slot kort de doelstelling van deze
+masterproef uit.
 
 \section{Draadloze sensornetwerken}
 \label{section:wsn}
@@ -143,19 +146,31 @@ onbereikbaar. Het is dankzij \emph{routers}, die berichten voor de
 \label{subsection:topologie}
 
 Met knopen kunnen verschillende netwerktopologie\"en gebouwd worden. Figuur
-\ref{fig:topologie} geeft een overzicht van de mogelijkheden. In zijn
-eenvoudigste vorm bestaat een netwerk uit een co\"ordinator en een eindknoop.
-Wanneer meerdere eindknopen verbonden zijn met dezelfde co\"ordinator, vormen
-zij een stertopologie. Alle communicatie verloopt via de centrale
-co\"ordinator. In een maasnetwerk, worden routers ingeschakeld om communicatie
-via verschillende wegen mogelijk te maken. Eindknopen zijn verbonden met deze
-routers of met de co\"ordinator. Routers en co\"ordinator kunnen berichten
-ontvangen van eindknopen en deze versturen naar andere eindknopen, al dan niet
-via andere routers. Een speciale vorm van een maasnetwerk is een clusterboom.
-Hierbij vormen groepen van eindknopen en een router een cluster. De router is
-verbonden met de co\"ordinator, eventueel opnieuw via andere routers, en zo
-wordt een boomstructuur gevormd. De routers die de clusters van eindknopen
-realiseren worden ook clusterhoofden genoemd.
+\ref{fig:topologie} geeft een overzicht van de mogelijkheden.
+
+\begin{description}
+
+  \item[Paar] In zijn eenvoudigste vorm bestaat een netwerk uit een
+  co\"ordinator en een eindknoop. Deze minimalistische vorm is slechts een
+  theoretische mogelijkheid ter volledigheid van de mogelijkheden.
+  
+  \item[Ster] Wanneer meerdere eindknopen verbonden zijn met dezelfde
+  co\"ordinator, vormen zij een stertopologie. Alle communicatie verloopt via
+  de centrale co\"ordinator.
+  
+  \item[Maasnetwerk] In een maasnetwerk, worden routers ingeschakeld om
+  communicatie via verschillende wegen mogelijk te maken. Eindknopen zijn
+  verbonden met deze routers of met de co\"ordinator. Routers en co\"ordinator
+  kunnen berichten ontvangen van eindknopen en deze versturen naar andere
+  eindknopen, al dan niet via andere routers.
+  
+  \item[Clusterboom] Een speciale vorm van een maasnetwerk is een clusterboom.
+  Hierbij vormen groepen van eindknopen en een router een cluster. De router is
+  verbonden met de co\"ordinator, eventueel opnieuw via andere routers, en zo
+  wordt een boomstructuur gevormd. De routers die de clusters van eindknopen
+  realiseren worden ook clusterhoofden genoemd.
+  
+\end{description}
 
 \begin{figure}[ht]
   \centering
@@ -234,14 +249,22 @@ dikwijls gerefereerd naar het CIA beveiligingsmodel. Dit letterwoord staat
 voor: vertrouwelijkheid (Engels: \emph{confidentiality}), integriteit en
 beschikbaarheid (Engels: \emph{availability}).
 
-Om \emph{vertrouwelijkheid} te garanderen moet beveiliging de nodige
-voorzieningen treffen om er voor te zorgen dat bv. een bericht enkel door de
-bedoelde bestemmeling kan begrepen worden. Onder \emph{integriteit} verstaat
-men het principe dat dat bericht dan weer niet mag gewijzigd kunnen worden, of
-dat de bedoelde bestemmeling van het bericht ten minste kan valideren dat er
-aan het bericht niets gewijzigd is. Maar beveiliging moet ook de
-\emph{beschikbaarheid} van onderdelen van het netwerk garanderen, om er zeker
-van te zijn dit laatste zijn diensten kan blijven aanbieden.
+\begin{description}
+
+  \item[Vertrouwelijkheid] Om \emph{vertrouwelijkheid} te garanderen moet
+  beveiliging de nodige voorzieningen treffen om er voor te zorgen dat bv. een
+  bericht enkel door de bedoelde bestemmeling kan begrepen worden.
+  
+  \item[Integriteit] Onder \emph{integriteit} verstaat men het principe dat dat
+  bericht dan weer niet mag gewijzigd kunnen worden, of dat de bedoelde
+  bestemmeling van het bericht ten minste kan valideren dat er aan het bericht
+  niets gewijzigd is. 
+  
+  \item[Beschikbaarheid] Maar beveiliging moet ook de \emph{beschikbaarheid}
+  van onderdelen van het netwerk garanderen, om er zeker van te zijn dit
+  laatste zijn diensten kan blijven aanbieden.
+
+\end{description}
 
 Het CIA model is zonder meer een belangrijke basis, maar er ontbreken nog veel
 belangrijke aspecten. In \citep{rfc:3198} wordt een gestandaardiseerde
@@ -252,14 +275,22 @@ internet-gerelateerde diensten (Engels: \emph{triple A}) \citep{rfc:2904}. De
 afkorting staat voor authenticatie, autorisatie en vaststellen (Engels:
 \emph{accounting})
 
-Via \emph{authenticatie} kan de identiteit van een gebruiker of apparaat
-vastgesteld worden, zodat eenduidig kan bepaald worden van wie bv. een bericht
-in het netwerk komt. \emph{Autorisatie} is daarentegen het proces waarbij
-nagegaan wordt of een gebruiker waarvan de authenticiteit is vastgesteld, een
-bepaalde handeling \emph{mag} uitvoeren. Ten slotte biedt het
-\emph{vaststellen} van alle gebeurtenissen en beslissingen binnen het
-beveiligde domein, een belangrijke bron van informatie om een beleid verder te
-verfijnen en eventueel bij te sturen.
+\begin{description}
+
+  \item[Authenticatie] Via \emph{authenticatie} kan de identiteit van een
+  gebruiker of apparaat vastgesteld worden, zodat eenduidig kan bepaald worden
+  van wie bv. een bericht in het netwerk komt.
+  
+  \item[Autorisatie] \emph{Autorisatie} is daarentegen het proces waarbij
+  nagegaan wordt of een gebruiker waarvan de authenticiteit is vastgesteld, een
+  bepaalde handeling \emph{mag} uitvoeren.
+  
+  \item[Vaststellen] Ten slotte biedt het \emph{vaststellen} van alle
+  gebeurtenissen en beslissingen binnen het beveiligde domein, een belangrijke
+  bron van informatie om een beleid verder te verfijnen en eventueel bij te
+  sturen.
+
+\end{description}
 
 In het kader van beveiliging wordt typisch ook gesproken over een \emph{beleid}
 (Engels: \emph{policy}), waarin de regels waaraan alle spelers binnen het te
@@ -303,14 +334,11 @@ om meer te weten dan te vermijden.
 
 Inbraakdetectie is typisch de stille vennoot in een beveiligingsverhaal. Daar
 waar bv. een firewall of authenticatie server actieve toegang ontzegt, zal een
-inbraakdetectiesysteem (IDS) typisch geen actieve rol spelen\footnote{Er zijn
-wel degelijk toepassingen waarbij een IDS informatie kan verschaffen aan bv.
-een firewall. Indien het IDS een inbraakpoging detecteert kan de oorsprong van
-de inbraakpoging door de firewall gebruikt worden om op netwerkniveau toegang
-tot het netwerk te ontzeggen.}. Het IDS zal eerder bewijsmateriaal verzamelen
-om een inbraakpoging te documenteren. Uit deze informatie kunnen dan
-bijsturingen aan het beleid aangebracht worden, waardoor actieve componenten in
-de toekomst wel in staat zijn om gelijkaardige inbraakpogingen te verijdelen.
+inbraakdetectiesysteem (IDS) typisch geen actieve rol spelen. Het IDS zal
+eerder bewijsmateriaal verzamelen om een inbraakpoging te documenteren. Uit
+deze informatie kunnen dan bijsturingen aan het beleid aangebracht worden,
+waardoor actieve componenten in de toekomst wel in staat zijn om gelijkaardige
+inbraakpogingen te verijdelen.
 
 Deze architectuur legt al snel een belangrijk pijnpunt bloot: in een klassiek
 netwerk wordt het netwerk beschermd aan de rand. De firewall schermt het
@@ -394,13 +422,12 @@ zonder een diepgaande analyse van de onderzoeksliteratuur en zonder zich zorgen
 te moeten maken over de onderliggende interactie met andere knopen, het
 vergaren en opvragen van informatie op systeem-niveau \dots?
 
-Deze masterproef wil zo'n kader ontwerpen, implementeren en de impact ervan
-bepalen. Daartoe zal eerst een lijst gemaakt worden van enkele typische
-oplossingen, waaruit de functionele en technische vereisten voor het raamwerk
-gedistilleerd kunnen worden. Vervolgens zal een architectuur voorgesteld worden
-die aan deze vereisten voldoet. Aan de hand van een implementatie van deze
-architectuur zal tot slot nagegaan worden wat de impact is met betrekking tot
-geheugen en rekenkracht.
+Deze masterproef wil zo'n kader ontwerpen, een prototype implementeren en de
+impact bepalen. Daartoe bekijken we eerst enkele typische voorbeelden van
+inbraakdetectiealgoritmen, waaruit de functionele en technische vereisten
+gedistilleerd worden. Vervolgens stellen we een architectuur voor die aan deze
+vereisten kan voldoen. Aan de hand van een prototype gaan we tot slot na wat de
+impact is met betrekking tot geheugen en rekenkracht.
 
 De voordelen van een raamwerk zijn legio: een herbruikbaar raamwerk neemt
 zorgen, gemeenschappelijk aan de verschillende oplossingen, weg en kan zorgen

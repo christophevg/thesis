@@ -8,11 +8,12 @@ Codevoorbeeld \ref{lst:hello.foo} toont de implementatie van een elementair voor
 in FOO-lang. Aan de hand van dit voorbeeld introduceren we nu de typische
 bouwstenen van FOO-lang en doorlopen we het hele generatieproces.
 
-\inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{js}{../src/foo-lang/examples/hello.foo}
-\vspace{-5mm}
-\captionof{listing}{Elementair voorbeeld in FOO-lang: \ttt{hello.foo}
-  \label{lst:hello.foo}}
-\vspace{3mm}
+\begin{listing}[ht]
+  \inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{js}{../src/foo-lang/examples/hello.foo}
+  \vspace{-3mm}
+  \caption{Elementair voorbeeld in FOO-lang: \ttt{hello.foo}}
+  \label{lst:hello.foo}
+\end{listing}
 
 De code start op regel 6 met de declaratie van een \emph{module}. Een module is
 een op zich staand geheel en zou bv. een detectiealgoritme kunnen zijn. Alles

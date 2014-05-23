@@ -19,20 +19,18 @@ Sectie \ref{section:criteria} bepaalt vervolgens de evaluatecriteria en bekijkt
 de theoretische resultaten die we zouden verwachten, gegeven de mogelijkheden
 tot generatie die in eerdere hoofdstukken werden voorgesteld.
 
-Sectie \ref{section:unknown} \TODO
+Sectie \ref{section:evaluation-functionals} bekijkt eerst de functionele
+criteria.
 
-Sectie \ref{section:results} presenteert en evalueert de resultaten van de
-uitvoering van de metingen.
+Sectie \ref{section:evaluation-non-functionals} presenteert en evalueert
+vervolgens de resultaten met betrekking tot de niet-functionele criteria.
 
 \section{Opstelling}
 \label{section:setup}
 
-Om de generator te kunnen evalueren werd een eenvoudige opstelling gemaakt, die
-toch functioneel representatief is en de mogelijkheid biedt om de
-ge\"introduceerde concepten te testen.
-
-De opstelling bestaat uit twee belangrijke luiken: een hardware/netwerk
-opstelling en een selectie van detectiealgoritmes.
+De evaluatie gebeurde door middel van een representatieve hardware- en
+netwerkopstelling. Hierop werd een selectie van detectiealgoritmen
+ge\"implementeerd.
 
 \subsection{Hardware en netwerk}
 \label{subsection:eval-hardware}
@@ -100,12 +98,10 @@ van het netwerk.
 \subsection{Detectiealgoritmes}
 \label{subsection:eval-algorithms}
 
-Naast de functionele toepassing, worden twee detectiealgoritmes
-ge\"implementeerd. Het betreft een implementatie van het elementaire
-\emph{heartbeat} principe en een algoritme dat op basis van observaties in het
-netwerk een waardering opbouwt betreffende de betrouwbaarheid van andere knopen.
-
-Beide algoritmes werden in FOO-lang beschreven en zijn opgenomen in bijlage
+Daarnaast werden twee detectiealgoritmes ge\"implementeerd: het elementaire
+\emph{heartbeat} principe en een algoritme dat op basis van observaties een
+waardering opbouwt omtrent de betrouwbaarheid van andere knopen. Beide
+algoritmes werden in FOO-lang beschreven en zijn opgenomen in bijlage
 \ref{appendix:demo-code}.
 
 \subsubsection{\emph{Heartbeat}}
@@ -258,6 +254,7 @@ We zouden bij de gegenereerde code dus een reductie van 6 pakketten moeten
 kunnen optekenen over een zelfde periode.
 
 \section{Evaluatie van de functionele criteria}
+\label{section:evaluation-functionals}
 
 De twee functionele criteria focussen elk op \'e\'en van de twee grote
 componenten die binnen de scope van deze masterproef vallen: FOO-lang en de
@@ -309,7 +306,7 @@ tevens een \'e\'enmalige investering die bij elke volgende generatie zich zelf
 snel terug betaalt.
 
 \section{Resultaten en evaluatie van niet-functionele criteria}
-\label{section:results}
+\label{section:evaluation-non-functionals}
 
 Voor deze evaluatie werd zowel een volledig manuele implementatie gemaakt als
 een gegenereerde. Zowel de manuele implementatie als de gegenereerde
@@ -535,7 +532,7 @@ tweemaal per cyclus.
   \label{fig:logic-analyser-manual}
 \end{figure}
 
-\vspace{-4mm}
+\vspace{-3mm}
 
 In de figuur zien we deze twee ogenblikken duidelijk naar voor komen. Wanneer
 we de doorlooptijd meten van \'e\'en cyclus zien we dat deze rond de 107$\mu$s
@@ -544,10 +541,10 @@ zonder IDS 48$\mu$s bedraagt. Hieruit concluderen we dat, in de manuele
 situatie, het toevoegen van een IDS een minimale extra verwerkingstijd met zich
 meebrengt van 59$\mu$s of ongeveer 120\%.
 
-Figuur \ref{fig:logic-analyser-generated} toont dezelfde situatie als voorheen,
-maar nu voor de gegenereerde code. Hier zien we dat er slechts \'e\'en plateau
-gevormd wordt. De verwerking van beide algoritmes is in deze situatie gebundeld
-in de verwerking door het generatieraamwerk.
+Figuur \ref{fig:logic-analyser-generated} toont dezelfde situatie, maar nu voor
+de gegenereerde code. Hier zien we dat er slechts \'e\'en plateau gevormd
+wordt. De verwerking van beide algoritmes is in deze situatie gebundeld in de
+verwerking door het generatieraamwerk.
 
 \begin{figure}[ht]
   \centering
@@ -556,14 +553,14 @@ in de verwerking door het generatieraamwerk.
   \label{fig:logic-analyser-generated}
 \end{figure}
 
-\vspace{-4mm}
+\vspace{-3mm}
 
 In het geval van de gegenereerde code, zien we dat de doorlooptijd van \'e\'en
 cyclus van de event-loop zonder speciale activiteit ongeveer 117$\mu$s in
 beslag neemt. Dit is 10$\mu$s meer dan bij de manuele implementatie. De
 minimale extra verwerkingstijd komt zo op 69$\mu$s of 143\%.
 
-\vspace{-4mm}
+\vspace{-5mm}
 
 \section{Afsluitende bedenking}
 
@@ -574,7 +571,3 @@ de feitelijke functionele toepassing. De enige manier waarop deze resultaten
 mogen ge\"interpreteerd worden is als een vage bevestiging van wat
 logischerwijs reeds kon ingeschat worden, nl. dat men door code beter te
 organiseren winst kan boeken.
-
-\TODO
-
-Mapping naar hoofdstuk 3 maken

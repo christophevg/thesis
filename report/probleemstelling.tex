@@ -28,7 +28,7 @@ eigenaar of uitbater van het netwerk. Op het hoogste niveau vinden we immers de
 persoon die uiteindelijk de reden is van het bestaan van de sensorknopen, de
 software en het netwerk als een geheel.
 
-Sectie \ref{section:problem-summary} bundelt vervolgens alle aspecten van de
+Sectie \ref{section:problem-definition} bundelt vervolgens alle aspecten van de
 probleemstelling in een beknopte probleemdefinitie.
 
 \section{Sensorknopen}
@@ -292,10 +292,31 @@ eigenlijk als een aparte entiteit moeten kunnen beheerd worden.
 \section{Probleemdefinitie}
 \label{section:problem-definition}
 
-\TODO
+We vatten de gedachtengang die de probleemstelling onderbouwt samen in een
+probleemdefinitie:
 
 \begin{description}
 
-  \item[\TODO] \TODO
-  
+  \item[Noodzaak van detectie] Een DSN is inherent onveilig. Indien het niet
+  mogelijk is om het te beschermen tegen aanvallen wordt het zelfs belangrijker
+  om zoveel mogelijk te kunnen detecteren.
+
+  \item[Standaardisatie] Het ontbreken van de facto standaarden op zowel hard-
+  als softwarevlak, betekent dat een oplossing flexibel moet zijn. Deze
+  standaarden zullen opduiken, maar het is onverantwoord om hierop te wachten.
+
+  \item[Formele beschrijving] Dit gebrek aan standaardisatie keert ook terug
+  bij detectiealgoritmen. Er bestaat geen gemeenschappelijke formele taal die
+  een brug slaat tussen onderzoekers onderling, noch naar de rest van het
+  ontwikkelingsproces.
+
+  \item[Kosten/Baten] De analysekost die zo ontstaat bij de ontwikkeling van
+  een IDS, zet de introductie ervan nog verder op de helling. Vanuit een
+  ontwikkelingsstandpunt moet de kost van deze niet-functionele toevoeging tot
+  bijna letterlijk niets herleid worden.
+
+  \item[Flexibiliteit] Nieuwe aanvallen ontstaan elke dag. Een IDS is geen
+  statisch gegeven. Het is van groot belang dat flexibel kan ingespeeld worden
+  op deze veranderingen.
+
 \end{description}
