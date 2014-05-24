@@ -87,7 +87,7 @@ verder twee identieke sensorknopen.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=\linewidth]{resources/xbee-setup.pdf}
+  \includegraphics[width=0.9\linewidth]{resources/xbee-setup.pdf}
   \caption{Opstelling van maasnetwerk voor demonstratie.}
   \label{fig:xbee-setup}
 \end{figure}
@@ -107,20 +107,21 @@ benaderen.
 We kunnen nu onderscheid maken tussen de eindknoop en de router. De eindknoop
 wil berichten versturen naar de co\"ordinator en moet hiervoor langs de router
 passeren. Het is dus alleen de router die berichten zal moeten doorsturen.
-Hierbij zal het bericht niet alleen naar de coordinator worden verstuurt, maar
+Hierbij zal het bericht niet alleen naar de co\"ordinator worden verstuurt, maar
 nu ook expliciet terug naar de eindknoop. Wanneer de router dus een bericht
 ontvangt, zal hij dit steeds doorsturen naar de co\"ordinator (hijzelf is geen
-bestemmeling) en zal elk bericht dat hij verstuurt naar de coordinator (ook
+bestemmeling) en zal elk bericht dat hij verstuurt naar de co\"ordinator (ook
 zijn eigen berichten) tevens versturen naar de eindknoop. De eindknoop
 daarentegen zal nooit berichten voor een andere knoop ontvangen, moet geen
 berichten doorsturen en dient daarom ook geen berichten te ontdubbelen.
 
-Bij het versturen van berichten worden tevens drie bijkomende netwerk adressen
-van de betrokken knopen toegevoegd aan het feitelijke bericht: het adres van de
-oorspronkelijke verzender, het adres van de tussenliggende knoop en het adres
-van de uiteindelijke bestemmeling. Dit stelt ons functioneel in staat om
-voldoende informatie te hebben om berichten van andere knopen onderling te
-interpreteren.
+Bij het versturen van berichten wordt \emph{extra adresinformatie} aan het
+bericht toegevoegd, nl. de drie bijkomende netwerk adressen van de betrokken:
+het adres van de oorspronkelijke \emph{verzender}, het adres van de
+\emph{tussenliggende knoop} en het adres van de uiteindelijke
+\emph{bestemmeling}. Aan de hand van deze extra informatie kunnen knopen
+bepalen welke rol ze vertolken bij het ontvangen van een bericht en hoe ze er
+dus moeten mee omgaan.
 
 De extra code die deze simulatie realiseert is weergegeven in listing
 \ref{lst:virtual-mesh}. Ze volgt de opbouw van de overeenkomstige code voor
@@ -154,7 +155,7 @@ onbekend adres. XBee routers geven dit adres standaard terug aangezien het
 simulatieopstelling kunnen we dit adres gelijkstellen aan het adres van de
 co\"ordinator: \ttt{00 00}.
 
-De router zal na associatie met het netwerk via de coordinator, wachten tot er
+De router zal na associatie met het netwerk via de co\"ordinator, wachten tot er
 zich een eindknoop via hem met het netwerk verbindt, alvorens zijn eigen
 berichten te versturen. Tijdens het wachten, verwerkt de router wel
 binnenkomende berichten. De eindknoop zal tijdens deze opstartfase een (echte)
@@ -165,7 +166,7 @@ verzenden. De code van deze opstartfase is weergegeven in listing
 \ref{lst:virtual-mesh-init}.
 
 We zien duidelijk dat de berichten van de eindknoop door de router doorgestuurd
-worden naar de coordinator. Deze zelfde berichten worden tevens nog een tweede
+worden naar de co\"ordinator. Deze zelfde berichten worden tevens nog een tweede
 keer verzonden naar de eindknoop. Zo zien we dat de router twee berichten
 ontvangt van de eindknoop en dat de eindknoop er vier ontvangt: twee van de
 router zelf en twee doorgestuurde berichten van zichzelf.
@@ -178,21 +179,24 @@ router zelf en twee doorgestuurde berichten van zichzelf.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=.9\linewidth]{../src/demo/network/end-device.png}
+  \includegraphics[width=.7\linewidth]{../src/demo/network/end-device.png}
+  \vspace{-3mm}
   \caption{Simulatie van een maasnetwerk: Eind-knoop}
   \label{fig:virtual-mesh-end-device}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=.9\linewidth]{../src/demo/network/router.png}
+  \includegraphics[width=.7\linewidth]{../src/demo/network/router.png}
+  \vspace{-3mm}
   \caption{Simulatie van een maasnetwerk: Router}
   \label{fig:virtual-mesh-router}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=.9\linewidth]{../src/demo/network/coordinator.png}
-  \caption{Simulatie van een maasnetwerk: Coordinator}
+  \includegraphics[width=.7\linewidth]{../src/demo/network/coordinator.png}
+  \vspace{-3mm}
+  \caption{Simulatie van een maasnetwerk: Co\"ordinator}
   \label{fig:virtual-mesh-coordinator}
 \end{figure}
