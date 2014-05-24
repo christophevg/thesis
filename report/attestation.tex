@@ -8,44 +8,44 @@ vluchtige geheugen van een knoop niet veilig is. Als een aanvaller in staat is
 om ongemerkt de programma-code van een knoop te bekomen, alsook alle gegevens
 die zich alleen tijdens uitvoering in het geheugen bevinden, dan kan deze
 aanvaller deze code aanpassen zodat de werking ogenschijnlijk ongewijzigd is,
-maar dat hij toch controle heeft over de werking en zo het hele netwerk kan
+terwijl hij toch controle heeft over de werking en zo het hele netwerk kan
 be\"invloeden.
 
 Een zeer logische onderzoeksvraag dient zich al snel aan: ``\emph{Is het
 mogelijk om wijzigingen aan het programma van een knoop in het netwerk vast te
-stellen?}''. Deze vraag wordt onderzocht binnen het domein van software
-attestatie.
+stellen?}''. Deze vraag wordt onderzocht binnen het domein van
+software-attestatie.
 
 \subsubsection*{Werking}
 
-Alle bestaande vormen van software attestatie maken gebruik van een protocol
-gebaseerd op het challenge response principe. Als men de integriteit van een
-knoop wil vast stellen, zal men aan deze knoop een verzoek sturen om een unieke
-samenvatting te maken van zijn inhoud door middel van een cryptografische
-hashfunctie, een \emph{checksum}.
+Alle bestaande vormen van software-attestatie maken gebruik van een protocol,
+gebaseerd op het \emph{challenge response principe}. Als men de integriteit van
+een knoop wil vaststellen, zal men aan deze knoop een verzoek sturen om een
+unieke samenvatting te maken van zijn inhoud door middel van een
+cryptografische hashfunctie, een \emph{checksum}.
 
 De vaststeller beschikt zelf over een versie van de inhoud van de knoop en kan
 dezelfde unieke samenvatting berekenen. Door in het initi\"ele verzoek een
 \'e\'enmalig te gebruiken code mee te geven, een zgn. \emph{nonce}, en deze
 deel te laten uitmaken van de inhoud, kunnen verschillende verzoeken telkens
-met een ander, unieke samenvatting beantwoord worden en wordt kan deze
-samenvatting niet op voorhand gekend en berekend worden.
+met een andere, unieke samenvatting beantwoord worden en kan deze samenvatting
+niet op voorhand gekend en berekend worden.
 
-De inhoud waarvan een samenvatting gemaakt wordt is typisch de programma code
-die op de knoop ge\"installeerd werd. Indien een aanvaller deze code kon
-wijzigen, zou de samenvatting niet langer overeenkomen met die opgesteld door
-de vaststeller en kan deze laatste besluiten om deze gewijzigde code niet te
-vertrouwen en de knoop uit te sluiten.
+De inhoud waarvan een samenvatting gemaakt wordt is de programmacode die op de
+knoop ge\"installeerd werd. Indien een aanvaller deze code kon wijzigen, zou de
+samenvatting niet langer overeenkomen met die opgesteld door de vaststeller en
+kan deze laatste besluiten om deze gewijzigde code niet te vertrouwen en de
+knoop uit te sluiten.
 
-Bijlage \ref{appendix:attestation} belicht een voorbeeld van een software
-attestatie algoritme, ICE, en evalueert het met betrekking tot zijn
-mogelijkheden en beperkingen. Ook wordt kort ingegaan op de zgn. ``Trusted
-Platform Module'' (TPM), op het concept van gedistribueerde attestatie en wordt
+Bijlage \ref{appendix:attestation} belicht een voorbeeld van een
+software-attestatie algoritme, ICE, en evalueert het met betrekking tot zijn
+mogelijkheden en beperkingen. Ook wordt kort ingegaan op de zgn. \emph{Trusted
+Platform Module} (TPM), op het concept van gedistribueerde attestatie en wordt
 geconcludeerd dat het attesteren van software mogelijk is, maar met de nodige
 omzichtigheid moet aangepakt worden. Veelal zal blijken dat bijkomende
 infrastructuur zal moeten voorzien worden.
 
 Deze masterproef laat het attesteren van software buiten beschouwing en gaat
 uit van een situatie waar een knoop op \'e\'en of andere manier \emph{veilig}
-kan beschouwd worden op dit vlak. Het is echter wel belangrijk om deze
-concepten op zijn minst te kaderen in het volledige spectrum.
+kan geacht worden op dit vlak. Het is echter wel belangrijk om deze concepten
+op zijn minst te kaderen in het volledige spectrum.

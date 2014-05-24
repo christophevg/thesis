@@ -17,19 +17,19 @@ reeds enkele malen hebben aangehaald: er wordt veel gekeken naar
 detailoplossingen, maar zelden wordt een algemene oplossing voorgesteld voor de
 typische situatie van DSN. De auteurs zijn het verder eveneens eens met de
 stelling dat het belangrijk is om te leren van deze detailoplossingen om een
-eventueel raamwerk af te stemmen op deze oplossingen en gebruikt te maken van
-de goede eigenschappen ervan bij de implementatie van het eigenlijke raamwerk.
+eventueel raamwerk af te stemmen op deze oplossingen en gebruik te maken van de
+goede eigenschappen ervan bij de implementatie van het eigenlijke raamwerk.
 
-De auteurs gaan er in hun redenering van uit dat gegeven de eigenheid van het
+De auteurs gaan er in hun redenering van uit dat, gegeven de eigenheid van het
 draadloze medium, veel aanvallen zich inderdaad richten op deze
-communicatiekanalen. Ze defini\"eren daarom een eerste component, COMM, die
-zich toespitst op de communicatie en waarlangs alle gegevens passeren die
+communicatiekanalen. Ze defini\"eren daarom een eerste component, \ttt{COMM},
+die zich toespitst op de communicatie en waarlangs alle gegevens passeren die
 verstuurd en/of ontvangen worden. Daarnaast zijn er nog drie bijkomende
-componenten: M-Core, de centrale controle module, Sense, de sensor module en de
-DDMs, de detectie en verdedigingsmodules. Deze laatste zijn aanvalspecifieke
-modules die ingevoegd kunnen worden in het raamwerk. Figuur
-\ref{fig:di-sec-architecture} geeft een overzicht van de architectuur van
-Di-Sec.
+componenten: \ttt{M-Core}, de centrale controlemodule, \ttt{Sense}, de
+sensormodule en de \ttt{DDMs}, de detectie- en verdedigingsmodules. Deze
+laatste zijn aanvalspecifieke modules die ingevoegd kunnen worden in het
+raamwerk. Figuur \ref{fig:di-sec-architecture} geeft een overzicht van de
+architectuur van Di-Sec.
 
 \begin{figure}[ht]
   \centering
@@ -38,8 +38,8 @@ Di-Sec.
   \label{fig:di-sec-architecture}
 \end{figure}
 
-De drie modules vormen als het ware een API voor de DDMs en de manier waarop de
-COMM en Sense modules de toegang tot alle in- en uitvoer, zowel de
+De drie modules vormen als het ware een API voor de \ttt{DDMs} en de manier
+waarop \ttt{COMM} en \ttt{Sense} de toegang tot alle in- en uitvoer, zowel de
 netwerkcommunicatie als de toegang tot de sensoren, hermetisch afsluiten, toont
 aan dat Di-Sec op zich reeds een raamwerk is voor het ontwikkelen van
 sensorknopen.
@@ -53,13 +53,13 @@ worden en om de nodige aanpassingen te doen aan de configuratiebestanden.
 \label{subsubsection:node-architecture}
 
 Daar waar Di-Sec zich vooral focust op het aanbieden van een API voor het
-ontwikkelen van detectie modules, gaat \citep{zhang2000intrusion} een stap
+ontwikkelen van detectiemodules, gaat \citep{zhang2000intrusion} een stap
 verder en verrijkt de architectuur van een sensorknoop met verschillende
 modules, gericht op de onderliggende processen van een IDS. Zo worden
-beveiligde communicatiemodules voorzien, is er een co\"operatieve detectie
-module en voorzien zij globaal aggregerende modules om tot een consensus te
-komen op het niveau van het netwerk. Deze architectuur is schematisch
-weergegeven in figuur \ref{fig:node-architecture}.
+beveiligde communicatiemodules voorzien, is er een co\"operatieve
+detectiemodule en voorzien zij globaal aggregerende modules om tot een
+consensus te komen op het niveau van het netwerk. Deze architectuur is
+schematisch weergegeven in figuur \ref{fig:node-architecture}.
 
 \begin{figure}[ht]
   \centering
@@ -71,14 +71,14 @@ weergegeven in figuur \ref{fig:node-architecture}.
 
 De co\"operatieve modules voorzien bv. mogelijkheden om zekerheden te koppelen
 aan beweringen over bepaalde gebeurtenissen. Op deze manier biedt de
-architectuur een zeer specifiek aanbod aan functionaliteit specifiek voor het
+architectuur een zeer specifiek aanbod aan functionaliteit, specifiek voor het
 bouwen van een IDS.
 
 Een gelijkaardige architectuur wordt voorgesteld in \citep{krontiris2008lidea}.
 LIDeA is een uitgewerkte architectuur voor de idee\"en die reeds aan bod kwamen
 in sectie \ref{subsection:cooperation} en vormen het platform waarop het
-co\"operatieve algoritme van \citep{krontiris2009cooperative} ge\"end is. Figuur
-\ref{fig:lidea-architecture} toont de LIDeA architectuur.
+co\"operatieve algoritme van \citep{krontiris2009cooperative} ge\"ent is.
+Figuur \ref{fig:lidea-architecture} toont de LIDeA architectuur.
 
 \begin{figure}[ht]
   \centering

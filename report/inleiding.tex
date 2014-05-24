@@ -66,10 +66,10 @@ en met de buitenwereld te communiceren.
 
 Sensorknopen zijn in essentie zeer eenvoudige computers. Ze worden typisch
 opgebouwd rond een microcontroller (\mcu). Dit is een digitaal ontwerp dat
-zowel een processor, als geheugen en invoer- en uitvoerkanalen bevat op \'e\'en
+zowel een processor als geheugen en invoer- en uitvoerkanalen bevat op \'e\'en
 ge\"integreerde schakeling. Ze worden daarom ook wel \emph{systeem-op-een-chip}
-(\emph{System-on-Chip}) (SoC) genoemd. Figuur \ref{fig:motes} toont
-enkele typische sensorknopen.
+(\emph{System-on-Chip}) (SoC) genoemd. Figuur \ref{fig:motes} toont enkele
+typische sensorknopen.
 
 \begin{figure}[ht]
 \centering
@@ -117,30 +117,37 @@ draadloze standaarden.
 
 ZigBee zelf is een laag bovenop de netwerklaag gekend als IEEE 802.15.4
 \citep{ieee2009802.15.4}. Deze voorziet standaarden op vlak van energiegebruik,
-adressering, foutcorrectie, vormgeving van berichten \dots en vormt zo de
+adressering, foutcorrectie, vormgeving van berichten\dots en vormt zo de
 fundamenten voor zgn. \emph{low-rate wireless personal area networks}
 (LR-WPAN). ZigBee voegt hieraan nog drie belangrijke eigenschappen toe:
-routering, ad-hoc netwerk creatie en zelfherstellende maasnetwerken (Engels:
-\emph{mesh networks}) \citep{oreilly2010buildingwsn}.
+routering, ad-hoc netwerkcreatie en zelfherstellende maasnetwerken (\emph{mesh
+networks}) \citep{oreilly2010buildingwsn}.
 
-Een ZigBee netwerk wordt opgebouwd door knopen die elk \'e\'en van drie
-verschillende functies kunnen innemen: co\"ordinator, router of eindknoop. Elk
-netwerk heeft \'e\'en \emph{co\"ordinator}. Deze knoop is verantwoordelijk voor
-het samenbrengen van het netwerk en definieert de eigenschappen, bv. met
-betrekking tot de beveiliging.
+Een ZigBee-netwerk wordt opgebouwd door knopen die elk \'e\'en van drie
+verschillende functies kunnen innemen: co\"ordinator, router of eindknoop.
 
-Een \emph{router} stelt andere knopen in staat om met elkaar te communiceren.
-Deze knopen zijn daarom meestal voorzien van een permanente stroomvoorziening,
-omdat ze zich in tegenstelling tot \emph{eindknopen}, wegens hun
-communicatieondersteunende rol, niet in een slaapstand kunnen zetten.
+\begin{description}
 
-\emph{Eindknopen}, tot slot, kunnen zich louter verbinden met een netwerk, er
-berichten via versturen en berichten voor zichzelf ontvangen. Het is niet de
-bedoeling om berichten van andere knopen voor andere knopen door te sturen.
-Typisch trachten ze ook hun energieverbruik te minimaliseren door hun draadloze
-radio zoveel mogelijk uit te schakelen. Hierdoor worden ze op dat moment
-onbereikbaar. Het is dankzij \emph{routers}, die berichten voor de
-\emph{eindknopen} tijdelijk opslaan, dat ze toch berichten kunnen ontvangen.
+  \item[Co\"ordinator] Elk netwerk heeft \'e\'en \emph{co\"ordinator}. Deze
+  knoop is verantwoordelijk voor het samenbrengen van het netwerk en definieert
+  de eigenschappen, bv. met betrekking tot de beveiliging.
+
+  \item[Router] Een \emph{router} stelt andere knopen in staat om met elkaar te
+  communiceren. Deze knopen zijn daarom meestal voorzien van een permanente
+  stroomvoorziening, omdat ze zich in tegenstelling tot \emph{eindknopen},
+  wegens hun communicatieondersteunende rol, niet in een slaapstand kunnen
+  zetten.
+
+  \item[Eindkknoop] \emph{Eindknopen}, tot slot, kunnen zich louter verbinden
+  met een netwerk, er berichten via versturen en berichten voor zichzelf
+  ontvangen. Het is niet de bedoeling om berichten van andere knopen voor
+  andere knopen door te sturen. Typisch trachten ze ook hun energieverbruik te
+  minimaliseren door hun draadloze radio zoveel mogelijk uit te schakelen.
+  Hierdoor worden ze op dat moment onbereikbaar. Het is dankzij \emph{routers},
+  die berichten voor de \emph{eindknopen} tijdelijk opslaan, dat ze toch
+  berichten kunnen ontvangen.
+
+\end{description}
 
 \subsection{Netwerktopologie en -adressen}
 \label{subsection:topologie}
@@ -158,7 +165,7 @@ Met knopen kunnen verschillende netwerktopologie\"en gebouwd worden. Figuur
   co\"ordinator, vormen zij een stertopologie. Alle communicatie verloopt via
   de centrale co\"ordinator.
   
-  \item[Maasnetwerk] In een maasnetwerk, worden routers ingeschakeld om
+  \item[Maasnetwerk] In een maasnetwerk worden routers ingeschakeld om
   communicatie via verschillende wegen mogelijk te maken. Eindknopen zijn
   verbonden met deze routers of met de co\"ordinator. Routers en co\"ordinator
   kunnen berichten ontvangen van eindknopen en deze versturen naar andere
@@ -180,10 +187,10 @@ Met knopen kunnen verschillende netwerktopologie\"en gebouwd worden. Figuur
 \end{figure}
 
 Het lijkt evident, maar elke knoop, in eender welke topologie, heeft een eigen,
-uniek adres, eigenlijk meerdere. Zo heeft een ZigBee knoop een uniek adres
+uniek adres, eigenlijk meerdere. Zo heeft een ZigBee-knoop een uniek adres
 binnen het netwerk waaraan het deelneemt. Dit adres wordt door de co\"ordinator
 van het netwerk toegekend aan een knoop wanneer deze toetreedt tot het netwerk.
-Dit \emph{netwerk adres} bestaat uit 16 bits en laat dus toe om 65534 (uit
+Dit \emph{netwerkadres} bestaat uit 16 bits en laat dus toe om 65534 (uit
 $2^{16} = 65536$) verschillende adressen toe te kennen. Het adres
 \ttt{0x0000}\footnote{We hanteren voor de notatie van adressen de hexadecimale
 voorstelling. Elk cijfer stelt een groep van 4 bits voor. 4 groepen stellen zo
@@ -192,13 +199,13 @@ een 16 bit adres voor.} reserveert de co\"ordinator voor zichzelf en het adres
 adres waarnaar een bericht gestuurd wordt dat bij alle andere knopen dient
 afgeleverd te worden.
 
-Daarnaast heeft elke ZigBee radio ook een adres dat gegarandeerd overal uniek
+Daarnaast heeft elke ZigBee-radio ook een adres dat gegarandeerd overal uniek
 is. Dit bestaat uit 64 bits en wordt samengesteld uit twee delen: een eerste
 deel beslaat de eerste 32 bits en is voorbehouden voor een unieke identificatie
 van de producent. De volgende 32 bits is een uniek nummer binnen de productie
 van de producent. Een netwerk zal veelal uit sensoren met dezelfde draadloze
 radio's bestaan. Het is daarom logisch dat er gebruik gemaakt wordt van een
-\emph{netwerk adres}, dat slechts 16 bits groot is en dus een aanzienlijke
+\emph{netwerkadres}, dat slechts 16 bits groot is en dus een aanzienlijke
 besparing aan geheugen kan opleveren.
 
 Naast de adressen van de knopen is er ook nog het zogenaamde \emph{personal
@@ -206,9 +213,9 @@ area network (PAN)} adres. Dit is een unieke identificatie van het netwerk dat
 door de co\"ordinator georganiseerd wordt. Ook dit is een 16 bit adres en laat
 dus toe om 65536 netwerken op te bouwen.
 
-Tot slot kunnen ZigBee radio's ook gebruik maken van 12 verschillende
+Tot slot kunnen ZigBee-radio's ook gebruik maken van 12 verschillende
 \emph{kanalen}, zodat de volledige adresstructuur bestaat uit een kanaal, een
-PAN adres en een netwerk adres.
+PAN adres en een netwerkadres.
 
 \section{Beveiligen van sensorknopen}
 \label{section:beveiligen}
@@ -216,7 +223,7 @@ PAN adres en een netwerk adres.
 Het beveiligen van sensorknopen is, in tegenstelling tot de beveiliging van
 klassieke computers, bijzonder moeilijk. De computers waar onze emails, foto's
 en andere kostbare documenten opgeslagen zijn, zijn uitgerust met een
-virusscanner, firewall \dots. Dit is mogelijk omdat ze voorzien zijn van een
+virusscanner, firewall\dots. Dit is mogelijk omdat ze voorzien zijn van een
 constante stroomvoorziening, krachtige processor en veel geheugen. Ze zijn
 tevens fysiek beschermd door ons huis of het datacenter van onze leverancier
 van internetdiensten.
@@ -245,7 +252,7 @@ enkele van deze modellen die kunnen helpen om over beveiliging van DSN te
 praten.
 
 Wanneer men spreekt over het beveiligen van computers en netwerken, wordt
-dikwijls gerefereerd naar het CIA beveiligingsmodel. Dit letterwoord staat
+dikwijls gerefereerd naar het CIA-beveiligingsmodel. Dit letterwoord staat
 voor: vertrouwelijkheid (\emph{confidentiality}), integriteit en
 beschikbaarheid (\emph{availability}).
 
@@ -261,19 +268,18 @@ beschikbaarheid (\emph{availability}).
   niets gewijzigd is. 
   
   \item[Beschikbaarheid] Maar beveiliging moet ook de \emph{beschikbaarheid}
-  van onderdelen van het netwerk garanderen, om er zeker van te zijn dit
+  van onderdelen van het netwerk garanderen, om er zeker van te zijn dat dit
   laatste zijn diensten kan blijven aanbieden.
 
 \end{description}
 
-Het CIA model is zonder meer een belangrijke basis, maar er ontbreken nog veel
+Het CIA-model is zonder meer een belangrijke basis, maar er ontbreken nog veel
 belangrijke aspecten. In \citep{rfc:3198} wordt een gestandaardiseerde
 terminologie voorgesteld voor het defini\"eren van een beveiligingsbeleid.
-Naast de drie hoofdpijlers van het CIA model vinden we zo ook nog een ander
+Naast de drie hoofdpijlers van het CIA-model vinden we zo ook nog een ander
 belangrijk model, namelijk het AAA model voor autorisatie bij
-internet-gerelateerde diensten (\emph{triple A}) \citep{rfc:2904}. De
-afkorting staat voor authenticatie, autorisatie en vaststellen (Engels:
-\emph{accounting})
+internet-gerelateerde diensten (\emph{triple A}) \citep{rfc:2904}. De afkorting
+staat voor authenticatie, autorisatie en vaststellen (\emph{accounting})
 
 \begin{description}
 
@@ -293,19 +299,23 @@ afkorting staat voor authenticatie, autorisatie en vaststellen (Engels:
 \end{description}
 
 In het kader van beveiliging wordt typisch ook gesproken over een \emph{beleid}
-(\emph{policy}), waarin de regels waaraan alle spelers binnen het te
-beveiligen domein zich aan dienen te houden. Het AAA model hanteert een beleid
-als zijn centrale gegeven en definieert componenten zoals een \emph{policy
-information point} (PIP), \emph{policy decision point} (PDP) en een
-\emph{policy enforcement point} (PEP). Deze componenten kunnen aanduiden waar
-de verantwoordelijkheid ligt om respectievelijk de juiste informatie aan te
-leveren omtrent het beleid, beslissingen te treffen volgens het beleid en deze
-beslissingen effectief uit te voeren.
+(\emph{policy}), waarin de regels zijn opgenomen waaraan alle spelers binnen
+het te beveiligen domein zich dienen te houden. Het AAA model hanteert een
+beleid als zijn centrale gegeven en definieert componenten zoals een
+\emph{policy information point} (PIP), \emph{policy decision point} (PDP) en
+een \emph{policy enforcement point} (PEP). Deze componenten kunnen aanduiden
+waar de verantwoordelijkheid ligt om respectievelijk de juiste informatie aan
+te leveren omtrent het beleid, beslissingen te treffen volgens het beleid en
+deze beslissingen effectief uit te voeren.
 
-Naast deze aspecten, is er ook nog het principe van onweerlegbaarheid (Engels:
-\emph{non-repudiation}). Door garanties omtrent \emph{onweerlegbaarheid} in te
-bouwen, kan bv. een ontvanger er zeker van zijn dat een zender van een bericht
-dit bericht effectief verstuurd heeft.
+\begin{description}
+
+  \item[Onweerlegbaarheid] Naast deze aspecten, is er ook nog het principe van
+  onweerlegbaarheid (\emph{non-repudiation}). Door garanties omtrent
+  \emph{onweerlegbaarheid} in te bouwen, kan een ontvanger er zeker van zijn
+  dat een zender van een bericht dit bericht effectief verstuurd heeft.
+
+\end{description}
 
 Een aantal gekende technieken bieden klassiek oplossingen voor verschillende
 van de hoger vermelde principes: Digitale handtekeningen kunnen helpen bij het
@@ -333,7 +343,7 @@ er niet zijn. Misschien moeten we zelfs durven stellen dat het belangrijker is
 om meer te weten dan te vermijden.
 
 Inbraakdetectie is typisch de stille vennoot in een beveiligingsverhaal. Daar
-waar bv. een firewall of authenticatie server actieve toegang ontzegt, zal een
+waar bv. een firewall of authenticatieserver actieve toegang ontzegt, zal een
 inbraakdetectiesysteem (IDS) typisch geen actieve rol spelen. Het IDS zal
 eerder bewijsmateriaal verzamelen om een inbraakpoging te documenteren. Uit
 deze informatie kunnen dan bijsturingen aan het beleid aangebracht worden,
@@ -344,7 +354,7 @@ Deze architectuur legt al snel een belangrijk pijnpunt bloot: in een klassiek
 netwerk wordt het netwerk beschermd aan de rand. De firewall schermt het
 interne netwerk af van aanvallen van buiten. Als een spreekwoordelijke muur van
 vuur wordt elke toegang tot het netwerk gelouterd en ongewenste berichten
-worden onherroepelijk \emph{verbrand} voor ze het netwerk kunnen betreden.
+worden onherroepelijk \emph{verbrand} v\'o\'or ze het netwerk kunnen betreden.
 
 Het IDS wordt daarom typisch ook op het interne netwerk aangesloten daar waar
 alle netwerkverkeer dat door de firewall wordt doorgelaten, passeert. Aanvallen
@@ -405,7 +415,7 @@ verbindt.
 
 Deze werken stellen tevens dat het een nagenoeg onmogelijke taak is om alle
 benodigde detectiemechanismen effectief te implementeren. Dit is logisch,
-gegeven het beperkte aanbod aan middelen die sensorknopen typisch ter hunnen
+gegeven het beperkte aanbod aan middelen die sensorknopen typisch ter
 beschikking hebben. Zo zou bv. een exhaustieve lijst van aanvalspatronen
 slechts in sensorknopen met een groot geheugen kunnen opgeslagen worden en
 zouden de berekeningen die nodig zijn om bepaalde anomalie\"en te detecteren
@@ -420,7 +430,7 @@ een sensorknoop in staat stelt om een selectie van de in de literatuur
 beschreven oplossingen te implementeren? Kan hij een IDS toevoegen aan zijn DSN
 zonder een diepgaande analyse van de onderzoeksliteratuur en zonder zich zorgen
 te moeten maken over de onderliggende interactie met andere knopen, het
-vergaren en opvragen van informatie op systeem-niveau \dots?
+vergaren en opvragen van informatie op systeem-niveau\dots?
 
 Deze masterproef wil zo'n kader ontwerpen, een prototype implementeren en de
 impact bepalen. Daartoe bekijken we eerst enkele typische voorbeelden van

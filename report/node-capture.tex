@@ -189,29 +189,29 @@ In de \ttt{gdb} sessie worden expliciete adressen in het geheugen gebruikt. Dit
 was mogelijk mits enige voorkennis i.v.m. de gecompileerde code. De
 \ttt{counter} variabele is een globale variabele en komt daarom terecht in de
 \ttt{.bss} data sectie. Deze sectie heeft standaard een vaste plaats in het
-data geheugen - dat bij de Harvard architectuur gescheiden is van het programma
+datageheugen - dat bij de Harvard architectuur gescheiden is van het programma
 geheugen \citep{avr-memory}. Figuur \ref{fig:avr-ram-map} geeft een overzicht
-van de indeling van het data geheugen op een AVR \mcu.
+van de indeling van het datageheugen op een AVR \mcu.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/avr-ram-map.pdf}
-  \caption{Indeling van het data geheugen (Bron:\citep{avr-malloc})}
+  \caption{Indeling van het datageheugen (Bron:\citep{avr-malloc})}
   \label{fig:avr-ram-map}
 \end{figure}
 
-Zelfs zonder voorkennis over de code kunnen we het data geheugen benaderen. Het
-binaire beeld dat naar de \mcu werd overgebracht, bestond uit de programma code
+Zelfs zonder voorkennis over de code kunnen we het datageheugen benaderen. Het
+binaire beeld dat naar de \mcu werd overgebracht, bestond uit de programmacode
 in de \ttt{.text} sectie en de \ttt{.data} sectie met de statische gegevens.
-Aangezien de Harvard architectuur programma en data geheugen scheidt, wordt bij
+Aangezien de Harvard architectuur programma en datageheugen scheidt, wordt bij
 het uitvoeren van het programma, de \ttt{.data} sectie gekopieerd naar dit
-aparte data geheugen. Daarna wordt de \ttt{.bss} sectie gevuld en start de
+aparte datageheugen. Daarna wordt de \ttt{.bss} sectie gevuld en start de
 opbouw van de \ttt{heap}.
 
 We kunnen nu twee binaire beelden downloaden van de \mcu: het oorspronkelijk
-ge\"uploade beeld en een kopie van het data geheugen. Dit laatste start op
+ge\"uploade beeld en een kopie van het datageheugen. Dit laatste start op
 adres \ttt{0x0100} met een bijkomende verschuiving van \ttt{0x800000}. Door het
-einde van het oorspronkelijke beeld en het begin van het data geheugen te
+einde van het oorspronkelijke beeld en het begin van het datageheugen te
 vergelijken, kunnen we de \ttt{.data} sectie bepalen, als ook het begin van de
 \ttt{.bss} sectie.
 
@@ -235,7 +235,7 @@ de \mcu, omdat ze deel uitmaken van de programmatie. Indien de software van een
 knoop dus bij het opstarten een validatie doet van de instellingen van de \mcu
 kan het controleren dat deze instellingen geen kwaadaardige acties toelaten.
 Indien wel, kunnen ze er voor zorgen dat ze geen belangrijke informatie
-ontvangen van het netwerk en opslagen in het data geheugen.
+ontvangen van het netwerk en opslagen in het datageheugen.
 
 Hieruit blijkt dat een minimaal onderdeel van een inbraakdetectiesysteem een
 controle zal zijn van de instellingen van de \mcu, wat onderdeel kan uitmaken

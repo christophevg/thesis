@@ -1,21 +1,21 @@
 %!TEX root=masterproef.tex
 
-\chapter{Software attestatie}
+\chapter{Software-attestatie}
 \label{appendix:attestation}
 
-In deze bijlage bekijken we een voorbeeld van software attestatie, meer
+In deze bijlage bekijken we een voorbeeld van software-attestatie, meer
 specifiek het ICE algoritme, en evalueren de mogelijkheden en beperkingen.
 
 Figuur \ref{fig:attestation-process} geeft nog even kort een overzicht van de
-werking van software attestatie en illustreert hoe een wijziging door een
+werking van software-attestatie en illustreert hoe een wijziging door een
 aanvaller zich propageert.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/attestation-process.pdf}
-  \caption[De werking van software attestatie]{De werking van software
+  \caption[De werking van software-attestatie]{De werking van software
   attestatie: een aanvaller heeft een wijziging kunnen aanbrengen in de
-  programma code op een knoop. Deze wijziging propageert zich in de
+  programmacode op een knoop. Deze wijziging propageert zich in de
   \emph{checksum} en wordt door de vaststeller opgemerkt.}
   \label{fig:attestation-process}
 \end{figure}
@@ -32,7 +32,7 @@ vertraging.
 
 Met SCUBA in \citep{seshadri2006scuba} en SAKE in \citep{seshadri2008sake} werd
 verder gebouwd op de SWATT techniek met het oog op een beveiligde distributie
-van programma code en het veilig uitwisselen van sleutels. Samen met SCUBA en
+van programmacode en het veilig uitwisselen van sleutels. Samen met SCUBA en
 SAKE werd ook \emph{Indisputable Code Execution} of ICE ge\"introduceerd. Daar
 waar SWATT gericht is op inhoudelijke integriteit, voegt ICE hieraan ook de
 garantie van een niet aangetaste uitvoering van programma's aan toe en laat het
@@ -67,7 +67,7 @@ werd in \citep{perrig2010refutation} een weerwoord gegeven.
 
 Desalniettemin zijn de ontwijkingstechnieken die voorgesteld werden zeer
 interessante voorbeelden van de mogelijkheden die een aanvaller heeft tegen
-software attestatie. Het feit dat de op het eerste zicht inderdaad valabele
+software-attestatie. Het feit dat de op het eerste zicht inderdaad valabele
 aanvallen toch nog fouten bevatten, biedt dan weer een ander interessant beeld
 op de kwaliteiten van de voorgestelde technieken. We belichten ze in de
 volgende paragrafen als inspiratiebron.
@@ -93,21 +93,21 @@ zijn code in te plaatsen.
 
 Ofschoon deze willekeurige data inderdaad zo kan opgesteld worden dat ze niet
 kan verkleind worden, kan dit niet gegarandeerd worden van de eigenlijke
-programma code. Deze kan typisch wel nog verkleind worden en in die vorm
+programmacode. Deze kan typisch wel nog verkleind worden en in die vorm
 opgeslagen worden, waardoor er mogelijk voldoende ruimte vrijkomt voor de code
 van de aanvaller. Op het ogenblik van attestatie kan deze oorspronkelijke code
 dan, indien nodig terug hersteld worden.
 
 Indien deze eenvoudige technieken toch niet voldoende ruimte zouden bieden, kan
-er nog altijd gekeken worden naar het data geheugen. We merken immers op dat
+er nog altijd gekeken worden naar het datageheugen. We merken immers op dat
 nagenoeg alle vormen van attestatie alleen toegepast worden op het programma
-geheugen. Het data geheugen is immers te veranderlijk en kan niet volledig
+geheugen. Het datageheugen is immers te veranderlijk en kan niet volledig
 gekend zijn door de vaststeller.
 
-Hierdoor wordt dit data geheugen natuurlijk het volgende mogelijke
+Hierdoor wordt dit datageheugen natuurlijk het volgende mogelijke
 aandachtspunt voor de aanvaller. Ondanks het feit dat ook op een \mcu het data
 geheugen veelal niet kan uitgevoerd worden, blijft het mogelijk om programma
-code in het data geheugen op te slagen en te kopi\"eren naar het programma
+code in het datageheugen op te slagen en te kopi\"eren naar het programma
 geheugen.
 
 De \emph{rootkit} voorgesteld in \citep{castelluccia2009difficulty} hanteert dit
@@ -125,7 +125,7 @@ werking.
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/attestation-rootkit.pdf}
-  \caption{De werking van een attestatie ontwijkende rootkit}
+  \caption{De werking van een attestatie-ontwijkende rootkit}
   \label{fig:attestation-rootkit}
 \end{figure}
 
@@ -140,7 +140,7 @@ tot deze conclusie te komen.
 
 Deze aanval richt zich nu louter op de attestatie routine, maar zoals in
 \citep{perrig2010refutation} aangegeven wordt, it SWATT slechts een deel van een
-volledige software attestatie en focust zich op het effectief attesteren van
+volledige software-attestatie en focust zich op het effectief attesteren van
 code in het geheugen, niet op de omringende context. In een volledige
 opstelling zou een attestatie procedure de het terugkeer adres op de stack mee
 kunnen nemen in de attestatie.
@@ -167,14 +167,14 @@ moeilijker te detecteren wordt.
 
 Tot slot is, zoals eerder reeds vermeld, het attesteren van het werkgeheugen op
 zich reeds een zeer moeilijk gegeven, door de onvoorspelbare inhoud ervan.
-Idealiter zou de vaststeller ook de inhoud van het volledige data geheugen
+Idealiter zou de vaststeller ook de inhoud van het volledige datageheugen
 moeten kennen. Enerzijds bevat dit geheugen registers enz., welke volledig
 onvoorspelbaar zijn en dus uitgesloten zouden moeten worden. Anderzijds bevat
 het geheugen gegevens van de actieve processen. Deze zijn typisch afhankelijk
 van opgemeten waarden en/of communicatie met andere knopen en dus per definitie
 onvoorspelbaar voor de vaststeller.
 
-Opnieuw zou het leegmaken van het data geheugen een voorspelbaar resultaat
+Opnieuw zou het leegmaken van het datageheugen een voorspelbaar resultaat
 opleveren voor de vaststeller, maar dit is dan evengoed een voorspelbaar
 resultaat voor de aanvaller en kunnen opnieuw geheugen schaduwende technieken
 gebruikt worden.
@@ -252,7 +252,7 @@ meer zelf-attesterend is en zijn beginsel verliest.
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/attestation-ice-copy.pdf}
-  \caption[Omzeilen van ICE-gebaseerde software attestatie]{De legitieme ICE
+  \caption[Omzeilen van ICE-gebaseerde software-attestatie]{De legitieme ICE
   routine is opgeslagen op adres 0x9100 en een aangepaste kopie is opgeslagen
   op adres 0x1100. Deze twee adressen verschillen slechts in hun meest
   betekenisvolle bit. De aanvaller kan zijn aangepaste code gebruiken, maar nog
@@ -367,7 +367,7 @@ is.
 In \ref{subsection:cooperation} zagen we reeds een implementatie van het Guy
 Fawkes protocol, waardoor een groep van knopen toch een stemming konden houden
 in het bijzijn van veroverde knopen. Een andere voorbeeld van een co\"operatief
-algoritme binnen de context van software attestatie wordt voorgesteld in
+algoritme binnen de context van software-attestatie wordt voorgesteld in
 \citep{yang2007distributed}. Om te vermijden dat aanvallers het lege programma
 geheugen gebruiken om een kopie van de originele software van een knoop op te
 slaan, wordt voordat een knoop in gebruik wordt genomen, deze lege ruimte
@@ -375,8 +375,8 @@ opgevuld met pseudo-willekeurige getallen. Dit gebeurt voor knoop $u$ op basis
 van een initi\"ele waarde $S_u$, de zgn. \emph{seed}
 
 Als knoop $u$ $n$ buren heeft, kiest $u$ $k - 1$ ($1 \leq k \leq n$)
-willekeurige constante termen $a_1, a_2, \dots a_{k-1}$ uit een eindig
-priemveld $Z_p$. Hiermee wordt de functie $f(x) = S_u + a_1 x+a_2 x^2 + \dots +
+willekeurige constante termen $a_1, a_2,\dots a_{k-1}$ uit een eindig
+priemveld $Z_p$. Hiermee wordt de functie $f(x) = S_u + a_1 x+a_2 x^2 +\dots +
 a_{k-1} x^{k-1}$, waarvoor evident $f(0) = S_u$. Vervolgens berekent en
 verdeeld de knoop koppels van de vorm $(i,f(i))$ onder zijn buren en verwijdert
 uiteindelijk $S_u$ uit zijn geheugen.
@@ -432,5 +432,5 @@ worden. Zoals met veel jonge beveiligings-gerelateerde wetenschappen is ook
 hier het kat en muis nog lang niet gedaan en is er nog ruimte voor verder
 onderzoek.
 
-We kunnen concluderen dat software attestatie op een eenvoudige \mcu mogelijk
+We kunnen concluderen dat software-attestatie op een eenvoudige \mcu mogelijk
 is, maar met de nodige omzichtigheid moet ge\"implementeerd worden.

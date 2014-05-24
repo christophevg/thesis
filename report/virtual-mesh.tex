@@ -116,7 +116,7 @@ daarentegen zal nooit berichten voor een andere knoop ontvangen, moet geen
 berichten doorsturen en dient daarom ook geen berichten te ontdubbelen.
 
 Bij het versturen van berichten wordt \emph{extra adresinformatie} aan het
-bericht toegevoegd, nl. de drie bijkomende netwerk adressen van de betrokken:
+bericht toegevoegd, nl. de drie bijkomende netwerkadressen van de betrokken:
 het adres van de oorspronkelijke \emph{verzender}, het adres van de
 \emph{tussenliggende knoop} en het adres van de uiteindelijke
 \emph{bestemmeling}. Aan de hand van deze extra informatie kunnen knopen
@@ -138,9 +138,9 @@ eindknoop, de router en de co\"ordinator.
 
 Zowel de eindknoop als de router gebruiken exact dezelfde applicatiecode. Na
 het initialiseren van de seri\"ele verbinding en het opzetten van de
-netwerkassociatie, tonen beide knopen eerst hun eigen netwerk adres en dat van
+netwerkassociatie, tonen beide knopen eerst hun eigen netwerkadres en dat van
 hun hi\"erarchisch ouderlijke knoop (\emph{parent}). In dit geval heeft
-de eindknoop netwerk adres \ttt{ae f5} en de router adres \ttt{fa 7d}. We zien
+de eindknoop netwerkadres \ttt{ae f5} en de router adres \ttt{fa 7d}. We zien
 dat de eindknoop inderdaad als \emph{parent} de router opgeeft.
 
 \inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize,firstline=97,firstnumber=97]{c}{../src/demo/lib/network.c}

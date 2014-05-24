@@ -667,3 +667,6 @@ activities
 2014-05-23 (2h30min/635h)
 - finalized UML diagrams (1h)
 - structural clean-up (1h30min)
+
+2014-05-24 (7h/642h)
+- added remaining text, additional paragraphs + review ch1-2 (7h)

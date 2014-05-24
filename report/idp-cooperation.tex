@@ -99,7 +99,7 @@ op basis van \'e\'en initi\"eel gedeelde sleutel.
 Tijdens de initialisatie fase krijgt elke knoop een unieke sleutel, $K_l$. Aan
 de hand van deze sleutel wordt een \'e\'en-richtingsketting van langte $l$
 gemaakt van sleutels door het toepassen van bv. SHA1 \citep{rfc:3174} hashing
-toe te passen: $\{K_0, K_1, \dots K_{l-1}\}$ waarbij $\forall k \in [1..l] :
+toe te passen: $\{K_0, K_1,\dots K_{l-1}\}$ waarbij $\forall k \in [1..l] :
 K_{k-1} = SHA1(K_k)$. Daarnaast worden ook naburige knopen gezocht tot twee
 knopen ver en wordt sleutel $K_0$ gecommuniceerd aan al deze buren. De
 volledige initialisatie fase wordt verondersteld te gebeuren zonder

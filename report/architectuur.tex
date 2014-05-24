@@ -43,8 +43,8 @@ de naam: Functie Organisatie Optimalisatie (\emph{Function Organisation
 Optimisation}), kortweg: FOO-lang.
 
 De belangrijkste doelgroep wat betreft gebruikers, zijn onderzoekers van IDS in
-WSN. Met FOO-lang kunnen zij beschikken over een formele taal om
-inbraakdetectiealgoritmen voor WSN te beschrijven.
+DSN. Met FOO-lang kunnen zij beschikken over een formele taal om
+inbraakdetectiealgoritmen voor DSN te beschrijven.
 
 Het is van primordiaal belang dat de taal zo dicht mogelijk aansluit bij
 bestaande kennis en vertrouwde paradigma. Daarom wordt voorgesteld om dicht bij
@@ -77,7 +77,7 @@ detectiealgoritmen, kunnen vervolgens samengebracht worden in een centrale
 opslagplaats. Het hoeft geen betoog dat hiervoor een website kan voorzien
 worden, die als portaal kan dienen. Een heel aantal klassieke voorzieningen
 kunnen hierbij getroffen worden: zoekmogelijkheden, gebruiksstatistieken,
-commentaar, samenwerkmogelijkheden \dots
+commentaar, samenwerkmogelijkheden\dots
 
 Allerhande integraties kunnen voorzien worden om op transparante wijze met
 zoveel mogelijk de facto standaard diensten te kunnen samenwerken. Hierbij
@@ -95,7 +95,7 @@ kunnen downloaden zonder tussenkomst van een persoon.
 Het kloppend hart van de oplossing bestaat uit de code generator. Deze
 accepteert de in FOO-lang geschreven algoritmen en vormt deze om tot
 georganiseerde code voor het geselecteerde platform, eventueel voor een gegeven
-taal \dots
+taal\dots
 
 De generator moet de doelstellingen van de oplossinsstrategie implementeren en
 de resulterende code op zo'n manier structureren dat deze minder impact heeft
@@ -204,12 +204,11 @@ Hieronder worden de modules geplaatst, die overeenkomen met telkens \'e\'en
 algoritme. Modules bevatten functionaliteit in de vorm van
 functiebeschrijvingen.
 
-Het centrale concept is dat van de uitvoeringsstrategie (Engels:
-\emph{Execution Strategy})\footnote{Er is geopteerd om in de programmacode van
-de generator een Engelstalige terminologie aan te houden.}. Deze verbindt
-functionaliteit met de knopen. Verschillende soorten strategie\"en zijn
-voorzien: een reactie op een gebeurtenis (\emph{Handler}) en een weerkerende
-actie (\emph{Every}).
+Het centrale concept is dat van de uitvoeringsstrategie (\emph{Execution
+Strategy})\footnote{Er is geopteerd om in de programmacode van de generator een
+Engelstalige terminologie aan te houden.}. Deze verbindt functionaliteit met de
+knopen. Verschillende soorten strategie\"en zijn voorzien: een reactie op een
+gebeurtenis (\emph{Handler}) en een weerkerende actie (\emph{Every}).
 
 Op een lager niveau wordt de functionaliteit beschreven aan de hand van een
 syntax die nauw aansluit bij deze van de C programmeertaal. Deze is echter wel
@@ -244,7 +243,7 @@ is dit het geheel van C en aanverwante bestanden, het concept van een C module
 en op het laagste niveau de effectieve C en hoofding bestanden.
 
 Een sectie bestaat dan uit \'e\'en of meerdere code constructies: functie
-declaraties, expressies, statements \dots Deze code constructies zijn rijker
+declaraties, expressies, statements\dots Deze code constructies zijn rijker
 dan bv. de C programmeertaal. Het zal de taak zijn van opeenvolgende
 transformaties om deze niet-gekende constructies voor een bepaald platform
 en/of programmeertaal om te vormen naar wel ondersteunde constructies.
