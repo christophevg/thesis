@@ -36,6 +36,8 @@ Sectie \ref{section:solution-codegen} stelt tot slotte dat code generatie een
 geformaliseerd proces kan automatiseren en kan tegemoet komen aan de overige
 problemen in het kader van het ontwikkelingsproces.
 
+\vspace{-3mm}
+
 \section{Hardware en netwerk}
 \label{section:solution-node-wsn}
 
@@ -55,6 +57,8 @@ Vanuit het oogpunt van de hardware en het netwerk, houden we daarom een
 belangrijk criterium voor ogen: de oplossing moet flexibel genoeg zijn om met
 verschillende soorten hardware, netwerkprotocollen \dots om te gaan en mag dus
 niet inherent afhankelijk zijn van beperkende veronderstellingen op dit niveau.
+
+\vspace{-3mm}
 
 \section{Elementaire software}
 \label{section:solution-software}
@@ -78,6 +82,8 @@ door diepgaande aanpassingen. Zulke aanpassingen zijn dan wel nodig voor elk
 besturingssysteem en net zoals bij de hardware, is er nog geen de facto
 standaard. TinyOS en Contiki zijn zonder twijfel sterke spelers, maar de
 \emph{Windows} onder de besturingssystemen voor sensorknopen moet nog opstaan.
+
+\vspace{-3mm}
 
 \section{Programmeertalen}
 \label{section:solution-proglang}
@@ -104,6 +110,8 @@ Op dit ogenblik is C de lingua franca voor alle spelers in dit segment: zowel
 onderzoek als ontwikkelaar hanteren deze taal, ook al moet de kanttekening
 gemaakt worden dat in veel gevallen onderzoekers zich nog beroepen op
 simulaties waarbij C ontweken wordt.
+
+\vspace{-3mm}
 
 \section{Softwarebibliotheek}
 \label{section:solution-library}
@@ -133,6 +141,8 @@ zou dit nog niet platform-onafhankelijk zijn, zou de taal vastliggen en zou ook
 bv. het netwerkprotocol of zelfs de sensorknoop vastliggen. Buiten het feit dat
 de ontwikkeling makkelijker en beter zou kunnen gebeuren, levert het geen enkel
 voordeel op voor de onderzoekers.
+
+\vspace{-3mm}
 
 \section{Domeinspecifieke taal}
 \label{section:solution-dsl}
@@ -169,10 +179,11 @@ detectiealgoritmen te formaliseren. Zo'n beschrijving kan platformonafhankelijk
 zijn, waardoor de resultaten van onderzoek direct herbruikbaar en breed
 toepasbaar worden.
 
-Door de DSL nauw te laten aansluiten bij C en uit te breiden met constructies
-die toelaten om op een hoger niveau om te gaan met gegevensstructuren, ontstaat
-een functionele omgeving die toch zeer dicht aansluit bij zowel onderzoekers
-als ontwikkelaars.
+Door de DSL te laten aansluiten bij C en uit te breiden met constructies die
+toelaten om op een hoger niveau met gegevensstructuren om te gaan, ontstaat een
+omgeving die zeer dicht aansluit bij zowel onderzoekers als ontwikkelaars.
+
+\vspace{-3mm}
 
 \section{Code generatie}
 \label{section:solution-codegen}
@@ -203,3 +214,20 @@ louter op syntactisch/technisch vlak aan \emph{inlining} doen, maar ook op
 functioneel vlak. Indien dus de softwarebibliotheek ook, net zoals de DSL code
 als invoer van de code generator wordt beschouwd, zal deze code inherent mee
 geoptimaliseerd worden en afgestemd zijn op de eigenlijke algoritmen.
+
+\vspace{-3mm}
+
+\section{Dekking probleemdefinitie}
+\label{section:problem-coverage}
+
+Met deze oplossingsstrategie dekken we de in sectie
+\ref{section:problem-definition} beschreven probleem-definitie af. Door het
+mogelijk te maken om m\'e\'er algoritmen met dezelfde middelen te kunnen
+implementeren, wordt de noodzaak tot detectie ingelost. Geen gebruik maken van
+een standaardplatform zorgt ervoor dat de oplossing vrij blijft van externe
+afhankelijkheden. De domeinspecifieke taal biedt de laat toe om op formele
+wijze detectiealgoritmen te beschrijven. Samen met de codegeneratie kunnen de
+kosten van de ontwikkeling geminimaliseerd worden en kan men effectief op
+economisch verantwoorde wijze een IDS toevoegen aan een DSN. Tot slot biedt de
+volledig geautomatiseerde oplossing een flexibele oplossing die kan inspelen op
+wijzigende situaties.
