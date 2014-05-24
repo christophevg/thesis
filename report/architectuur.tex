@@ -35,16 +35,16 @@ oplossing.
 \label{subsection:arch-foo-lang}
 
 De eerste belangrijke component van de oplossing is de domeinspecifieke taal,
-waarmee detectiealgoritmes kunnen beschreven worden. De belangrijkste
+waarmee detectiealgoritmen kunnen beschreven worden. De belangrijkste
 doelstelling van de taal is om de functionaliteit zo optimaal mogelijk te
 organiseren. Hierdoor wordt getracht om het gebruik van de \mcu en het gebruik
 van de draadloze radio te beperken. Deze doelstelling wordt ook weerspiegeld in
-de naam: Functie Organisatie Optimalisatie (Engels: Function Organisation
-Optimisation), kortweg: FOO-lang.
+de naam: Functie Organisatie Optimalisatie (\emph{Function Organisation
+Optimisation}), kortweg: FOO-lang.
 
 De belangrijkste doelgroep wat betreft gebruikers, zijn onderzoekers van IDS in
 WSN. Met FOO-lang kunnen zij beschikken over een formele taal om
-inbraakdetectiealgoritmes voor WSN te beschrijven.
+inbraakdetectiealgoritmen voor WSN te beschrijven.
 
 Het is van primordiaal belang dat de taal zo dicht mogelijk aansluit bij
 bestaande kennis en vertrouwde paradigma. Daarom wordt voorgesteld om dicht bij
@@ -93,7 +93,7 @@ kunnen downloaden zonder tussenkomst van een persoon.
 \label{subsection:arch-codegen}
 
 Het kloppend hart van de oplossing bestaat uit de code generator. Deze
-accepteert de in FOO-lang geschreven algoritmes en vormt deze om tot
+accepteert de in FOO-lang geschreven algoritmen en vormt deze om tot
 georganiseerde code voor het geselecteerde platform, eventueel voor een gegeven
 taal \dots
 
@@ -114,7 +114,7 @@ introduceren op veel fijnere schaal. Het wordt immers mogelijk om zelfs per
 sensorknoop een ``persoonlijk'' configuratie te gaan onderhouden, bouwen en te
 verspreiden.
 
-Hierbij komt de oplossing ook te gemoed aan bv. de nood van sommige algoritmes
+Hierbij komt de oplossing ook te gemoed aan bv. de nood van sommige algoritmen
 om op verschillende soorten knopen verschillende functionaliteit te voorzien.
 Maar vanuit een uitbatingsbeleid is dit een groot voordeel. Naast de
 optimalisatie van het gebruik van de middelen van \'e\'en knoop, kan nu ook een
@@ -181,7 +181,7 @@ scope naar meer technische componenten.
 \subsection{Parser}
 
 De verwerking verloopt als volgt: een parser analyseert de FOO-lang broncode en
-produceert een zgn. abstracte syntax boomvoorstelling (Engels: \emph{Abstract
+produceert een zgn. abstracte syntax boomvoorstelling (\emph{Abstract
 Syntax Tree} (AST). Deze AST wordt vervolgens ingeladen in een semantisch model
 (SM) \citep{fowler2010domain}.
 
@@ -196,7 +196,7 @@ informatie-geori\"enteerd is, wordt er een onderscheid gemaakt in de naamgeving.
 
 Het model is volledig ge\"ent op het domein waarvoor het opgebouwd wordt. In
 bijlage \ref{appendix:semantic-model} wordt het SM weergegeven. Het bevat alle
-functionele aspecten die nodig geacht worden om algoritmes in het domein
+functionele aspecten die nodig geacht worden om algoritmen in het domein
 functioneel te beschrijven.
 
 Op het hoogste niveau herkennen we het model als alles omvattende entiteit.

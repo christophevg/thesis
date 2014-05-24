@@ -1,12 +1,15 @@
 TODO
 
 4. finalize thesis:
-  - clean up UML diagrams
+  - add reference to problemdefinition in 3 from 4, 5 and 7
+  - write conclusion (SWOT)
+  - write description hardware platform
+  - add more to virtual mesh overview
+  - shrink screenshots in virtual mesh appendix
   - captions -> add short caption for LoF
   - afkortingen verzamelen
-  - tekst consistentie:
-    - algoritmen / algoritmes
-    - frames -> pakketten
+  - appendix: populariserend artikel
+  - appendix: IEEE-stijl artikel
 
 3. clean up coordinate.py
 2. solder motes

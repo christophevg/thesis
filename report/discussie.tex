@@ -8,12 +8,12 @@ door de gegenereerde code te inspecteren. We illustreerden dit reeds tijdens de
 bespreking van de implementatie in sectie \ref{section:generation}. Hier zagen
 we hoe de generator bepaalde patronen in de FOO-lang broncode omzet naar code
 die inderdaad tegemoet komt aan de typische problemen die kunnen ontstaan
-indien implementaties van verschillende algoritmes eenvoudig naast elkaar
+indien implementaties van verschillende algoritmen eenvoudig naast elkaar
 geplaatst worden. In dit hoofdstuk gaan we echter dieper in op deze
 vaststelling en trachten de kwaliteit van de oplossing te quantificeren.
 
 Sectie \ref{section:setup} introduceert de gebruikte testopstelling en de
-algoritmes die ge\"implementeerd werden voor deze evaluatie.
+algoritmen die ge\"implementeerd werden voor deze evaluatie.
 
 Sectie \ref{section:criteria} bepaalt vervolgens de evaluatecriteria en bekijkt
 de theoretische resultaten die we zouden verwachten, gegeven de mogelijkheden
@@ -95,13 +95,13 @@ lichtsensor toegevoegd aan de knopen. De toepassing van het netwerk meet op
 geregelde tijdstippen de lichtintensiteit en stuurt deze naar de co\"ordinator
 van het netwerk.
 
-\subsection{Detectiealgoritmes}
+\subsection{Detectiealgoritmen}
 \label{subsection:eval-algorithms}
 
-Daarnaast werden twee detectiealgoritmes ge\"implementeerd: het elementaire
+Daarnaast werden twee detectiealgoritmen ge\"implementeerd: het elementaire
 \emph{heartbeat} principe en een algoritme dat op basis van observaties een
 waardering opbouwt omtrent de betrouwbaarheid van andere knopen. Beide
-algoritmes werden in FOO-lang beschreven en zijn opgenomen in bijlage
+algoritmen werden in FOO-lang beschreven en zijn opgenomen in bijlage
 \ref{appendix:demo-code}.
 
 \subsubsection{\emph{Heartbeat}}
@@ -110,7 +110,7 @@ Hierbij zenden knopen op gestelde tijdstippen een
 pakket uit. Andere knopen kunnen deze sequentie van berichten opvolgen en bij
 het ontbreken van zulke berichten de beschikbaarheid van een knoop in vraag
 stellen. Ofschoon minimalistisch van aard, is het structureel toch
-representatief voor eenvoudige detectiealgoritmes die gegevens uitsturen,
+representatief voor eenvoudige detectiealgoritmen die gegevens uitsturen,
 binnenkomende berichten verwerken en een minimale staat van andere knopen
 bijhouden en aggregeren tot een beslissing.
 
@@ -134,8 +134,8 @@ omgegaan moet worden met volledige netwerkpakketten.
 
 \subsubsection{Configuratie}
 
-De configuratie van beide algoritmes is natuurlijk van belang. Een configuratie
-die niet resulteert in een concurrentie tussen beide algoritmes zal weinig tot
+De configuratie van beide algoritmen is natuurlijk van belang. Een configuratie
+die niet resulteert in een concurrentie tussen beide algoritmen zal weinig tot
 geen optimalisatie laten optekenen.
 
 De mogelijkheden tot configuratie liggen in de tijden tussen twee uitvoeringen
@@ -145,7 +145,7 @@ waarop een evaluatie van de geaggregeerde informatie gebeurt. Het eerste aspect
 bepaalt de synchroniciteit van het uitsturen van berichten en of er
 mogelijkheid is tot samennemen van berichten om zo het draadloze netwerk te
 ontlasten. Het punt van evaluatie bepaalt of het overlopen van alle gekende
-knopen voor beide algoritmes tegelijk kan gebeuren of niet.
+knopen voor beide algoritmen tegelijk kan gebeuren of niet.
 
 Om een situatie af te dwingen waar de voordelen van de oplossing zich zouden
 moeten manifesteren, werd geopteerd voor volgende configuratie:
@@ -180,8 +180,8 @@ doel:
 
   \item[Expressiviteit] Vanuit functioneel oogpunt moet de voorgestelde taal in
   staat zijn om de beschrijving van een representatieve selectie van
-  detectiealgoritmes mogelijk te maken. Concreet moet aan de hand van FOO-lang
-  het mogelijk zijn om de voorgestelde algoritmes correct en zonder
+  detectiealgoritmen mogelijk te maken. Concreet moet aan de hand van FOO-lang
+  het mogelijk zijn om de voorgestelde algoritmen correct en zonder
   noodzakelijke omwegen te implementeren.
 
   \item[Automatiseerbaarheid] De code generator moet het mogelijk maken om op
@@ -233,7 +233,7 @@ is.
 
 Gegeven de doelstellingen en de configuratie is het mogelijk een voorspelling
 te doen van bepaalde van de niet-functionele criteria. Wanneer we een periode
-van 90 seconden in beschouwing nemen en de de activiteiten van de algoritmes
+van 90 seconden in beschouwing nemen en de de activiteiten van de algoritmen
 hierbinnen uitzetten, dan kunnen we het aantal verzonden netwerkpakketten
 berekenen.
 
@@ -311,8 +311,8 @@ snel terug betaalt.
 Voor deze evaluatie werd zowel een volledig manuele implementatie gemaakt als
 een gegenereerde. Zowel de manuele implementatie als de gegenereerde
 implementatie werd opgebouwd met een zelfde programmeerstijl en maakt geen
-gebruik van enige voorkennis omtrent de algoritmes. De manuele implementatie
-bestaat uit een basisapplicatie en twee modules voor de algoritmes.
+gebruik van enige voorkennis omtrent de algoritmen. De manuele implementatie
+bestaat uit een basisapplicatie en twee modules voor de algoritmen.
 
 Deze modules werden vervolgens sequentieel ingevoegd in de basisapplicatie,
 zoals dit het geval zou zijn indien men bestaande implementaties kon
@@ -355,7 +355,7 @@ De eerste situatie is die van de naakte applicatie, zonder enige vorm van IDS.
 Dit is de referentie voor de andere configuraties. Daarnaast zijn drie
 configuraties geplaatst: \'e\'en met alleen het \emph{heartbeat} algoritme
 toegevoegd, \'e\'en met alle het reputatie-algoritme toegevoegd en \'e\'en met
-beide algoritmes.
+beide algoritmen.
 
 Naast de ruwe meetwaarde is tevens een procentuele vergelijking met de
 referentie opgenomen om de impact beter te quantificeren.
@@ -368,11 +368,11 @@ referentie opgenomen om de impact beter te quantificeren.
   \hline
   \hline
 
-aantal frames         &    20    &    51    & 255\% &    32    & 160\% &    63    & 315\% \\
-aantal bytes          &   476    &  1933    & 406\% &   860    & 181\% &  2317    & 487\% \\
-gemiddeld bytes/frame &    23.80 &    37.90 & 159\% &    26.88 & 113\% &    36.78 & 155\% \\
-doorlooptijd ($\mu$s) &    48    &    94    & 196\% &    88    & 183\% &   149    & 310\% \\
-grootte (bytes)       & 10500    & 15530    & 148\% & 13306    & 127\% & 18334    & 175\% \\
+aantal pakketten       &    20    &    51    & 255\% &    32    & 160\% &    63    & 315\% \\
+aantal bytes           &   476    &  1933    & 406\% &   860    & 181\% &  2317    & 487\% \\
+gemiddeld bytes/pakket &    23.80 &    37.90 & 159\% &    26.88 & 113\% &    36.78 & 155\% \\
+doorlooptijd ($\mu$s)  &    48    &    94    & 196\% &    88    & 183\% &   149    & 310\% \\
+grootte (bytes)        & 10500    & 15530    & 148\% & 13306    & 127\% & 18334    & 175\% \\
 
   \hline
   \end{tabular}
@@ -403,7 +403,7 @@ nagenoeg exact terugkomen in de meeteresultaten: In het geval van het
 wijten aan een tweede initialisatie-pakket voor het opzetten van het virtuele
 netwerk.
 
-We merken verder op dat de combinatie van de twee algoritmes letterlijk een
+We merken verder op dat de combinatie van de twee algoritmen letterlijk een
 sommatie is van de individuele impact, wat logisch is en de veronderstelling
 bevestigt. In het geval van de doorlooptijd ligt deze zelfs nog iets hoger. In
 plaats van 48 + 46 + 40 = 134 $\mu$s is de doorlooptijd zelfs 149 $\mu$s.
@@ -425,11 +425,11 @@ gegenereerde code.
   \hline
   \hline
   
-aantal frames	        &    20	   &    49	  & 245\%	&    32	   & 160\% &    55	  & 275\% \\
-aantal bytes          &   476	   &  1897	  & 399\%	&   884	   & 186\% &  2161	  & 454\% \\
-gemiddeld bytes/frame	&    23.80 &  	38.71	& 163\%	&    27.63 & 116\% &    39.29	& 165\% \\
-doorlooptijd ($\mu$s) &    48    &   121	  & 252\%	&   121	   & 252\% &   138	  & 288\% \\
-grootte (bytes)       &	10496	   & 18352	  & 175\%	& 16376	   & 156\% & 20998	  & 200\% \\
+aantal pakketten       &    20	   &    49	  & 245\%	&    32	   & 160\% &    55	  & 275\% \\
+aantal bytes           &   476	   &  1897	  & 399\%	&   884	   & 186\% &  2161	  & 454\% \\
+gemiddeld bytes/pakket &    23.80 &  	38.71	& 163\%	&    27.63 & 116\% &    39.29	& 165\% \\
+doorlooptijd ($\mu$s)  &    48    &   121	  & 252\%	&   121	   & 252\% &   138	  & 288\% \\
+grootte (bytes)        &	10496	   & 18352	  & 175\%	& 16376	   & 156\% & 20998	  & 200\% \\
 
   \hline
   \end{tabular}
@@ -449,7 +449,7 @@ geen extra pakket bij intialisering verstuurd en werd 1 pakket net niet meer
 meegeteld op het einde van de 90 seconden.}
 
 Een eerste verschil merken we echter op bij het aantal pakketten in het geval
-dat beide algoritmes actief zijn. In theorie verwachtten we hier 6 pakketten
+dat beide algoritmen actief zijn. In theorie verwachtten we hier 6 pakketten
 minder. Het verschil is 8. Dit is te wijten aan een extra initialiseringspakket
 bij de manuele versie en een opnieuw een pakket dat net niet meegeteld werd.
 
@@ -469,9 +469,9 @@ meer is dan de gemeten waarde.
 
 De doorlooptijd van \'e\'en cyclus van de \emph{event-loop} vraagt per
 toevoeging van een algoritme ongeveer 73$\mu$s. Bij een implementatie met de
-twee algoritmes is dit slechts 90 in totaal. We zien hier dat een groot deel
+twee algoritmen is dit slechts 90 in totaal. We zien hier dat een groot deel
 van de bijkomende verwerking van een algoritme toe te schrijven is aan de
-softwarebibliotheek. Door deze kost te spreiden over meerdere algoritmes komt
+softwarebibliotheek. Door deze kost te spreiden over meerdere algoritmen komt
 deze investering tot uiting. Een zelfde situatie doet zich voor bij de grootte
 van de te installeren code.
 
@@ -480,7 +480,7 @@ van de te installeren code.
 De belangrijkste vraag die we willen beantwoorden is hoe dat de gegenereerde
 code zich verhoudt tot de manuele code. Tabel \ref{tbl:comparison} vergelijkt
 de eerdere resultaten door een verschil te maken tussen de twee situaties en
-door een relatieve vergelijking van de configuratie met beide algoritmes.
+door een relatieve vergelijking van de configuratie met beide algoritmen.
 
 \begin{table}[H]
   \centering
@@ -514,7 +514,7 @@ Ook de stijging van de grootte van de te installeren code is logisch en is met
 ongeveer 15\% zeker niet onoverkomelijk. In dit geval is de absolute waarde
 misschien van grotere betekenis. De introductie van het generatieraamwerk en de
 bijhorende softwarebibliotheek vraagt ruwweg 3KB extra en die grootte neemt
-relatief af met het aantal algoritmes die toegevoegd worden.
+relatief af met het aantal algoritmen die toegevoegd worden.
 
 \subsubsection{Minimale extra verwerkingstijd}
 
@@ -543,7 +543,7 @@ meebrengt van 59$\mu$s of ongeveer 120\%.
 
 Figuur \ref{fig:logic-analyser-generated} toont dezelfde situatie, maar nu voor
 de gegenereerde code. Hier zien we dat er slechts \'e\'en plateau gevormd
-wordt. De verwerking van beide algoritmes is in deze situatie gebundeld in de
+wordt. De verwerking van beide algoritmen is in deze situatie gebundeld in de
 verwerking door het generatieraamwerk.
 
 \begin{figure}[ht]
@@ -566,7 +566,7 @@ minimale extra verwerkingstijd komt zo op 69$\mu$s of 143\%.
 
 Het is gevaarlijk om een evaluatie van een taal en code generator te doen aan
 de hand van metingen. De cijfers gepresenteerd in dit hoofdstuk zijn
-grotendeels afhankelijk van de beschreven algoritmes, de configuratie, even als
+grotendeels afhankelijk van de beschreven algoritmen, de configuratie, even als
 de feitelijke functionele toepassing. De enige manier waarop deze resultaten
 mogen ge\"interpreteerd worden is als een vage bevestiging van wat
 logischerwijs reeds kon ingeschat worden, nl. dat men door code beter te
