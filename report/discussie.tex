@@ -25,12 +25,26 @@ criteria.
 Sectie \ref{section:evaluation-non-functionals} presenteert en evalueert
 vervolgens de resultaten met betrekking tot de niet-functionele criteria.
 
+\vspace{-3mm}
+
 \section{Opstelling}
 \label{section:setup}
 
 De evaluatie gebeurde door middel van een representatieve hardware- en
 netwerkopstelling. Hierop werd een selectie van detectiealgoritmen
-ge\"implementeerd.
+ge\"implementeerd. Figuur \ref{fig:setup} geeft een overzicht van de volledige
+opstelling. Secties \ref{subsection:eval-hardware},
+\ref{subsection:eval-software} en \ref{subsection:eval-algorithms} introduceren
+respectievelijk de hardware, software en algoritmen die hier een rol spelen.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.75\linewidth]{resources/setup.pdf}
+  \caption{Overzicht van de testopstelling met visualisatie communicatie}
+  \label{fig:setup}
+\end{figure}
+
+\vspace{-5mm}
 
 \subsection{Hardware en netwerk}
 \label{subsection:eval-hardware}
@@ -68,7 +82,10 @@ implementatie van de generator en dit eenvoudiger maakt. Met dit platform zijn
 we van mening dat er een representatieve minimale basis bestaat waar de
 generator in staat voor is om code te genereren.
 
+\vspace{-3mm}
+
 \subsubsection{Basis- en toepassingssoftware}
+\label{subsection:eval-software}
 
 Naast de hardware en de virtuele netwerklaag, wordt verder gebruik gemaakt van
 een minimale abstractielaag boven de hardware. Opnieuw met dezelfde filosofie
@@ -77,7 +94,7 @@ eisen die aan het onderliggende platform gesteld worden minimaal zijn. De
 functionaliteit die gebruikt worden beperkte zicht tot elementaire operaties
 aangaande het netwerk:
 
-\begin{itemize}
+\begin{itemize}[noitemsep, topsep=0pt, partopsep=0pt]
 
   \item wachten tot het netwerk beschikbaar is
 
@@ -104,33 +121,36 @@ waardering opbouwt omtrent de betrouwbaarheid van andere knopen. Beide
 algoritmen werden in FOO-lang beschreven en zijn opgenomen in bijlage
 \ref{appendix:demo-code}.
 
-\subsubsection{\emph{Heartbeat}}
+\begin{description}[noitemsep, topsep=0pt, partopsep=1pt]
 
-Hierbij zenden knopen op gestelde tijdstippen een
-pakket uit. Andere knopen kunnen deze sequentie van berichten opvolgen en bij
-het ontbreken van zulke berichten de beschikbaarheid van een knoop in vraag
-stellen. Ofschoon minimalistisch van aard, is het structureel toch
-representatief voor eenvoudige detectiealgoritmen die gegevens uitsturen,
-binnenkomende berichten verwerken en een minimale staat van andere knopen
-bijhouden en aggregeren tot een beslissing.
+  \item[\emph{Heartbeat}] Hierbij zenden knopen op gestelde tijdstippen een
+  pakket uit. Andere knopen kunnen deze sequentie van berichten opvolgen en bij
+  het ontbreken van zulke berichten de beschikbaarheid van een knoop in vraag
+  stellen. Ofschoon minimalistisch van aard, is het structureel toch
+  representatief voor eenvoudige detectiealgoritmen die gegevens uitsturen,
+  binnenkomende berichten verwerken en een minimale staat van andere knopen
+  bijhouden en aggregeren tot een beslissing.
 
-De voorgestelde implementatie gebruikt ook een SHA1 hash \citep{rfc:3174} om
-een digitale handtekening toe te voegen aan het bericht. Zonder de
-betrouwbaarheid van deze aanpak te willen in vraagstellen, staat het gebruik
-ervan eerder in functie van het aantonen dat cryptografische en externe
-functionaliteit kan gebruikt worden.
+  De voorgestelde implementatie gebruikt ook een SHA1 hash \citep{rfc:3174} om
+  een digitale handtekening toe te voegen aan het bericht. Zonder de
+  betrouwbaarheid van deze aanpak te willen in vraagstellen, staat het gebruik
+  ervan eerder in functie van het aantonen dat cryptografische en externe
+  functionaliteit kan gebruikt worden.
 
-\subsubsection{Reputatie}
+  \item[Reputatie] Het tweede algoritme is een implementatie van het principe
+  dat voorgesteld werd in sectie \ref{subsection:reputation}. Door op te volgen
+  of een hoger liggende knoop in het netwerk, berichten effectief verder
+  doorheen het netwerk stuurt, wordt statistisch bepaald of deze knoop
+  betrouwbaar is of niet.
 
-Het tweede algoritme is een implementatie van het principe dat voorgesteld werd
-in sectie \ref{subsection:reputation}. Door op te volgen of een hoger liggende
-knoop in het netwerk, berichten effectief verder doorheen het netwerk stuurt,
-wordt statistisch bepaald of deze knoop betrouwbaar is of niet.
+  Dit algoritme voegt nog enkele complexiteiten toe en vraagt dat arbitraire
+  berekeningen kunnen uitgevoerd worden en dat de resultaten er van kunnen
+  ge\"interpreteerd worden. Ook wordt hier de complexiteit toegevoegd waarbij
+  omgegaan moet worden met volledige netwerkpakketten.
 
-Dit algoritme voegt nog enkele complexiteiten toe en vraagt dat arbitraire
-berekeningen kunnen uitgevoerd worden en dat de resultaten er van kunnen
-ge\"interpreteerd worden. Ook wordt hier de complexiteit toegevoegd waarbij
-omgegaan moet worden met volledige netwerkpakketten.
+\end{description}
+
+\vspace{-3mm}
 
 \subsubsection{Configuratie}
 
@@ -150,16 +170,17 @@ knopen voor beide algoritmen tegelijk kan gebeuren of niet.
 Om een situatie af te dwingen waar de voordelen van de oplossing zich zouden
 moeten manifesteren, werd geopteerd voor volgende configuratie:
 
-\begin{itemize}
+\begin{itemize}[noitemsep, topsep=0pt, partopsep=0pt]
 
   \item de tijd tussen twee opeenvolgende \emph{heartbeats}: 3s
 
-  \item de tijd tussen twee opeenvolgende verzendingen van informatie
-  betreffende reputatie: 7,5s
+  \item de tijd tussen twee opeenvolgende verzendingen i.v.m. reputatie: 7,5s
 
   \item in beide gevallen: de tijd tussen twee opeenvolgende evaluaties: 5s
 
 \end{itemize}
+
+\vspace{-3mm}
 
 \section{Evaluatiecriteria}
 \label{section:criteria}
@@ -171,12 +192,14 @@ ontwikkelingsproces gevolg van de hardware en het onderzoek tot de software en
 de uitbating. Hieruit distilleren we de volgende functionele en
 niet-functionele criteria.
 
+\vspace{-3mm}
+
 \subsection{Functionele criteria}
 
 Elk van de ontwikkelde componenten in deze masterproef dient een functioneel
 doel:
 
-\begin{description}
+\begin{description}[noitemsep, topsep=0pt, partopsep=1pt]
 
   \item[Expressiviteit] Vanuit functioneel oogpunt moet de voorgestelde taal in
   staat zijn om de beschrijving van een representatieve selectie van
@@ -190,6 +213,8 @@ doel:
 
 \end{description}
 
+\vspace{-3mm}
+
 \subsection{Niet-functionele criteria}
 
 De niet-functionele criteria hebben betrekking op de impact van het IDS op de
@@ -200,7 +225,7 @@ be\"invloedende factoren: het gebruik van de draadloze radio en de tijd om
 wordt verder opgesplitst in het aantal verzonden pakketten en de hoeveelheid
 aan gegevens die worden verstuurd.
 
-\begin{description}
+\begin{description}[noitemsep, topsep=0pt, partopsep=0pt]
   
   \item[Aantal verzonden netwerkpakketten] Het aantal verzonden pakketten
   bepaalt hoe dikwijls de radio effectief moet zenden. Dit is typisch het
@@ -229,6 +254,8 @@ zal hebben op dit vlak is evident. We moeten dus opnieuw een vergelijking maken
 met de manuele situatie en kijken hoeveel de gegenereerde code eventueel groter
 is.
 
+\vspace{-3mm}
+
 \subsection{Theoretische evaluatie}
 
 Gegeven de doelstellingen en de configuratie is het mogelijk een voorspelling
@@ -253,12 +280,16 @@ Concreet zal dit zijn op de veelvouden van 15, ofwel in op 6 ogenblikken.
 We zouden bij de gegenereerde code dus een reductie van 6 pakketten moeten
 kunnen optekenen over een zelfde periode.
 
+\vspace{-3mm}
+
 \section{Evaluatie van de functionele criteria}
 \label{section:evaluation-functionals}
 
 De twee functionele criteria focussen elk op \'e\'en van de twee grote
 componenten die binnen de scope van deze masterproef vallen: FOO-lang en de
 code generator.
+
+\vspace{-3mm}
 
 \subsection{Een derde algoritme}
 
@@ -278,6 +309,8 @@ voorzien mogelijkheden.
 De concepten van de taal blijven overeind en de aanpassingen zijn meestal
 uitbreidingen van bestaande constructies met bijkomende mogelijkheden of een
 andere scope.
+
+\vspace{-3mm}
 
 \subsection{De generator}
 
@@ -305,7 +338,9 @@ die FOO-lib aanbiedt, kan de creatie van zo'n module vlot gebeuren. Dit is
 tevens een \'e\'enmalige investering die bij elke volgende generatie zich zelf
 snel terug betaalt.
 
-\section{Resultaten en evaluatie van niet-functionele criteria}
+\vspace{-3mm}
+
+\section{Evaluatie van niet-functionele criteria}
 \label{section:evaluation-non-functionals}
 
 Voor deze evaluatie werd zowel een volledig manuele implementatie gemaakt als
@@ -318,6 +353,8 @@ Deze modules werden vervolgens sequentieel ingevoegd in de basisapplicatie,
 zoals dit het geval zou zijn indien men bestaande implementaties kon
 hergebruiken. Dit resulteert structureel in twee oproepen naar de modules
 vanuit de event-loop en twee oproepen wanneer een bericht ontvangen wordt.
+
+\vspace{-3mm}
 
 \subsection{Metingen}
 
@@ -346,6 +383,8 @@ waarbij in een cyclus van de event-loop geen enkele actie ondernomen werd door
 het IDS, in kaart te brengen. Deze situatie toont de minimale, constante extra
 belasting die het IDS met zich meebrengt.
 
+\vspace{-3mm}
+
 \subsection{Resultaten}
 
 Tabellen \ref{tbl:manual} en \ref{tbl:generated} tonen de ruwe metingen voor
@@ -368,11 +407,11 @@ referentie opgenomen om de impact beter te quantificeren.
   \hline
   \hline
 
-aantal pakketten       &    20    &    51    & 255\% &    32    & 160\% &    63    & 315\% \\
-aantal bytes           &   476    &  1933    & 406\% &   860    & 181\% &  2317    & 487\% \\
-gemiddeld bytes/pakket &    23.80 &    37.90 & 159\% &    26.88 & 113\% &    36.78 & 155\% \\
-doorlooptijd ($\mu$s)  &    48    &    94    & 196\% &    88    & 183\% &   149    & 310\% \\
-grootte (bytes)        & 10500    & 15530    & 148\% & 13306    & 127\% & 18334    & 175\% \\
+aantal pakketten      &    20    &    51    & 255\% &    32    & 160\% &    63    & 315\% \\
+aantal bytes          &   476    &  1933    & 406\% &   860    & 181\% &  2317    & 487\% \\
+bytes/pakket          &    23.80 &    37.90 & 159\% &    26.88 & 113\% &    36.78 & 155\% \\
+doorlooptijd ($\mu$s) &    48    &    94    & 196\% &    88    & 183\% &   149    & 310\% \\
+grootte (bytes)       & 10500    & 15530    & 148\% & 13306    & 127\% & 18334    & 175\% \\
 
   \hline
   \end{tabular}
@@ -412,6 +451,8 @@ Tot slot zien we dat de manuele introductie van het IDS een vergroting van de
 te installeren code van 75\% betekent. In absolute cijfers een kleine 8
 kilobyte (KB).
 
+\vspace{-3mm}
+
 \subsubsection{Gegenereerde code}
 
 Tabel \ref{tbl:generated} toont exact dezelfde gegevens, maar dan voor de
@@ -425,11 +466,11 @@ gegenereerde code.
   \hline
   \hline
   
-aantal pakketten       &    20	   &    49	  & 245\%	&    32	   & 160\% &    55	  & 275\% \\
-aantal bytes           &   476	   &  1897	  & 399\%	&   884	   & 186\% &  2161	  & 454\% \\
-gemiddeld bytes/pakket &    23.80 &  	38.71	& 163\%	&    27.63 & 116\% &    39.29	& 165\% \\
-doorlooptijd ($\mu$s)  &    48    &   121	  & 252\%	&   121	   & 252\% &   138	  & 288\% \\
-grootte (bytes)        &	10496	   & 18352	  & 175\%	& 16376	   & 156\% & 20998	  & 200\% \\
+aantal pakketten      &    20	   &    49	  & 245\%	&    32	   & 160\% &    55	  & 275\% \\
+aantal bytes          &   476	   &  1897	  & 399\%	&   884	   & 186\% &  2161	  & 454\% \\
+bytes/pakket          &    23.80 &  	38.71	& 163\%	&    27.63 & 116\% &    39.29	& 165\% \\
+doorlooptijd ($\mu$s) &    48    &   121	  & 252\%	&   121	   & 252\% &   138	  & 288\% \\
+grootte (bytes)       &	10496	   & 18352	  & 175\%	& 16376	   & 156\% & 20998	  & 200\% \\
 
   \hline
   \end{tabular}
@@ -475,6 +516,8 @@ softwarebibliotheek. Door deze kost te spreiden over meerdere algoritmen komt
 deze investering tot uiting. Een zelfde situatie doet zich voor bij de grootte
 van de te installeren code.
 
+\vspace{-3mm}
+
 \subsubsection{Vergelijking}
 
 De belangrijkste vraag die we willen beantwoorden is hoe dat de gegenereerde
@@ -516,6 +559,8 @@ misschien van grotere betekenis. De introductie van het generatieraamwerk en de
 bijhorende softwarebibliotheek vraagt ruwweg 3KB extra en die grootte neemt
 relatief af met het aantal algoritmen die toegevoegd worden.
 
+\vspace{-3mm}
+
 \subsubsection{Minimale extra verwerkingstijd}
 
 Tot slot bekijken we nog een meting op het niveau van \'e\'en enkele cyclus van
@@ -531,8 +576,6 @@ tweemaal per cyclus.
   \caption{Minimale activiteit in \'e\'en cyclus van de event-loop (manueel)}
   \label{fig:logic-analyser-manual}
 \end{figure}
-
-\vspace{-3mm}
 
 In de figuur zien we deze twee ogenblikken duidelijk naar voor komen. Wanneer
 we de doorlooptijd meten van \'e\'en cyclus zien we dat deze rond de 107$\mu$s
@@ -553,14 +596,10 @@ verwerking door het generatieraamwerk.
   \label{fig:logic-analyser-generated}
 \end{figure}
 
-\vspace{-3mm}
-
 In het geval van de gegenereerde code, zien we dat de doorlooptijd van \'e\'en
 cyclus van de event-loop zonder speciale activiteit ongeveer 117$\mu$s in
 beslag neemt. Dit is 10$\mu$s meer dan bij de manuele implementatie. De
 minimale extra verwerkingstijd komt zo op 69$\mu$s of 143\%.
-
-\vspace{-5mm}
 
 \section{Afsluitende bedenking}
 
