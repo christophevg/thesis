@@ -49,16 +49,19 @@ ge\"implementeerd werd: een globale variabele, \ttt{counter}, wordt eindeloos
 verhoogd. Na elke verhoging wordt de waarde via de USART en de RS-232
 verbinding naar een terminal verzonden. 
 
-\inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{c}{../src/node-capture/main.c}
-\vspace{-5mm}
-\captionof{listing}{Functionaliteit van de testopstelling voor knoopverovering
-  \label{lst:node-capture}}
-\vspace{3mm}
+\begin{listing}[ht]
+  \inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{c}{../src/node-capture/main.c}
+  \vspace{-5mm}
+  \caption{Functionaliteit van de testopstelling voor knoopverovering}
+  \label{lst:node-capture}
+\end{listing}
 
 Het is dus de bedoeling om de waarde van deze \ttt{counter} variabele te
 bemachtigen, zonder dat de werking van het programma onderbroken wordt. Deze
 variabele staat hier natuurlijk symbool voor eender welk gegeven dat in het
 geheugen van de node wordt opgeslagen.
+
+\vspace{-3mm}
 
 \section{Uitvoeren van de aanval}
 
