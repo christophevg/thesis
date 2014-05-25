@@ -4,16 +4,16 @@
 \label{inleiding}
 
 Ze hebben de voorpagina van de krant dan misschien nog niet gehaald, de opmars
-van draadloze sensornetwerken (DSN) in ons dagelijks leven is niet meer te
-stoppen. Na de revolutie van de persoonlijke computer, de smartphone en het
-tablet vinden nu onafhankelijke, minuscule computers hun weg naar allerlei
-alledaagse dingen en plaatsen in ons leven. Deze netwerken kunnen met hun
-sensoren de kleinste wijzigingen in hun omgeving optekenen. Via een draadloos
-netwerk staan de sensoren in verbinding met elkaar en de buitenwereld. Zo
-leveren ze hun informatie af, waardoor wij op elk moment precies weten hoe warm
-het in elke kamer van ons huis is of welke groenten nog in de koelkast liggen.
-Het lijkt nog science fictie, maar deze toekomst is heel wat dichterbij dan we
-vermoeden.
+van draadloze sensornetwerken (\emph{Wireless Sensor Network}) (WSN) in ons
+dagelijks leven is niet meer te stoppen. Na de revolutie van de persoonlijke
+computer, de smartphone en het tablet vinden nu onafhankelijke, minuscule
+computers hun weg naar allerlei alledaagse dingen en plaatsen in ons leven.
+Deze netwerken kunnen met hun sensoren de kleinste wijzigingen in hun omgeving
+optekenen. Via een draadloos netwerk staan de sensoren in verbinding met elkaar
+en de buitenwereld. Zo leveren ze hun informatie af, waardoor wij op elk moment
+precies weten hoe warm het in elke kamer van ons huis is of welke groenten nog
+in de koelkast liggen. Het lijkt nog science fictie, maar deze toekomst is heel
+wat dichterbij dan we vermoeden.
 
 Om deze technologie te omarmen en ons leven verder in te richten met deze
 ondersteunende hulp, moeten we ons er van vergewissen dat deze technologie
@@ -230,7 +230,7 @@ tevens fysiek beschermd door ons huis of het datacenter van onze leverancier
 van internetdiensten.
 
 In \citep{dargie2010fundamentals} wordt een goed overzicht gegeven van de
-uitdagingen die het beveiligen van DSN met zich meebrengen, in vergelijking met
+uitdagingen die het beveiligen van WSN met zich meebrengen, in vergelijking met
 klassieke netwerken. Een sensorknoop heeft geen constante stroomvoorziening en
 moet het veelal stellen met een zeer beperkte batterij. Verder ligt de
 sensorknoop meestal letterlijk \emph{ten velde} en is fysiek toegankelijk voor
@@ -249,7 +249,7 @@ meebrengt, en dat berichten verloren kunnen gaan.
 Beveiliging is een zeer ruim begrip dat veel aspecten overspant. Het is
 belangrijk dit voor ogen te houden wanneer we over beveiliging spreken.
 Theoretische modellen kunnen hierbij helpen. In deze sectie introduceren we
-enkele van deze modellen die kunnen helpen om over beveiliging van DSN te
+enkele van deze modellen die kunnen helpen om over beveiliging van WSN te
 praten.
 
 Wanneer men spreekt over het beveiligen van computers en netwerken, wordt
@@ -328,8 +328,8 @@ kunnen alleen met de andere sleutel van het paar versleuteld worden.
 
 In hoofdstukken \ref{chapter:achtergrond} en \ref{chapter:probleemstelling}
 gaan we dieper in op de typische eigenschappen van sensorknopen en belichten we
-tal van beveiligingsrisico's waaraan DSN blootgesteld zijn. Aan de hand van de
-zonet beschreven principes zullen we zien dat DSN inherent moeilijk te
+tal van beveiligingsrisico's waaraan WSN blootgesteld zijn. Aan de hand van de
+zonet beschreven principes zullen we zien dat WSN inherent moeilijk te
 beveiligen zijn en dat het nagenoeg onmogelijk is om inbraken te vermijden.
 
 \subsection{Inbraakdetectie}
@@ -377,31 +377,31 @@ De resultaten van een IDS zullen dikwijls eerder leiden tot verbeteringen aan
 de toepassingen binnen het interne netwerk, zodat deze niet meer vatbaar zijn
 voor het soort inbraken dat gedetecteerd werd.
 
-Wanneer we dit nu afspiegelen op een DSN, merken we dat enkele fundamentele
-principes zo'n architectuur onmogelijk maken: een DSN heeft geen afgebakende
+Wanneer we dit nu afspiegelen op een WSN, merken we dat enkele fundamentele
+principes zo'n architectuur onmogelijk maken: een WSN heeft geen afgebakende
 netwerkrand, er is geen uniek punt waar alle netwerkverkeer passeert en waar
 een firewall zou kunnen ge\"introduceerd worden, laat staan dat er een manier
 zou zijn om al het interne verkeer op \'e\'en enkele plaats te analyseren.
 
-Binnen een DSN is het letterlijk elke knoop voor zichzelf: elke knoop kan
+Binnen een WSN is het letterlijk elke knoop voor zichzelf: elke knoop kan
 immers van buitenaf benaderd worden zonder dat een aanvaller moet passeren
 langs een centraal controlepunt.
 
 \section{Probleemstelling}
 \label{section:probleem}
 
-DSN en sensorknopen op zich zijn geen makkelijke klanten wat beveiliging
+WSN en sensorknopen op zich zijn geen makkelijke klanten wat beveiliging
 betreft. Enerzijds hebben ze onvoldoende middellen om zich te beschermen en
 anderzijds is hun situatie zo dat het letterlijk elke knoop voor zichzelf is en
 dat ze nauwelijks kunnen vertrouwen op hun collega's.
 
-In dit kader moeten gebruikers van een DSN eisen dat er voldoende garanties
+In dit kader moeten gebruikers van een WSN eisen dat er voldoende garanties
 worden gegeven zodat ze zich voldoende verzekerd voelen om intieme informatie
 toe te vertrouwen aan deze netwerken.
 
 Aangezien het haast onmogelijk is om inbraakpogingen te verijdelen is het van
 groot belang dat men in staat is om ze ten minste vast te stellen. Het
-introduceren van een IDS in het DSN is echter een directe aanval op de
+introduceren van een IDS in het WSN is echter een directe aanval op de
 essenti\"ele functionaliteit van een sensorknoop, waardoor de mogelijkheden
 sterk beperkt worden.
 
@@ -423,12 +423,12 @@ zouden de berekeningen die nodig zijn om bepaalde anomalie\"en te detecteren
 gewoonweg te veel energie verbruiken.
 
 Als in dit stadium van onderzoek naar systemen om inbraken te detecteren het
-niet mogelijk is om een sluitend IDS voor een DSN te ambi\"eren, lijkt het
+niet mogelijk is om een sluitend IDS voor een WSN te ambi\"eren, lijkt het
 opportuun om een stap terug te zetten en de focus te leggen op de middelen die
 nodig zijn om de reeds beschreven, en mogelijk ook toekomstige algoritmen, te
 realiseren. Is het mogelijk om een kader te cre\"eren dat een ontwikkelaar van
 een sensorknoop in staat stelt om een selectie van de in de literatuur
-beschreven oplossingen te implementeren? Kan hij een IDS toevoegen aan zijn DSN
+beschreven oplossingen te implementeren? Kan hij een IDS toevoegen aan zijn WSN
 zonder een diepgaande analyse van de onderzoeksliteratuur en zonder zich zorgen
 te moeten maken over de onderliggende interactie met andere knopen, het
 vergaren en opvragen van informatie op systeem-niveau\dots?

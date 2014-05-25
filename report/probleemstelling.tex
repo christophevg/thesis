@@ -23,7 +23,7 @@ Sectie \ref{section:problem-develop} volgt het proces verder en bekijkt de
 situatie vanuit het oogpunt van de ontwikkelaars.
 
 Sectie \ref{section:problem-operations} vervolledigt ten slotte de keten met
-een blik op de rol van de uitbating van een DSN. De ontwikkelaar zelden de
+een blik op de rol van de uitbating van een WSN. De ontwikkelaar zelden de
 eigenaar of uitbater van het netwerk. Op het hoogste niveau vinden we immers de
 persoon die uiteindelijk de reden is van het bestaan van de sensorknopen, de
 software en het netwerk als een geheel.
@@ -34,19 +34,19 @@ probleemstelling in een beknopte probleemdefinitie.
 \section{Sensorknopen}
 \label{section:problem-hardware}
 
-Sensorknopen en een DSN in het algemeen lijken op het eerste zicht slechts een
+Sensorknopen en een WSN in het algemeen lijken op het eerste zicht slechts een
 zoveelste variant van een mobiel en ad-hoc netwerk (MANET)
 \citep{garg2010mobile}, waarvan de beveiligingsrisico's reeds uitvoerig
 onderzocht zijn \citep{djenouri2005survey, zhang2000intrusion,
-kachirski2003effective}, toch blijkt al snel dat een DSN nog enkele typische
+kachirski2003effective}, toch blijkt al snel dat een WSN nog enkele typische
 eigenschappen heeft die de problematiek vergroten.
 
 In \citep{garg2010mobile} vinden we een beknopte maar duidelijke vergelijking
-van een MANET versus een DSN:
+van een MANET versus een WSN:
 
 \begin{itemize}
 
-  \item Het aantal knopen in een DSN is veel groter dan het aantal
+  \item Het aantal knopen in een WSN is veel groter dan het aantal
   participanten van een MANET. Typische grootteorde is 1.000 tot 10.000 knopen
   over de betrokken oppervlakte.
 
@@ -64,7 +64,7 @@ van een MANET versus een DSN:
 
 \end{itemize}
 
-Uit de verschillen begrijpen we dat een DSN makkelijker aangevallen kan worden
+Uit de verschillen begrijpen we dat een WSN makkelijker aangevallen kan worden
 door zijn opbouw uit een groot aantal statische knopen, die typisch via
 \emph{broadcasting} communiceren. Aangezien slechts een kleine subgroep van het
 netwerk zich binnen een actieve communicatieradius bevindt, zijn grote delen
@@ -98,7 +98,7 @@ aangebracht aan de software om zo gebruik te kunnen maken van de knoop binnen
 het netwerk, kan software attestatie (zie sectie \ref{subsection:attestation})
 een mogelijke piste zijn voor naburige knopen om indringers te detecteren.
 
-Veelal zullen de knopen in een DSN zich moeten focussen op het detecteren van
+Veelal zullen de knopen in een WSN zich moeten focussen op het detecteren van
 anomali\"en in het gedrag van andere knopen (zie sectie
 \ref{subsection:anomaly}). Aangezien een knoop niet heel de tijd actief is en
 dus niet alle gedragingen van andere knopen kan oppikken, kan er ook geen
@@ -107,10 +107,10 @@ zekerheid kunnen opbouwen omtrent het vertrouwen dat geschonken wordt aan een
 andere knoop. Algoritmen die zo'n reputatie ondersteunen zagen we eerder in
 sectie \ref{subsection:reputation}.
 
-Omdat een DSN grote hoeveelheden gegevens verzamelt, is een reductie en
+Omdat een WSN grote hoeveelheden gegevens verzamelt, is een reductie en
 tussentijdse verwerking soms een noodzaak. Dit maakt dat tussenliggende knopen
 de gegevens die via hen verstuurd worden moeten kunnen verwerken. Klassieke
-encryptie tussen verzender en ontvanger is in het geval van een DSN niet
+encryptie tussen verzender en ontvanger is in het geval van een WSN niet
 aangewezen. Terugvallen op een symmetrische sleutel is een optie, maar plaatst
 de vertrouwelijkheid onder druk.
 
@@ -201,7 +201,7 @@ Dit heeft wel degelijk ingrijpende gevolgen voor onderzoek. De meerderheid van
 artikels focust zich op een klein detail, een oplossing voor \'e\'en specifiek
 probleem. Slechts een minderheid durft een raamwerk voor te stellen, echter
 geen enkel biedt een open uitnodiging om ander onderzoek echt op te nemen. Er
-is geen basis om inbraakdetectiealgoritmen voor DSN op formele manier uit te
+is geen basis om inbraakdetectiealgoritmen voor WSN op formele manier uit te
 werken.
 
 Dit leidt tot veel literatuur, met intrinsieke waarde, maar die bijzonder
@@ -229,7 +229,7 @@ functionele sensor-gerelateerde werk dat feitelijk de bedoeling is van de
 ontwikkeling.
 
 In tegenstelling tot andere takken van de informatica en software ontwikkeling,
-kan er in het geval van inbraakdetectie in een DSN, eigenlijk geen gebruik
+kan er in het geval van inbraakdetectie in een WSN, eigenlijk geen gebruik
 gemaakt worden van bestaande implementaties. Een ontwikkelaar kan niet
 eenvoudig een bibliotheek importeren en met een enkele oproep een
 detectiealgoritme toevoegen aan zijn toepassing. In de voorgaande sectie zagen
@@ -256,7 +256,7 @@ discrepantie tussen de relatief lage complexiteit van de toepassing en
 detectiealgoritmen en de soms complexe implementatie binnen een op momenten
 barbaarse ontwikkelomgeving. \'E\'en van de doelstellingen van het ABSYNTH
 project \citep{url:absynth} is om domeinexperten controle te geven over de
-ontwikkeling van software voor DSN. Om dit te realiseren hanteren ze talen,
+ontwikkeling van software voor WSN. Om dit te realiseren hanteren ze talen,
 compilers en synthesetechnieken. WASP2, een taal die ontworpen werd in het
 kader van dit project, is \'e\'en uit een aantal talen die opteerden om
 database-geori\"enteerde talen als voorbeeld te nemen.
@@ -265,7 +265,7 @@ database-geori\"enteerde talen als voorbeeld te nemen.
 \label{section:problem-operations}
 
 Het belang van de controle door domeinexperten brengt ons bij een laatste groep
-die graag controle wil hebben over een DSN: de eigenaar of uitbater van het
+die graag controle wil hebben over een WSN: de eigenaar of uitbater van het
 netwerk.
 
 Het beeld dat de eigenaar een \'e\'enmalige opdracht geeft tot ontwikkeling kan
@@ -273,19 +273,19 @@ misschien te verdedigen zijn in projecten waar weinig tot geen beveiliging
 noodzaak is, maar bij meer kritische applicaties waar er effectief een IDS
 voorzien wordt in het netwerk, is dit zeker niet meer van toepassing.
 
-Een IDS kan, zeker in het kader van een DSN, geen statisch gegeven zijn. De
+Een IDS kan, zeker in het kader van een WSN, geen statisch gegeven zijn. De
 uitbater van een netwerk zal, indien het inzetten van een IDS serieus genomen
 wordt, genoodzaakt zijn om de set van algoritmen over verloop van tijd aan te
 passen. Wanneer we bv. nogmaals kijken naar SNORT \citep{roesch1999snort}, dan
 zien we dat ook bij deze centrale IDS er regelmatige updates gebeuren van de
 patronen die gedetecteerd kunnen worden. Dit zal ook zo zijn bij een IDS in een
-DSN.
+WSN.
 
 Indien de uitbater voor elke aanpassingen terug moet gaan naar de ontwikkelaar,
 zal dit snel een onwerkbare en vooral onrealistische situatie met zich
 meebrengen. Een uitbater moet in staat zijn om op een flexibele manier het IDS
-van zijn DSN te configureren en te voorzien van nieuwe of bijgewerkte
-detectiealgoritmen. Net zoals een klassiek IDS, zou een IDS voor een DSN
+van zijn WSN te configureren en te voorzien van nieuwe of bijgewerkte
+detectiealgoritmen. Net zoals een klassiek IDS, zou een IDS voor een WSN
 eigenlijk als een aparte entiteit moeten beheerd kunnen worden.
 
 \section{Probleemdefinitie}
@@ -296,7 +296,7 @@ probleemdefinitie:
 
 \begin{description}
 
-  \item[Noodzaak van detectie] Een DSN is inherent onveilig. Indien het niet
+  \item[Noodzaak van detectie] Een WSN is inherent onveilig. Indien het niet
   mogelijk is om het te beschermen tegen aanvallen wordt het zelfs belangrijker
   om zoveel mogelijk te kunnen detecteren.
 

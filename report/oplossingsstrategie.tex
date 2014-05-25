@@ -3,13 +3,13 @@
 \chapter{Oplossingsstrategie}
 \label{chapter:oplossingsstrategie}
 
-Uit de probleemstelling in voorgaand hoofdstuk moeten we spijtig genoeg
-concluderen dat er weinig in het voordeel van het bouwen van een IDS voor een
-DSN spreekt. Op elk niveau, van de hardware van de knoop en de elementaire
-software die het netwerk vormgeeft, tot de onderzoeker, ontwikkelaar en
-uitbater van het netwerk, zijn er obstakels te identificeren. Dit hoofdstuk
-volgt opnieuw de verschillende stappen in de keten en tracht een antwoord aan
-te bieden dat tegemoet komt aan de ge\"identificeerde problemen.
+Uit de probleemstelling moeten we concluderen dat er weinig in het voordeel van
+het bouwen van een IDS voor een WSN spreekt. Op elk niveau, van de hardware van
+de knoop en de elementaire software die het netwerk vormgeeft, tot de
+onderzoeker, ontwikkelaar en uitbater van het netwerk, zijn er obstakels te
+identificeren. Dit hoofdstuk volgt opnieuw de verschillende stappen in de keten
+en tracht een antwoord aan te bieden dat tegemoet komt aan de
+ge\"identificeerde problemen.
 
 Sectie \ref{section:solution-node-wsn} stelt dat het ontbreken van een dominant
 hardwareplatform er toe leidt dat de oplossing flexibel moet zijn t.o.v.
@@ -19,8 +19,8 @@ Sectie \ref{section:solution-software} veralgemeent deze eis naar het niveau
 van de software, omdat er bv. ook geen overheersend besturingssysteem
 beschikbaar is.
 
-Sectie \ref{section:solution-proglang} evalueert de mogelijkheid om de C
-programmeertaal te hanteren als gemeenschappelijke en gestandaardiseerde taal
+Sectie \ref{section:solution-proglang} evalueert de mogelijkheid om de
+programmeertaal C te hanteren als gemeenschappelijke en gestandaardiseerde taal
 om detectiealgoritmen te beschrijven.
 
 Sectie \ref{section:solution-library} introduceert softwarebibliotheken als een
@@ -28,11 +28,11 @@ oplossing voor gemeenschappelijke logica en het centraliseren van iteratieve
 processen.
 
 Sectie \ref{section:solution-dsl} argumenteert dat een domeinspecifieke taal
-een afdoende oplossing kan zijn om aan de hand van een formele en
-platformonafhankelijke beschrijving van algoritmen een brug te slagen tussen
-onderzoek en ontwikkeling.
+een oplossing kan zijn om aan de hand van een formele en platformonafhankelijke
+beschrijving van algoritmen o.a. een brug te slagen tussen onderzoek en
+ontwikkeling.
 
-Sectie \ref{section:solution-codegen} stelt tot slotte dat code generatie een
+Sectie \ref{section:solution-codegen} stelt tot slot dat codegeneratie een
 geformaliseerd proces kan automatiseren en kan tegemoet komen aan de overige
 problemen in het kader van het ontwikkelingsproces.
 
@@ -41,17 +41,16 @@ problemen in het kader van het ontwikkelingsproces.
 \section{Hardware en netwerk}
 \label{section:solution-node-wsn}
 
-Het feit dat sensorknopen, en embedded systemen in het algemeen, fysiek
-toegankelijk zijn en daarom inherent vatbaar zijn voor fysieke aanvallen is een
-probleem waar op zich weinig aan kan gedaan worden. Zeker zolang de
-ontwikkeling van sensorknopen in zijn kinderschoenen staat en de focus nog op
-de basisbehoeften ligt (energiebesparing, grootte,...), zolang er geen echte
-standaard voor deze hardware bestaat\footnote{Standaarden zullen zonder twijfel
-ontstaan en de eerste schuchtere pogingen zijn reeds te zien in de vorm van bv.
-het Zigduino platform (\url{http://www.logos-electro.com/store/zigduino-r2}) of
-de Waspmote van Libellum (\url{http://www.libelium.com/products/waspmote/}).},
-zal het nog even duren voor de focus verschuift naar de beveiliging van de
-hardware.
+Het feit dat sensorknopen, en ge\"integreerd systemen in het algemeen, fysiek
+toegankelijk zijn en daarom inherent vatbaar voor fysieke aanvallen, is een
+probleem waaraan op zich weinig kan gedaan worden. Zolang de ontwikkeling van
+sensorknopen in zijn kinderschoenen staat en de focus nog op de basisbehoeften
+ligt (energiebesparing, grootte,...), zolang er geen echte standaard voor deze
+hardware bestaat\footnote{Standaarden zullen zonder twijfel ontstaan en de
+eerste schuchtere pogingen zijn reeds te zien in de vorm van bv. het Zigduino
+platform (\url{http://www.logos-electro.com/store/zigduino-r2}) of de Waspmote
+van Libellum (\url{http://www.libelium.com/products/waspmote/}).}, zal het nog
+even duren voor de focus verschuift naar de beveiliging van de hardware.
 
 Vanuit het oogpunt van de hardware en het netwerk, houden we daarom een
 belangrijk criterium voor ogen: de oplossing moet flexibel genoeg zijn om met
@@ -64,17 +63,16 @@ niet inherent afhankelijk zijn van beperkende veronderstellingen op dit niveau.
 \label{section:solution-software}
 
 Onder elementaire software verstaan we elke vorm van software die nodig is om
-de basisbehoeften van het systeem te vervullen. In eerste plaats denken we
-daarbij natuurlijk aan een besturingssysteem, maar dat verschilt in het geval
-van een sensorknoop een beetje van de klassieke opvatting, op zijn minst al in
-grootte en mogelijkheden. Maar het kan ook ze eenvoudig zijn als een
-\emph{event loop}.
+de basisbehoeften van het systeem te vervullen. Daarbij denken we aan een
+besturingssysteem; maar dat verschilt in het geval van een sensorknoop van de
+klassieke opvatting, bv. al in grootte en mogelijkheden. Maar het kan ook zo
+eenvoudig zijn als een eenvoudige, eindeloze herhaling van dezelfde instructies.
 
 Een besturingssysteem voor een sensorknoop biedt een dunne abstractielaag die
 de harde realiteit van de programmatie van een naakte \mcu verlicht door de
 introductie van processen, componenten\dots Gegeven de beperkte voorzieningen
 van een sensorknoop, focust de ontwikkeling van deze systemen zich op het
-beperken van de eigen impact en zal daarom zoveel mogelijk belast trachten te
+beperken van de eigen impact en zal daarom zoveel mogelijk balast trachten te
 vermijden.
 
 De meeste van deze systemen zijn open-bron-software en integratie is mogelijk
@@ -88,7 +86,7 @@ standaard. TinyOS en Contiki zijn zonder twijfel sterke spelers, maar de
 \section{Programmeertalen}
 \label{section:solution-proglang}
 
-De keuze van een programmeertaal hangt in het geval van een DSN vooral vast aan
+De keuze van een programmeertaal gaat in het geval van een WSN vooral samen met
 de taal die gebruikt wordt door het besturingssysteem. Omdat dit systeem
 typisch niet op zich staat en de toepassing samen met het systeem tot een
 geheel verwerkt wordt, is de integratie tussen de twee zeer sterk.
@@ -96,18 +94,17 @@ geheel verwerkt wordt, is de integratie tussen de twee zeer sterk.
 De ontwikkelaar van de hardware levert bij zijn sensorknopen, of in
 elementairdere zin de \mcu, typisch \'e\'en compiler en derhalve ook \'e\'en
 taal. Het aanbod is uitermate beperkt en bestaat in grote lijnen uit ``C''. Er
-bestaan alternatieven, maar die zijn schaars. Zo is er bv. de SunSpot van
-Oracle, die Java aanbiedt.
+bestaan alternatieven, maar die zijn schaars, bv. de SunSpot van Oracle, die
+Java aanbiedt.
 
-De C programmeertaal staat zeer dicht bij de hardware en is duidelijk de eerste
-stap in de ontplooiing van softwareontwikkeling op embedded systemen. De
-voorzichtige pogingen om nieuwe programmeertalen voor te stellen voor deze
-omgeving tonen aan dat er een evolutie op dit vlak in ontwikkeling is, maar
-opnieuw zal dit nog tijd vragen vooraleer er een dominante taal C van de troon
-zal stoten.
+De programmeertaal C staat zeer dicht bij de hardware en is duidelijk de eerste
+stap in de ontplooiing van softwareontwikkeling op ge\"integreerd systemen. De
+voorzichtige pogingen om nieuwe programmeertalen voor te stellen tonen aan dat
+er een evolutie op dit vlak in ontwikkeling is, maar opnieuw zal het nog enige
+tijd duren vooraleer een nieuwe dominante taal opstaat en C van de troon stoot.
 
 Op dit ogenblik is C de lingua franca voor alle spelers in dit segment: zowel
-onderzoek als ontwikkelaar hanteren deze taal, ook al moet de kanttekening
+onderzoeker als ontwikkelaar hanteren deze taal, ook al moet de kanttekening
 gemaakt worden dat in veel gevallen onderzoekers zich nog beroepen op
 simulaties waarbij C ontweken wordt.
 
@@ -117,30 +114,30 @@ simulaties waarbij C ontweken wordt.
 \label{section:solution-library}
 
 In sectie \ref{section:problem-develop} zagen we reeds dat \'e\'en van de
-pijnpunten was dat de verschillende algoritmen typisch dezelfde acties
+pijnpunten is dat de verschillende algoritmen typisch dezelfde acties
 ondernemen. Indien de algoritmen als onafhankelijke modules zouden worden
 ontwikkeld en sequentieel achter elkaar worden opgeroepen, zullen zij veel
-dubbel werk leveren, die ten koste gaat van de energievoorziening en dus de
+dubbel werk leveren, dat ten koste gaat van de energievoorziening en dus de
 levensduur van de knoop.
 
-Dit is een klassiek softwareprobleem en dit wordt normaal opgevangen door het
+Dit is een klassiek softwareprobleem en wordt normaal opgevangen door het
 gebruik van een softwarebibliotheek. Deze biedt een verzameling aan functies
-die toelaten om gemeenschappelijk functionaliteit slechts \'e\'enmaal te
+die toelaten om gemeenschappelijke functionaliteit slechts \'e\'enmaal te
 defini\"eren en vervolgens vanuit specifieke toepassingen, of algoritmen aan te
 spreken.
 
-De introductie van een softwarebibliotheek lost op zich een aantal van de
-technische problemen op, maar zal nog maar weinig dekking geven voor de overige
-aspecten van het probleem. Zo moeten bij gebruik van een softwarebibliotheek de
-regels van de softwarebibliotheek ook effectief gevolgd worden door alle
-partijen. De analyse van onderzoeksdocumenten en het koppelen aan de gebruikte
-softwarebibliotheek blijft nog steeds een kostelijke en foutgevoelige taak.
+De introductie van een softwarebibliotheek lost een aantal van de technische
+problemen op, maar zal weinig dekking geven voor de overige aspecten. Zo moeten
+bij gebruik van een softwarebibliotheek de regels ervan ook effectief gevolgd
+worden door alle partijen. De analyse van onderzoeksdocumenten en het koppelen
+aan de gebruikte softwarebibliotheek blijft nog steeds een dure en
+foutgevoelige taak.
 
-Zelfs men in onderzoek gebruik zou maken van dezelfde softwarebibliotheek, dan
-zou dit nog niet platform-onafhankelijk zijn, zou de taal vastliggen en zou ook
-bv. het netwerkprotocol of zelfs de sensorknoop vastliggen. Buiten het feit dat
-de ontwikkeling makkelijker en beter zou kunnen gebeuren, levert het geen enkel
-voordeel op voor de onderzoekers.
+Zelfs indien men bij onderzoek gebruik zou maken van dezelfde
+softwarebibliotheek, dan zou dit nog niet platform-onafhankelijk zijn, zou de
+taal vastliggen en zou ook bv. het netwerkprotocol of zelfs de sensorknoop
+vastliggen. Buiten het feit dat de ontwikkeling makkelijker en beter zou kunnen
+gebeuren, levert het geen enkel voordeel op voor de onderzoekers.
 
 \vspace{-3mm}
 
@@ -153,28 +150,28 @@ gekeken worden naar een andere gemeenschappelijke taal om de algoritmen in uit
 te drukken. In klassieke softwareontwerpmethodologie\"en wordt hiervoor bv. UML
 \citep{url:uml} of een andere analysetaal gebruikt.
 
-In het geval van inbraakdetectie in DSN, zou de keuze kunnen vallen op een
+In het geval van inbraakdetectie in WSN, zou de keuze kunnen vallen op een
 domeinspecifieke taal (\emph{Domain Specific Language})
 (DSL)\citep{van2000domain, mernik2005and, fowler2010domain}. Het domein,
-inbraakdetectie in DSN, is immers duidelijk afgelijnd en is beperkt in
-functionaliteit: knopen kunnen berichten ontvangen en versturen en kunnen
-metingen doen aan de hand van hun sensoren.
+inbraakdetectie in WSN, is immers duidelijk afgelijnd en is beperkt in
+functionaliteit: knopen kunnen berichten ontvangen en versturen alsook metingen
+doen aan de hand van hun sensoren.
 
-Domeinspecifieke talen kunnen veel vormen aannemen, zo zijn er inwendige talen
-die binnen een bestaande programmeertaal kunnen gebruikt worden. Ze gebruiken
-de mogelijkheden van de omringende taal en omgeving om een bijkomende taal te
-realiseren die voordelen biedt over het gebruik van de basistaal. Het is
-duidelijk dat de keuze voor een inwendige DSL samengaat met de mogelijkheden
+Domeinspecifieke talen kunnen veel vormen aannemen. Zo zijn er \emph{inwendige}
+talen die binnen een bestaande programmeertaal kunnen gebruikt worden. Ze
+gebruiken de mogelijkheden van de omringende taal en omgeving om een bijkomende
+taal te realiseren die voordelen biedt over het gebruik van de basistaal. Het
+is duidelijk dat de keuze voor een inwendige DSL samengaat met de mogelijkheden
 van de overkoepelende programmeertaal. De implementatie van een inwendige DSL
 in C is mogelijk, maar zal slechts beperkte mogelijkheden bieden. Daartegenover
 staat trouwens dat we met een inwendige DSL geen beperkingen kunnen opleggen
 aan de omkaderende taal. Alle mogelijkheden van C zouden ter beschikking
 blijven en ongewenste constructies zouden nog steeds kunnen binnendringen.
 
-Een tweede groep van talen zijn de zgn. uitwendige talen. Dit zijn talen die
-onafhankelijk van een programmeertaal opgebouwd worden en dus volledig vrij
+Een tweede groep van talen zijn de zgn. \emph{uitwendige} talen. Dit zijn talen
+die onafhankelijk van een programmeertaal opgebouwd worden en dus volledig vrij
 zijn in het bepalen van restricties en mogelijkheden. Een uitwendige DSL kan in
-het geval van inbraakdetectie in DSN een oplossing zijn om de beschrijving van
+het geval van inbraakdetectie in WSN een oplossing zijn om de beschrijving van
 detectiealgoritmen te formaliseren. Zo'n beschrijving kan platformonafhankelijk
 zijn, waardoor de resultaten van onderzoek direct herbruikbaar en breed
 toepasbaar worden.
@@ -185,22 +182,21 @@ omgeving die zeer dicht aansluit bij zowel onderzoekers als ontwikkelaars.
 
 \vspace{-3mm}
 
-\section{Code generatie}
+\section{Codegeneratie}
 \label{section:solution-codegen}
 
 Eens men beschikt over een formele beschrijving van een algoritme, is de stap
-naar code generatie niet meer groot. Code generatie is geen noodzakelijke stap,
-maar blijkt in dit kader toch een grote toegevoegde meerwaarde te kunnen
-leveren.
+naar codegeneratie niet meer groot. Codegeneratie is geen noodzakelijke stap,
+maar blijkt in dit kader toch een meerwaarde.
 
-Zo kan een uitbater van een DSN zelf de software voor zijn netwerk combineren
+Zo kan een uitbater van een WSN zelf de software voor zijn netwerk combineren
 met een door hem samengestelde selectie aan inbraakdetectiealgoritmen, zonder
 beroep te moeten doen op een ontwikkelaar.
 
 De generator staat verder ook in voor het genereren van geoptimaliseerde
 technische code. Een voorbeeld hiervan is het zgn. \emph{inline}'en van
 programmacode, waarbij opgeroepen code uit een functie in de plaats van de
-eigenlijk oproep gekopieerd wordt. Dit vraagt soms enkele bytes meer
+eigenlijke oproep gekopieerd wordt. Dit vraagt soms enkele bytes meer
 programmacode, maar het uitsparen van de functieoproep kan de \mcu ontlasten.
 
 Dat deze toepassing valabel is, wordt aangetoond door TinyOS
@@ -209,11 +205,11 @@ tot standaard C code, welke vervolgens gecompileerd wordt. Bij deze omzetting
 worden nagenoeg alle kleine functieoproepen \emph{inline} geplaatst
 \citep{gay2007software}.
 
-Een functionele code generator kan hierin echter veel verder gaan en niet
-louter op syntactisch/technisch vlak aan \emph{inlining} doen, maar ook op
-functioneel vlak. Indien dus de softwarebibliotheek ook, net zoals de DSL code
-als invoer van de code generator wordt beschouwd, zal deze code inherent mee
-geoptimaliseerd worden en afgestemd zijn op de eigenlijke algoritmen.
+Een functionele codegenerator kan hierin echter veel verder gaan en niet louter
+op syntactisch/technisch vlak aan \emph{inlining} doen, maar ook op functioneel
+vlak. Indien ook de softwarebibliotheek, net zoals de DSL code als invoer van
+de codegenerator wordt beschouwd, zal deze code inherent mee geoptimaliseerd
+kunnen worden en afgestemd zijn op de eigenlijke algoritmen.
 
 \vspace{-3mm}
 
@@ -225,9 +221,9 @@ Met deze oplossingsstrategie dekken we de in sectie
 mogelijk te maken om m\'e\'er algoritmen met dezelfde middelen te kunnen
 implementeren, wordt de noodzaak tot detectie ingelost. Geen gebruik maken van
 een standaardplatform zorgt ervoor dat de oplossing vrij blijft van externe
-afhankelijkheden. De domeinspecifieke taal biedt de laat toe om op formele
-wijze detectiealgoritmen te beschrijven. Samen met de codegeneratie kunnen de
-kosten van de ontwikkeling geminimaliseerd worden en kan men effectief op
-economisch verantwoorde wijze een IDS toevoegen aan een DSN. Tot slot biedt de
-volledig geautomatiseerde oplossing een flexibele oplossing die kan inspelen op
+afhankelijkheden. De domeinspecifieke taal laat toe om op formele wijze
+detectiealgoritmen te beschrijven. Samen met de codegeneratie kunnen de kosten
+van de ontwikkeling geminimaliseerd worden en kan men effectief op economisch
+verantwoorde wijze een IDS toevoegen aan een WSN. Tot slot biedt de volledig
+geautomatiseerde oplossing een flexibele oplossing die kan inspelen op
 wijzigende situaties.

@@ -48,7 +48,7 @@ describe such algorithms and proposes the use of code generation techniques to
 automate the production of detection software. This automated process allows
 for the optimization of resource usage. Specifically the optimization of the
 execution time of the algorithms and the use of the energy-costly wireless
-radio are prime candidates. A prototype code generator was realized to show
+radio are prime candidates. A prototype codegenerator was realized to show
 that these techniques can be implemented effectively, combining different
 intrusion detection algorithms in such way that they impose less impact on the
 resources than the sum of the impact of each algorithm by itself.
@@ -137,7 +137,7 @@ describes the problem space in detail. Section \ref{section:solution}
 introduces our proposed overall solution, further detailed in sections
 \ref{section:foo-lang} and \ref{section:prototype}, which respectively present
 our domain specific language, FOO-lang, as well as a prototype implementation
-of a code generator framework to complement the language. Section
+of a codegenerator framework to complement the language. Section
 \ref{section:evaluation} evaluates the prototype implementation and determines
 if the theoretical merits of introducing FOO-lang, are actually viable. Our
 conclusions and proposed topics for future research are presented in section
@@ -513,7 +513,7 @@ generator.
 \section{Prototype Code Generator}
 \label{section:prototype}
 
-We have built a prototype code generator for FOO-lang using Python and ANTLR
+We have built a prototype codegenerator for FOO-lang using Python and ANTLR
 \cite{antlr3}. The implementation tries to be as generic as possible and is
 based on transformations using the visitor pattern of abstract syntax trees
 (AST) and a semantic model \cite{fowler2010domain}.
@@ -537,7 +537,7 @@ that is constructed from the semantic model typically contains all the language
 features available in FOO-lang. The construction is done partly by the generic
 generator and partly by the \emph{nodes} domain.
 
-The code generator aims to be language and platform independent. Both language
+The codegenerator aims to be language and platform independent. Both language
 and platform are exchangeable plug-ins to the generator. With the initial code
 model based on the full set of language constructs of FOO-lang, it is clear
 that the transformations that need to be performed by these plug-ins are the
@@ -587,7 +587,7 @@ and with both algorithms implemented.
 
 In case of the manual implementation, both algorithms were constructed as
 standalone modules and sequentially called from the base-application's
-event loop. The code generator was provided with FOO-lang descriptions of the
+event loop. The codegenerator was provided with FOO-lang descriptions of the
 algorithms and generated all four cases.
 
 Before reviewing the results, it is very important to put these results in a

@@ -3,10 +3,10 @@
 \chapter{Architectuur}
 \label{chapter:architectuur}
 
-De oplossingsstrategie stelt voor om een uitwendige DSL te combineren met code
-generatie om zo een volledig geautomatiseerde keten te bekomen van onderzoek
-tot uitbating. Dit hoofdstuk bekijkt de oplossing vanuit een architectuur
-oogpunt.
+De oplossingsstrategie stelt voor om een uitwendige DSL te combineren met
+codegeneratie om zo een volledig geautomatiseerde keten te bekomen van
+onderzoek tot uitbating. Dit hoofdstuk bekijkt de oplossing vanuit een
+architectuur oogpunt.
 
 Sectie \ref{section:arch-functional} bekijkt de functionaliteit van de
 oplossing en identificeert de verschillende functionele componenten met hun
@@ -43,12 +43,12 @@ de naam: Functie Organisatie Optimalisatie (\emph{Function Organisation
 Optimisation}), kortweg: FOO-lang.
 
 De belangrijkste doelgroep wat betreft gebruikers, zijn onderzoekers van IDS in
-DSN. Met FOO-lang kunnen zij beschikken over een formele taal om
-inbraakdetectiealgoritmen voor DSN te beschrijven.
+WSN. Met FOO-lang kunnen zij beschikken over een formele taal om
+inbraakdetectiealgoritmen voor WSN te beschrijven.
 
 Het is van primordiaal belang dat de taal zo dicht mogelijk aansluit bij
 bestaande kennis en vertrouwde paradigma. Daarom wordt voorgesteld om dicht bij
-de C programmeertaal aan te blijven leunen en deze uit te breiden met niet
+de programmeertaal C aan te blijven leunen en deze uit te breiden met niet
 ongewone constructies om het niveau van de taal op een hoger niveau van
 abstractie te brengen. Dit hogere niveau sluit meer aan bij een functionele en
 platform-onafhankelijke beschrijving.
@@ -89,10 +89,10 @@ de visuele website, maar moet zeker geautomatiseerd ge\"integreerd kunnen
 worden, zodat bv. compilatieprocessen de laatste versie van een algoritme
 kunnen downloaden zonder tussenkomst van een persoon.
 
-\subsection{Code generatie}
+\subsection{Codegeneratie}
 \label{subsection:arch-codegen}
 
-Het kloppend hart van de oplossing bestaat uit de code generator. Deze
+Het kloppend hart van de oplossing bestaat uit de codegenerator. Deze
 accepteert de in FOO-lang geschreven algoritmen en vormt deze om tot
 georganiseerde code voor het geselecteerde platform, eventueel voor een gegeven
 taal\dots
@@ -141,12 +141,12 @@ opnemen zonder verdere tussenkomst van een ontwikkelaar.
 \subsection{Verdere opportuniteiten}
 \label{subsection:arch-opportunities}
 
-Met een centrale opslagplaats en een volledige geautomatiseerde code generatie
+Met een centrale opslagplaats en een volledige geautomatiseerde codegeneratie
 en compilatieproces, zijn tal van ondersteunende toepassingen denkbaar.
 
 Een voorbeeld dat van groot belang kan zijn voor onderzoekers is een
 gestandaardiseerde simulatieomgeving. Deze zou kunnen opgebouwd worden met de
-code generator, voorzien van een implementatie voor een virtueel platform, die
+codegenerator, voorzien van een implementatie voor een virtueel platform, die
 bruikbare code genereert voor de simulatieomgeving. Een integratie zou kunnen
 bestaan in een implementatie in Javascript, wat toelaat om de simulatie toe te
 voegen aan de centrale opslagplaats en dynamisch verschillende combinaties van
@@ -162,7 +162,7 @@ belangrijk om deze opportuniteiten in het vizier te houden, zodat er geen
 uitgesloten worden door de implementatie.
 
 De minimale set aan basiscomponenten zal ook in deze masterproef verder
-uitgewerkt worden aan de hand van een prototype. Het betreft de code generator
+uitgewerkt worden aan de hand van een prototype. Het betreft de codegenerator
 met ondersteuning voor een eerste platform en programmeertaal combinatie.
 
 \section{Technische architectuur}
@@ -211,7 +211,7 @@ knopen. Verschillende soorten strategie\"en zijn voorzien: een reactie op een
 gebeurtenis (\emph{Handler}) en een weerkerende actie (\emph{Every}).
 
 Op een lager niveau wordt de functionaliteit beschreven aan de hand van een
-syntax die nauw aansluit bij deze van de C programmeertaal. Deze is echter wel
+syntax die nauw aansluit bij deze van de programmeertaal C. Deze is echter wel
 uitgebreid met constructies van een hoger abstractieniveau, om op een
 functionelere manier om te kunnen gaan met de entiteiten uit het domein.
 
@@ -225,7 +225,7 @@ kader van een sterk getypeerde programmeertaal, zoals C.
 Een tweede stap is een vertaling van het SM naar een CM. Dit CM staat dichter
 bij de uiteindelijk te genereren code en meer technische van aard. Deze
 vertaling is het resultaat van verschillende transformaties uitgevoerd op het
-SM door de generieke code generator zelf, het platform en de domeinspecifieke
+SM door de generieke codegenerator zelf, het platform en de domeinspecifieke
 implementatie.
 
 \subsection{Code model}
@@ -238,17 +238,17 @@ patronen in een semantiek die direct aanleunt bij programmeertalen.
 Het code model voorziet een hi\"erarchie van een compilatie unit, met daaronder
 modules en binnen elke module secties. Dit is een abstracte voorstelling van
 respectievelijk de gehele compilatie, de functionele modules en de bestanden
-waaruit die modules opgebouwd zullen worden. In termen van de C programmeertaal
+waaruit die modules opgebouwd zullen worden. In termen van de programmeertaal C
 is dit het geheel van C en aanverwante bestanden, het concept van een C module
 en op het laagste niveau de effectieve C en hoofding bestanden.
 
 Een sectie bestaat dan uit \'e\'en of meerdere code constructies: functie
-declaraties, expressies, statements\dots Deze code constructies zijn rijker
-dan bv. de C programmeertaal. Het zal de taak zijn van opeenvolgende
-transformaties om deze niet-gekende constructies voor een bepaald platform
-en/of programmeertaal om te vormen naar wel ondersteunde constructies.
+declaraties, expressies, statements\dots Deze code constructies zijn rijker dan
+bv. de programmeertaal C. Het zal de taak zijn van opeenvolgende transformaties
+om deze niet-gekende constructies voor een bepaald platform en/of
+programmeertaal om te vormen naar wel ondersteunde constructies.
 
-\subsection{Code generatie}
+\subsection{Codegeneratie}
 
 De laatste stap in het proces bestaat uit de eigenlijke generatie van
 programmeercode. Deze vertrekt van het CM en is ook opgebouwd aan de hand van
