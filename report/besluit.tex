@@ -13,49 +13,74 @@ and doing a language at least teaches you something.
 \par\raggedleft--- \textup{Dennis Ritchie (1941-2011)},\\
 Creator of the C programming language and of UNIX}
 
-% De masterproeftekst wordt afgesloten met een hoofdstuk waarin alle
-% besluiten nog eens samengevat worden. Dit is ook de plaats voor suggesties
-% naar het verder gebruik van de resultaten, zowel industri\"ele toepassingen
-% als verder onderzoek.
-
-\TODO
+In dit besluit belichten we het voorstel van deze masterproef vanuit
+verschillende invalshoeken en doen dit aan de hand van een korte SWOT-analyse.
 
 \section{Sterke punten}
 \label{section:strenghts}
 
-\TODO
+FOO-lang en de codegenerator slagen er in te scoren op elk van de gestelde
+criteria en beantwoorden elk aspect van de probleemstelling (zie sectie
+\ref{section:problem-definition}) positief: het detecteren van inbraken wordt
+mogelijk gemaakt, zonder eisen te stellen aan hard- en/of software. De formele
+beschrijving van algoritmen vormt de basis voor een volledig geautomatiseerd
+generatie- en ontwikkelingsproces, waardoor het economisch verantwoord is om
+een IDS toe te voegen aan een WSN en het zelfs mogelijk is om in te spelen op
+veranderende omstandigheden.
+
+In tegenstelling tot een klassiek raamwerk, zoals bv. Di-Sec in sectie
+\ref{subsubsection:di-sec}, dringt de oplossing geen specifiek raamwerk op,
+maar is het zelfs in staat om met elk bestaand raamwerk samen te werken.
 
 \section{Zwakke kanten}
 \label{section:weaknesses}
 
-\TODO
+Daartegenover staat wel het bouwen van de nodige modules om andere platformen
+en talen te ondersteunen. Ook al is dit veelal een \'e\'enmalige kost, de
+complexiteit hiervan mag niet onderschat worden.
 
 \section{Opportuniteiten}
 \label{section:opportunities}
 
-\TODO
+De beperkingen die opgelegd werden aan het prototype, vormen dan weer vele
+opportuniteiten voor verder onderzoek en verbeteringen: het optimaliseren van
+FOO-lib en de gegenereerde code op zich kan leiden tot nog lagere impact op
+\mcu en draadloze radio. Nog verder \emph{inline}'en van code en het opnemen
+van FOO-lib in het generatieproces kunnen verstrekkende gevolgen hebben.
+
+De mogelijkheden tot verdere analyse en simulatie, een centrale locatie voor
+detectiealgoritmen en het samenbrengen van een gemeenschap hier rond, zijn
+stappen die het onderzoek vooruit zouden kunnen stuwen.
+
+\vspace{-2mm}
 
 \section{Bedreigingen}
 \label{section:threaths}
 
-\TODO
+Aan het andere eind van dit spectrum blijft het feit dat er geen absolute
+beveiliging kan gebouwd worden als een zwaard van Damocles boven draadloze
+sensoren hangen.
+
+Een nieuwe taal voorstellen is op zich al geen sinecure. Ze wordt immers
+vrijwillig geaccepteerd, zelden opgedrongen. Zonder de onderbouw van FOO-lang
+verliest de oplossing veel draagkracht.
+
+\vspace{-2mm}
 
 \section{De slotsom}
 \label{section:bottom-line}
 
-\TODO
+Deze masterproef toont aan dat codegeneratie een nuttige oplossing kan zijn
+voor het implementeren van een IDS voor een WSN en kan helpen om meer te
+detecteren en zo ook de informatie die we deze netwerken toevertrouwen beter te
+verdedigen. Maar we mogen \'e\'en belangrijk aspect niet uit het oog verliezen:
+hoeveel verdedigingslinies we ook opwerpen, hoe ingenieus onze
+detectiealgoritmen ook zijn, er blijft steeds \'e\'en grote, onvoorspelbare
+factor in het hele verhaal, en dat is de menselijke capaciteit om fouten te
+maken.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=\linewidth]{resources/cartoon_human_error.jpg}
+  \includegraphics[width=0.72\linewidth]{resources/cartoon_human_error.jpg}
   \caption[``Human Error'']{``Human Error'' - courtesy of John Klossner}
 \end{figure}
-
-
-% TODO:
-
-% Het feit dat in essentie een nieuwe taal was, bracht ook een bijkomende
-% leercurve met zich mee. Ook zorgde voortschrijdend inzicht voor stapsgewijze
-% verbeteringen aan bepaalde constructies, die echter soms door tijdbeperkingen
-% niet voor alle overige code konden bijgewerkt worden.
-
