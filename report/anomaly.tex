@@ -8,34 +8,34 @@ iets of iemands gedrag. Een knoop uit een DSN heeft een redelijk eenvoudig en
 constante levensloop. Typisch zal een knoop op regelmatige tijdstippen
 \emph{wakker worden}, waarden opmeten aan de hand van zijn sensoren en deze
 waarden doorsturen naar een centrale locatie. Verder zal een knoop, als
-onderdeel van het netwerk, tevens zulke waarden van andere knopen doorsturen.
-Dit patroonmatige gedrag kan ge\"identificeerd worden en in een model verwerkt
-worden. Op basis van zulk een model kan vervolgens nagegaan worden of de acties
-van een knoop op een gegeven moment in lijn zijn met het model, of dat er
-sprake is van een anomalie.
+onderdeel van het netwerk, ook de gemeten waarden van andere knopen doorsturen.
+Dit gedrag kan ge\"identificeerd worden en in een model verwerkt worden. Op
+basis van zo'n model kan vervolgens nagegaan worden of de acties van een knoop
+op een gegeven moment in lijn zijn met het model, of dat er sprake is van een
+anomalie.
 
-Zulk een afwijking van het verwachte gedrag kan wijzen op veranderingen van
-buitenaf. Deze kunnen op hun beurt veroorzaakt zijn door een aanval op het
-netwerk. Aangezien we niet alle communicatie van en naar knopen kunnen
-onderscheppen en eventuele aanvallen kunnen detecteren, kunnen
-anomaliegebaseerde dectectiemechanismen helpen om op basis van neveneffecten
-toch aanvallen te detecteren, of althans toch de gevolgen ervan.
+Zo'n afwijking kan wijzen op veranderingen van buitenaf. Deze kunnen op hun
+beurt veroorzaakt zijn door een aanval op het netwerk. Aangezien we niet alle
+communicatie van en naar knopen kunnen onderscheppen en eventuele aanvallen
+kunnen detecteren, kunnen mechanismen gebaseerd op de detectie van anomalie\"en
+helpen om op basis van in essentie neveneffecten, toch aanvallen te detecteren,
+of althans toch de gevolgen ervan.
 
-\subsubsection*{Anomali\"en, afwijkingen, aberraties}
+\subsubsection*{Anomali\"en}
 \label{subsubsection:outlier}
 
-\citep{zhang2010outlier} is een excellent overzicht van methoden om anomali\"en,
-afwijkingen of aberraties (\emph{outliers}) te detecteren in een reeks
-van metingen. Het belicht enerzijds de fundamentele technieken die ter
+\citep{zhang2010outlier} is een excellent overzicht van methoden om
+anomali\"en, afwijkingen of aberraties (\emph{outliers}) te detecteren in een
+reeks van metingen. Het belicht enerzijds de fundamentele technieken die ter
 beschikking staan om deze aberraties op te merken maar tracht ook een
-classificatie en taxonomie op te stellen hiervoor.
+classificatie en taxonomie op te stellen.
 
 De auteurs stellen dat het detecteren van afwijkingen behoort tot het domein
-van \emph{datamining} en dat het in die context reeds uitvoerig onderzocht is,
-evenals binnen disciplines als statistiek, machinaal leren, informatie
-theorie\dots. Aangezien het kunnen uitsluiten van afwijkingen de verwerking van
-de overblijvende meetresultaten sterk positief be\"invloedt is het in het kader
-van DSN uitermate interessant.
+van \emph{datamining} en dat het in die context al uitvoerig onderzocht is,
+evenals binnen disciplines als statistiek, machinaal leren,
+informatietheorie\dots Aangezien dat het kunnen uitsluiten van afwijkingen de
+verwerking van de overblijvende meetresultaten sterk positief be\"invloedt, is
+het in het kader van DSN uitermate interessant.
 
 Toch kan eerder onderzoek opnieuw niet eenvoudig toegepast worden in het kader
 van DSN. De beperkte middelen van de sensorknoop schrappen al veel van de
@@ -55,10 +55,10 @@ Wanneer men denkt aan het vastleggen van een patroon en het controleren of een
 bepaalde situatie voldoet aan dat patroon, wordt in informaticakringen ook snel
 verwezen naar neurale netwerken. Neurale netwerken kunnen immers
 \emph{getraind} worden door middel van een aantal goede (en slechte)
-voorbeelden, waarna nieuwe voorbeelden kunnen gecatalogeerd worden als ook goed
-of slecht. De complexiteit van het bepalen van deze beslissing is typisch
-redelijk eenvoudig en lijkt zich daarom uitermate goed te lenen voor het
-detecteren van anomalie\"en door sensorknopen.
+voorbeelden, waarna nieuwe voorbeelden gecatalogeerd kunnen worden als ``ook
+goed'' of ``slecht''. De complexiteit van het bepalen van deze beslissing is
+typisch redelijk eenvoudig en lijkt zich daarom uitermate goed te lenen voor
+het detecteren van anomalie\"en door sensorknopen.
 
 In \citep{ramesh2012wireless} volgen de auteurs deze denkpiste, maar stellen
 tevens dat er betere methoden bestaan. Ze trachten twee specifieke aanvallen
@@ -68,8 +68,8 @@ basis van encryptie op basis van symmetrische sleutels.
 
 Ofschoon sommige van hun veronderstellingen na\"ief zijn (zo baseren ze zich op
 een gedeelde geheime sleutel van 8 bits), toont hun werk wel aan dat een aanpak
-met neurale netwerken eenvoudig te realiseren is en een valabele piste kan zijn
-om anomaliedetectie te doen.
+met neurale netwerken eenvoudig te realiseren is, en een valabele piste kan
+zijn om anomaliedetectie te doen.
 
 \subsubsection*{Voorspellingen}
 \label{subsubsection:predictions}
@@ -78,19 +78,17 @@ Waar neurale netwerken in staat zijn om op basis van voorbeelden een nieuwe
 situatie te catalogeren, kan men aan de hand van een Markov model
 voorspellingen doen over de toekomst.
 
-Het is deze piste die onderzocht wordt in \citep{zhijie2012intrusion}. Opnieuw
-betreft het een poging om DoS-aanvallen te detecteren. De bedoeling is dat
-sensorknopen individueel bepalen of er een DoS-aanval bezig is. Volgens de
-auteurs is dit mogelijk aan de hand van een Markov-model, dat het
-netwerkverkeer voorspelt.
-
+Deze piste wordt onderzocht door \citep{zhijie2012intrusion}. Het betreft een
+poging om DoS-aanvallen te detecteren. De bedoeling is dat sensorknopen
+individueel bepalen of er een DoS-aanval bezig is. Volgens de auteurs is dit
+mogelijk aan de hand van een Markov-model, dat het netwerkverkeer voorspelt.
 Het model wordt zo geconstrueerd dat er een verband ontstaat tussen de toestand
 van een knoop in relatie tot het tijdstip en de verwachte hoeveelheid gegevens
 die verstuurd zouden kunnen worden.
 
-Het idee achter het artikel lijkt een mogelijke piste, maar omtrent veel
-belangrijke details blijven echter zeer vaag, waardoor de volledige toedracht
-van het algoritme niet eenduidig ingeschat kan worden. Zo wordt bv. nauwelijks
-ingegaan op wat de toestand van een knoop juist bepaalt of hoe de
-hoeveelheid gegevens die verstuurd kunnen worden wanneer een knoop zich in een
-bepaalde toestand bevindt, bepaald wordt.
+Het idee achter het artikel lijkt een mogelijke piste, maar veel belangrijke
+details blijven echter vaag, waardoor de volledige toedracht van het algoritme
+niet eenduidig ingeschat kan worden. Zo wordt bv. nauwelijks ingegaan op wat
+juist de toestand van een knoop bepaalt, of hoe de hoeveelheid gegevens die
+verstuurd worden wanneer een knoop zich in een bepaalde toestand bevindt,
+bepaald wordt.

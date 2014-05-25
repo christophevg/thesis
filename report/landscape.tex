@@ -72,12 +72,20 @@ verschillen van de meer klassieke computernetwerken. Zo identificeert
 
 Dit beeld vinden we ook terug bij \citep{aschenbruck2012security} die de
 situatie van draadloze sensornetwerken samenvat in drie zeer typische en
-problematische bronnen van beveiligingsproblemen: de beperkingen qua middelen
-en dan vooral de energievoorziening, de fysieke toegankelijkheid die leidt tot
-de mogelijkheid knopen te veroveren en de verwerking van gegevens die reeds
-binnen het netwerk gebeurt, waardoor het bv. onmogelijk wordt om encryptie toe
-te passen tussen zender en ontvanger, waardoor tussenliggende verwerking
-eigenlijk uitgesloten wordt.
+problematische bronnen van beveiligingsproblemen: 
+
+\begin{itemize}[noitemsep, topsep=0pt, partopsep=0pt]
+
+  \item{Beperkingen qua middelen en dan vooral de energievoorziening.}
+  
+  \item{Fysieke toegankelijkheid die leidt tot de mogelijkheid om knopen te
+  veroveren.}
+
+  \item{Verwerking van gegevens die reeds binnen het netwerk gebeurt, waardoor
+  het bv. onmogelijk wordt om encryptie toe te passen tussen zender en
+  ontvanger, waardoor tussenliggende verwerking eigenlijk uitgesloten wordt.}
+
+\end{itemize}
 
 \subsection{Inbraakdetectie}
 
@@ -98,59 +106,59 @@ vorm van inbraakdetectie voor \emph{systemen} en \emph{netwerken}.
 
 In de context van draadloze sensornetwerken zal dit onderscheid zich echter
 veel meer profileren omdat het netwerk hier geen centraal medium is. Daar waar
-het netwerk in een klassieke opstelling typisch vanuit \'e\'en systeem kon
+het netwerk in een klassieke opstelling typisch vanuit \'e\'en systeem kan
 gecontroleerd worden door het afleiden van alle netwerkverkeer naar \'e\'en
-enkele detectiemodule, is dit in het geval van een DSN niet langer mogelijk.
-Het draadloze aspect maakt dat er geen controleerbare toegangswegen meer zijn
-naar elke knoop en dat dus elke knoop letterlijk op zichzelf aangewezen is.
+enkele detectiemodule, is dit in het geval van een DSN niet mogelijk. Het
+draadloze aspect maakt dat er geen controleerbare toegangswegen zijn naar elke
+knoop en dat dus elke knoop letterlijk op zichzelf aangewezen is.
 
 Samen met het wegvallen van een centrale inbraakdetectie, valt ook de centrale
 bescherming op netwerkniveau weg. Binnen een DSN is het ook niet mogelijk om te
-genieten van de bescherming van een \emph{firewall}. Er is niet langer een
-alles omarmende bescherming, niet op logisch of netwerkvlak, maar ook op
-fysisch vlak. Aangezien draadloze sensornetwerken typisch open en bloot in de
-buitenwereld ge\"installeerd worden, en dit voor langere periodes zonder
-aanwezigheid van een eigenaar, kunnen ze ook fysiek benaderd worden door ieder
-die dat wil. Zelfs de elementaire zekerheid van een fysieke bescherming bv. in
-een datacenter, komt bij draadloze sensornetwerken volledig te vervallen.
+genieten van de bescherming van een \emph{firewall}. Er is geen alles omarmende
+bescherming, niet op logisch of netwerkvlak, maar ook niet op fysiek vlak.
+Aangezien draadloze sensornetwerken typisch open en bloot in de buitenwereld
+ge\"installeerd worden, en dit voor langere periodes zonder aanwezigheid van
+een eigenaar, kunnen ze ook fysiek benaderd worden door ieder die dat wil.
+Zelfs de elementaire zekerheid van een fysieke bescherming bv. in een
+datacenter, komt bij draadloze sensornetwerken volledig te vervallen.
 
-Zeer terecht stelt \citep{perrig2004security} daarom ook dat de eerste zorg
-omtrent de beveiliging van draadloze sensornetwerken een veilige manier is om
-de groep van sensoren te beheren. De manier waarop nieuwe knopen in het netwerk
-worden opgenomen en de beveiliging van de onderlinge communicatie is van
+Terecht stelt \citep{perrig2004security} daarom ook dat de eerste zorg omtrent
+de beveiliging van draadloze sensornetwerken een veilige manier om de groep van
+sensoren te beheren moet zijn. De manier waarop nieuwe knopen in het netwerk
+worden opgenomen en de beveiliging van de onderlinge communicatie, is van
 primordiaal belang. Voorkomen is beter dan genezen.
 
 Maar we moeten ook realistisch zijn. Geen door mensenhanden gemaakt systeem is
 feilloos en nagenoeg elk ge\"informatiseerd systeem zal met de nodige inzet en
 moeite veroverd kunnen worden. Op dat ogenblik is het belangrijk dat er een
-tweede verdedigingslinie is: inbraakdetectie. In het geval van DSN is dit dus
-misschien nog meer prangend, omdat er niet langer een fysieke bescherming is,
-noch een centrale netwerkbescherming in de vorm van bv. een \emph{firewall}.
+tweede verdedigingslinie is: inbraakdetectie. In het geval van DSN is dit
+misschien nog meer prangend, omdat er niet langer een fysieke bescherming, noch
+een centrale netwerkbescherming in de vorm van bv. een \emph{firewall} is.
 
 \subsection{De tegenstander en zijn aanvallen}
 
-Tijd om kennis te maken met onze tegenstander. Wat is zijn doel? Welke middelen
+Tijd om kennis te maken met de tegenstander. Wat is zijn doel? Welke middelen
 heeft hij ter beschikking? Hoe kunnen we zijn aanvallen identificeren?
 
 Identificatie van aanvallen wordt door \citep{zhang2000intrusion} gecatalogeerd
 als \emph{misbruik} of \emph{anomalie}. Misbruik kan typisch gedetecteerd
 worden aan de hand van patronen, terwijl voor het detecteren van anomalie\"en
 er een patroon moet opgesteld worden en aberraties van dat patroon vastgesteld.
-Vooral dit laatste is typisch een delicaat aspect. Zo is het onderscheidt
-tussen een knoop die verplaatst werd en tijdelijk verkeerde routing informatie
-verspreid en een knoop die veroverd werd en kwaadwillig foutieve informatie
-uitstuurt, niet eenvoudig te maken.
+Vooral dit laatste is een delicaat aspect. Zo is het niet eenvoudig om
+onderscheid te maken tussen een knoop die verplaatst werd, en tijdelijk
+verkeerde routing informatie verspreid, en een knoop die veroverd werd en
+kwaadwillig foutieve informatie uitstuurt.
 
 \citep{aschenbruck2012security} identificeert vier fundamentele doelen die
 nagestreefd worden door een aanvaller: (1) het manipuleren van gegevens, (2)
 het afluisteren van communicatie, (3) het tegenhouden van gegevens en (4)
 toegang verkrijgen tot het netwerk. Figuur \ref{fig:wsn-threat-analysis} geeft
-een schematisch overzicht van deze bedreigingsanalyse.
+een schematisch overzicht van deze dreigingsanalyse.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.95\linewidth]{resources/wsn-threat-analysis.pdf}
-  \caption{Analyse van de bedreiging van een DSN}
+  \caption[Dreigingsanalyse van een DSN]{Dreigingsanalyse van een DSN (Bron:\citep{aschenbruck2012security})}
   \label{fig:wsn-threat-analysis}
 \end{figure}
 
@@ -164,7 +172,7 @@ typisch een niveau kennen dat specifiek is voor het desbetreffende DSN. Het
 bevat de functionaliteit die het netwerk zijn bestaansreden geeft.
 
 Ondanks de overvloed aan mogelijke aanvallen op de standaard netwerklagen, mag
-het bestaan van de applicatielaag echter niet uit het oog verloren worden. Het
+het bestaan van de applicatielaag niet uit het oog verloren worden. Het
 merendeel van aanvallen spitst zich net toe op fouten in deze laag. Deze kunnen
 tevens dikwijls uitgebuit worden met normale vormen van communicatie. Zo hoeft
 een aanvaller geen aanvallen op te zetten zoals de hoger vermelde voorbeelden,
@@ -172,6 +180,6 @@ als hij eenvoudig een legitieme boodschap kan zenden naar een gewone knoop en
 een antwoord kan ontvangen met de informatie die hij wenst.
 
 Op deze manier is er ook geen sprake van ``te detecteren malafide gedrag'' en
-zal de aanval dikwijls zeer onopgemerkt kunnen gebeuren. We denken hier aan
-klassieke aanvallen zoals bv. \emph{buffer overflows}, waarbij op nagenoeg
-legale wijze andere gegevens uit het geheugen worden gelezen dan bedoeld.
+zal de aanval dikwijls onopgemerkt gebeuren. We denken hier aan klassieke
+aanvallen zoals bv. \emph{buffer overflows}, waarbij andere gegevens uit het
+geheugen worden gelezen dan bedoeld.
