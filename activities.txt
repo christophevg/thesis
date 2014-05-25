@@ -670,3 +670,6 @@ activities
 
 2014-05-24 (7h/642h)
 - added remaining text, additional paragraphs + review ch1-2 (7h)
+
+2014-05-25 (10h/652h)
+- completed review and additions ch1-ch8 (10h)
