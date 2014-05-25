@@ -8,9 +8,10 @@ die de codegenerator ter beschikking stelt.
 
 \subsubsection{foo.py}
 
-Op het hoogste niveau biedt de generator een commandolijn interface (CLI) aan
-in de vorm van een Python script: \ttt{foo.py}. Codevoorbeeld \ref{lst:foo.py-help}
-toont de uitvoering van het script die een overzicht geeft van de mogelijkheden.
+Op het hoogste niveau biedt de generator een interface via de opdrachtprompt
+(\emph{Command-Line Interface}) (CLI) aan in de vorm van een Python script:
+\ttt{foo.py}. Codevoorbeeld \ref{lst:foo.py-help} toont de uitvoering van het
+script dat een overzicht geeft van de mogelijkheden.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
@@ -49,9 +50,10 @@ optional arguments:
 \end{listing}
 
 De CLI biedt toegang tot alle aspecten van de generator: model controle
-(\ttt{check}), type deductie (\ttt{infer}), het uitvoerformaat, waar de uitvoer
-moet geplaatst worden, welke taal gebruikt moet worden en voor welk platform de
-generatie moet gebeuren.
+(\ttt{check}), type deductie (\ttt{infer}), het uitvoerformaat (\ttt{format}),
+waar de uitvoer moet geplaatst worden (\ttt{output}), welke taal gebruikt moet
+worden (\ttt{language}) en voor welk platform de generatie moet gebeuren
+(\ttt{platform}).
 
 De lijst van mogelijke uitvoerformaten bestaat uit: \ttt{none}, \ttt{ast},
 \ttt{ast-dot}, \ttt{sm-dot}, \ttt{foo} en \ttt{code}.
@@ -64,10 +66,10 @@ zich specialiseert in het visualiseren van graafgeori\"enteerde gegevens, zoals
 deze AST met een boomstructuur. Door middel van het \ttt{dot} commando kan
 vervolgens van deze code een visuele voorstelling gemaakt worden.
 
-Overeenkomstig bestaat er ook de mogelijkheid om een visuele voorstelling te
-maken van het SM, door middel van het \ttt{sm-dot} formaat. Om controles te
-doen betreffende de goede verwerking van de FOO-lang broncode kan een ingelezen
-set van modules ook opnieuw als FOO-code uitgevoerd worden.
+Overeenkomstig bestaat er de mogelijkheid om een visuele voorstelling te maken
+van het SM, door middel van het \ttt{sm-dot} formaat. Om controles te doen
+betreffende de goede verwerking van de FOO-lang broncode kan een ingelezen set
+van modules ook opnieuw als FOO-code uitgevoerd worden.
 
 Tot slot is er nog het \ttt{code} formaat, dat de generator vraagt om
 effectieve code te genereren. Hierbij dienen dan ook de overige opties
@@ -108,25 +110,24 @@ def load(string, model=None):
   \label{lst:codegen-api}
 \end{listing}
 
-In volgorde zien we de verschillende fasen uit het generatie proces: het
-aanmaken van een (leeg) model, het parsen van de broncode, het deduceren van
-onbekende types, het controleren of een model volledig in orde is en
-uiteindelijk het genereren van de code. De bijkomende \ttt{load} functie
-combineert de \ttt{create\_model} en \ttt{parse} functionaliteit in \'e\'en
-handige functie.
+De verschillende fasen uit het generatie proces bestaan uit het aanmaken van
+een (leeg) model, het parsen van de broncode, het deduceren van onbekende
+types, het controleren of een model volledig in orde is en uiteindelijk het
+genereren van de code. De bijkomende \ttt{load} functie combineert de
+\ttt{create\_model} en \ttt{parse} functionaliteit in \'e\'en handige functie.
 
 De API laat toe om de generator vanuit Python aan te spreken en eventueel
 verder te integreren in een uitgebreider compilatieproces, of om andere
 interfaces te voorzien (visuele gebruikersinterfaces zoals bv. een
 webinterface\dots).
 
-De API biedt toegang tot de entiteiten op het hoogste niveau, zoals de parser,
-de model-entiteit uit het SM\dots De volledige openheid van Python code laat
-verder toe om dieper door te dringen en elk aspect van het bv. model te
+Verder biedt de API toegang tot de entiteiten op het hoogste niveau, bv. de
+parser, de model-entiteit uit het SM\dots De volledige openheid van Python code
+laat verder toe om dieper door te dringen en elk aspect van het bv. model te
 ondervragen of zelfs te wijzigen.
 
-Beide onderliggende modellen zijn echter volledig ondervraagbaar aan de hand
-van een \emph{visitor}. Deze worden door de generator veelvuldig gebruikt,
-zelfs voor kleine operaties en bieden een veel aantrekkelijkere interface om
-met de modellen te werken dan het ruwweg volgen van eigenschappen en methoden
-doorheen het model.
+Beide onderliggende modellen kunnen volledig benaderd worden aan de hand van
+een \emph{visitor}. Deze wordt door de generator veelvuldig gebruikt, zelfs
+voor kleine operaties en biedt een aantrekkelijkere interface om met de
+modellen te werken dan het direct ondervragen van eigenschappen en het
+aanroepen van methoden in het model.
