@@ -5,7 +5,7 @@
 
 Uit de bespreking van de context waarin deze masterproef kadert, wordt
 duidelijk dat inbraakdetectie bij draadloze sensornetwerken een dimensie
-complexer kan zijn dan de overeenkomstige oplossingen in een klassiek computer
+complexer kan zijn, dan de overeenkomstige oplossingen in een klassiek computer
 netwerk. In dit hoofdstuk nemen we het volledige probleemgebied in beschouwing
 en duiden we de essenti\"ele pijnpunten aan.
 
@@ -39,7 +39,7 @@ zoveelste variant van een mobiel en ad-hoc netwerk (MANET)
 \citep{garg2010mobile}, waarvan de beveiligingsrisico's reeds uitvoerig
 onderzocht zijn \citep{djenouri2005survey, zhang2000intrusion,
 kachirski2003effective}, toch blijkt al snel dat een DSN nog enkele typische
-eigenschappen heeft die de problematiek uitvergroten.
+eigenschappen heeft die de problematiek vergroten.
 
 In \citep{garg2010mobile} vinden we een beknopte maar duidelijke vergelijking
 van een MANET versus een DSN:
@@ -47,7 +47,7 @@ van een MANET versus een DSN:
 \begin{itemize}
 
   \item Het aantal knopen in een DSN is veel groter dan het aantal
-  participanten van een MANET. Typische grootorde is 1.000 tot 10.000 knopen
+  participanten van een MANET. Typische grootteorde is 1.000 tot 10.000 knopen
   over de betrokken oppervlakte.
 
   \item Sensorknopen zijn meestal immobiel en moeten samenwerken om de
@@ -64,27 +64,26 @@ van een MANET versus een DSN:
 
 \end{itemize}
 
-Uit de verschillen begrijpen we dat een DSN makkelijker kan aangevallen worden
+Uit de verschillen begrijpen we dat een DSN makkelijker aangevallen kan worden
 door zijn opbouw uit een groot aantal statische knopen, die typisch via
-\emph{broadcasting} communiceren. Aangezien dat zich telkens slechts een kleine
-subgroep van het netwerk binnen een actieve communicatieradius bevindt, maakt
-dat grote delen van het netwerk \emph{blind} of eerder \emph{doof} zijn voor
-wat er zich afspeelt.
+\emph{broadcasting} communiceren. Aangezien slechts een kleine subgroep van het
+netwerk zich binnen een actieve communicatieradius bevindt, zijn grote delen
+van het netwerk \emph{blind} of eerder \emph{doof}.
 
 Hierbij komt dat, om het energieverbruik laag te houden, sensorknopen typisch
 trachten om zoveel mogelijk in een slaaptoestand te vertoeven. Hierdoor worden
-de omringende knopen nog meer ontzegt van enige samenwerking. We merken hier op
-dat er een onderscheid gemaakt moet worden tussen de beschikbaarheid van een
-sensorknoop en de beschikbaarheid van het netwerk als een geheel en dat niet
-eenvoudig een sensorknoop op zich mag beschouwd worden wanneer we een analyse
-zouden maken van het beveiligingsrisico.
+de omringende knopen nog meer enige vorm van samenwerking ontzegt. Er dient een
+onderscheid gemaakt te worden tussen de beschikbaarheid van een sensorknoop en
+de beschikbaarheid van het netwerk als een geheel. Een sensorknoop mag niet
+zomaar op zich beschouwd worden, wanneer we een analyse zouden maken van het
+beveiligingsrisico.
 
-Bijlage \ref{appendix:node-capture} toont hoe eenvoudig het is om \'e\'en enkele
-knoop te veroveren wanneer fysieke toegang mogelijk wordt, waardoor we moeten
-uitgaan van het feit dat geen enkele in het geheugen opgeslagen informatie per
-definitie veilig is. Hier zien we dat op valk van integriteit, een sensorknoop
-zeer kwetsbaar is en dat informatie die gebruikt kan worden voor authenticatie
-al snel publiekelijk kan worden.
+Bijlage \ref{appendix:node-capture} toont hoe eenvoudig het is om \'e\'en
+enkele knoop te veroveren wanneer fysieke toegang mogelijk wordt, waardoor we
+moeten uitgaan van het feit dat geen enkele in het geheugen opgeslagen
+informatie per definitie veilig is. Hier zien we dat op vlak van integriteit
+een sensorknoop zeer kwetsbaar is en dat informatie die gebruikt kan worden
+voor authenticatie al snel publiekelijk kan worden.
 
 Daartegenover staat echter wel dat door het grote aantal knopen, een louter
 fysieke aanval meestal onmogelijk is. Een aanvaller kan wel door een enkele
@@ -96,52 +95,51 @@ sectie \ref{subsection:cooperation}, om een eventuele indringer te ontmaskeren.
 
 Indien de aanvaller inderdaad een knoop heeft veroverd en wijzigingen heeft
 aangebracht aan de software om zo gebruik te kunnen maken van de knoop binnen
-het netwerk, kan zoals we zaken in sectie \ref{subsection:attestation} software
-attestatie een mogelijke piste zijn voor naburige knopen om indringers te
-detecteren.
+het netwerk, kan software attestatie (zie sectie \ref{subsection:attestation})
+een mogelijke piste zijn voor naburige knopen om indringers te detecteren.
 
-Maar veelal zullen de knopen in een DSN zich moeten focussen op het detecteren
-van anomali\"en in het gedrag van andere knopen, eerder besproken in sectie
-\ref{subsection:anomaly}. Aangezien een knoop niet heel de tijd actief is en
-dus niet alle gedragingen van andere knopen kan aanschouwen, kan er ook geen
+Veelal zullen de knopen in een DSN zich moeten focussen op het detecteren van
+anomali\"en in het gedrag van andere knopen (zie sectie
+\ref{subsection:anomaly}). Aangezien een knoop niet heel de tijd actief is en
+dus niet alle gedragingen van andere knopen kan oppikken, kan er ook geen
 sprake zijn van een totaalbeeld en zal een knoop slechts een statistische
 zekerheid kunnen opbouwen omtrent het vertrouwen dat geschonken wordt aan een
 andere knoop. Algoritmen die zo'n reputatie ondersteunen zagen we eerder in
 sectie \ref{subsection:reputation}.
 
-Omdat een DSN grote hoeveelheden gegevens verzameld, is een reductie en
-tussentijdse verwerking soms een noodzaak. Dit maakt natuurlijk ook dat
-tussenliggende knopen de gegevens die via hen verstuurd worden moeten kunnen
-verwerken. Klassieke encryptie tussen verzender en ontvanger is in het geval
-een DSN dus niet echt aangewezen. Terugvallen op een symmetrische sleutel is
-een optie, maar plaatst de vertrouwelijkheid onder druk.
+Omdat een DSN grote hoeveelheden gegevens verzamelt, is een reductie en
+tussentijdse verwerking soms een noodzaak. Dit maakt dat tussenliggende knopen
+de gegevens die via hen verstuurd worden moeten kunnen verwerken. Klassieke
+encryptie tussen verzender en ontvanger is in het geval van een DSN niet
+aangewezen. Terugvallen op een symmetrische sleutel is een optie, maar plaatst
+de vertrouwelijkheid onder druk.
 
-Een andere systeem, bv. met publieke sleutels, zal veelal te zwaar uit vallen,
+Een andere systeem, bv. met publieke sleutels, zal veelal te zwaar uitvallen,
 omdat de algoritmen enerzijds een te grote belasting zouden vormen voor de
 rekenkracht en zo ook het energieverbruik zouden taxeren. Anderzijds zou de
-hoeveelheid sleutels die elke knoop zou moeten beheren de geheugennoden de
-hoogte in drijven. Dit zorgt natuurlijk ook voor een probleem omtrent
-niet-weerlegbaarheid. Dit probleem is natuurlijk een belangrijk
-onderzoeksdomein. De auteurs van \citep{girao2005cda} stellen met
-\emph{Concealed Data Aggregation} (CDA) een oplossing voor die encryptie van
-verzender tot ontvanger garandeert, maar tevens toelaat dat tussenliggende
-knopen de informatie aggregeren, zonder deze te decoderen.
+hoeveelheid sleutels die elke knoop dient te beheren de geheugennoden de hoogte
+in drijven. Dit zorgt ook voor een probleem omtrent niet-weerlegbaarheid. Dit
+probleem is natuurlijk een belangrijk onderzoeksdomein. De auteurs van
+\citep{girao2005cda} stellen met \emph{Concealed Data Aggregation} (CDA) een
+oplossing voor die encryptie van verzender tot ontvanger garandeert, maar
+tevens toelaat dat tussenliggende knopen de informatie aggregeren, zonder deze
+te decoderen.
 
-We kunnen concluderen dat sensorknopen en -netwerken duidelijk geen eenvoudige
-omgeving zijn wanneer het neerkomt op beveiliging. Ze slagen er in om ongeveer
-tegen elk aspect van zowel het CIA als AAA model in te gaan, wat zich tevens
-reflecteert in het feit dat ze tegelijkertijd de rol vervullen van PDP en PEP.
-De rol van PIP is gedistribueerd. Elke node is in eerste plaats zijn eigen PIP,
-waardoor alle rollen samenvallen. Anderzijds kunnen inbraakdetectiealgoritmen
-ook informatie van andere knopen gebruiken, zoals we zagen in het geval van
-reputatie in sectie \ref{subsection:reputation}. Gegeven de problematische
-eigenschappen hierboven beschreven, moet deze informatie natuurlijk steeds met
-de nodige argwaan behandeld worden.
+We concluderen dat sensorknopen en -netwerken duidelijk geen eenvoudige
+omgeving zijn wanneer het neerkomt op beveiliging. Ze slagen er in om tegen
+ongeveer elk aspect van zowel het CIA- als AAA-model in te gaan. Dit
+reflecteert zich tevens in het feit dat ze tegelijkertijd de rol vervullen van
+PDP en PEP. De rol van PIP is gedistribueerd. Elke node is in eerste plaats
+zijn eigen PIP, waardoor alle rollen samenvallen. Anderzijds kunnen
+inbraakdetectiealgoritmen ook informatie van andere knopen gebruiken, zoals we
+zagen in het geval van reputatie in sectie \ref{subsection:reputation}. Gegeven
+de problematische eigenschappen hierboven beschreven, moet deze informatie
+steeds met de nodige argwaan behandeld worden.
 
 \section{Software}
 \label{section:problem-software}
 
-In een normale situatie wordt er uit gegaan van een solide basis en wordt het
+In een normale situatie wordt uitgegaan van een solide basis en wordt het
 hardware-platform en het netwerk gezien als een veilig vertrekpunt. Software
 wordt vervolgens typisch gezien als het zwakke broertje waar allerhande kleine
 fouten leiden tot inbraakmogelijkheden.
@@ -156,8 +154,8 @@ de knoop zijn sensoren benadert kan er een boodschap van een andere knoop
 toekomen, of de knoop waarnaar een bericht verzonden moet worden is niet
 beschikbaar, enz.
 
-Ook al is de functionaliteit redelijk beperkt, toch dient met voor het
-schrijven van software voor sensorknopen, al snel terug te vallen op software
+Ook al is de functionaliteit redelijk beperkt, toch dient men voor het
+schrijven van software voor sensorknopen al snel terug te vallen op software
 bibliotheken en/of raamwerken om enkele typische gebruikspatronen te
 ondersteunen en toegankelijk te maken. Ook besturingssystemen worden ontwikkeld
 voor sensorknopen. Ze kunnen niet vergeleken worden met klassieke
@@ -166,11 +164,11 @@ leveren zoals procesbeheersing, geheugengebruik, netwerkcommunicatie,enz. Twee
 leidende voorbeelden zijn TinyOS \citep{levis2005tinyos} en Contiki
 \citep{dunkels2004contiki}.
 
-Het is duidelijk dat beide kiezen voor een aanpak die gericht is op de
-ontwikkeling van toepassingen: TinyOS zet sterk in op componenten en Contiki op
-lichte processen, het dynamische laden van modules en was een voorloper met
-\'e\'en van de eerste IPv6 netwerkimplementaties. Het is niet de bedoeling van
-deze masterproef om een gedetailleerde vergelijking te maken van beide. We zien
+Beide kiezen voor een aanpak die gericht is op de ontwikkeling van
+toepassingen: TinyOS zet sterk in op componenten en Contiki op lichte
+processen, het dynamische laden van modules en was een voorloper met \'e\'en
+van de eerste IPv6 netwerkimplementaties. Het is niet de bedoeling van deze
+masterproef om een gedetailleerde vergelijking te maken van beide. We zien
 zelfs dat ze naar elkaar toegroeien. Voor een gedetailleerdere vergelijking
 verwijzen we naar \citep{reusing2012comparison} en delen de conclusie dat beide
 besturingssystemen in staat zijn om de typische noden van een sensornetwerk te
@@ -182,7 +180,7 @@ aantal knopen.
 
 Aangezien beveiliging niet aan de basis ligt van deze systemen, vinden we
 hieromtrent veel onderzoek \citep{paul2009safe, casado2009contikisec,
-karlof2004tinysec}. Dit is echter een suboptimale situatie. Desalniettemin zijn
+karlof2004tinysec}. Dit is echter een suboptimale situatie, desalniettemin zijn
 deze systemen een noodzakelijk kwaad.
 
 \section{Onderzoek}
@@ -199,25 +197,25 @@ afgelopen jaren geproduceerd is. Toch is \'e\'en teneur duidelijk aanwezig: de
 onmogelijkheid om een sluitend geheel te bouwen hangt als een zwaard van
 Damocles boven elke voorgestelde oplossing.
 
-En dit heeft wel degelijk ingrijpende gevolgen voor onderzoek. De meerderheid
-aan artikels focust zich op een klein detail, een oplossing voor \'e\'en
-specifiek probleem. Slechts een minderheid durft een raamwerk voor te stellen,
-echter geen enkel biedt een open uitnodiging om ander onderzoek echt op te
-nemen. Er is geen basis om inbraakdetectiealgoritmen voor DSN op formele manier
-uit te werken.
+Dit heeft wel degelijk ingrijpende gevolgen voor onderzoek. De meerderheid van
+artikels focust zich op een klein detail, een oplossing voor \'e\'en specifiek
+probleem. Slechts een minderheid durft een raamwerk voor te stellen, echter
+geen enkel biedt een open uitnodiging om ander onderzoek echt op te nemen. Er
+is geen basis om inbraakdetectiealgoritmen voor DSN op formele manier uit te
+werken.
 
 Dit leidt tot veel literatuur, met intrinsieke waarde, maar die bijzonder
-moeilijk te evalueren, laat staan te implementeren is. Maar deze situatie is
+moeilijk te evalueren, laat staan te implementeren is. Deze situatie is
 evengoed nadelig voor de onderzoekers zelf. Zo zijn ze nauwelijks in staat om
 hun werk effectief te evalueren of zelfs te vergelijken. Resultaten worden
 louter gebaseerd op specifieke implementaties en maken geen abstractie van het
-platform. Veelal zijn ze zelfs specifiek ontworpen voor \'e\'en specifiek
+platform. Veelal zijn ze zelfs specifiek ontworpen voor \'e\'en bepaald
 platform en is de overdraagbaarheid een groot vraagteken.
 
-Ook indien er gewerkt wordt met simulaties, zijn deze meestal zeer
-platform-gebonden en zijn de resultaten eerder technisch dan functioneel van
-aard. Van interoperabiliteit is nagenoeg geen sprake en niet \'e\'en artikel
-werd gevonden waar werken van verschillende auteurs samen worden gebracht.
+Indien er gewerkt wordt met simulaties, zijn deze meestal verbonden aan \'e\'en
+platform en zijn de resultaten eerder technisch dan functioneel van aard. Van
+interoperabiliteit is nagenoeg geen sprake en niet \'e\'en artikel werd
+gevonden waar werken van verschillende auteurs samen worden gebracht.
 
 \section{Ontwikkeling}
 \label{section:problem-develop}
@@ -227,15 +225,15 @@ de enkele voorbeelden die we eerder zagen, kunnen we reeds opmaken dat zelfs de
 elementairste algoritmen toch al aardig wat werk met zich meebrengen.
 Vermenigvuldig dat met een aantal algoritmen om een redelijke dekking te
 bekomen en het werk om een IDS te voorzien overstijgt het effectieve
-functionele sensor-gerelateerde werk dat feitelijk de enige bedoeling is van de
+functionele sensor-gerelateerde werk dat feitelijk de bedoeling is van de
 ontwikkeling.
 
 In tegenstelling tot andere takken van de informatica en software ontwikkeling,
-kan er in het geval van inbraakdetectie in een DSN, geen gebruik gemaakt worden
-van bestaande implementaties en kan een ontwikkelaar niet eenvoudig een
-bibliotheek importeren en met een eenvoudige oproep een detectiealgoritme
-toevoegen aan zijn toepassing. In de voorgaande sectie zagen we waarom het
-onderzoek hier geen bruikbaar materiaal aanlevert.
+kan er in het geval van inbraakdetectie in een DSN, eigenlijk geen gebruik
+gemaakt worden van bestaande implementaties. Een ontwikkelaar kan niet
+eenvoudig een bibliotheek importeren en met een enkele oproep een
+detectiealgoritme toevoegen aan zijn toepassing. In de voorgaande sectie zagen
+we waarom het onderzoek hier geen bruikbaar materiaal aanlevert.
 
 Indien \'e\'en van de drijfveren van ontwikkelaars is om de levensduur van een
 enkele batterij optimaal te benutten, is het eenvoudig hergebruiken van
@@ -243,56 +241,57 @@ bestaande bibliotheken van algoritmen geen optie. De verschillende algoritmen
 voeren typisch dezelfde operaties uit: verwerken van inkomende berichten, het
 overlopen van gekende knopen\dots
 
-Ook de C programmeertaal is op zich al een uitdaging. Dit heeft geleid tot
+Ook C, als programmeertaal, is op zich al een uitdaging. Dit heeft geleid tot
 nader onderzoek en verschillende gespecialiseerde talen hebben reeds hun
 opwachting gemaakt. Een eerste zagen we reeds in de context van TinyOS, dat
 nesC \citep{gay2003nesc} gebruikt, een component-geori\"enteerde uitbreiding
-van C. Binnen het zelfde project werd ook TinyScript
-\citep{levis2004tinyscript} ge\"introduceerd; een imperatieve, op Basic
-ge\"inspireerde taal met dynamische typering en elementaire controle structuren
-zoals condities en lussen. De doelstelling is om de complexiteit van de
-onderliggende nesC taal te verbergen voor minder technische analisten.
+van C. Binnen hetzelfde project werd ook TinyScript \citep{levis2004tinyscript}
+ge\"introduceerd; een imperatieve, op Basic ge\"inspireerde taal met dynamische
+typering en elementaire controlestructuren zoals condities en lussen. De
+doelstelling is om de complexiteit van de onderliggende nesC taal te verbergen
+voor minder technische analisten.
 
-Maar ook fundamenteel andere talen trachtten een antwoord te bieden voor de
+Fundamenteel andere talen trachtten ook een antwoord te bieden voor de
 discrepantie tussen de relatief lage complexiteit van de toepassing en
 detectiealgoritmen en de soms complexe implementatie binnen een op momenten
 barbaarse ontwikkelomgeving. \'E\'en van de doelstellingen van het ABSYNTH
-project \citep{url:absynth} is om domein experten controle te geven over de
+project \citep{url:absynth} is om domeinexperten controle te geven over de
 ontwikkeling van software voor DSN. Om dit te realiseren hanteren ze talen,
-compilers en synthese technieken. WASP2, een taal die ontworpen werd in het
+compilers en synthesetechnieken. WASP2, een taal die ontworpen werd in het
 kader van dit project, is \'e\'en uit een aantal talen die opteerden om
 database-geori\"enteerde talen als voorbeeld te nemen.
 
 \section{Uitbating}
 \label{section:problem-operations}
 
-Het belang van de controle door domein experten brengt ons bij een laatste
-groep mensen die toch graag controle wil hebben over een DSN: de eigenaar of
-uitbater van het netwerk.
+Het belang van de controle door domeinexperten brengt ons bij een laatste groep
+die graag controle wil hebben over een DSN: de eigenaar of uitbater van het
+netwerk.
 
 Het beeld dat de eigenaar een \'e\'enmalige opdracht geeft tot ontwikkeling kan
 misschien te verdedigen zijn in projecten waar weinig tot geen beveiliging
-genoodzaakt is, maar bij meer kritische applicaties waar er effectief een IDS
+noodzaak is, maar bij meer kritische applicaties waar er effectief een IDS
 voorzien wordt in het netwerk, is dit zeker niet meer van toepassing.
 
 Een IDS kan, zeker in het kader van een DSN, geen statisch gegeven zijn. De
-uitbater van een netwerk zal, indien het inzetten van een IDS serieus wordt
-genomen, genoodzaakt zijn om de set van algoritmen over tijd aan te passen.
-Wanneer we bv. nogmaals kijken naar SNORT \citep{roesch1999snort}, dan zien we
-dat ook bij deze centrale IDS er regelmatige updates gebeuren van de patronen
-die gedetecteerd kunnen worden. Dit zal niet anders zijn bij een IDS in een DSN.
+uitbater van een netwerk zal, indien het inzetten van een IDS serieus genomen
+wordt, genoodzaakt zijn om de set van algoritmen over verloop van tijd aan te
+passen. Wanneer we bv. nogmaals kijken naar SNORT \citep{roesch1999snort}, dan
+zien we dat ook bij deze centrale IDS er regelmatige updates gebeuren van de
+patronen die gedetecteerd kunnen worden. Dit zal ook zo zijn bij een IDS in een
+DSN.
 
-Indien de uitbater voor elk van deze aanpassingen terug moet gaan naar de
-ontwikkelaar, zal dit snel een onwerkbare en vooral onrealistische situatie met
-zich meebrengen. Een uitbater moet in staat zijn om op een flexibele manier het
-IDS van zijn DSN te configureren en te voorzien van nieuwe of bijgewerkte
+Indien de uitbater voor elke aanpassingen terug moet gaan naar de ontwikkelaar,
+zal dit snel een onwerkbare en vooral onrealistische situatie met zich
+meebrengen. Een uitbater moet in staat zijn om op een flexibele manier het IDS
+van zijn DSN te configureren en te voorzien van nieuwe of bijgewerkte
 detectiealgoritmen. Net zoals een klassiek IDS, zou een IDS voor een DSN
-eigenlijk als een aparte entiteit moeten kunnen beheerd worden.
+eigenlijk als een aparte entiteit moeten beheerd kunnen worden.
 
 \section{Probleemdefinitie}
 \label{section:problem-definition}
 
-We vatten de gedachtengang die de probleemstelling onderbouwt samen in een
+We vatten de gedachtegang die de probleemstelling onderbouwt samen in een
 probleemdefinitie:
 
 \begin{description}
@@ -303,7 +302,8 @@ probleemdefinitie:
 
   \item[Standaardisatie] Het ontbreken van de facto standaarden op zowel hard-
   als softwarevlak, betekent dat een oplossing flexibel moet zijn. Deze
-  standaarden zullen opduiken, maar het is onverantwoord om hierop te wachten.
+  standaarden zullen naar voor treden, maar het is onverantwoord om hierop te
+  wachten.
 
   \item[Formele beschrijving] Dit gebrek aan standaardisatie keert ook terug
   bij detectiealgoritmen. Er bestaat geen gemeenschappelijke formele taal die
