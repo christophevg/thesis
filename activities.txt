@@ -625,7 +625,7 @@ activities
 - completed problem statement: development, operations (1h30min)
 
 2014-05-12 (5h/590h30min)
-- completed solutionstrategy (4h)
+- completed solution strategy (4h)
 - additional touch-ups to solutionstrategy (30min)
 - prepared draft architecture diagrams (30min)
 
@@ -673,3 +673,6 @@ activities
 
 2014-05-25 (10h/652h)
 - completed review and additions ch1-ch8 (10h)
+
+2014-05-26 (3h/655h)
+- completed review of appendices (3h)
