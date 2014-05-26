@@ -3,18 +3,16 @@
 \chapter{Knoopverovering}
 \label{appendix:node-capture}
 
-Zoals reeds beschreven in de inleiding en in de situering hiervoorafgaand, is
-de fysieke toegankelijkheid van knopen een re\"eel en groot probleem voor
-draadloze sensornetwerken. In de volgende paragrafen illustreren we hoe
-eenvoudig het is om een knoop te veroveren en dat de knoop en zijn netwerk hier
-nagenoeg niets van kunnen merken.
+Zoals reeds beschreven in de inleiding en situering, is de fysieke
+toegankelijkheid van sensorknopen een re\"eel probleem. In de volgende
+paragrafen illustreren we hoe eenvoudig het is om een knoop te veroveren en dat
+dit zelfs kan zonder dat de knoop of het netwerk hier iets van merken.
 
 \section{Situatie en doel}
 
-Het hart van elke draadloze sensornetwerk knoop is de microcontroller of \mcu.
-Door zijn ge\"integreerde architectuur bevat deze nagenoeg alle onderdelen die
-interessant kunnen zijn en kan men zich louter hierop focussen bij een poging
-om de knoop te veroveren.
+Het hart van elke draadloze sensorknoop is de \mcu. Door zijn ge\"integreerde
+architectuur bevat deze nagenoeg alle onderdelen die interessant kunnen zijn en
+kan men zich louter hierop focussen bij een poging om de knoop te veroveren.
 
 In de testopstelling voor dit experiment maken we gebruik van een Atmel
 ATMEGA1284p \citep{datasheet:atmega1284p}. Dit is een representatieve \mcu met
@@ -25,9 +23,8 @@ algemeenheid van het probleem te illustreren.
 
 De \mcu wordt voorzien van een eenvoudig programma dat een numerieke teller
 verhoogt. Het doel van deze veroveringspoging is om de waarde van deze teller
-te verkrijgen, zonder dat dit de werking van de \mcu verandert.
-
-Figuur \ref{fig:node-capture-schematic} toont het schema van deze opstelling.
+te verkrijgen zonder dat dit de werking van de \mcu verandert. Figuur
+\ref{fig:node-capture-schematic} toont het schema van deze opstelling.
 
 \begin{figure}[ht]
   \centering
@@ -56,10 +53,10 @@ verbinding naar een terminal verzonden.
   \label{lst:node-capture}
 \end{listing}
 
-Het is dus de bedoeling om de waarde van deze \ttt{counter} variabele te
+Het is dus de bedoeling om de waarde van deze \ttt{counter}-variabele te
 bemachtigen, zonder dat de werking van het programma onderbroken wordt. Deze
-variabele staat hier natuurlijk symbool voor eender welk gegeven dat in het
-geheugen van de node wordt opgeslagen.
+variabele staat symbool voor eender welk gegeven dat in het geheugen van de
+node wordt opgeslagen.
 
 \vspace{-3mm}
 
@@ -69,12 +66,13 @@ De aanval bestaat er in dit geval in om de knoop te verbinden met een
 hardwarematige foutopspoorder, zoals de Atmel JTAGICE mkII
 \citep{manual:jtagicemkii}. Dit kan bv. gebeuren aan de hand van een JTAG
 verbinding. Dit is een verbinding met tien draden, waarvan er vier aangesloten
-moeten worden op de \mcu\footnote{Normaal gezien worden er 5 aangesloten. De
-vijfde verbinding is de zgn. \ttt{RESET} aansturing. Aangezien we bij deze
-aanval de \mcu zeker niet willen resetten, kan deze verbinding weggelaten
-worden.} en twee naar een voeding en aarding geleid moeten worden. Zoals te
-zien is op figuur \ref{fig:node-capture-jtag} worden de vier draden eenvoudig
-op naast elkaar liggende pinnen (24 tot 27) van de \mcu aangesloten.
+worden op de \mcu. Normaal gezien, bij programmatie of foutopsporing, worden 5
+draden aangesloten. De vijfde verbinding is de zgn. \ttt{RESET}-aansturing.
+Aangezien we bij deze aanval de \mcu zeker niet willen \emph{resetten}, kan
+deze verbinding weggelaten worden. Zoals te zien is op figuur
+\ref{fig:node-capture-jtag} worden de vier draden eenvoudig op naast elkaar
+liggende pinnen (24 tot 27) van de \mcu aangesloten. Nog twee draden gaan naar
+de voeding en aarding.
 
 \begin{figure}[ht]
   \centering
@@ -83,7 +81,7 @@ op naast elkaar liggende pinnen (24 tot 27) van de \mcu aangesloten.
   \label{fig:node-capture-jtag}
 \end{figure}
 
-De uitvoer van de applicatie wordt weergegeven in listing
+De uitvoer van de applicatie wordt weergegeven in codevoorbeeld
 \ref{lst:node-capture-terminal} en toont een terminal applicatie die deze
 uitvoer weergeeft. De applicatie werkt ononderbroken.
 
@@ -106,18 +104,17 @@ counter = 16
   \label{lst:node-capture-terminal}
 \end{listing}
 
-Tijdens dat deze uitvoer gerealiseerd werd, werd er echter een aanval
-uitgevoerd. Deze werd gedaan aan de hand van de standaard
-foutopsporingsmogelijkheden van de \mcu. Hiervoor werd een aangepaste versie
-van de standaard foutopsporingssoftware
-\ttt{gdb}\footnote{http://www.gnu.org/software/gdb/} gebruikt, nl.
-\ttt{avr-gdb}.
+Tijdens de realisatie van deze uitvoer, werd er echter een aanval uitgevoerd.
+Deze werd gedaan aan de hand van de standaard foutopsporingsmogelijkheden van
+de \mcu. Hiervoor werd een aangepaste versie van de standaard
+foutopsporingssoftware \ttt{gdb}\footnote{http://www.gnu.org/software/gdb/}
+gebruikt, nl. \ttt{avr-gdb}.
 
-Aangezien deze niet standaard met een JTAG verbinding kan werken, werd tevens
-een brug opgezet door middel van
+Vermits \ttt{gdb} standaard niet met een JTAG verbinding kan werken, werd
+tevens een brug opgezet door middel van
 \ttt{avarice}\footnote{http://avarice.sourceforge.net}. Codevoorbeeld
 \ref{lst:node-capture-avarice} toont het opstarten van de brug en het
-beschikbaar maken van de JTAG verbinding via een locale server verbinding.
+beschikbaar maken van de JTAG verbinding via een lokale netwerkverbinding.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
@@ -165,7 +162,7 @@ Continuing.
 
 Codevoorbeeld \ref{lst:node-capture-hexdump} toont de inhoud van de veroverde
 gegevens. \ttt{0c} en \ttt{0f} zijn telkens de eerste byte in het geheugen van
-de \ttt{counter} variabele en tonen inderdaad de waarde die de variabele had op
+de \ttt{counter}-variabele en tonen inderdaad de waarde die de variabele had op
 het moment van de opvraging.
 
 \begin{listing}[ht]
@@ -185,13 +182,15 @@ $ hexdump counter15.bin
 
 \section{Geheugens en geheugenplaatsen}
 
-In de \ttt{gdb} sessie worden expliciete adressen in het geheugen gebruikt. Dit
+In de \ttt{gdb}-sessie worden expliciete adressen in het geheugen gebruikt. Dit
 was mogelijk mits enige voorkennis i.v.m. de gecompileerde code. De
-\ttt{counter} variabele is een globale variabele en komt daarom terecht in de
-\ttt{.bss} data sectie. Deze sectie heeft standaard een vaste plaats in het
-datageheugen - dat bij de Harvard architectuur gescheiden is van het programma
-geheugen \citep{avr-memory}. Figuur \ref{fig:avr-ram-map} geeft een overzicht
-van de indeling van het datageheugen op een AVR \mcu.
+\ttt{counter}-variabele is een globale variabele en komt daarom terecht in de
+\ttt{.bss}-sectie. Deze sectie heeft een vaste plaats in het datageheugen - bij
+de Harvard architectuur van de AVR \mcu is dit gescheiden van het
+programmageheugen \citep{avr-memory}.
+
+\noindent Figuur \ref{fig:avr-ram-map} toont de indeling van het datageheugen
+op een AVR \mcu.
 
 \begin{figure}[ht]
   \centering
@@ -202,18 +201,18 @@ van de indeling van het datageheugen op een AVR \mcu.
 
 Zelfs zonder voorkennis over de code kunnen we het datageheugen benaderen. Het
 binaire beeld dat naar de \mcu werd overgebracht, bestond uit de programmacode
-in de \ttt{.text} sectie en de \ttt{.data} sectie met de statische gegevens.
-Aangezien de Harvard architectuur programma en datageheugen scheidt, wordt bij
-het uitvoeren van het programma, de \ttt{.data} sectie gekopieerd naar dit
-aparte datageheugen. Daarna wordt de \ttt{.bss} sectie gevuld en start de
+in de \ttt{.text}-sectie en de \ttt{.data}-sectie met de statische gegevens.
+Aangezien de Harvard architectuur programma- en datageheugen scheidt, wordt bij
+het uitvoeren van het programma, de \ttt{.data}-sectie gekopieerd naar dit
+aparte datageheugen. Daarna wordt de \ttt{.bss}-sectie gevuld en start de
 opbouw van de \ttt{heap}.
 
 We kunnen nu twee binaire beelden downloaden van de \mcu: het oorspronkelijk
-ge\"uploade beeld en een kopie van het datageheugen. Dit laatste start op
-adres \ttt{0x0100} met een bijkomende verschuiving van \ttt{0x800000}. Door het
-einde van het oorspronkelijke beeld en het begin van het datageheugen te
-vergelijken, kunnen we de \ttt{.data} sectie bepalen, als ook het begin van de
-\ttt{.bss} sectie.
+opgeladen beeld en een kopie van het datageheugen. Dit laatste start op adres
+\ttt{0x0100} met een bijkomende verschuiving van \ttt{0x800000}. Door het einde
+van het oorspronkelijke beeld en het begin van het datageheugen te vergelijken,
+kunnen we de \ttt{.data}-sectie bepalen, als ook het begin van de
+\ttt{.bss}-sectie.
 
 \section{Conclusies en gevolgen}
 
@@ -222,21 +221,21 @@ ge\"illustreerd hoe met standaard ontwikkelingsmiddelen, doelbewust het
 geheugen van een werkende \mcu uitgelezen en ge\"interpreteerd kan worden.
 
 Een eenvoudige variabele met een teller is zeker geen doelwit op zich, maar het
-is denkbaar dat in een gelijkaardige globale variabele een encryptie sleutel,
-of andere belangrijke informatie, opgeslagen wordt.
+is denkbaar dat in een gelijkaardige globale variabele een encryptiesleutel, of
+andere belangrijke informatie opgeslagen wordt.
 
-De mogelijkheid om via JTAG en OCD (On-Chip Debugging) het geheugen te
+De mogelijkheid om via JTAG en On-Chip Debugging (OCD)) het geheugen te
 benaderen moet echter wel toegelaten worden door de instellingen van de \mcu.
-Maar ook deze instellingen kunnen ook door kwaadwilligen aangepast worden, net
-zoals door de rechtmatige eigenaar en ontwikkelaar van de knoop.
+Maar ook deze instellingen kunnen door kwaadwilligen aangepast worden, net
+zoals door de eigenaar en ontwikkelaar van de knoop.
 
 Het aanpassen van deze instellingen gaat echter gepaard met het herstarten van
 de \mcu, omdat ze deel uitmaken van de programmatie. Indien de software van een
-knoop dus bij het opstarten een validatie doet van de instellingen van de \mcu
-kan het controleren dat deze instellingen geen kwaadaardige acties toelaten.
-Indien wel, kunnen ze er voor zorgen dat ze geen belangrijke informatie
-ontvangen van het netwerk en opslagen in het datageheugen.
+knoop dus bij het opstarten de instellingen van de \mcu valideert, kan het
+controleren dat deze instellingen geen kwaadaardige acties toelaten. Indien
+wel, kunnen ze er voor zorgen dat ze geen belangrijke informatie ontvangen van
+het netwerk en opslagen in het datageheugen.
 
 Hieruit blijkt dat een minimaal onderdeel van een inbraakdetectiesysteem een
-controle zal zijn van de instellingen van de \mcu, wat onderdeel kan uitmaken
-van een globaal \emph{anomalie-detectie} subsysteem.
+controle zal zijn van de instellingen van de \mcu, wat dan weer onderdeel kan
+uitmaken van een globaal \emph{anomalie-detectie} subsysteem.

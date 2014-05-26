@@ -77,14 +77,14 @@ opgevraagde geheugenadressen te controleren en indien ze verwijzen naar
 plaatsen waar zich niet-originele code bevindt, deze te herschrijven naar
 adressen waar de originele code zich bevindt.
 
-Aangezien het merendeel van het programma geheugen op een knoop typisch leeg
+Aangezien het merendeel van het programmageheugen op een knoop typisch leeg
 is, kan de aanvaller zijn benodigde code verbergen in zo'n stuk leeg geheugen.
 Mits zorgvuldige keuze van deze locatie, kan het controleren van en verwijzen
 naar een andere locatie zich beperken tot de manipulatie van \'e\'en enkele bit
 in het adres. Deze techniek wordt ook wel een geheugen schaduwende aanval
 genoemd.
 
-Om het probleem van leeg programma geheugen en de bijhorende uitnodiging aan
+Om het probleem van leeg programmageheugen en de bijhorende uitnodiging aan
 het adres van de aanvaller om zich eenvoudig te kunnen verschuilen, aan te
 pakken, stelelen o.a. \citep{yang2007distributed,seshadri2008sake} voor om dit
 geheugen voor dat het op een knoop wordt geplaatst, op te vullen met
@@ -100,22 +100,19 @@ dan, indien nodig terug hersteld worden.
 
 Indien deze eenvoudige technieken toch niet voldoende ruimte zouden bieden, kan
 er nog altijd gekeken worden naar het datageheugen. We merken immers op dat
-nagenoeg alle vormen van attestatie alleen toegepast worden op het programma
-geheugen. Het datageheugen is immers te veranderlijk en kan niet volledig
+nagenoeg alle vormen van attestatie alleen toegepast worden op het programmageheugen. Het datageheugen is immers te veranderlijk en kan niet volledig
 gekend zijn door de vaststeller.
 
 Hierdoor wordt dit datageheugen natuurlijk het volgende mogelijke
-aandachtspunt voor de aanvaller. Ondanks het feit dat ook op een \mcu het data
-geheugen veelal niet kan uitgevoerd worden, blijft het mogelijk om programma
-code in het datageheugen op te slagen en te kopi\"eren naar het programma
-geheugen.
+aandachtspunt voor de aanvaller. Ondanks het feit dat ook op een \mcu het datageheugen veelal niet kan uitgevoerd worden, blijft het mogelijk om programma
+code in het datageheugen op te slagen en te kopi\"eren naar het programmageheugen.
 
 De \emph{rootkit} voorgesteld in \citep{castelluccia2009difficulty} hanteert dit
 principe. Door middel van de \emph{Return Operation Programming} (ROP)
 techniek, o.a. beschreven in \citep{prandini2012return}, kan een aanvaller met
-eerste haak bij aanvang van de attestatie code in het programma geheugen, zijn
-eigen rootkit uit het programma geheugen laten verwijderen. Na deze operatie is
-het programma geheugen opnieuw intact en zal de originele attestatie routine
+eerste haak bij aanvang van de attestatie code in het programmageheugen, zijn
+eigen rootkit uit het programmageheugen laten verwijderen. Na deze operatie is
+het programmageheugen opnieuw intact en zal de originele attestatie routine
 een positief resultaat opleveren. Maar de eerste haak heeft er ook voor gezorgd
 dat de bij terugkeer uit de attestatie routine een tweede haak geplaatst is die
 op zijn beurt de rootkit en de initi\"ele haak opnieuw door middel van ROP
@@ -129,7 +126,7 @@ werking.
   \label{fig:attestation-rootkit}
 \end{figure}
 
-Het verbergen van de rootkit en het herstellen van het programma geheugen in
+Het verbergen van de rootkit en het herstellen van het programmageheugen in
 zijn oorspronkelijke staat blijkt slechts een overhead van ongeveer 0.3\% op te
 leveren t.o.v. bv. de SWATT attestatie techniek voorgesteld in
 \citep{seshadri2004swatt}. Deze techniek controleert tevens de tijd dat de
@@ -147,17 +144,15 @@ kunnen nemen in de attestatie.
 
 \citep{castelluccia2009difficulty} beschrijven zelf enkele mogelijke pistes
 waarmee een attestatie routine zichzelf zou kunnen beschermen tegen een
-dergelijke rootkit. Een eerste zou op het einde van zijn implementatie het data
-geheugen volledig leeg kunnen maken en vervolgens, zonder een terugkeer
+dergelijke rootkit. Een eerste zou op het einde van zijn implementatie het datageheugen volledig leeg kunnen maken en vervolgens, zonder een terugkeer
 operatie uit te voeren, waardoor de tweede haak vermeden wordt, de knoop te
 herstarten. Het verwijderen van alle gegevens en het herstarten van een knoop
 bij elk attestatie verzoek, kan afhankelijk van de functionaliteit die de knoop
 aanbiedt, in de meeste gevallen niet wenselijk zijn. Dit euvel kan eventueel
 wel ondervangen worden door het wegschrijven van deze gegevens naar een EEPROM.
 
-Een andere oplossingsstrategie zou kunnen liggen in het attesteren van het data
-geheugen. Dit moet dan wel op op het zelfde ogenblik gebeuren als de attestatie
-van het programma geheugen, zodat de rootkit niet in staat is om zichzelf heen
+Een andere oplossingsstrategie zou kunnen liggen in het attesteren van het datageheugen. Dit moet dan wel op op het zelfde ogenblik gebeuren als de attestatie
+van het programmageheugen, zodat de rootkit niet in staat is om zichzelf heen
 en weer te kopi\"eren tussen de twee afzonderlijke attestaties. Zelfs al wordt
 er willekeurig telkens uit het ene of het andere geheugen gelezen, dan nog kan
 de rootkit zich nog steeds verplaatsen tussen de twee geheugens en moet deze
@@ -368,8 +363,7 @@ In \ref{subsection:cooperation} zagen we reeds een implementatie van het Guy
 Fawkes protocol, waardoor een groep van knopen toch een stemming konden houden
 in het bijzijn van veroverde knopen. Een andere voorbeeld van een co\"operatief
 algoritme binnen de context van software-attestatie wordt voorgesteld in
-\citep{yang2007distributed}. Om te vermijden dat aanvallers het lege programma
-geheugen gebruiken om een kopie van de originele software van een knoop op te
+\citep{yang2007distributed}. Om te vermijden dat aanvallers het lege programmageheugen gebruiken om een kopie van de originele software van een knoop op te
 slaan, wordt voordat een knoop in gebruik wordt genomen, deze lege ruimte
 opgevuld met pseudo-willekeurige getallen. Dit gebeurt voor knoop $u$ op basis
 van een initi\"ele waarde $S_u$, de zgn. \emph{seed}
