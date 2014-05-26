@@ -3,7 +3,7 @@
 \chapter{IDP en een co\"operatief algoritme}
 \label{appendix:idp-cooperation}
 
-\citep{krontiris2009cooperative} beschrijft enerzijds een theoretische model
+\citep{krontiris2009cooperative} beschrijft enerzijds een theoretisch model
 voor het zgn. ``Intrusion Detection Problem'' (IDP) en biedt anderzijds een
 zeer praktisch algoritme om gedistribueerd tot een consensus te komen voor het
 ontmaskeren van een kwaadwillige knoop in het netwerk.
@@ -30,8 +30,8 @@ voldoet aan de eigenschappen van correctheid: $\forall s \in S : honest(s)
 aanval zullen na een tijd alle eerlijke knopen in de gealarmeerde set een knoop
 verdenken.
 
-Twee condities worden voorgesteld: de ``Intrusion Detection Condition'' of IDC
-en de ``Neighbourhood Conditions'' of NC. Indien aan minstens \'e\'en van deze
+Twee condities worden voorgesteld: de ``Intrusion Detection Condition'' (IDC)
+en de ``Neighbourhood Conditions'' (NC). Indien aan minstens \'e\'en van deze
 condities voldaan is, is het IDP oplosbaar.
 
 De IDC wordt beschreven als $\forall p,q \in S : source(q) \implies
@@ -74,7 +74,7 @@ verdenkingen op zijn naam heeft staan, kunnen knopen $b$ en $c$ eenvoudig
 beslissen dat knoop $a$ de aanvaller is.
 
 Figuur \ref{fig:idp-examples-2} toont een situatie waar de IDC wel voldaan is
-want $\tilde{AN}(q,r) = \{s\} \not= \tilde{AN}(r,q) = \{\}$. Er zijn echter nu
+want $\tilde{AN}(q,r) = \{s\} \not= \tilde{AN}(r,q) = \{\}$. Er zijn nu echter
 twee knopen met een meerderheid aan verdenkingen: $a$ en $c$. Vanuit het
 standpunt van knoop $b$ moet dus knoop $a$ of knoop $d$ valse aantijgingen
 verspreiden. Als \'e\'en van deze knopen de aanvaller is, dan moet
@@ -96,35 +96,34 @@ een implementatie van het Guy Fawkes protocol, beschreven in
 \citep{anderson1998new}, dat toelaat om een reeks van berichten te authenticeren
 op basis van \'e\'en initi\"eel gedeelde sleutel.
 
-Tijdens de initialisatie fase krijgt elke knoop een unieke sleutel, $K_l$. Aan
-de hand van deze sleutel wordt een \'e\'en-richtingsketting van langte $l$
-gemaakt van sleutels door het toepassen van bv. SHA1 \citep{rfc:3174} hashing
+Tijdens de initialisatiefase krijgt elke knoop een unieke sleutel, $K_l$. Aan
+de hand van deze sleutel wordt een \'e\'enrichtingsketting van lengte $l$
+gemaakt van sleutels door het toepassen van bv. SHA1-hashing \citep{rfc:3174}
 toe te passen: $\{K_0, K_1,\dots K_{l-1}\}$ waarbij $\forall k \in [1..l] :
 K_{k-1} = SHA1(K_k)$. Daarnaast worden ook naburige knopen gezocht tot twee
 knopen ver en wordt sleutel $K_0$ gecommuniceerd aan al deze buren. De
-volledige initialisatie fase wordt verondersteld te gebeuren zonder
-mogelijkheid tot inbraken.
+volledige initialisatiefase wordt verondersteld te gebeuren zonder mogelijkheid
+tot inbraken.
 
 Tijdens de stemming brengen alle knopen een stem uit van de vorm $m_v(s),$ $
 MAC_{K_j}(m_v(s))$. $m_v(s)$ bestaat uit een lijst van knopen die door knoop
 $s$ beschouwd worden als mogelijke aanvallers, of uitgedrukt aan de hand van
 het theoretische model: $m_v(s) = D(s)$. De $MAC_{K_j}()$ functie is een zgn.
 \emph{Message Authentication Code} \citep{rfc:2104} en wordt meestal berekend
-door het toepassen van een \'e\'en-richtings-hashfunctie toe te passen op de
-boodschap. Typisch wordt er aan de boodschap een unieke, wederzijds gekende
-identificatie toegevoegd, zodat de ontvanger van een boodschap deze
-handtekening ook kan berekenen en vergelijken met het origineel. In dit geval
-wordt $K_j$ gebruikt, waarbij $j$ de volgende indexwaarde krijg uit lijst van
-beschikbare sleutels.
+door het toepassen van een \'e\'enrichtings-hashfunctie op de boodschap.
+Typisch wordt er aan de boodschap een unieke, wederzijds gekende identificatie
+toegevoegd, zodat de ontvanger van een boodschap deze handtekening ook kan
+berekenen en vergelijken met het origineel. In dit geval wordt $K_j$ gebruikt,
+waarbij $j$ de volgende indexwaarde krijg uit lijst van beschikbare sleutels.
 
-Een dergelijke boodschap kan op ogenblik van verzending door geen enkele andere
-knoop gevalideerd worden. De enige sleutel die zij tot op dat ogenblik kennen
-is de vorige en de vorige is net het resultaat van een SHA1 operatie op de
+Een dergelijke boodschap kan op het ogenblik van verzending door geen enkele
+andere knoop gevalideerd worden. De enige sleutel die zij tot op dat ogenblik
+kennen is de vorige en deze is net het resultaat van een SHA1-operatie op de
 volgende. Dit betekent dat ook een mogelijke aanvaller niet in staat is om de
 boodschap te wijzigen.
 
 Pas wanneer de knopen elkaars stemmen hebben ontvangen, wordt de gebruikte
-sleutel vrijgegeven in de publicatie fase. Op dit ogenblik kunnen de knopen de
+sleutel vrijgegeven in de publicatiefase. Op dit ogenblik kunnen de knopen de
 eerder verstuurde stemmen valideren. Ze kunnen eerst controleren of de
 gepubliceerde sleutel inderdaad de juiste is. Immers, door het toepassen van
 SHA1 op deze sleutel, moeten zij de huidige gekende sleutel bekomen. Na
@@ -135,10 +134,10 @@ stemmen authentiek zijn, kan met \'e\'enzelfde algoritme door alle knopen de
 aanvaller bepaald worden tijdens de ontmaskering fase.
 
 Het is echter mogelijk dat er meerdere knopen zijn met eenzelfde aantal stemmen
-zijn, iets dat typisch overeenkomt met een gelijke samenstelling van
-gealarmeerde buren, wanneer de IDC niet kan gerealiseerd worden. Onder
-voorbehoud dat aan de NC wel voldaan wordt, kan door het inroepen van de niet
-gealarmeerde buren van de gealarmeerde knopen. Deze zullen op hun beurt nagaan
-of de knopen die verdacht worden, buren zijn en dan aangeven dat zij hen
-\emph{niet} verdenken. Aan de hand van deze informatie kunnen de eerder
-gealarmeerde knopen hun beslissing verder staven.
+zijn, wat overeenkomt met een gelijke samenstelling van gealarmeerde buren,
+wanneer de IDC niet kan gerealiseerd worden. Onder voorbehoud dat aan de NC wel
+voldaan wordt, kan door het inroepen van de niet gealarmeerde buren van de
+gealarmeerde knopen. Deze zullen op hun beurt nagaan of de knopen die verdacht
+worden, buren zijn en dan aangeven dat zij hen \emph{niet} verdenken. Aan de
+hand van deze informatie kunnen de eerder gealarmeerde knopen hun beslissing
+verder staven.
