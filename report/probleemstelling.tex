@@ -5,7 +5,7 @@
 
 Uit de bespreking van de context waarin deze masterproef kadert, wordt
 duidelijk dat inbraakdetectie bij draadloze sensornetwerken een dimensie
-complexer kan zijn, dan de overeenkomstige oplossingen in een klassiek computer
+complexer kan zijn dan de overeenkomstige oplossingen in een klassiek computer
 netwerk. In dit hoofdstuk nemen we het volledige probleemgebied in beschouwing
 en duiden we de essenti\"ele pijnpunten aan.
 
@@ -13,17 +13,18 @@ Sectie \ref{section:problem-hardware} vertrekt van de sensorknoop en bespreekt
 de inherente problemen van de hardware en het netwerk zelf.
 
 Sectie \ref{section:problem-software} bekijkt vervolgens de software. Hierbij
-komen o.a. besturingssystemen aanbod.
+komen o.a. besturingssystemen aan bod.
 
-Sectie \ref{section:problem-research} cre\"ert vervolgens een brug naar het
+Sectie \ref{section:problem-research} cre\"eert vervolgens een brug naar het
 feitelijke ontwikkelingsproces en start bij het onderzoek. Op dit ogenblik is
-dit nagenoeg de enige bron waarvan kan gestart worden bij een analyse.
+dit nagenoeg de enige bron waarvan kan gestart worden bij een analyse voor de
+ontwikkeling van een nieuw IDS.
 
 Sectie \ref{section:problem-develop} volgt het proces verder en bekijkt de
 situatie vanuit het oogpunt van de ontwikkelaars.
 
-Sectie \ref{section:problem-operations} vervolledigt ten slotte de keten met
-een blik op de rol van de uitbating van een WSN. De ontwikkelaar zelden de
+Sectie \ref{section:problem-operations} vervolledigt tot slot de keten met een
+blik op de rol van de uitbating van een WSN. De ontwikkelaar is zelden de
 eigenaar of uitbater van het netwerk. Op het hoogste niveau vinden we immers de
 persoon die uiteindelijk de reden is van het bestaan van de sensorknopen, de
 software en het netwerk als een geheel.
@@ -44,46 +45,47 @@ eigenschappen heeft die de problematiek vergroten.
 In \citep{garg2010mobile} vinden we een beknopte maar duidelijke vergelijking
 van een MANET versus een WSN:
 
-\begin{itemize}
+\begin{description}
 
-  \item Het aantal knopen in een WSN is veel groter dan het aantal
+  \item[Omvang] Het aantal knopen in een WSN is veel groter dan het aantal
   participanten van een MANET. Typische grootteorde is 1.000 tot 10.000 knopen
   over de betrokken oppervlakte.
 
-  \item Sensorknopen zijn meestal immobiel en moeten samenwerken om de
-  gedetecteerde gegevens te verzenden.
+  \item[Samenwerking] Sensorknopen zijn meestal immobiel en moeten samenwerken
+  om de gedetecteerde gegevens te verzenden.
 
-  \item In een MANET is het aantal knopen veel lager, maar hun mobiliteit is
-  zeer hoog.
+  \item[Mobiliteit] In een MANET is het aantal knopen veel lager, maar hun
+  mobiliteit is zeer hoog.
 
-  \item Sensorknopen gebruiken hoofdzakelijk het \emph{broadcast} paradigma om
-  te communiceren, waar in een MANET punt-naar-punt communicatie wordt gebruikt.
+  \item[Broadcasting] Sensorknopen gebruiken hoofdzakelijk het
+  \emph{broadcast}-paradigma om te communiceren, waar in een MANET
+  punt-naar-punt-communicatie wordt gebruikt.
 
-  \item Op vlak van energieverbruik, merken we dat sensorknopen een veel lager
-  verbruik kennen; typisch rond de 0,75 mW.
+  \item[Energie] Op vlak van energieverbruik, merken we dat sensorknopen een
+  veel lager verbruik kennen; typisch rond de 0,75 mW.
 
-\end{itemize}
+\end{description}
 
 Uit de verschillen begrijpen we dat een WSN makkelijker aangevallen kan worden
 door zijn opbouw uit een groot aantal statische knopen, die typisch via
 \emph{broadcasting} communiceren. Aangezien slechts een kleine subgroep van het
 netwerk zich binnen een actieve communicatieradius bevindt, zijn grote delen
-van het netwerk \emph{blind} of eerder \emph{doof}.
+van het netwerk veelal \emph{blind} of eerder \emph{doof}.
 
 Hierbij komt dat, om het energieverbruik laag te houden, sensorknopen typisch
 trachten om zoveel mogelijk in een slaaptoestand te vertoeven. Hierdoor worden
-de omringende knopen nog meer enige vorm van samenwerking ontzegt. Er dient een
+de omringende knopen nog meer enige vorm van samenwerking ontzegd. Er dient een
 onderscheid gemaakt te worden tussen de beschikbaarheid van een sensorknoop en
 de beschikbaarheid van het netwerk als een geheel. Een sensorknoop mag niet
-zomaar op zich beschouwd worden, wanneer we een analyse zouden maken van het
+zomaar op zich beschouwd worden wanneer we een analyse zouden maken van het
 beveiligingsrisico.
 
 Bijlage \ref{appendix:node-capture} toont hoe eenvoudig het is om \'e\'en
 enkele knoop te veroveren wanneer fysieke toegang mogelijk wordt, waardoor we
-moeten uitgaan van het feit dat geen enkele in het geheugen opgeslagen
-informatie per definitie veilig is. Hier zien we dat op vlak van integriteit
-een sensorknoop zeer kwetsbaar is en dat informatie die gebruikt kan worden
-voor authenticatie al snel publiekelijk kan worden.
+moeten uitgaan van het feit dat per definitie geen enkele in het geheugen
+opgeslagen informatie veilig is. Hier zien we dat op vlak van integriteit een
+sensorknoop zeer kwetsbaar is en dat informatie die gebruikt kan worden voor
+authenticatie al snel publiekelijk kan worden.
 
 Daartegenover staat echter wel dat door het grote aantal knopen, een louter
 fysieke aanval meestal onmogelijk is. Een aanvaller kan wel door een enkele
@@ -95,21 +97,21 @@ sectie \ref{subsection:cooperation}, om een eventuele indringer te ontmaskeren.
 
 Indien de aanvaller inderdaad een knoop heeft veroverd en wijzigingen heeft
 aangebracht aan de software om zo gebruik te kunnen maken van de knoop binnen
-het netwerk, kan software attestatie (zie sectie \ref{subsection:attestation})
+het netwerk, kan software-attestatie (zie sectie \ref{subsection:attestation})
 een mogelijke piste zijn voor naburige knopen om indringers te detecteren.
 
 Veelal zullen de knopen in een WSN zich moeten focussen op het detecteren van
 anomali\"en in het gedrag van andere knopen (zie sectie
-\ref{subsection:anomaly}). Aangezien een knoop niet heel de tijd actief is en
-dus niet alle gedragingen van andere knopen kan oppikken, kan er ook geen
-sprake zijn van een totaalbeeld en zal een knoop slechts een statistische
-zekerheid kunnen opbouwen omtrent het vertrouwen dat geschonken wordt aan een
-andere knoop. Algoritmen die zo'n reputatie ondersteunen zagen we eerder in
-sectie \ref{subsection:reputation}.
+\ref{subsection:anomaly}). Aangezien een knoop niet altijd actief is en dus
+niet alle gedragingen van andere knopen kan oppikken, kan er ook geen sprake
+zijn van een totaalbeeld en zal een knoop slechts een statistische zekerheid
+kunnen opbouwen omtrent het vertrouwen dat geschonken wordt aan een andere
+knoop. Algoritmen die zo'n reputatie ondersteunen zagen we eerder in sectie
+\ref{subsection:reputation}.
 
 Omdat een WSN grote hoeveelheden gegevens verzamelt, is een reductie en
 tussentijdse verwerking soms een noodzaak. Dit maakt dat tussenliggende knopen
-de gegevens die via hen verstuurd worden moeten kunnen verwerken. Klassieke
+de gegevens die via hen verstuurd worden, moeten kunnen verwerken. Klassieke
 encryptie tussen verzender en ontvanger is in het geval van een WSN niet
 aangewezen. Terugvallen op een symmetrische sleutel is een optie, maar plaatst
 de vertrouwelijkheid onder druk.
@@ -129,7 +131,7 @@ We concluderen dat sensorknopen en -netwerken duidelijk geen eenvoudige
 omgeving zijn wanneer het neerkomt op beveiliging. Ze slagen er in om tegen
 ongeveer elk aspect van zowel het CIA- als AAA-model in te gaan. Dit
 reflecteert zich tevens in het feit dat ze tegelijkertijd de rol vervullen van
-PDP en PEP. De rol van PIP is gedistribueerd. Elke node is in eerste plaats
+PDP en PEP. De rol van PIP is gedistribueerd. Elke knoop is in eerste plaats
 zijn eigen PIP, waardoor alle rollen samenvallen. Anderzijds kunnen
 inbraakdetectiealgoritmen ook informatie van andere knopen gebruiken, zoals we
 zagen in het geval van reputatie in sectie \ref{subsection:reputation}. Gegeven
@@ -144,7 +146,7 @@ hardware-platform en het netwerk gezien als een veilig vertrekpunt. Software
 wordt vervolgens typisch gezien als het zwakke broertje waar allerhande kleine
 fouten leiden tot inbraakmogelijkheden.
 
-De typische werking van een sensorknoop bestaat uit het herhaaldelijk uitvoeren
+De typische werking van een sensorknoop bestaat uit het repetitief uitvoeren
 van dezelfde taken: ondervragen van sensoren voor meetgegevens, deze
 meetgegevens doorsturen naar een centraal punt en berichten van andere knopen
 verder doorsturen. De software lijkt eenvoudig, maar dit durft bedrieglijk te
@@ -155,8 +157,8 @@ toekomen, of de knoop waarnaar een bericht verzonden moet worden is niet
 beschikbaar, enz.
 
 Ook al is de functionaliteit redelijk beperkt, toch dient men voor het
-schrijven van software voor sensorknopen al snel terug te vallen op software
-bibliotheken en/of raamwerken om enkele typische gebruikspatronen te
+schrijven van software voor sensorknopen al snel terug te vallen op
+softwarebibliotheken en/of raamwerken om enkele typische gebruikspatronen te
 ondersteunen en toegankelijk te maken. Ook besturingssystemen worden ontwikkeld
 voor sensorknopen. Ze kunnen niet vergeleken worden met klassieke
 besturingssystemen. Het zijn typisch uitgebreide raamwerken die diensten
@@ -166,8 +168,8 @@ leidende voorbeelden zijn TinyOS \citep{levis2005tinyos} en Contiki
 
 Beide kiezen voor een aanpak die gericht is op de ontwikkeling van
 toepassingen: TinyOS zet sterk in op componenten en Contiki op lichte
-processen, het dynamische laden van modules en was een voorloper met \'e\'en
-van de eerste IPv6 netwerkimplementaties. Het is niet de bedoeling van deze
+processen, het dynamisch laden van modules en was een voorloper met \'e\'en van
+de eerste IPv6 netwerkimplementaties. Het is niet de bedoeling van deze
 masterproef om een gedetailleerde vergelijking te maken van beide. We zien
 zelfs dat ze naar elkaar toegroeien. Voor een gedetailleerdere vergelijking
 verwijzen we naar \citep{reusing2012comparison} en delen de conclusie dat beide
@@ -186,7 +188,7 @@ deze systemen een noodzakelijk kwaad.
 \section{Onderzoek}
 \label{section:problem-research}
 
-De problemen met de interactie met het platform en de taal, brengen ons bij de
+Deze problemen, betreffende de interactie met het platform, brengen ons bij de
 menselijke kant van het probleem. We volgen het ontwikkelingsproces van begin
 tot einde en starten daarom dicht bij huis met het onderzoek naar
 detectiealgoritmen.
@@ -205,8 +207,8 @@ is geen basis om inbraakdetectiealgoritmen voor WSN op formele manier uit te
 werken.
 
 Dit leidt tot veel literatuur, met intrinsieke waarde, maar die bijzonder
-moeilijk te evalueren, laat staan te implementeren is. Deze situatie is
-evengoed nadelig voor de onderzoekers zelf. Zo zijn ze nauwelijks in staat om
+moeilijk te evalueren is, laat staan te implementeren. Deze situatie is
+evenzeer nadelig voor de onderzoekers zelf. Zo zijn ze nauwelijks in staat om
 hun werk effectief te evalueren of zelfs te vergelijken. Resultaten worden
 louter gebaseerd op specifieke implementaties en maken geen abstractie van het
 platform. Veelal zijn ze zelfs specifiek ontworpen voor \'e\'en bepaald
@@ -228,12 +230,12 @@ bekomen en het werk om een IDS te voorzien overstijgt het effectieve
 functionele sensor-gerelateerde werk dat feitelijk de bedoeling is van de
 ontwikkeling.
 
-In tegenstelling tot andere takken van de informatica en software ontwikkeling,
+In tegenstelling tot andere takken van de informatica- en softwareontwikkeling,
 kan er in het geval van inbraakdetectie in een WSN, eigenlijk geen gebruik
 gemaakt worden van bestaande implementaties. Een ontwikkelaar kan niet
 eenvoudig een bibliotheek importeren en met een enkele oproep een
 detectiealgoritme toevoegen aan zijn toepassing. In de voorgaande sectie zagen
-we waarom het onderzoek hier geen bruikbaar materiaal aanlevert.
+we waarom het onderzoek hier bv. geen bruikbaar materiaal aanlevert.
 
 Indien \'e\'en van de drijfveren van ontwikkelaars is om de levensduur van een
 enkele batterij optimaal te benutten, is het eenvoudig hergebruiken van
@@ -243,23 +245,23 @@ overlopen van gekende knopen\dots
 
 Ook C, als programmeertaal, is op zich al een uitdaging. Dit heeft geleid tot
 nader onderzoek en verschillende gespecialiseerde talen hebben reeds hun
-opwachting gemaakt. Een eerste zagen we reeds in de context van TinyOS, dat
-nesC \citep{gay2003nesc} gebruikt, een component-geori\"enteerde uitbreiding
-van C. Binnen hetzelfde project werd ook TinyScript \citep{levis2004tinyscript}
-ge\"introduceerd; een imperatieve, op Basic ge\"inspireerde taal met dynamische
-typering en elementaire controlestructuren zoals condities en lussen. De
-doelstelling is om de complexiteit van de onderliggende nesC taal te verbergen
-voor minder technische analisten.
+opwachting gemaakt. Een eerste voorbeeld vinden we in de context van TinyOS,
+dat nesC \citep{gay2003nesc} gebruikt, een component-geori\"enteerde
+uitbreiding van C. Binnen hetzelfde project werd ook TinyScript
+\citep{levis2004tinyscript} ge\"introduceerd, een imperatieve, op Basic
+ge\"inspireerde taal met dynamische typering en elementaire controlestructuren
+zoals condities en lussen. De doelstelling is om de complexiteit van de
+onderliggende nesC taal te verbergen voor minder technische analisten.
 
-Fundamenteel andere talen trachtten ook een antwoord te bieden voor de
-discrepantie tussen de relatief lage complexiteit van de toepassing en
-detectiealgoritmen en de soms complexe implementatie binnen een op momenten
-barbaarse ontwikkelomgeving. \'E\'en van de doelstellingen van het ABSYNTH
-project \citep{url:absynth} is om domeinexperten controle te geven over de
-ontwikkeling van software voor WSN. Om dit te realiseren hanteren ze talen,
-compilers en synthesetechnieken. WASP2, een taal die ontworpen werd in het
-kader van dit project, is \'e\'en uit een aantal talen die opteerden om
-database-geori\"enteerde talen als voorbeeld te nemen.
+Fundamenteel andere talen trachten ook een antwoord te bieden voor de
+discrepantie tussen de relatief lage complexiteit van de toepassing of
+detectiealgoritmen en de soms complexe implementatie binnen een barbaarse
+ontwikkelomgeving. \'E\'en van de doelstellingen van het ABSYNTH project
+\citep{url:absynth} is om domeinexperten controle te geven over de ontwikkeling
+van software voor een WSN. Om dit te realiseren hanteren ze talen, compilers en
+synthesetechnieken. WASP2, een taal die ontworpen werd in het kader van dit
+project, is \'e\'en van de talen die database-geori\"enteerde talen als
+voorbeeld nemen.
 
 \section{Uitbating}
 \label{section:problem-operations}
@@ -270,7 +272,7 @@ netwerk.
 
 Het beeld dat de eigenaar een \'e\'enmalige opdracht geeft tot ontwikkeling kan
 misschien te verdedigen zijn in projecten waar weinig tot geen beveiliging
-noodzaak is, maar bij meer kritische applicaties waar er effectief een IDS
+nodig is, maar bij meer kritische applicaties waar er effectief een IDS
 voorzien wordt in het netwerk, is dit zeker niet meer van toepassing.
 
 Een IDS kan, zeker in het kader van een WSN, geen statisch gegeven zijn. De
@@ -281,7 +283,7 @@ zien we dat ook bij deze centrale IDS er regelmatige updates gebeuren van de
 patronen die gedetecteerd kunnen worden. Dit zal ook zo zijn bij een IDS in een
 WSN.
 
-Indien de uitbater voor elke aanpassingen terug moet gaan naar de ontwikkelaar,
+Indien de uitbater voor elke aanpassing terug moet gaan naar de ontwikkelaar,
 zal dit snel een onwerkbare en vooral onrealistische situatie met zich
 meebrengen. Een uitbater moet in staat zijn om op een flexibele manier het IDS
 van zijn WSN te configureren en te voorzien van nieuwe of bijgewerkte
@@ -297,8 +299,8 @@ probleemdefinitie:
 \begin{description}
 
   \item[Noodzaak van detectie] Een WSN is inherent onveilig. Indien het niet
-  mogelijk is om het te beschermen tegen aanvallen wordt het zelfs belangrijker
-  om zoveel mogelijk te kunnen detecteren.
+  mogelijk is om het te beschermen tegen aanvallen, wordt het zelfs
+  belangrijker om zoveel mogelijk te detecteren.
 
   \item[Standaardisatie] Het ontbreken van de facto standaarden op zowel hard-
   als softwarevlak, betekent dat een oplossing flexibel moet zijn. Deze
@@ -306,14 +308,14 @@ probleemdefinitie:
   wachten.
 
   \item[Formele beschrijving] Dit gebrek aan standaardisatie keert ook terug
-  bij detectiealgoritmen. Er bestaat geen gemeenschappelijke formele taal die
-  een brug slaat tussen onderzoekers onderling, noch naar de rest van het
-  ontwikkelingsproces.
+  bij de detectiealgoritmen zelf. Er bestaat geen gemeenschappelijke formele
+  taal die een brug slaat tussen onderzoekers onderling, noch naar de rest van
+  het ontwikkelingsproces.
 
-  \item[Kosten/Baten] De analysekost die zo ontstaat bij de ontwikkeling van
+  \item[Kosten/baten] De analysekost die zo ontstaat bij de ontwikkeling van
   een IDS, zet de introductie ervan nog verder op de helling. Vanuit een
-  ontwikkelingsstandpunt moet de kost van deze niet-functionele toevoeging tot
-  bijna letterlijk niets herleid worden.
+  ontwikkelingsstandpunt moet de kost van deze niet-functionele toevoeging
+  bijna letterlijk tot nihil herleid worden.
 
   \item[Flexibiliteit] Nieuwe aanvallen ontstaan elke dag. Een IDS is geen
   statisch gegeven. Het is van groot belang dat flexibel kan ingespeeld worden
