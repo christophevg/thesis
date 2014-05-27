@@ -4,7 +4,7 @@
 \label{inleiding}
 
 Ze hebben de voorpagina van de krant dan misschien nog niet gehaald, de opmars
-van draadloze sensornetwerken (\emph{Wireless Sensor Network}) (WSN) in ons
+van draadloze sensornetwerken (\emph{Wireless Sensor Networks}) (WSN) in ons
 dagelijks leven is niet meer te stoppen. Na de revolutie van de persoonlijke
 computer, de smartphone en het tablet vinden nu onafhankelijke, minuscule
 computers hun weg naar allerlei alledaagse dingen en plaatsen in ons leven.
@@ -225,7 +225,7 @@ Het beveiligen van sensorknopen is, in tegenstelling tot de beveiliging van
 klassieke computers, bijzonder moeilijk. De computers waar onze emails, foto's
 en andere kostbare documenten opgeslagen zijn, zijn uitgerust met een
 virusscanner, firewall\dots Dit is mogelijk omdat ze voorzien zijn van een
-constante stroomvoorziening, krachtige processor en veel geheugen. Ze zijn
+constante stroomvoorziening, krachtige processor en veel geheugen. Ze worden
 tevens fysiek beschermd door ons huis of het datacenter van onze leverancier
 van internetdiensten.
 
@@ -233,15 +233,15 @@ In \citep{dargie2010fundamentals} wordt een goed overzicht gegeven van de
 uitdagingen die het beveiligen van WSN met zich meebrengen, in vergelijking met
 klassieke netwerken. Een sensorknoop heeft geen constante stroomvoorziening en
 moet het veelal stellen met een zeer beperkte batterij. Verder ligt de
-sensorknoop meestal letterlijk \emph{ten velde} en is fysiek toegankelijk voor
-nagenoeg iedereen.
+sensorknoop meestal letterlijk \emph{ten velde} en is hij voor nagenoeg
+iedereen fysiek toegankelijk.
 
 Er is ook geen centraal punt waar alle communicatie gegarandeerd passeert. Het
 enige communicatiemedium is het draadloze netwerk en via die weg kan men steeds
 rechtstreeks contact leggen met elke afzonderlijke knoop, zonder dat de
-meerderheid van andere knopen dit ooit merkt. Tot slot is het belangrijk voor
-ogen te houden dat een draadloos communicatiemedium inherent fouten met zich
-meebrengt, en dat berichten verloren kunnen gaan.
+meerderheid van andere knopen dit ooit merkt. Tot slot is mogen we niet
+vergeten dat een draadloos communicatiemedium inherent fouten introduceert, en
+dat berichten verloren kunnen gaan.
 
 \subsection{CIA, AAA en andere beveiligingsprincipes}
 \label{subsection:cia}
@@ -249,8 +249,7 @@ meebrengt, en dat berichten verloren kunnen gaan.
 Beveiliging is een zeer ruim begrip dat veel aspecten overspant. Het is
 belangrijk dit voor ogen te houden wanneer we over beveiliging spreken.
 Theoretische modellen kunnen hierbij helpen. In deze sectie introduceren we
-enkele van deze modellen die kunnen helpen om over beveiliging van WSN te
-praten.
+enkele van deze modellen die kunnen helpen om over beveiliging te praten.
 
 Wanneer men spreekt over het beveiligen van computers en netwerken, wordt
 dikwijls gerefereerd naar het CIA-beveiligingsmodel. Dit letterwoord staat
@@ -299,9 +298,9 @@ staat voor authenticatie, autorisatie en vaststellen (\emph{accounting})
 
 \end{description}
 
-In het kader van beveiliging wordt typisch ook gesproken over een \emph{beleid}
+In het kader van beveiliging wordt gesproken over een \emph{beleid}
 (\emph{policy}), waarin de regels zijn opgenomen waaraan alle spelers binnen
-het te beveiligen domein zich dienen te houden. Het AAA model hanteert een
+het te beveiligen domein zich dienen te houden. Het AAA-model hanteert een
 beleid als zijn centrale gegeven en definieert componenten zoals een
 \emph{policy information point} (PIP), \emph{policy decision point} (PDP) en
 een \emph{policy enforcement point} (PEP). Deze componenten kunnen aanduiden
@@ -319,18 +318,18 @@ deze beslissingen effectief uit te voeren.
 \end{description}
 
 Een aantal gekende technieken bieden klassiek oplossingen voor verschillende
-van de hoger vermelde principes: Digitale handtekeningen kunnen helpen bij het
+van de hoger vermelde principes: digitale handtekeningen kunnen helpen bij het
 garanderen van de \emph{authenticiteit}, \emph{onweerlegbaarheid} en
 \emph{integriteit} van een boodschap. Cryptografie kan logischerwijs de
-\emph{vertrouwelijkheid} van berichten garanderen, maar kan ook aan de hand van
-publieke en private sleutels de \emph{authenticiteit} vaststellen. Berichten
-kunnen alleen met de andere sleutel van het paar versleuteld worden.
+\emph{vertrouwelijkheid} van berichten garanderen, maar kan ook, aan de hand
+van publieke en private sleutels, de \emph{authenticiteit} vaststellen.
+Berichten kunnen alleen met de andere sleutel van het paar versleuteld worden.
 
 In hoofdstukken \ref{chapter:achtergrond} en \ref{chapter:probleemstelling}
 gaan we dieper in op de typische eigenschappen van sensorknopen en belichten we
-tal van beveiligingsrisico's waaraan WSN blootgesteld zijn. Aan de hand van de
-zonet beschreven principes zullen we zien dat WSN inherent moeilijk te
-beveiligen zijn en dat het nagenoeg onmogelijk is om inbraken te vermijden.
+tal van beveiligingsrisico's waaraan een WSN blootgesteld zijn. Aan de hand van
+de zonet beschreven principes zullen we zien dat een WSN inherent moeilijk te
+beveiligen is en dat het nagenoeg onmogelijk is om inbraken te vermijden.
 
 \subsection{Inbraakdetectie}
 \label{subsection:detection}
@@ -344,7 +343,7 @@ er niet zijn. Misschien moeten we zelfs durven stellen dat het belangrijker is
 om meer te weten dan te vermijden.
 
 Inbraakdetectie is typisch de stille vennoot in een beveiligingsverhaal. Daar
-waar bv. een firewall of authenticatieserver actieve toegang ontzegt, zal een
+waar bv. een firewall of authenticatieserver actief toegang ontzegt, zal een
 inbraakdetectiesysteem (IDS) typisch geen actieve rol spelen. Het IDS zal
 eerder bewijsmateriaal verzamelen om een inbraakpoging te documenteren. Uit
 deze informatie kunnen dan bijsturingen aan het beleid aangebracht worden,
@@ -416,11 +415,11 @@ verbindt.
 
 Deze werken stellen tevens dat het een nagenoeg onmogelijke taak is om alle
 benodigde detectiemechanismen effectief te implementeren. Dit is logisch,
-gegeven het beperkte aanbod aan middelen die sensorknopen typisch ter
-beschikking hebben. Zo zou bv. een exhaustieve lijst van aanvalspatronen
-slechts in sensorknopen met een groot geheugen kunnen opgeslagen worden en
-zouden de berekeningen die nodig zijn om bepaalde anomalie\"en te detecteren
-gewoonweg te veel energie verbruiken.
+gegeven de beperkte middelen die sensorknopen ter beschikking hebben. Zo zou
+bv. een exhaustieve lijst van aanvalspatronen slechts in sensorknopen met een
+groot geheugen opgeslagen kunnen worden en zouden de berekeningen die nodig
+zijn om bepaalde anomalie\"en te detecteren gewoonweg te veel energie
+verbruiken.
 
 Als in dit stadium van onderzoek naar systemen om inbraken te detecteren het
 niet mogelijk is om een sluitend IDS voor een WSN te ambi\"eren, lijkt het
@@ -438,7 +437,8 @@ impact bepalen. Daartoe bekijken we eerst enkele typische voorbeelden van
 inbraakdetectiealgoritmen, waaruit de functionele en technische vereisten
 gedistilleerd worden. Vervolgens stellen we een architectuur voor die aan deze
 vereisten kan voldoen. Aan de hand van een prototype gaan we tot slot na wat de
-impact is met betrekking tot geheugen en rekenkracht.
+impact is met betrekking tot geheugen, rekenkracht en het gebruik van de
+draadloze radio.
 
 De voordelen van een raamwerk zijn legio: een herbruikbaar raamwerk neemt
 zorgen, gemeenschappelijk aan de verschillende oplossingen, weg en kan zorgen
