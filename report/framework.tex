@@ -13,23 +13,22 @@ voorgestelde raamwerken.
 \label{subsubsection:di-sec}
 
 In \citep{valero2012di} komen de auteurs tot dezelfde conclusie als wat wij
-hier enkele malen hebben aangehaald: er wordt veel gekeken naar
+hier al enkele malen hebben aangehaald: er wordt veel gekeken naar
 detailoplossingen, maar zelden wordt een algemene oplossing voorgesteld voor de
-typische situatie van WSN. De auteurs zijn het verder ook eens met de stelling
-dat het belangrijk is om te leren van deze detailoplossingen, om een eventueel
-raamwerk af te stemmen op deze oplossingen, en gebruik te maken van de goede
-eigenschappen ervan, bij de implementatie van het eigenlijke raamwerk.
+typische situatie van WSN. De auteurs zijn het verder eens met de stelling dat
+het belangrijk is om te leren van deze detailoplossingen. Een raamwerk moet
+immers afgestemd zijn op deze oplossingen en gebruik maken van de goede
+eigenschappen ervan.
 
 De auteurs gaan er in hun redenering van uit dat, gegeven de eigenheid van het
-draadloze medium, veel aanvallen zich richten op deze communicatievorm. Ze
-defini\"eren daarom een eerste component, \ttt{COMM}, die zich toespitst op
-communicatie en waarlangs alle gegevens passeren die verstuurd en/of ontvangen
-worden. Daarnaast zijn er nog drie bijkomende componenten: \ttt{M-Core}, de
-centrale controlemodule, \ttt{Sense}, de sensormodule en de \ttt{DDMs}, de
-detectie- en verdedigingsmodules. Deze laatste zijn aanvalspecifieke modules
-die ingevoegd kunnen worden in het raamwerk. Figuur
-\ref{fig:di-sec-architecture} geeft een overzicht van de architectuur voor het
-raamwerk, genaamd Di-Sec.
+draadloze medium, veel aanvallen zich richten op communicatie. Ze defini\"eren
+daarom een eerste component, \ttt{COMM}, die zich toespitst op communicatie en
+waarlangs alle gegevens passeren die verstuurd en/of ontvangen worden.
+Daarnaast zijn er nog drie bijkomende componenten: \ttt{M-Core}, de centrale
+controlemodule, \ttt{Sense}, de sensormodule en de \ttt{DDMs}, de detectie- en
+verdedigingsmodules. Deze laatste zijn aanvalspecifieke modules die ingevoegd
+kunnen worden in het raamwerk. Figuur \ref{fig:di-sec-architecture} geeft een
+overzicht van de architectuur voor dit raamwerk, genaamd Di-Sec.
 
 \begin{figure}[ht]
   \centering
@@ -38,14 +37,14 @@ raamwerk, genaamd Di-Sec.
   \label{fig:di-sec-architecture}
 \end{figure}
 
-De drie modules vormen als het ware een API voor de \ttt{DDMs}. De manier
+De drie modules vormen als het ware een interface voor de \ttt{DDMs}. De manier
 waarop \ttt{COMM} en \ttt{Sense} de toegang tot alle in- en uitvoer, zowel de
 netwerkcommunicatie als de toegang tot de sensoren, hermetisch afsluiten, toont
 aan dat Di-Sec een raamwerk is voor het ontwikkelen van sensorknopen.
 
 Naast dit raamwerk, biedt Di-Sec ook een eigen taal aan om Di-Sec te gebruiken:
-de \ttt{M-Core} controle taal (MCL). Deze laat toe om met een beperkte taal de
-nodige sjablonen te maken waarmee nieuwe modules ontwikkeld kunnen worden en
+de \emph{M-Core Control Language} (MCL). Deze laat toe om met een beperkte taal
+de nodige sjablonen te maken waarmee nieuwe modules ontwikkeld kunnen worden
 alsook om de nodige aanpassingen te doen aan de configuratiebestanden.
 
 \subsubsection*{Architectuur voor een sensorknoop}

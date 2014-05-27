@@ -46,15 +46,14 @@ moeten luisteren naar de acties van naburige knopen, moeten zij constant actief
 zijn. Dit is een zeer nadelig uitgangspunt voor systemen die zuinig trachten om
 te springen met hun energie.
 
-Maar deze architectuur heeft ook inherente problemen en laat kwaadwillige
-partijen toe om - mits kennis van de parameters - net onder de radar te
-opereren. We illustreren dit met de simulatie zoals deze uitgevoerd werd door
-de auteurs.
+Deze architectuur heeft ook inherente problemen en laat kwaadwillige partijen
+toe om - mits kennis van de parameters - net onder de radar te opereren. We
+illustreren dit met de simulatie zoals deze uitgevoerd werd door de auteurs.
 
 De evolutie van een volledige co\"operatieve of volledige niet-co\"operatieve
 knoop wordt weergegeven in figuur \ref{fig:reputation-paper}. Een eigenschap
-van het algoritme is dat pas na een tiental (louter positieve) observaties een
-knoop de drempelwaarde van vertrouwen overschrijdt.
+van het algoritme is dat een knoop pas na een tiental (louter positieve)
+observaties de drempelwaarde van vertrouwen overschrijdt.
 
 \begin{figure}[ht]
 \centering
@@ -75,21 +74,20 @@ knoop de drempelwaarde van vertrouwen overschrijdt.
 \end{figure}
 
 Deze eigenschap kan echter misbruikt worden zoals aangetoond wordt in figuur
-\ref{fig:reputation-with-failure}. Stel dat een knoop $j$ te kampen heeft met
-falende hardware, waardoor 5\% van zijn transmissies verloren gaan en daarom
-ook niet opgemerkt kunnen worden door andere knopen.
+\ref{fig:reputation-with-failure}. Stel dat een knoop te kampen heeft met
+falende hardware, waardoor 5\% van zijn transmissies verloren gaan. Ze kunnen
+daarom ook niet opgemerkt worden door andere knopen.
 
-We merken op dat deze knoop, zelfs met 5\% niet-co\"operatieve observaties, na
-een twintigtal observaties toch boven de drempelwaarde uitkomt en door de
-beschouwende knoop aanvaard wordt als betrouwbaar.
+Zelfs met 5\% niet-co\"operatieve observaties, zal deze knoop na een twintigtal
+observaties toch boven de drempelwaarde uitkomen en door de beschouwende knoop
+aanvaard worden als betrouwbaar.
 
 Vanuit een operationeel standpunt gezien is dit in eerste instantie een
 positief effect. Indien een knoop \emph{slechts} 5\% faalt zal deze toch als
 co\"operatief beschouwd worden en de goede werking van het netwerk niet
-fundamenteel in het gedrang brengen - vanuit het oogpunt van inbraakdetectie
-gezien.
+fundamenteel in het gedrang brengen - vanuit het oogpunt van inbraakdetectie.
 
-Maar stel dat deze 5\% niet-co\"operatieve acties geen falen zijn en dat de
+Stel echter dat deze 5\% niet-co\"operatieve acties geen falen zijn en dat de
 doorgestuurde boodschappen niet verloren gaan, maar met opzet lichtjes
 gewijzigd worden. 5\% kan een significante vertekening van metingen van een
 netwerk betekenen en zo de werking van het hele netwerk ondermijnen.
@@ -110,5 +108,5 @@ Dit elementaire voorbeeld toont duidelijk aan dat het vaststellen van een
 reputatie op basis van externe observaties een delicaat onderwerp is dat
 gevoelig is voor manipulatie op basis van kennis van de interne parameters. Dit
 laatste is dan weer net \'e\'en van d\'e problemen waar draadloze
-sensornetwerken mee kampen omdat knopen vrij eenvoudig kunnen weggenomen,
-ge\"inspecteerd, gewijzigd en teruggeplaatst worden.
+sensornetwerken mee kampen omdat knopen vrij eenvoudig weggenomen,
+ge\"inspecteerd, gewijzigd en teruggeplaatst kunnen worden.

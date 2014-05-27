@@ -3,7 +3,7 @@
 \label{subsection:cooperation}
 
 Het detecteren van abnormaal gedrag, dat op zijn beurt een indicatie kan zijn
-van een (poging tot) inbraak, door \'e\'en knoop is \'e\'en ding, als netwerk
+van een (poging tot) inbraak door \'e\'en knoop is \'e\'en ding, als netwerk
 van knopen tot een consensus komen en met meer zekerheid een verdachte knoop
 uitsluiten is een heel ander ding.
 
@@ -14,7 +14,7 @@ theoretische weg gezocht naar de nodige en voldoende voorwaarden voor
 inbraakdetectie. Vervolgens wordt er een praktisch omkaderend algoritme
 voorgesteld om op co\"operatieve manier aan inbraakdetectie te doen.
 
-Zowel het theoretische model als het praktische algoritme vormen een
+Zowel dit theoretische model als het praktische algoritme vormen een
 interessante bron van informatie. Het theoretische model kan helpen bij het
 analyseren van andere co\"operatieve oplossingen en het praktische algoritme
 biedt een algemeen raamwerk voor het implementeren van co\"operatieve
@@ -23,13 +23,13 @@ strategie\"en.
 Bijlage \ref{appendix:idp-cooperation} gaat in meer detail in op de
 mathematische onderbouw van het zgn. \emph{Intrusion Detection Problem} (IDP).
 Naast een theoretisch model wordt tevens een algoritme voorgesteld dat het
-mogelijk maakt om op gedistribueerde manier toch samen te werken en tot een
+mogelijk maakt om op gedistribueerde manier samen te werken en tot een
 beslissing te komen aangaande de aanwezigheid van een malafide knoop in het
 netwerk.
 
 Het algoritme is een betrekkelijk eenvoudig raamwerk voor een co\"operatieve
-aanpak, waarbij knopen lokaal beslissen welke andere knopen ze verdenken en
-vervolgens gezamenlijk, op een gedistribueerde manier, trachten tot een
+aanpak, waarbij knopen zelfstandig beslissen welke andere knopen ze verdenken
+en vervolgens gezamenlijk, op een gedistribueerde manier, trachten tot een
 consensus te komen welke van de verdachte knopen effectief de aanvaller is.
 
 De kracht van dit raamwerk en het succes ervan hangt natuurlijk sterk af van de
@@ -38,16 +38,16 @@ lokale detectiemogelijkheden van de knopen en de accuraatheid hiervan.
 \subsubsection*{Risico's}
 
 Het voorbeeld in figuur \ref{fig:idp-examples-2} beslaat een zeer beperkte
-scope. We moeten voorzichtig zijn om hier niet te snel tot conclusies te komen
-die in een ruimere situatie misschien een verkeerd beeld zouden kunnen
-opleveren. Figuur \ref{fig:sinkhole-ripple} toont essentieel het zelfde
-voorbeeld als dat van \ref{fig:idp-examples-2}, maar nu met meer knopen rondom
-het initi\"ele voorbeeld.
+scope. We moeten voorzichtig zijn niet te snel conclusies te trekken die in een
+ruimere situatie misschien een verkeerd beeld zouden kunnen opleveren. Figuur
+\ref{fig:sinkhole-ripple} toont essentieel hetzelfde voorbeeld als dat van
+\ref{fig:idp-examples-2}, maar nu met meer knopen rondom het initi\"ele
+voorbeeld.
 
-Het routering algoritme is gebaseerd op de totale kost van het pad naar het
+Het routeringalgoritme is gebaseerd op de totale kost van het pad naar het
 basisstation en komt daarmee overeen met het MultiHopLQI routering algoritme
-beschreven in o.a. \citep{krontiris2008launching}. In dit werk wordt ook de zgn.
-\emph{Sinkhole Attack} voorgesteld. We nemen deze aanval als voorbeeld.
+beschreven in o.a. \citep{krontiris2008launching}. In dit werk wordt ook de
+zgn. \emph{Sinkhole Attack} voorgesteld. We nemen deze aanval als voorbeeld.
 
 \begin{figure}[ht]
 \centering
@@ -71,10 +71,10 @@ identificatie van de echte aanvaller}
 Stel dat knoop $d$ een \emph{Sinkhole Attack} uitvoert door een zeer lage kost
 te adverteren. Hierdoor zal knoop $a$ geneigd zijn om zijn route aan te passen.
 Hierdoor zal deze op zijn beurt een veel voordeligere route adverteren en
-zullen ook knopen $b$ en $c$ hun route wijzigen en nu hun gegevens via knoop
-$a$ versturen.
+zullen ook knopen $b$ en $c$ hun route wijzigen en hun gegevens via knoop $a$
+versturen.
 
-Ten gevolge van deze route updates is het mogelijk dat een lokale detector voor
+Ten gevolge van deze route-updates is het mogelijk dat een lokale detector voor
 de \emph{Sinkhole Attack} op knopen $a$ en $b$ in werking zal treden. Hierbij
 kunnen de knopen alleen hun volledige buurt beschuldigen, omdat het niet
 mogelijk is om te detecteren wie de valse boodschappen effectief verstuurd
@@ -94,10 +94,10 @@ inbraakdetectiemechanismen.
 \label{subsubsection:grouping}
 
 Een andere aanpak van co\"operatieve algoritmen vertrekt van het groeperen van
-knopen. Deze aanpak wordt toegepast door \citep{li2008group}. Groepering gebeurt
-op basis van nabijheid en tracht sensoren te groeperen die door hun locatie
-gelijkaardige meetwaarden zouden moeten opmeten. De auteurs stellen hiervoor
-een algoritme voor op basis van verschillen, een zgn. delta-algoritme.
+knopen. Deze aanpak wordt toegepast door \citep{li2008group}. Groepering
+gebeurt op basis van nabijheid en tracht sensoren te groeperen die door hun
+locatie gelijkaardige meetwaarden zouden moeten opmeten. De auteurs stellen een
+algoritme voor op basis van verschillen, een zgn. delta-algoritme.
 
 Metingen van knopen kunnen nu binnen de groep met elkaar vergeleken worden, en
 afwijkende resultaten (zie ook sectie \ref{subsection:anomaly}) kunnen op

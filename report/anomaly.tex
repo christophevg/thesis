@@ -4,22 +4,21 @@
 \label{subsection:anomaly}
 
 Een anomalie is een afwijking van een normaal verloop van gebeurtenissen of van
-iets of iemands gedrag. Een knoop uit een WSN heeft een redelijk eenvoudig en
-constante levensloop. Typisch zal een knoop op regelmatige tijdstippen
-\emph{wakker worden}, waarden opmeten aan de hand van zijn sensoren en deze
-waarden doorsturen naar een centrale locatie. Verder zal een knoop, als
-onderdeel van het netwerk, ook de gemeten waarden van andere knopen doorsturen.
-Dit gedrag kan ge\"identificeerd worden en in een model verwerkt worden. Op
-basis van zo'n model kan vervolgens nagegaan worden of de acties van een knoop
-op een gegeven moment in lijn zijn met het model, of dat er sprake is van een
-anomalie.
+iets of iemands gedrag. Een knoop uit een WSN heeft een eenvoudige en constante
+levensloop. Typisch zal een knoop op regelmatige tijdstippen \emph{wakker
+worden}, waarden opmeten aan de hand van zijn sensoren en deze waarden
+doorsturen naar een centrale locatie. Verder zal een knoop, als onderdeel van
+het netwerk, de gemeten waarden van andere knopen doorsturen. Dit gedrag kan
+ge\"identificeerd worden en in een model verwerkt worden. Op basis van zo'n
+model kan vervolgens nagegaan worden of de acties van een knoop op een gegeven
+moment in lijn zijn met het model, of dat er sprake is van een anomalie.
 
 Zo'n afwijking kan wijzen op veranderingen van buitenaf. Deze kunnen op hun
 beurt veroorzaakt zijn door een aanval op het netwerk. Aangezien we niet alle
 communicatie van en naar knopen kunnen onderscheppen en eventuele aanvallen
 kunnen detecteren, kunnen mechanismen gebaseerd op de detectie van anomalie\"en
-helpen om op basis van in essentie neveneffecten, toch aanvallen te detecteren,
-of althans toch de gevolgen ervan.
+helpen om op basis van neveneffecten, toch aanvallen te detecteren, of althans
+toch de gevolgen ervan.
 
 \subsubsection*{Anomali\"en}
 \label{subsubsection:outlier}
@@ -35,36 +34,36 @@ van \emph{datamining} en dat het in die context al uitvoerig onderzocht is,
 evenals binnen disciplines als statistiek, machinaal leren,
 informatietheorie\dots Aangezien het kunnen uitsluiten van afwijkingen de
 verwerking van de overblijvende meetresultaten sterk positief be\"invloedt, is
-het in het kader van WSN uitermate interessant.
+voor een WSN uitermate interessant.
 
 Toch kan eerder onderzoek opnieuw niet eenvoudig toegepast worden in het kader
-van WSN. De beperkte middelen van de sensorknoop schrappen al veel van de
+van een WSN. De beperkte middelen van de sensorknoop schrappen veel van de
 klassieke oplossingen die bv. gecentraliseerd werken. De overdaad aan
 communicatie die nodig is om voldoende gegevens te centraliseren voor
-verwerking is niet realistisch in het kader van een WSN. Ook zijn veel van de
-algoritmen typisch niet ontwikkeld met de beperkte rekenmogelijkheden van
-sensorknopen in gedachte. De conclusie is dat er een balans moet gevonden
-worden tussen de mogelijkheden van datamining-algoritmen voor het detecteren
-van afwijkingen en de verhouding van hun noden ten opzichte van de middelen van
-de knopen.
+verwerking is niet realistisch. Veel van de algoritmen zijn niet ontwikkeld met
+de beperkte rekenmogelijkheden van sensorknopen in gedachte. De conclusie is
+dat er een balans gevonden moet worden tussen de mogelijkheden van
+datamining-algoritmen voor het detecteren van afwijkingen en de verhouding van
+hun noden ten opzichte van de middelen van de knopen.
 
 \subsubsection*{Neurale netwerken}
 \label{subsubsection:neuralnetworks}
 
 Wanneer men denkt aan het vastleggen van een patroon en het controleren of een
-bepaalde situatie voldoet aan dat patroon, wordt in informaticakringen ook snel
+bepaalde situatie voldoet aan dat patroon, wordt in informaticakringen al snel
 verwezen naar neurale netwerken. Neurale netwerken kunnen immers
 \emph{getraind} worden door middel van een aantal goede (en slechte)
 voorbeelden, waarna nieuwe voorbeelden gecatalogeerd kunnen worden als ``ook
 goed'' of ``slecht''. De complexiteit van het bepalen van deze beslissing is
-typisch redelijk eenvoudig en lijkt zich daarom uitermate goed te lenen voor
-het detecteren van anomalie\"en door sensorknopen.
+relatief eenvoudig en lijkt zich daarom uitermate goed te lenen voor het
+detecteren van anomalie\"en door sensorknopen.
 
 In \citep{ramesh2012wireless} volgen de auteurs deze denkpiste, maar stellen
 tevens dat er betere methoden bestaan. Ze trachten twee specifieke aanvallen
-het hoofd te bieden: DoS en passieve informatie vergaring en vergelijken
-hierbij een aanpak op basis van een neuraal netwerk en hun eigen aanpak op
-basis van encryptie op basis van symmetrische sleutels.
+het hoofd te bieden: het verstoren van de dienstverlening (\emph{Denial of
+Service})(DoS) en passieve informatie vergaring. Ze vergelijken hierbij een
+aanpak op basis van een neuraal netwerk met hun eigen aanpak op basis van
+encryptie met symmetrische sleutels.
 
 Ofschoon sommige van hun veronderstellingen na\"ief zijn (zo baseren ze zich op
 een gedeelde geheime sleutel van 8 bits), toont hun werk wel aan dat een aanpak
@@ -75,7 +74,7 @@ zijn om anomaliedetectie te doen.
 \label{subsubsection:predictions}
 
 Waar neurale netwerken in staat zijn om op basis van voorbeelden een nieuwe
-situatie te catalogeren, kan men aan de hand van een Markov model
+situatie te catalogeren, kan men aan de hand van een Markov-model
 voorspellingen doen over de toekomst.
 
 Deze piste wordt onderzocht door \citep{zhijie2012intrusion}. Het betreft een
@@ -86,9 +85,9 @@ Het model wordt zo geconstrueerd dat er een verband ontstaat tussen de toestand
 van een knoop in relatie tot het tijdstip en de verwachte hoeveelheid gegevens
 die verstuurd zouden kunnen worden.
 
-Het idee achter het artikel lijkt een mogelijke piste, maar veel belangrijke
-details blijven echter vaag, waardoor de volledige toedracht van het algoritme
-niet eenduidig ingeschat kan worden. Zo wordt bv. nauwelijks ingegaan op wat
-juist de toestand van een knoop bepaalt, of hoe de hoeveelheid gegevens die
+Het idee achter het artikel lijkt een mogelijke piste, maar belangrijke details
+blijven echter vaag, waardoor de volledige toedracht van het algoritme niet
+eenduidig ingeschat kan worden. Zo wordt bv. nauwelijks ingegaan op wat juist
+de toestand van een knoop bepaalt, of hoe de hoeveelheid gegevens, die
 verstuurd worden wanneer een knoop zich in een bepaalde toestand bevindt,
 bepaald wordt.

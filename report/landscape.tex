@@ -5,32 +5,29 @@
 
 ``\emph{Waarom is het belangrijk om beveiliging van draadloze sensornetwerken
 te bestuderen? Dit is toch al uitvoerig gedaan voor andere vormen van
-netwerken!?}'' Op het eerste zicht is dit een zeer valabele opmerking. Reeds
-sinds de late jaren '80 kennen we concepten als \emph{firewalls}, virussen,
-wormen\dots Meer dan 30 jaar reeds wordt er onderzoek gedaan naar
-computerbeveiliging en solide oplossingen zijn bedacht, uitgewerkt en
-ge\"implementeerd. Wat houdt ons tegen om deze toe te passen op draadloze
-sensornetwerken?
+netwerken?}'' Op het eerste zicht is dit een zeer valabele opmerking. Sinds de
+late jaren '80 kennen we concepten als \emph{firewalls}, virussen, wormen\dots
+Meer dan 30 jaar wordt er onderzoek gedaan naar computerbeveiliging en werden
+oplossingen bedacht, uitgewerkt en ge\"implementeerd. Wat houdt ons tegen om
+deze toe te passen op draadloze sensornetwerken?
 
 \subsection{Eigenschappen}
 
 Ondanks het feit dat knopen in essentie kleine computers zijn en de
 verbindingen die tussen hen tot stand komen een netwerk worden genoemd, eindigt
-daar de vergelijking volledig. Draadloze sensoren en hun netwerken zijn een
-wereld op zich, met zeer typerende eigenschappen, regels, mogelijkheden en
-beperkingen.
+daar de vergelijking. Draadloze sensoren en hun netwerken zijn een wereld op
+zich, met zeer typerende eigenschappen, regels, mogelijkheden en beperkingen.
 
 Een draadloze sensor is inderdaad een kleine computer, maar de nadruk ligt hier
 op \emph{kleine}. De rekenkracht van een knoop is slechts een fractie van deze
-van een hedendaagse computer en ligt in de tientallen megahertz (MHz) - waar we
-bij hedendaagse systemen spreken in termen van gigahertz (GHz). De reden is
+van een hedendaagse computer en ligt rond de tientallen megahertz (MHz) - waar
+we bij hedendaagse systemen spreken in termen van gigahertz (GHz). De reden is
 evident: draadloze sensornetwerken zijn draadloos en worden ingezet in de meest
 uiteenlopende en afgelegen situaties. Ze zijn daarom gedurende lange tijd
-afhankelijk van een zelfde batterijvoeding, die dan ook optimaal benut moet
-worden.
+afhankelijk van een zelfde batterijvoeding, die optimaal benut moet worden.
 
-Ook het netwerk dat ze vormen vertoont typische eigenschappen die sterk
-verschillen van de meer klassieke computernetwerken. Zo identificeert
+Het netwerk dat ze vormen vertoont eveneens typische eigenschappen die sterk
+verschillen van klassieke computernetwerken. Zo identificeert
 \citep{blilat2012wireless} zes unieke eigenschappen van een WSN:
 
 \begin{description}
@@ -47,36 +44,36 @@ verschillen van de meer klassieke computernetwerken. Zo identificeert
   beschikbaarheid van knopen te ondervangen.
 
   \item[Vervangbaar] Knopen zijn typisch de goedkopere onderdelen van het
-  netwerk en ze staan slechts ten dienst van het eigenlijke doel van het
-  netwerk, het verzamelen van gegevens. Om die reden zijn ze eenvoudig
-  vervangbaar en dit wordt als een inherente eigenschap gezien. Het netwerk
+  netwerk en ze staan slechts in dienst van het eigenlijke doel van het
+  netwerk: het verzamelen van gegevens. Om die reden zijn ze eenvoudig
+  vervangbaar en wordt dit als een inherente eigenschap gezien. Het netwerk
   \emph{tolereert storingen} ten gevolge van het wegvallen van knopen en vangt
   ze op door redundantie en aggregatie.
 
-  \item[Verwerking in het netwerk] Om er voor te zorgen dat het netwerk zo min
+  \item[Verwerking in het netwerk] Om ervoor te zorgen dat het netwerk zo min
   mogelijk belast wordt met het verzenden van gegevens, worden meetgegevens zo
   dicht mogelijk bij de oorspronkelijke knoop \emph{gefilterd en verwerkt}.
 
   \item[Uniformiteit] Een draadloos sensornetwerk bestaat uit knopen en niets
-  anders. Elke knoop kan tegelijkertijd \emph{sensor} of \emph{router} zijn,
+  anders. Elke knoop kan tegelijkertijd \emph{sensor} en \emph{router} zijn,
   wat resulteert, in combinatie met de voorgaande eigenschappen, in een
   reductie van het netwerkverkeer.
 
   \item[Energiebesparing] De werking van een knoop kent een typisch
   \emph{gefaseerd zendpatroon}: het verzamelen van meetgegevens, het ontvangen
   van gegevens van andere knopen en het doorsturen van geaggregeerde gegevens
-  naar hogerliggende knopen. Hierdoor kan elke knoop zijn radio gedurende
-  bepaalde periodes volledig afzetten om energie te besparen.
+  naar hi\"erarchisch hoger gelegen knopen. Hierdoor kan elke knoop zijn radio
+  gedurende bepaalde periodes afzetten om energie te besparen.
 
 \end{description}
 
 Dit beeld vinden we ook terug bij \citep{aschenbruck2012security} die de
-situatie van draadloze sensornetwerken samenvat in drie zeer typische en
-problematische bronnen van beveiligingsproblemen: 
+situatie van draadloze sensornetwerken samenvat in drie zeer typische bronnen
+van beveiligingsproblemen:
 
 \begin{itemize}[noitemsep, topsep=0pt, partopsep=0pt]
 
-  \item{Beperkingen qua middelen en dan vooral de energievoorziening.}
+  \item{Beperkingen qua middelen, meer specifiek de energievoorziening.}
   
   \item{Fysieke toegankelijkheid die leidt tot de mogelijkheid om knopen te
   veroveren.}
@@ -92,10 +89,14 @@ problematische bronnen van beveiligingsproblemen:
 \citep{zhang2000intrusion} geeft een zeer algemene, maar zeer correcte
 definitie van inbraakdetectie:
 
+\vspace{-2mm}
+
 \begin{quote}
 \emph{Intrusion detection ... involves capturing audit data and reasoning about
 the evidence in the data to determine whether the system is under attack.}
 \end{quote}
+
+\vspace{-2mm}
 
 Inbraakbeveiliging omvat twee essenti\"ele activiteiten: het vastleggen van
 auditgegevens en het redeneren over deze gegevens. In het geval van draadloze
@@ -106,8 +107,8 @@ vorm van inbraakdetectie voor \emph{systemen} en \emph{netwerken}.
 
 In de context van draadloze sensornetwerken zal dit onderscheid zich echter
 veel meer profileren omdat het netwerk hier geen centraal medium is. Daar waar
-het netwerk in een klassieke opstelling typisch vanuit \'e\'en systeem kan
-gecontroleerd worden door het afleiden van alle netwerkverkeer naar \'e\'en
+het netwerk in een klassieke opstelling typisch vanuit \'e\'en systeem
+gecontroleerd kan worden door het afleiden van alle netwerkverkeer naar \'e\'en
 enkele detectiemodule, is dit in het geval van een WSN niet mogelijk. Het
 draadloze aspect maakt dat er geen controleerbare toegangswegen zijn naar elke
 knoop en dat dus elke knoop letterlijk op zichzelf aangewezen is.
@@ -122,23 +123,20 @@ een eigenaar, kunnen ze ook fysiek benaderd worden door ieder die dat wil.
 Zelfs de elementaire zekerheid van een fysieke bescherming bv. in een
 datacenter, komt bij draadloze sensornetwerken volledig te vervallen.
 
-Terecht stelt \citep{perrig2004security} daarom ook dat de eerste zorg omtrent
-de beveiliging van draadloze sensornetwerken een veilige manier om de groep van
-sensoren te beheren moet zijn. De manier waarop nieuwe knopen in het netwerk
-worden opgenomen en de beveiliging van de onderlinge communicatie, is van
-primordiaal belang. Voorkomen is beter dan genezen.
+Om die reden, stelt \citep{perrig2004security} dat het op een veilige manier
+beheren van een groep sensoren, de eerste zorg moet zijn bij de beveiliging van
+draadloze sensornetwerken. De manier waarop nieuwe knopen in het netwerk worden
+opgenomen en de beveiliging van de onderlinge communicatie, is van primordiaal
+belang. Voorkomen is beter dan genezen.
 
 Maar we moeten ook realistisch zijn. Geen door mensenhanden gemaakt systeem is
-feilloos en nagenoeg elk ge\"informatiseerd systeem zal met de nodige inzet en
-moeite veroverd kunnen worden. Op dat ogenblik is het belangrijk dat er een
-tweede verdedigingslinie is: inbraakdetectie. In het geval van WSN is dit
-misschien nog meer prangend, omdat er niet langer een fysieke bescherming, noch
-een centrale netwerkbescherming in de vorm van bv. een \emph{firewall} is.
+feilloos en nagenoeg elk ge\"informatiseerd systeem zal met de nodige inzet
+veroverd kunnen worden. Op dat ogenblik is het belangrijk dat er een tweede
+verdedigingslinie is: inbraakdetectie. In het geval van een WSN is dit
+misschien nog prangender, omdat er niet langer een fysieke bescherming, noch
+een centrale netwerkbescherming is, bv. in de vorm van een \emph{firewall}.
 
 \subsection{De tegenstander en zijn aanvallen}
-
-Tijd om kennis te maken met de tegenstander. Wat is zijn doel? Welke middelen
-heeft hij ter beschikking? Hoe kunnen we zijn aanvallen identificeren?
 
 Identificatie van aanvallen wordt door \citep{zhang2000intrusion} gecatalogeerd
 als \emph{misbruik} of \emph{anomalie}. Misbruik kan typisch gedetecteerd
@@ -151,9 +149,9 @@ kwaadwillig foutieve informatie uitstuurt.
 
 \citep{aschenbruck2012security} identificeert vier fundamentele doelen die
 nagestreefd worden door een aanvaller: (1) het manipuleren van gegevens, (2)
-het afluisteren van communicatie, (3) het tegenhouden van gegevens en (4)
-toegang verkrijgen tot het netwerk. Figuur \ref{fig:wsn-threat-analysis} geeft
-een schematisch overzicht van deze dreigingsanalyse.
+het afluisteren van communicatie, (3) het verstoren van en (4) toegang
+verkrijgen tot het netwerk. Figuur \ref{fig:wsn-threat-analysis} geeft een
+schematisch overzicht van deze dreigingsanalyse.
 
 \begin{figure}[ht]
   \centering
@@ -162,11 +160,18 @@ een schematisch overzicht van deze dreigingsanalyse.
   \label{fig:wsn-threat-analysis}
 \end{figure}
 
-\vspace{-5mm}
+\vspace{-2mm}
 
-\subsubsection*{Applicatie laag}
+De auteurs identificeren aanvallen die deze doelen ondersteunen op vier lagen:
+de fysieke laag, de laag die de toegang tot het draadloze netwerk (\emph{Media
+Access Control}) (MAC) regelt, de routeringlaag en de knoop zelf.
+Tot slot stellen ze voor elk van deze aanvallen een gepaste maatregel voor.
 
-Een niveau dat hier nogal nadrukkelijk ontbreekt is dat van de applicatie.
+\vspace{-2mm}
+
+\subsubsection*{Applicatielaag}
+
+Een laag die hier nogal nadrukkelijk ontbreekt is die van de applicatie.
 Bovenop de verschillende netwerklagen van een sensorknoop, zal de sensor nog
 typisch een niveau kennen dat specifiek is voor het desbetreffende WSN. Het
 bevat de functionaliteit die het netwerk zijn bestaansreden geeft.
@@ -174,12 +179,13 @@ bevat de functionaliteit die het netwerk zijn bestaansreden geeft.
 Ondanks de overvloed aan mogelijke aanvallen op de standaard netwerklagen, mag
 het bestaan van de applicatielaag niet uit het oog verloren worden. Het
 merendeel van aanvallen spitst zich net toe op fouten in deze laag. Deze kunnen
-tevens dikwijls uitgebuit worden met normale vormen van communicatie. Zo hoeft
-een aanvaller geen aanvallen op te zetten zoals de hoger vermelde voorbeelden,
-als hij eenvoudig een legitieme boodschap kan zenden naar een gewone knoop en
-een antwoord kan ontvangen met de informatie die hij wenst.
+tevens uitgebuit worden met normale vormen van communicatie. Zo hoeft een
+tegenstander geen aanval op te zetten, zoals de hoger vermelde voorbeelden, als
+hij eenvoudig een legitieme boodschap kan sturen naar een knoop en een antwoord
+kan ontvangen met de informatie die hij wenst.
 
-Op deze manier is er ook geen sprake van ``te detecteren malafide gedrag'' en
-zal de aanval dikwijls onopgemerkt gebeuren. We denken hier aan klassieke
-aanvallen zoals bv. \emph{buffer overflows}, waarbij andere gegevens uit het
-geheugen worden gelezen dan bedoeld.
+Op die manier is er ook geen sprake van ``te detecteren malafide gedrag'' en
+zal de aanval dikwijls onopgemerkt gebeuren. Een voorbeeld van zo'n klassieke
+aanval is een \emph{buffer overflow}. Hierbij zal de aanvaller, omwille van een
+softwarefout, andere gegevens uit het geheugen kunnen lezen, dan eigenlijk de
+bedoeling is.

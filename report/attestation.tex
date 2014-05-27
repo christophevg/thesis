@@ -3,18 +3,18 @@
 \subsection{Attesteren van software}
 \label{subsection:attestation}
 
-Het voorbeeld uit bijlage \ref{appendix:node-capture} toont aan dat zelfs het
-vluchtige geheugen van een knoop niet veilig is. Als een aanvaller in staat is
-om ongemerkt de programmacode van een knoop te verkrijgen, samen met alle
-gegevens die zich alleen tijdens de uitvoering van het programma in het
-geheugen bevinden, dan kan deze aanvaller deze code aanpassen zodat de werking
-ogenschijnlijk ongewijzigd is, terwijl hij toch controle heeft over de werking
-en zo het netwerk kan be\"invloeden.
+Bijlage \ref{appendix:node-capture} laat zien dat het mogelijk is om met vrij
+eenvoudige middelen het geheugen van een operationele sensorknoop te benaderen.
+Het toont aan dat zelfs het vluchtige geheugen van een knoop niet veilig is.
+Als een aanvaller in staat is om ongemerkt de programmacode van een knoop te
+verkrijgen, samen met alle gegevens die zich alleen tijdens de uitvoering van
+het programma in het geheugen bevinden, dan kan deze aanvaller deze code
+aanpassen zodat de werking ogenschijnlijk ongewijzigd is, terwijl hij toch
+controle heeft over de knoop en zo het netwerk kan be\"invloeden.
 
-Een zeer logische onderzoeksvraag dient zich al snel aan: ``\emph{Is het
-mogelijk om wijzigingen aan het programma van een knoop in het netwerk vast te
-stellen?}''. Deze vraag wordt onderzocht binnen het domein van
-software-attestatie.
+Een zeer logische onderzoeksvraag dient zich aan: ``\emph{Is het mogelijk om
+wijzigingen aan het programma van een knoop in het netwerk vast te stellen?}''.
+Deze vraag wordt onderzocht binnen het domein van software-attestatie.
 
 \subsubsection*{Werking}
 
@@ -37,13 +37,13 @@ samenvatting niet langer overeenkomen met die opgesteld door de vaststeller en
 kan deze laatste besluiten om de gewijzigde code niet te vertrouwen en de knoop
 uit te sluiten.
 
-Bijlage \ref{appendix:attestation} belicht een voorbeeld van een
-software-attestatie algoritme, ICE, en evalueert het met betrekking tot zijn
+Bijlage \ref{appendix:attestation} belicht een voorbeeld van een algoritme voor
+software-attestatie, ICE, en evalueert het met betrekking tot zijn
 mogelijkheden en beperkingen. Ook wordt kort ingegaan op de zgn. \emph{Trusted
 Platform Module} (TPM), op het concept van gedistribueerde attestatie en wordt
 geconcludeerd dat het attesteren van software mogelijk is, maar met de nodige
 omzichtigheid moet aangepakt worden. Veelal zal blijken dat bijkomende
-infrastructuur zal moeten voorzien worden.
+infrastructuur nodig is.
 
 Deze masterproef laat het attesteren van software buiten beschouwing en gaat
 uit van een situatie waar een knoop op \'e\'en of andere manier \emph{veilig}
