@@ -50,7 +50,7 @@ respectievelijk de hardware, software en algoritmen die hier een rol spelen.
 \label{subsection:eval-hardware}
 
 Het WSN dat voor deze opstelling gerealiseerd werd, is gebaseerd op de
-Zigbee-netwerkinfrastructuur en bestaat uit 3 knopen: een eindknoop, een router
+ZigBee-netwerkinfrastructuur en bestaat uit 3 knopen: een eindknoop, een router
 en een co\"ordinator. De configuratie van de verschillende radio-modules werd
 zo ingesteld dat deze topologie op kleine schaal gerealiseerd kon worded.
 Hiertoe werd een extra netwerk-laag in software toegevoegd. Deze laag zorgt
@@ -60,7 +60,7 @@ het draadloze netwerk liet dit in feite niet toe. In bijlage \ref{virtual-mesh}
 wordt deze virtuele netwerklaag in meer detail toegelicht.
 
 De sensorknopen zijn niet gebaseerd op een welbepaald bestaand platform, maar
-zijn samengesteld uit een \mcu en een Zigbee-module. Er werd gebruik gemaakt
+zijn samengesteld uit een \mcu en een ZigBee-module. Er werd gebruik gemaakt
 van een Atmel ATMEGA1284p \citep{datasheet:atmega1284p} en een Digi XBee 2
 module \citep{manual:xbee}. Bijlage \ref{hardware-platform} bespreekt de bouw
 van de sensorknoop. De keuze om geen standaard platform te gebruiken is
@@ -425,13 +425,14 @@ bijkomende pakket is toe te schrijven aan een bijkomend pakket dat tijdens het
 initialiseren van het virtuele netwerk gebruikt wordt door de eindknoop om de
 hoger liggende knoop te vinden.} Het gemiddeld aantal bytes per frame is
 (ongeveer) 24. Een lichtmeting bestaat uit 2 bytes. Daarnaast worden er 6 extra
-bytes gebruikt door de implementatie van het virtuele netwerk. Het Zigbee
-pakketformaat voegt nog eens 16 bytes toe \citep{alliance2012zigbee}. De totale
-som, 2 + 6 + 16 is inderdaad 24\footnote{De ogenschijnlijke fout op de waarde
-is opnieuw toe te schrijven aan het initi\"ele extra pakket. Dit is slechts 4
-bytes groot, heeft geen bijkomende adresinformatie van het virtuele netwerk en
-heeft verder alleen nog 16 bijkomende bytes van het Zigbee-protocol. Zo komt
-het op 20 bytes. Opgeteld bij 19 $\times$ 24 = 456 geeft dat inderdaad 476.}.
+bytes gebruikt door de implementatie van het virtuele netwerk. Het
+ZigBee-pakketformaat voegt nog eens 16 bytes toe \citep{alliance2012zigbee}. De
+totale som, 2 + 6 + 16 is inderdaad 24\footnote{De ogenschijnlijke fout op de
+waarde is opnieuw toe te schrijven aan het initi\"ele extra pakket. Dit is
+slechts 4 bytes groot, heeft geen bijkomende adresinformatie van het virtuele
+netwerk en heeft verder alleen nog 16 bijkomende bytes van het ZigBee-protocol.
+Zo komt het op 20 bytes. Opgeteld bij 19 $\times$ 24 = 456 geeft dat inderdaad
+476.}.
 
 Door de introductie van het IDS stijgen deze waarden natuurlijk. We berekenden
 reeds dat de introductie van een \emph{heartbeat} een bijkomende 30 pakketten
