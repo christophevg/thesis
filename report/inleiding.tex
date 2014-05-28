@@ -6,14 +6,14 @@
 Ze hebben de voorpagina van de krant dan misschien nog niet gehaald, de opmars
 van draadloze sensornetwerken (\emph{Wireless Sensor Networks}) (WSN) in ons
 dagelijks leven is niet meer te stoppen. Na de revolutie van de persoonlijke
-computer, de smartphone en het tablet vinden nu onafhankelijke, minuscule
-computers hun weg naar allerlei alledaagse dingen en plaatsen in ons leven.
-Deze netwerken kunnen met hun sensoren de kleinste wijzigingen in hun omgeving
-optekenen. Via een draadloos netwerk staan de sensoren in verbinding met elkaar
-en de buitenwereld. Zo leveren ze hun informatie af, waardoor wij op elk moment
-precies weten hoe warm het in elke kamer van ons huis is of welke groenten nog
-in de koelkast liggen. Het lijkt nog science fictie, maar deze toekomst is heel
-wat dichterbij dan we vermoeden.
+computer, de smartphone en de tabletcomputer vinden nu onafhankelijke,
+minuscule computers hun weg naar allerlei alledaagse dingen en plaatsen in ons
+leven. Deze netwerken kunnen met hun sensoren de kleinste wijzigingen in hun
+omgeving optekenen. Via een draadloos netwerk staan de sensoren in verbinding
+met elkaar en de buitenwereld. Zo leveren ze hun informatie af, waardoor wij op
+elk moment precies weten hoe warm het in elke kamer van ons huis is of welke
+groenten nog in de koelkast liggen. Het lijkt nog science fictie, maar deze
+toekomst is heel wat dichterbij dan we vermoeden.
 
 Om deze technologie te omarmen en ons leven verder in te richten met deze
 ondersteunende hulp, moeten we ons er van vergewissen dat deze technologie
@@ -23,8 +23,8 @@ bezinnen en beseffen dat al deze kleine computers zeer interessante
 inbraakmogelijkheden bieden aan anderen met minder positieve bedoelingen.
 
 Misschien wil de concurrent van de producent van onze yoghurt zijn collega wel
-in diskrediet brengen door er voor te zorgen dat onze slimme koelkast het
-nalaat ons te verwittigen dat de yoghurt vervallen is. Misschien vindt de
+in diskrediet brengen door ervoor te zorgen dat onze slimme koelkast het nalaat
+ons te verwittigen dat de yoghurt vervallen is. Misschien vindt de
 gasleverancier het wel leuk om, wanneer we niet thuis zijn, de thermostaat een
 graadje hoger te zetten.
 
@@ -34,8 +34,8 @@ bedreiging introduceren. In deze masterproef duiken we in de wereld van
 draadloze sensornetwerken en willen we nagaan of en hoe we deze kunnen voorzien
 van bescherming tegen minder goede bedoelingen.
 
-Sectie \ref{section:wsn} introduceert draadloze sensornetwerken. Hoe zijn ze
-opgebouwd? Wat zijn de mogelijkheden en beperkingen? 
+Sectie \ref{section:wsn} introduceert draadloze sensornetwerken: Hoe zijn ze
+opgebouwd? Wat zijn de mogelijkheden en beperkingen?
 
 Sectie \ref{section:beveiligen} legt de nadruk op beveiliging: Wat zijn de
 gevaren? Hoe kunnen deze vastgesteld worden? Hoe kunnen sensorknopen beschermd
@@ -118,10 +118,10 @@ draadloze standaarden.
 ZigBee zelf is een laag bovenop de netwerklaag gekend als IEEE 802.15.4
 \citep{ieee2009802.15.4}. Deze voorziet standaarden op vlak van energiegebruik,
 adressering, foutcorrectie, vormgeving van berichten\dots en vormt zo de
-fundamenten voor zgn. \emph{low-rate wireless personal area networks}
-(LR-WPAN). ZigBee voegt hieraan nog drie belangrijke eigenschappen toe:
-routering, ad-hoc netwerkcreatie en zelfherstellende maasnetwerken (\emph{mesh
-networks}) \citep{oreilly2010buildingwsn}.
+fundamenten voor \emph{low-rate wireless personal area networks} (LR-WPAN).
+ZigBee voegt hieraan nog drie belangrijke eigenschappen toe: routering, ad-hoc
+netwerkcreatie en zelfherstellende maasnetwerken (\emph{mesh networks})
+\citep{oreilly2010buildingwsn}.
 
 Een ZigBee-netwerk wordt opgebouwd door knopen die elk \'e\'en van drie
 verschillende functies kunnen innemen: co\"ordinator, router of eindknoop.
@@ -138,7 +138,7 @@ verschillende functies kunnen innemen: co\"ordinator, router of eindknoop.
   wegens hun communicatieondersteunende rol, niet in een slaapstand kunnen
   zetten.
 
-  \item[Eindkknoop] \emph{Eindknopen}, tot slot, kunnen zich louter verbinden
+  \item[Eindknoop] \emph{Eindknopen}, tot slot, kunnen zich louter verbinden
   met een netwerk, er berichten via versturen en berichten voor zichzelf
   ontvangen. Het is niet de bedoeling om berichten van andere knopen voor
   andere knopen door te sturen. Typisch trachten ze ook hun energieverbruik te
@@ -195,10 +195,10 @@ Dit \emph{netwerkadres} bestaat uit 16 bits en laat dus toe om 65534 (uit
 $2^{16} = 65536$) verschillende adressen toe te kennen. Het adres
 \ttt{0x0000}\footnote{We hanteren voor de notatie van adressen de hexadecimale
 voorstelling. Elk cijfer stelt een groep van 4 bits voor. 4 groepen stellen zo
-een 16 bit adres voor.} reserveert de co\"ordinator voor zichzelf en het adres
-\ttt{0xFFFE} wordt typisch gebruikt als het zgn. \emph{broadcast adres}, het
-adres waarnaar een bericht gestuurd wordt dat bij alle andere knopen dient
-afgeleverd te worden.
+een 16-bit adres voor.} reserveert de co\"ordinator voor zichzelf en het adres
+\ttt{0xFFFE} wordt typisch gebruikt als het \emph{broadcast adres}, het adres
+waarnaar een bericht gestuurd wordt dat bij alle andere knopen dient afgeleverd
+te worden.
 
 Daarnaast heeft elke ZigBee-radio ook een adres dat gegarandeerd overal uniek
 is. Dit bestaat uit 64 bits en wordt samengesteld uit twee delen: een eerste
@@ -211,18 +211,18 @@ besparing aan geheugen kan opleveren.
 
 Naast de adressen van de knopen is er ook nog het zogenaamde \emph{personal
 area network (PAN)} adres. Dit is een unieke identificatie van het netwerk dat
-door de co\"ordinator georganiseerd wordt. Ook dit is een 16 bit adres en laat
+door de co\"ordinator georganiseerd wordt. Ook dit is een 16-bit adres en laat
 dus toe om 65536 netwerken op te bouwen.
 
 Tot slot kunnen ZigBee-radio's ook gebruik maken van 12 verschillende
 \emph{kanalen}, zodat de volledige adresstructuur bestaat uit een kanaal, een
-PAN adres en een netwerkadres.
+PAN-adres en een netwerkadres.
 
 \section{Beveiligen van sensorknopen}
 \label{section:beveiligen}
 
 Het beveiligen van sensorknopen is, in tegenstelling tot de beveiliging van
-klassieke computers, bijzonder moeilijk. De computers waar onze emails, foto's
+klassieke computers, bijzonder moeilijk. De computers waar onze e-mails, foto's
 en andere kostbare documenten opgeslagen zijn, zijn uitgerust met een
 virusscanner, firewall\dots Dit is mogelijk omdat ze voorzien zijn van een
 constante stroomvoorziening, krachtige processor en veel geheugen. Ze worden
@@ -230,7 +230,7 @@ tevens fysiek beschermd door ons huis of het datacenter van onze leverancier
 van internetdiensten.
 
 In \citep{dargie2010fundamentals} wordt een goed overzicht gegeven van de
-uitdagingen die het beveiligen van WSN met zich meebrengen, in vergelijking met
+uitdagingen die het beveiligen van WSN met zich meebrengen in vergelijking met
 klassieke netwerken. Een sensorknoop heeft geen constante stroomvoorziening en
 moet het veelal stellen met een zeer beperkte batterij. Verder ligt de
 sensorknoop meestal letterlijk \emph{ten velde} en is hij voor nagenoeg
@@ -246,10 +246,10 @@ dat berichten verloren kunnen gaan.
 \subsection{CIA, AAA en andere beveiligingsprincipes}
 \label{subsection:cia}
 
-Beveiliging is een zeer ruim begrip dat veel aspecten overspant. Het is
-belangrijk dit voor ogen te houden wanneer we over beveiliging spreken.
-Theoretische modellen kunnen hierbij helpen. In deze sectie introduceren we
-enkele van deze modellen die kunnen helpen om over beveiliging te praten.
+Beveiliging is een zeer ruim begrip dat veel aspecten omvat. Het is belangrijk
+dit voor ogen te houden wanneer we over beveiliging spreken. Theoretische
+modellen kunnen hierbij helpen. In deze sectie introduceren we enkele van deze
+modellen die kunnen helpen om over beveiliging te praten.
 
 Wanneer men spreekt over het beveiligen van computers en netwerken, wordt
 dikwijls gerefereerd naar het CIA-beveiligingsmodel. Dit letterwoord staat
@@ -258,14 +258,13 @@ beschikbaarheid (\emph{availability}).
 
 \begin{description}
 
-  \item[Vertrouwelijkheid] Om \emph{vertrouwelijkheid} te garanderen moet
+  \item[Vertrouwelijkheid] Om \emph{vertrouwelijkheid} te garanderen, moet
   beveiliging de nodige voorzieningen treffen om er voor te zorgen dat bv. een
   bericht enkel door de bedoelde bestemmeling kan begrepen worden.
   
-  \item[Integriteit] Onder \emph{integriteit} verstaat men het principe dat dat
-  bericht dan weer niet mag gewijzigd kunnen worden, of dat de bedoelde
-  bestemmeling van het bericht ten minste kan valideren dat er aan het bericht
-  niets gewijzigd is. 
+  \item[Integriteit] Onder \emph{integriteit} verstaat men het principe dat een
+  bericht niet kan gewijzigd worden, of dat de bedoelde bestemmeling van het
+  bericht ten minste kan valideren dat het bericht niet gewijzigd is.
   
   \item[Beschikbaarheid] Maar beveiliging moet ook de \emph{beschikbaarheid}
   van onderdelen van het netwerk garanderen, om er zeker van te zijn dat dit
@@ -279,7 +278,7 @@ terminologie voorgesteld voor het defini\"eren van een beveiligingsbeleid.
 Naast de drie hoofdpijlers van het CIA-model vinden we zo ook nog een ander
 belangrijk model, namelijk het AAA model voor autorisatie bij
 internet-gerelateerde diensten (\emph{triple A}) \citep{rfc:2904}. De afkorting
-staat voor authenticatie, autorisatie en vaststellen (\emph{accounting})
+staat voor authenticatie, autorisatie en vaststellen (\emph{accounting}).
 
 \begin{description}
 
@@ -287,12 +286,12 @@ staat voor authenticatie, autorisatie en vaststellen (\emph{accounting})
   gebruiker of apparaat vastgesteld worden, zodat eenduidig kan bepaald worden
   van wie bv. een bericht in het netwerk komt.
   
-  \item[Autorisatie] \emph{Autorisatie} is daarentegen het proces waarbij
-  nagegaan wordt of een gebruiker waarvan de authenticiteit is vastgesteld, een
-  bepaalde handeling \emph{mag} uitvoeren.
+  \item[Autorisatie] \emph{Autorisatie} is het proces waarbij nagegaan wordt of
+  een gebruiker waarvan de authenticiteit is vastgesteld, een bepaalde
+  handeling \emph{mag} uitvoeren.
   
   \item[Vaststellen] Ten slotte biedt het \emph{vaststellen} van alle
-  gebeurtenissen en beslissingen binnen het beveiligde domein, een belangrijke
+  gebeurtenissen en beslissingen binnen het beveiligde domein een belangrijke
   bron van informatie om een beleid verder te verfijnen en eventueel bij te
   sturen.
 
@@ -310,7 +309,7 @@ deze beslissingen effectief uit te voeren.
 
 \begin{description}
 
-  \item[Onweerlegbaarheid] Naast deze aspecten, is er ook nog het principe van
+  \item[Onweerlegbaarheid] Naast deze aspecten is er ook nog het principe van
   onweerlegbaarheid (\emph{non-repudiation}). Door garanties omtrent
   \emph{onweerlegbaarheid} in te bouwen, kan een ontvanger er zeker van zijn
   dat een zender van een bericht dit bericht effectief verstuurd heeft.
@@ -382,15 +381,15 @@ netwerkrand, er is geen uniek punt waar alle netwerkverkeer passeert en waar
 een firewall zou kunnen ge\"introduceerd worden, laat staan dat er een manier
 zou zijn om al het interne verkeer op \'e\'en enkele plaats te analyseren.
 
-Binnen een WSN is het letterlijk elke knoop voor zichzelf: elke knoop kan
-immers van buitenaf benaderd worden zonder dat een aanvaller moet passeren
-langs een centraal controlepunt.
+Binnen een WSN is het letterlijk elke knoop voor zich: elke knoop kan immers
+van buitenaf benaderd worden zonder dat een aanvaller moet passeren langs een
+centraal controlepunt.
 
 \section{Probleemstelling}
 \label{section:probleem}
 
-WSN en sensorknopen op zich zijn geen makkelijke klanten wat beveiliging
-betreft. Enerzijds hebben ze onvoldoende middellen om zich te beschermen en
+Een WSN en sensorknopen op zich zijn geen makkelijke klanten wat beveiliging
+betreft. Enerzijds hebben ze onvoldoende middelen om zich te beschermen en
 anderzijds is hun situatie zo dat het letterlijk elke knoop voor zichzelf is en
 dat ze nauwelijks kunnen vertrouwen op hun collega's.
 
@@ -398,7 +397,7 @@ In dit kader moeten gebruikers van een WSN eisen dat er voldoende garanties
 worden gegeven zodat ze zich voldoende verzekerd voelen om intieme informatie
 toe te vertrouwen aan deze netwerken.
 
-Aangezien het haast onmogelijk is om inbraakpogingen te verijdelen is het van
+Aangezien het haast onmogelijk is om inbraakpogingen te verijdelen, is het van
 groot belang dat men in staat is om ze ten minste vast te stellen. Het
 introduceren van een IDS in het WSN is echter een directe aanval op de
 essenti\"ele functionaliteit van een sensorknoop, waardoor de mogelijkheden
@@ -421,8 +420,8 @@ groot geheugen opgeslagen kunnen worden en zouden de berekeningen die nodig
 zijn om bepaalde anomalie\"en te detecteren gewoonweg te veel energie
 verbruiken.
 
-Als in dit stadium van onderzoek naar systemen om inbraken te detecteren het
-niet mogelijk is om een sluitend IDS voor een WSN te ambi\"eren, lijkt het
+Als in dit stadium van het onderzoek naar systemen om inbraken te detecteren
+het niet mogelijk is om een sluitend IDS voor een WSN te ambi\"eren, lijkt het
 opportuun om een stap terug te zetten en de focus te leggen op de middelen die
 nodig zijn om de reeds beschreven, en mogelijk ook toekomstige algoritmen, te
 realiseren. Is het mogelijk om een kader te cre\"eren dat een ontwikkelaar van
@@ -430,7 +429,7 @@ een sensorknoop in staat stelt om een selectie van de in de literatuur
 beschreven oplossingen te implementeren? Kan hij een IDS toevoegen aan zijn WSN
 zonder een diepgaande analyse van de onderzoeksliteratuur en zonder zich zorgen
 te moeten maken over de onderliggende interactie met andere knopen, het
-vergaren en opvragen van informatie op systeem-niveau\dots?
+vergaren en opvragen van informatie op systeemniveau\dots?
 
 Deze masterproef wil zo'n kader ontwerpen, een prototype implementeren en de
 impact bepalen. Daartoe bekijken we eerst enkele typische voorbeelden van
