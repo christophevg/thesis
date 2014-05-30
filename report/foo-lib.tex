@@ -4,33 +4,33 @@
 \label{section:devel-foo-lib}
 
 Een laatste aspect van de implementatie bestaat uit de softwarebibliotheek die
-de generatie vervolledigt. Deze bibliotheek biedt typisch twee types van
+de gegenereerde code aanvult. Deze bibliotheek biedt typisch twee types van
 ondersteunende modules aan:
 
 \begin{description}
 
-\item[Algemene modules] Deze kunnen vergeleken worden met de standaard
-bibliotheek die tegenwoordig bij veel programmeertalen gevoegd wordt en veelal
-de kracht ervan bepaalt. In het geval van deze eerste implementatie betreft het
-hier de \ttt{crypto}-module met functies om cryptografische sleutels te
-bepalen. Dit is functionaliteit die te verwachten is bij implementatie van
-detectiealgoritmen. De \ttt{time}-module biedt toegang tot een klok en zorgt
-hiermee voor een abstractielaag naar het onderliggende systeem.
+\item[Algemene en abstraherende modules] Deze kunnen vergeleken worden met de
+standaard-bibliotheek die tegenwoordig bij veel programmeertalen gevoegd wordt
+en veelal de kracht ervan bepaalt. In het geval van deze eerste implementatie
+betreft het hier de \ttt{crypto}-module met functies om cryptografische
+sleutels te verwerken, een functionaliteit die typisch voorkomt bij
+implementatie van detectiealgoritmen. De \ttt{time}-module biedt toegang tot
+een klok en zorgt hiermee voor een abstractielaag naar het onderliggende
+systeem.
 
 \item[Knoopdomein-geori\"enteerde modules] Het uitgangspunt van deze
 masterproef is dat het mogelijk is om gemeenschappelijke logica betreffende
-sensorknopen te centraliseren, om ze een meer optimale werking te bekomen. Het
-is dan ook niet verwonderlijk dat FOO-lib de plaats is waar we deze
-functionaliteit terugvinden. Het betreft hier de gemeenschappelijke parser voor
-binnenkomende berichten, de planningsmodule voor planbare functieoproepen\dots
+sensorknopen te centraliseren, om z\'o een meer optimale werking te bekomen.
+Het is dan ook niet verwonderlijk dat FOO-lib deze functionaliteit herbergt.
+Het betreft hier een gemeenschappelijke parser, een planningsmodule voor
+functieoproepen\dots
 
 \end{description}
 
 Vandaag dient er voor elk platform en programmeertaal een implementatie van
-FOO-lib te gebeuren. Echter, indien deze code verder zou omgezet worden in een
-vorm die rechtstreeks bruikbaar is voor de generator, zou deze logica mee
-verwerkt kunnen worden door de generator, zou bv. \emph{inlining} kunnen
-toegepast worden en zou nog verdere optimalisatie kunnen bereikt worden.
-Hierbij zou dan ook het onderhouden van verschillende implementaties van
-FOO-lib sterk beperkt worden tot een nog lager niveau van ondersteuning van de
-platformen en de talen.
+FOO-lib te gebeuren. Indien deze code verder zou omgezet worden in een vorm die
+rechtstreeks behandeld kan worden de generator, zou deze logica mee verwerkt
+kunnen worden en zou bv. \emph{inlining} kunnen toegepast worden, waardoor nog
+verdere optimalisatie kan bereikt worden. Hierbij zou dan ook het onderhouden
+van verschillende implementaties van FOO-lib sterk beperkt worden tot een lager
+niveau van ondersteuning van de platformen en de talen.

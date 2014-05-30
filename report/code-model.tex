@@ -14,7 +14,7 @@ opgebouwd worden uit zelf te defini\"eren entiteiten. Standaard voorziet
 CodeCanvas de concepten \emph{unit}, \emph{module}, \emph{sectie} en
 \emph{code}.
 
-\begin{description}[noitemsep, topsep=1pt, partopsep=1pt]
+\begin{description}[itemsep=1pt, topsep=2pt, partopsep=2pt]
 
   \item[Unit] is het hoogste niveau en verzamelt alle onderliggende
   \emph{modules}.
@@ -27,8 +27,8 @@ CodeCanvas de concepten \emph{unit}, \emph{module}, \emph{sectie} en
   declaraties en \'e\'en voor definities.
   
   \item[Code] is een basisbouwsteen voor instructies. Standaard kan hier een
-  tekstuele voorstelling aan gegeven worden. Praktisch zal men overerven van
-  deze klasse en er een taxonomie mee opbouwen.
+  tekstuele inhoud aan gegeven worden. Praktisch zal men overerven van deze
+  klasse en er een taxonomie mee opbouwen.
 
 \end{description}
 
@@ -36,12 +36,10 @@ CodeCanvas de concepten \emph{unit}, \emph{module}, \emph{sectie} en
 met een label (\emph{tag}) en onderliggende entiteiten te selecteren of zoeken
 op basis van die labels.
 
-Dankzij een \emph{vloeiende} (\emph{fluent}) interface laat CodeCanvas
-toe om zeer leesbare operaties te formuleren op deze hi\"erarchische
-codestructuren.
-
+Dankzij een \emph{vloeiende} (\emph{fluent}) interface laat CodeCanvas toe om
+zeer leesbare operaties te formuleren op deze hi\"erarchische codestructuren.
 Codevoorbeeld \ref{lst:codecanvas-hello} toont een eenvoudig voorbeeld dat de
-meeste functionaliteit van CodeCanvas toepast. 
+belangrijkste functionaliteit van CodeCanvas toepast.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{python}
@@ -64,15 +62,13 @@ print str(unit)
 
 Het voorbeeld construeert op regel 5 een \emph{unit} en voegt er een
 \emph{module}, genaamd \ttt{hello}, aan toe. Achterliggend worden bij de
-aanmaak van een module onmiddellijk 2 \emph{secties} toegevoegd, genaamd
-\ttt{dec} en \ttt{def}.
+aanmaak van een module onmiddellijk 2 secties toegevoegd, genaamd \ttt{dec} en
+\ttt{def}.
 
-Op regel 6 wordt vertrekkende van de \emph{unit} de \ttt{dec} \emph{sectie}
-geselecteerd. De \ttt{select} methode laat toe om een opeenvolgende reeks van
-\emph{labels} te defini\"eren die het pad vormen vanaf de startentiteit tot de
-te selecteren entiteit.
-
-Een gelijkaardige methode, \ttt{find}, accepteert een variabele lijst
+Op regel 6 wordt vanaf de \emph{unit} de \ttt{dec}-\emph{sectie} geselecteerd.
+De \ttt{select}-methode laat toe om een opeenvolgende reeks van \emph{labels}
+te defini\"eren die het pad vormen vanaf de startentiteit tot de te selecteren
+entiteit. Een gelijkaardige methode, \ttt{find}, accepteert een variabele lijst
 argumenten en zoekt vervolgens, vertrekkende van de startentiteit, naar
 entiteiten die alle opgegeven \emph{labels} dragen.
 
@@ -80,8 +76,8 @@ Beide methodes kunnen lijsten van entiteiten teruggeven. Op deze lijsten kunnen
 eveneens alle methoden opgeroepen worden zoals op een enkele entiteit. Dit
 resulteert in een zeer transparante interface.
 
-De geselecteerde sectie wordt vervolgens een functie toegevoegd met de naam
-\ttt{main}. Op regel 7 wordt aan deze functie een \ttt{print} opdracht
+Aan de geselecteerde sectie wordt vervolgens een functie toegevoegd met de naam
+\ttt{main}. Op regel 7 wordt aan deze functie een \ttt{print}-opdracht
 toegevoegd. Tot slot wordt de \emph{unit} op twee manieren uitgevoerd: eerst
 door er een tekstuele voorstelling van te maken en in tweede instantie door
 gebruik te maken van een programmeertaal, in dit geval C.
@@ -89,8 +85,8 @@ gebruik te maken van een programmeertaal, in dit geval C.
 De uitvoer van dit programma is weergegeven in \ref{lst:codecanvas-output} en
 toont eerst de technische tekstuele voorstelling van de hi\"erarchie. Tussen
 vierkante haakjes staan de \emph{labels} die aan een entiteit verbonden zijn.
-Effectieve instructie-implementaties tonen hun parameters als een verzameling
-van de naam en de waarde.
+Effectieve instructie-implementaties tonen hun parameters als een lijst van
+namen en de waarden.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
@@ -121,58 +117,56 @@ van de naam en de waarde.
 
 Het tweede deel van de uitvoer toont de overeenkomstige C-code voor deze
 hi\"erarchie. We merken op dat op regel 7 een prototype en op regel 8 een
-\emph{import} opdracht verschijnen die niet in de hi\"erarchie voorkwamen.
+\emph{import}-opdracht verschijnen die initieel niet in de hi\"erarchie
+voorkwamen. Wanneer we een tweede maal de \emph{unit} omvormen tot een
+tekstuele voorstelling, zien we deze twee entiteiten wel opduiken.
 
-Wanneer we een tweede maal de \emph{unit} omvormen tot een tekstuele
-voorstelling, zien we deze twee entiteiten wel opduiken. De uitvoermodule voor
-de programmeertaal C werkt in meerdere stappen.
-
-Tijdens een eerste fase wordt de hi\"erarchie doorlopen en worden uitbreidingen
-gedaan. In dit voorbeeld gebeuren er twee: wanneer een \emph{print} opdracht
-gevonden wordt, wordt een \emph{import} opdracht toegevoegd die de declaraties
-van \ttt{stdio.h} zal inladen. Een tweede transformatie zal voor elke
+De uitvoermodule voor de programmeertaal C werkt in meerdere stappen: tijdens
+een eerste fase wordt de hi\"erarchie doorlopen en worden uitbreidingen gedaan.
+In dit voorbeeld gebeuren er twee: wanneer een \emph{print}-opdracht gevonden
+wordt, wordt een \emph{import}-opdracht toegevoegd die de declaraties van
+\ttt{stdio.h} zal inladen. Een tweede transformatie zal voor elke
 \emph{functie} een prototype aanmaken in de declaratiesectie van de module.
 
 Deze fase zorgt ook voor het omzetten van constructies die niet standaard
-ondersteund worden naar uitwerkingen met constructies die wel bestaan in de
-beoogde taal. Een voorbeeld hiervan zijn bv. \emph{tuples}. Deze worden door de
-transformatie naar C herschreven door middel van structuren en functies om deze
-structuren te benaderen en onderhouden.
+ondersteund worden constructies die wel mogelijk zijn in de beoogde taal. Een
+voorbeeld hiervan zijn bv. \emph{tuples}. Deze worden door de transformatie
+naar C herschreven aan de hand van structuren en functies om deze structuren te
+behandelen.
 
 In een tweede fase doorloopt de uitvoermodule opnieuw de volledige
-hi\"erarchie, maar vormt nu elke entiteit om in de overeenkomstige tekstuele C
-syntax.
+hi\"erarchie, maar vormt nu elke entiteit om in de overeenkomstige tekstuele
+C-syntax.
 
-Beide fasen worden ge\"implementeerd door middel van \emph{visitors}. Deze
-\emph{visitors} zijn tevens beschikbaar van buitenaf en laten toe om andere
-transformaties te implementeren.
+Beide fasen worden ge\"implementeerd door middel van \emph{visitors}. Deze zijn
+ook beschikbaar van buitenaf en laten toe om andere transformaties te
+implementeren.
 
 \subsubsection{Filosofie}
 
 De doelstelling van CodeCanvas is het aanbieden van een API die toelaat om te
-werken zoals een programmeur denkt/werkt tijdens programmeren, maar op basis
-van een abstracte programmeertaal die een superset aanbiedt van constructies
-uit verschillende programmeertalen.
+werken zoals een programmeur denkt/werkt tijdens het programmeren, maar in dit
+geval op basis van een abstracte programmeertaal die een superset aanbiedt van
+constructies uit verschillende programmeertalen.
 
-Enkele typische eigenschappen die deze doelstelling ondersteunen zijn:
+Enkele eigenschappen die deze doelstelling ondersteunen zijn:
 
 \begin{description}
 
   \item[Functionele cross-referenties] Door middel van \emph{labels} en de
   \emph{selectie}- of \emph{zoek}-functionaliteit kan er op functionele wijze
   omgegaan worden met code. Zo kan een gebruiker aan de beschrijving van een
-  functie een \emph{label} toevoegen en hier later eenvoudig naar verwijzen om
+  functie een \emph{label} toekennen en hier later eenvoudig naar verwijzen om
   nog bijkomende logica toe te voegen.
 
   \item[Zoek-en-wijzig] Dankzij de functionele cross-referenties en de
   transparantie van een entiteit of een lijst van entiteiten is het eenvoudig
   om algemene aanpassingen door te voeren. Dit kan bv. gebruikt worden om aan
-  het begin van alle declaratie-secties een standaard blok commentaar te
-  plaatsen of om systematisch aanpassingen met betrekking tot naamgeving door
-  te voeren.
+  het begin van alle declaratie-secties een blok commentaar te plaatsen of om
+  systematisch aanpassingen met betrekking tot naamgeving door te voeren.
 
   \item[Automatisch vervolledigen] Het voorbeeld van het automatisch toevoegen
-  van \ttt{import} opdrachten of \ttt{prototypes} is een krachtige manier om de
-  gebruiker te ontslaan van redundant en repetitief werk.
+  van \ttt{import}-opdrachten of \ttt{prototypes} illustreet de mogelijkheid om
+  de gebruiker te ontslaan van redundant en repetitief werk.
 
 \end{description}

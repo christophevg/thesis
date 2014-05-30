@@ -15,8 +15,8 @@ worden in deze masterproef.
 
 Sectie \ref{section:arch-technical} werkt vervolgens deze functionele
 architectuur uit in een technische architectuur. Hier wordt het functionele
-proces opgedeeld in technische componenten en worden de verschillende interne
-informatiestromen, -manipulaties en -opslagvormen ge\"identificeerd.
+proces opgedeeld in technische componenten en worden de interne
+informatiestromen, -manipulaties en \mbox{-opslagvormen} ge\"identificeerd.
 
 \section{Functionele architectuur}
 \label{section:arch-functional}
@@ -41,11 +41,11 @@ ontwikkeling en uitbating.
     \emph{FOO-lang} voor. Reeds in deze fase kan dit gebruikt worden om verdere
     \emph{analyses}, \emph{simulaties}\dots te doen. Het is tot slot tevens
     mogelijk om een \emph{centrale opslag} te voorzien waar alle
-    detectiealgoritmen verzameld kunnen worden en vanwaaruit verder opnieuw
-    analyses en simulaties kunnen opgestart worden.
+    detectiealgoritmen verzameld kunnen worden en van waaruit opnieuw analyses
+    en simulaties kunnen opgestart worden.
     
     \item[Ontwikkeling] Aan de hand van de formele beschrijvingen kan de
-    feitelijke ontwikkeling van het IDS feitelijk vervangen worden door een
+    ontwikkeling van het IDS feitelijk vervangen worden door een
     geautomatiseerde \emph{codegeneratie}.
     
     \item[Uitbating] Het wordt zelfs mogelijk om deze codegeneratie te sturen
@@ -54,7 +54,7 @@ ontwikkeling en uitbating.
     
 \end{description}
 
-\noindent In de volgende secties belichten we deze aspecten in meer detail.
+\noindent In de volgende secties belichten we deze aspecten meer in detail.
 
 \subsection{FOO-lang}
 \label{subsection:arch-foo-lang}
@@ -67,15 +67,14 @@ Deze doelstelling wordt ook weerspiegeld in de naam: Functie Organisatie
 Optimalisatie (\emph{Function Organisation Optimisation}), kortweg: FOO-lang.
 
 De belangrijkste doelgroep wat betreft gebruikers, zijn onderzoekers van
-inbraakdetectie in het kader van een WSN. Met FOO-lang beschikken zij over een
-formele taal om inbraakdetectiealgoritmen te beschrijven.
+inbraakdetectie in draadloze sensornetwerken. Met FOO-lang beschikken zij over
+een formele taal om inbraakdetectiealgoritmen te beschrijven.
 
 Het is van primordiaal belang dat de taal zo dicht mogelijk aansluit bij
-bestaande kennis en vertrouwde paradigma. Daarom wordt voorgesteld om dicht bij
-de programmeertaal C aan te blijven leunen en deze uit te breiden met
-constructies die de taal op een hoger niveau van abstractie brengen. Dit hogere
-niveau sluit meer aan bij een functionele en platformonafhankelijke
-beschrijving.
+bestaande kennis en vertrouwde paradigma's. Daarom wordt voorgesteld om dicht
+bij de programmeertaal C aan te leunen en deze uit te breiden met constructies
+die de taal op een hoger niveau van abstractie brengen. Dit hogere niveau sluit
+meer aan bij een functionele en platformonafhankelijke beschrijving.
 
 Om de doelstelling, nl. het genereren van code die betere prestaties laat
 optekenen dan eenvoudig manueel samengestelde code, na te streven, is het
@@ -98,11 +97,11 @@ de platformonafhankelijkheid.
 \subsection{Centrale opslag}
 \label{subsection:arch-repository}
 
-Al deze platformonafhankelijke en formele beschrijvingen van
-detectiealgoritmen, kunnen vervolgens samengebracht worden in een centrale
-opslagplaats. Het hoeft geen betoog dat hiervoor een website kan voorzien
-worden, die als portaal kan dienen. Een heel aantal klassieke voorzieningen
-bieden zich hierbij aan: zoekmogelijkheden, gebruiksstatistieken, commentaar,
+Al deze platformonafhankelijke en formele beschrijvingen van detectiealgoritmen
+kunnen vervolgens samengebracht worden in een centrale opslagplaats. Het hoeft
+geen betoog dat hiervoor een website kan voorzien worden, die als portaal kan
+dienen. Een heel aantal klassieke voorzieningen bieden zich hierbij aan:
+zoekmogelijkheden, gebruiksstatistieken, commentaar,
 samenwerkingsmogelijkheden\dots
 
 Allerhande integraties kunnen voorzien worden om op transparante wijze met
@@ -127,7 +126,7 @@ De generator moet de doelstellingen van de oplossingsstrategie implementeren en
 de resulterende code op zo'n manier structureren dat deze minder impact heeft
 op de werking van de sensorknoop.
 
-Om een volledig geautomatiseerde werking toe te laten is het belangrijk dat de
+Om een volledig geautomatiseerde werking toe te laten, is het belangrijk dat de
 aansturing van de generator in zo'n context mogelijk is. De configuratie van de
 generator moet via een bestand of aan de hand van oproepparameters
 gespecificeerd kunnen worden, zonder verdere menselijke tussenkomst.
@@ -137,8 +136,8 @@ gespecificeerd kunnen worden, zonder verdere menselijke tussenkomst.
 
 Een volledig geautomatiseerde oplossing laat toe om een uitbatingsbeleid te
 introduceren op veel fijnere schaal. Het wordt immers mogelijk om zelfs per
-sensorknoop een ``persoonlijke'' configuratie te gaan onderhouden, bouwen en
-verspreiden.
+sensorknoop een ``persoonlijke'' configuratie te gaan bouwen, verspreiden en
+onderhouden.
 
 Hierbij komt de oplossing ook tegemoet aan bv. de nood van sommige algoritmen
 om op verschillende soorten knopen verschillende functionaliteit te voorzien.
@@ -149,20 +148,20 @@ te verlagen en zelfs dynamisch op regelmatige tijdstippen te wijzigen.
 
 Gecombineerd met voorzieningen die softwareverspreiding via het draadloze
 netwerk (\emph{Over The Air Programming}) (OTAP) toelaten, kan het
-gedistribueerde IDS op elk ogenblik gewijzigd worden. Tal van mogelijkheden
-ontstaan zo.
+gedistribueerde IDS op elk ogenblik gewijzigd worden. Zo ontstaan er tal van
+mogelijkheden.
 
 \subsection{Ontwikkeling}
 \label{subsection:arch-integration}
 
 Naast het IDS is er ook de eigenlijke toepassing die op de sensorknoop zal
 ge\"installeerd en uitgebaat worden. Ook deze moet optimaal verwerkt kunnen
-worden in het samenstellingsproces.
+worden in het compilatieproces.
 
 Een minimale vereiste is dat het generatieproces duidelijke markeringen in de
 resulterende code achterlaat, zodat de integratie met de toepassingscode
 mogelijk is. Deze markeringen kunnen ook voorzien worden in de vorm van
-invoegdirectieven die tijdens het compilatieproces bijkomende bestanden kan
+invoegdirectieven die tijdens het compilatieproces bijkomende bestanden kunnen
 opnemen zonder verdere tussenkomst van een ontwikkelaar.
 
 \subsection{Verdere opportuniteiten}
@@ -174,21 +173,21 @@ zijn tal van ondersteunende toepassingen denkbaar.
 Een belangrijk voorbeeld voor onderzoekers is een gestandaardiseerde
 simulatieomgeving. Deze kan opgebouwd worden met de codegenerator, voorzien van
 een implementatie voor een virtueel platform, die bruikbare code genereert voor
-de simulatieomgeving. Een integratie zou kunnen bestaan in een implementatie in
-Javascript, wat toelaat om de simulatie toe te voegen aan de centrale
+de simulatieomgeving. Een integratie zou kunnen bestaan uit een implementatie
+in Javascript, wat toelaat om de simulatie toe te voegen aan de centrale
 opslagplaats en dynamisch verschillende combinaties van algoritmen daaruit te
 testen alvorens ze te integreren in een echte omgeving.
 
 \subsection{Scope}
 \label{subsection:arch-scope}
 
-De voorgaande hoogniveau functionele analyse toont vooral aan dat met de
-basiscomponenten veel andere opportuniteiten in bereik liggen. Het is
-belangrijk om deze opportuniteiten in het vizier te houden, zodat er geen
-uitgesloten worden door de implementatie.
+De voorgaande functionele analyse toont vooral aan dat met de basiscomponenten
+veel andere opportuniteiten in bereik liggen. Het is belangrijk om deze
+opportuniteiten in het vizier te houden, zodat er geen uitgesloten worden door
+de implementatie.
 
 De minimale set aan basiscomponenten zal in deze masterproef verder uitgewerkt
-worden aan de hand van een prototype, enerzijds FOO-lang en anderzijds een
+worden aan de hand van een prototype: enerzijds FOO-lang en anderzijds een
 codegenerator met ondersteuning voor \'e\'en combinatie van platform en
 programmeertaal. Een centrale opslag en integraties met een beleid of
 verspreiding van software worden niet verder uitgewerkt.
@@ -210,17 +209,17 @@ scope naar meer technische componenten.
 
 De verwerking verloopt als volgt: een parser analyseert de FOO-lang broncode en
 produceert een zgn. abstracte syntax boomvoorstelling (\emph{Abstract Syntax
-Tree} (AST). Deze AST wordt vervolgens ingeladen in een \emph{semantisch model}
-(SM) \citep{fowler2010domain}.
+Tree} (AST). Deze AST wordt vervolgens ingeladen in een \emph{semantisch model}.
 
 \subsection{Semantisch model}
 \label{subsection:arch-semantic-model}
 
-Een SM bevat de volledige en semantisch correcte voorstelling van de boogde
-functionaliteit. In die optiek vertoont het sterke overeenkomsten met een
-klassiek domeinmodel \citep{fowler2010domain}, maar aangezien dit laatste
-echter veel rijker is aan functionaliteit en een SM typisch meer
-informatie-geori\"enteerd is, wordt er een onderscheid gemaakt in de naamgeving.
+Een semantisch model (SM) \citep{fowler2010domain} bevat de volledige en
+semantisch correcte voorstelling van de beoogde functionaliteit. In die optiek
+vertoont het sterke overeenkomsten met een klassiek domeinmodel
+\citep{fowler2010domain}, maar aangezien dit laatste echter veel rijker is aan
+functionaliteit en een SM typisch meer informatiegeori\"enteerd is, wordt er
+een onderscheid gemaakt in de naamgeving.
 
 Het model is volledig ge\"ent op het domein waarvoor het opgebouwd wordt. In
 bijlage \ref{appendix:semantic-model} wordt het SM weergegeven. Het bevat alle
@@ -245,42 +244,44 @@ om te kunnen gaan met de entiteiten uit het domein.
 
 \subsection{Type deductie en andere transformaties}
 
-Door middel van verschillende transformaties wordt dit SM vervolledigd. Een
+Door middel van verschillende transformaties wordt het SM vervolledigd. Een
 eerste stap is het deduceren van ontbrekende types. Het resultaat is een
 volledig getypeerd SM en garandeert een correcte behandeling, eventueel in het
 kader van een sterk getypeerde programmeertaal, zoals C.
 
-Een tweede stap is een vertaling van het SM naar een \emph{code model} (CM).
-Dit CM staat dichter bij de uiteindelijk te genereren code en is meer technisch
-van aard. Deze vertaling is het resultaat van verschillende transformaties
+Een tweede stap is een vertaling van het SM naar een \emph{code model}. Dit
+staat dichter bij de uiteindelijk te genereren code en is meer technisch van
+aard. Deze vertaling is het resultaat van verschillende transformaties
 uitgevoerd op het SM door o.a. de specifieke implementatie voor het platform en
 het domein.
 
 \subsection{Code model}
 \label{subsection:arch-code-model}
 
-Via de verschillende transformaties wordt het SM omgezet in een CM. Deze
-overstap vertaalt in essentie de functionele concepten naar overeenkomstige
-patronen in een semantiek die direct aanleunt bij programmeertalen.
+Via de verschillende transformaties wordt het SM omgezet in een code model
+(CM). Deze overstap vertaalt in essentie de functionele concepten naar
+overeenkomstige patronen in een semantiek die direct aanleunt bij
+programmeertalen.
 
-Het code model voorziet een hi\"erarchie van een compilatie unit, met daaronder
-modules en binnen elke module secties. Deze hi\"erarchie is een abstracte
-voorstelling van respectievelijk de gehele compilatie, de functionele modules
-en de bestanden waaruit die modules opgebouwd zullen worden. In termen van de
+Het CM voorziet een hi\"erarchie van een compilatie unit, met daaronder modules
+en binnen elke module secties. Deze hi\"erarchie is een abstracte voorstelling
+van respectievelijk de gehele compilatie, de functionele modules en de
+bestanden waaruit die modules opgebouwd zullen worden. In termen van de
 programmeertaal C is dit het geheel van C en aanverwante bestanden, het concept
-van een C module en op het laagste niveau de effectieve C en hoofding bestanden.
+van een C module en op het laagste niveau de effectieve C en hoofding bestanden
+(\emph{header files}).
 
 Een sectie bestaat dan uit \'e\'en of meerdere codeconstructies:
 functiedeclaraties, expressies, statements\dots Deze codeconstructies zijn
 rijker dan bv. de programmeertaal C. Het zal de taak zijn van opeenvolgende
 transformaties om deze niet-ondersteunde constructies voor een bepaald platform
-en/of programmeertaal om te vormen naar constructies die wel door de taal of
-het platform worden aangeboden.
+en/of programmeertaal om te vormen naar constructies die wel door het platform
+of de taal worden ondersteund.
 
 \subsection{Codegeneratie}
 
 De laatste stap in het proces bestaat uit de eigenlijke generatie van
-programmacode. Deze vertrekt van het CM en is ook samengesteld met
+programmacode. Deze vertrekt van het CM en is ook samengesteld uit
 transformaties. Hier is de beoogde programmeertaal de belangrijkste bron voor
 transformaties. Het resultaat is een CM dat \'e\'en-op-\'e\'en vertaalbaar is
 naar programmacode en zo eigenlijk kan beschouwd worden als een AST.

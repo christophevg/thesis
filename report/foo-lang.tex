@@ -3,7 +3,7 @@
 \section{FOO-lang}
 \label{section:devel-foo-lang}
 
-De echt belangrijke taal in dit geval is niet Python, maar FOO-lang.
+De echt belangrijke taal is in dit geval niet Python, maar FOO-lang.
 Codevoorbeeld \ref{lst:hello.foo} toont de implementatie van een elementair
 voorbeeld in FOO-lang. Aan de hand van dit voorbeeld introduceren we de
 typische bouwstenen van FOO-lang en doorlopen we het generatieproces.
@@ -19,47 +19,52 @@ De code start op regel 6 met de declaratie van een \emph{module}. Een module is
 een op zich staand geheel en zou bv. een detectiealgoritme kunnen zijn. Alles
 wat volgt op de declaratie van de module, maakt er deel van uit.
 
-Op regel 8 introduceren we een \emph{const}ante, \ttt{interval} en stellen die
-gelijk aan \ttt{1000}. Hier zien we een eerste voorbeeld van het ontbreken van
-expliciete typering in FOO-lang. Dankzij deductie van types zal in dit geval
-het type van \ttt{interval} overeenkomen met een \emph{IntegerType}, omdat de
-waarde \ttt{1000} gevormd is als een integer getal.
+Op regel 8 introduceren we een constante, \ttt{interval} en stellen die gelijk
+aan \ttt{1000}. Hier zien we een eerste voorbeeld van het ontbreken van
+expliciete typering in FOO-lang. Dankzij deductie van types zal het type van
+\ttt{interval} overeenkomen met een \emph{IntegerType}, omdat de waarde
+\ttt{1000} voorgesteld wordt is als een geheel getal.
 
-Ofschoon FOO-lang ge\"introduceerd wordt als DSL voor inbraakdetectie in WSN,
-specificeert het zijn domein als dat van \emph{sensorknopen} of \emph{nodes}.
-algoritmen met betrekking tot inbraakdetectie in WSN, hebben \'e\'en belangrijk
-gemeenschappelijke entiteit en dat zijn de sensorknopen. Deze communiceren met
-elkaar en op basis van die communicatie zijn zowat alle algoritmen opgebouwd.
+Ofschoon FOO-lang ge\"introduceerd wordt als een DSL voor inbraakdetectie in
+draadloze sensornetwerken, concentreert het zijn domein rond
+\emph{sensorknopen} of \emph{nodes}. Algoritmen met betrekking tot
+inbraakdetectie in een WSN, hebben \'e\'en belangrijk gemeenschappelijke
+entiteit: sensorknopen. Deze communiceren met elkaar en dit vormt de basis voor
+nagenoeg alle algoritmen.
+
+Voor deze communicatie wordt het draadloze netwerk gebruikt. De draadloze radio
+is een van de belangrijkste energieverbruikers van een sensorknoop. FOO-lang is
+een \emph{functie}-geori\"enteerde taal die tracht om de functies in de
+verschillende modules zo te organiseren dat de uitvoering ervan de \mcu of de
+draadloze radio zo min mogelijk belast.
 
 Het raamwerk van de generator beheert het concept van een knoop of \emph{node}.
 De algoritmen krijgen toegang tot deze knopen via een aantal functionele
 constructies en ze kunnen de basisdefinitie van een knoop in het domein
-uitbreiden met eigen eigenschappen. Dit gebeurt bv. op regel 10, waar (de knoop
-van) het domein uitgebreid wordt met een eigenschap \ttt{sequence}. Deze
+uitbreiden met bijkomende eigenschappen. Dit gebeurt bv. op regel 10, waar (de
+knoop van) het domein uitgebreid wordt met een eigenschap \ttt{sequence}. Deze
 eigenschap wordt expliciet getypeerd als een \emph{byte} en krijgt als
 initi\"ele waarde \ttt{0}.
 
-FOO-lang is een \emph{functie}-geori\"enteerde taal die tracht om de functies
-in de verschillende modules zo te organiseren dat de uitvoering ervan de \mcu
-of de draadloze radio zo min mogelijk belast. Op regel 14 wordt een functie
-gedefinieerd, genaamd \ttt{step}. Ze accepteert \'e\'en parameter, genaamd
-\ttt{node}. We merken opnieuw op dat deze parameter niet getypeerd is.
+Op regel 14 wordt een functie gedefinieerd, genaamd \ttt{step}. Ze accepteert
+\'e\'en parameter, genaamd \ttt{node}. We merken opnieuw op dat deze parameter
+niet getypeerd is.
 
 De inhoud van de functie bestaat uit vertrouwde codeconstructies die bijna
 gewone C-code kunnen zijn. Een conditie, een eigenschap, een
-waardeverhoging\dots We zien hier onze eerder toegevoegde eigenschap,
-\ttt{sequence}, terug opduiken.
+waardeverhoging\dots We zien hier ook de eerder toegevoegde eigenschap,
+\ttt{sequence}, opduiken.
 
 Regel 20 brengt alle voorgaande definities samen in een
 \emph{uitvoeringsstrategie}. FOO-lang tracht door middel van zijn syntax
 leesbaar te zijn als een natuurlijke taal. Indien we regel 20 luidop lezen, kan
-dit resulteren in: ``\emph{At every (passing of) interval with nodes do (the
-function named) step.}''. En dat is exact wat deze regel definieert.
+dit resulteren in: ``\emph{At every (passing of) interval, with (all known)
+nodes do (the function named) step.}''. Dat is exact wat deze regel definieert.
 
 In deze ene regel zien we de lus over alle gekende knopen te voorschijn komen.
 In alle algoritmen komt deze wel in \'e\'en of andere vorm terug. De lus is nu
-echter geabstraheerd tot zijn functionele betekenis en onder controle van de
-generator.
+echter geabstraheerd tot zijn functionele betekenis en staat onder controle van
+de generator.
 
 \subsection{Syntax en grammatica}
 \label{subsection:devel-foo-lang-grammar}
@@ -68,8 +73,8 @@ Het voorgaande voorbeeld gebruikt slechts een kleine subset van de volledige
 mogelijkheden van FOO-lang. De volledige grammatica van FOO-lang, zoals
 gedefinieerd in het kader van dit prototype, is opgenomen in bijlage
 \ref{appendix:foo-lang-grammar}. Deze bevat de \emph{Extended Backus-Naur Form}
-(EBNF) die de taal eenduidig bepaalt. We bespreken hier kort NOG enkele andere
-constructies.
+(EBNF) die de taal eenduidig syntactisch en semantisch bepaalt. We bespreken
+hier kort enkele andere constructies.
 
 \vspace{-3mm}
 
@@ -80,8 +85,8 @@ de constructie \ttt{from ... import ... }, die een functie importeert vanuit
 een module. Zo'n module kan een andere FOO-lang module zijn, of een extern
 gedefinieerde functie uit een softwarebibliotheek. In
 \ref{section:devel-foo-lib} introduceren we de FOO-lib, de standaard
-softwarebibliotheek die de codegeneratie vervolledigt. Deze bevat tal van
-functionaliteit die voorkomt in beschrijvingen van detectiealgoritmen.
+softwarebibliotheek die de codegeneratie vervolledigt. Deze bevat o.a.
+functionaliteit die typisch voorkomt in beschrijvingen van detectiealgoritmen.
 
 \vspace{-3mm}
 
@@ -89,7 +94,7 @@ functionaliteit die voorkomt in beschrijvingen van detectiealgoritmen.
 
 Naast het herhaaldelijk uitvoeren van een functie is het ook mogelijk om een
 functie te koppelen aan een gebeurtenis in de context van het domein en de
-knopen. In plaats van de \ttt{with ... do} constructie is het mogelijk om
+knopen. In plaats van de \ttt{with ... do}-constructie is het mogelijk om
 v\'o\'or of n\'a (\ttt{before} en \ttt{after}) de uitvoering van een functie
 een andere functie uit te voeren. Codevoorbeeld \ref{lst:foo-event_handler}
 geeft een eenvoudig voorbeeld waarbij we ontvangen berichten tellen als deze
@@ -109,15 +114,16 @@ after nodes receive do function(me, sender, from, hop, to, payload) {
 \end{listing}
 
 In dit voorbeeld merken we ook op dat functies anoniem kunnen gedefinieerd
-worden en niet louter eerst met een naam.
+worden en rechtstreeks aan een uitvoeringsstrategie kunnen gekoppeld worden.
 
 \vspace{-3mm}
 
-\subsubsection{Verschillende situaties afhandelen}
+\subsubsection{Behandelen van verschillende situaties}
 
 Het \ttt{case statement} laat toe om eenzelfde expressie te evalueren in
 verschillende situaties. Typisch gebruik voor deze constructie is het
-analyseren van ontvangen gegevens. Codevoorbeeld \ref{lst:foo-case} illustreert dit.
+analyseren van ontvangen berichten. Codevoorbeeld \ref{lst:foo-case}
+illustreert dit.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{javascript}
@@ -140,68 +146,65 @@ after nodes receive do function(me, sender, from, hop, to, payload) {
   \label{lst:foo-case}
 \end{listing}
 
-In dit voorbeeld worden de ontvangen berichten geanalyseerd en gecatalogeerd op
-basis van de inhoud. Als in een bericht \ttt{\#marker1} wordt gevonden wordt
-\ttt{msg\_sent1} verhoogd, in het geval van \ttt{\#marker2}, \ttt{msg\_sent2}
-en anders \ttt{msg\_other}.
+In dit voorbeeld worden de ontvangen berichten gecatalogeerd op basis van de
+inhoud. Als een bericht \ttt{\#marker1} bevat, wordt \ttt{msg\_sent1} verhoogd,
+in het geval van \ttt{\#marker2}, \ttt{msg\_sent2} en anders \ttt{msg\_other}.
 
 Dit voorbeeld introduceert tevens nog drie andere belangrijke constructies: het
-\emph{atom}, lijsten en patroonkoppeling.
+\emph{atoom}, lijsten en patroonkoppeling.
 
 \vspace{-3mm}
 
 \subsubsection{Atomen}
 
 \emph{Atomen} werden ontleend aan Erlang \citep{armstrong1993concurrent}. Ze
-stellen een uniek herkenbare entiteit voor. Het is aan de generator om met hulp
-van het platform en/of domein en/of doeltaal hiervoor een geschikte
+stellen een uniek herkenbare entiteit voor. Het is aan de generator om in het
+kader van het platform en/of domein en/of doeltaal hiervoor een geschikte
 voorstelling te vinden.
 
 In het geval van dit prototype werden twee bytes voorzien om een unieke
-identificatie te maken van delen in berichten. De generator kan verschillende
-strategie\"en volgen en beslissen op basis van de verschillende atomen die hij
-tegenkomt.
+identificatie te realiseren. De generator kan verschillende strategie\"en
+volgen en beslissen op basis van de verschillende atomen die hij tegenkomt.
 
 \vspace{-3mm}
 
 \subsubsection{Lijsten}
 
 Lijsten worden voor verschillende doeleinden gebruikt. Ze worden syntactisch
-gespecificeerd door middel van vierkante haken. Zo worden ze meestal als een
-letterlijke voorstelling van de lijst opgenomen. In het voorbeeld in
-codevoorbeeld \ref{lst:foo-case} is de \ttt{payload} parameter zo'n lijst. Ook
-het argument van de \ttt{contains} methode die toegepast wordt op \ttt{payload}
-is een lijst. De parameter verwacht echter niet echt een lijst, maar een
-patroon. In dit geval is de lijst een deel van het patroon.
+gespecificeerd door middel van vierkante haken en worden meestal als een
+letterlijke voorstelling van een lijst gebruikt. In het voorbeeld in
+codevoorbeeld \ref{lst:foo-case} is de \ttt{payload}-parameter zo'n lijst. Ook
+het argument van de \ttt{contains}-methode die toegepast wordt op \ttt{payload}
+is een lijst. De parameter verwacht echter geen lijst, maar een patroon. In dit
+geval is de lijst een deel van het patroon.
 
 \vspace{-3mm}
 
 \subsubsection{Patroon koppeling}
 
-Door middel van patronen kan er een kopping gemaakt worden tussen gegevens. In
-het voorbeeld in codevoorbeeld \ref{lst:foo-case} accepteert de
-\ttt{contains}-methode op een \emph{lijst} een patroon. Dit patroon is een
-lijst en bestaat uit variabele en niet-variabele elementen. De
-\ttt{contains}-methode zal trachten de niet-variabele elementen te herkennen in
-de lijst en vervolgens bij succesvolle herkenning een koppeling te maken tussen
-de variabele elementen en de waarden in de oorspronkelijke lijst.
+Door middel van patronen kan een koppeling gemaakt worden tussen gegevens. In
+codevoorbeeld \ref{lst:foo-case} accepteert de \ttt{contains}-methode een
+patroon. Dit patroon is een lijst en bestaat uit variabele en niet-variabele
+elementen. De \ttt{contains}-methode zal trachten de niet-variabele elementen
+te herkennen en vervolgens bij succesvolle herkenning een koppeling te maken
+tussen de variabele elementen en de volgende waarden in de behandelde lijst.
 
 \vspace{-3mm}
 
-\subsubsection{Complexe types}
+\subsubsection{Types}
 
 In codevoorbeeld \ref{lst:hello.foo} zagen we reeds kort een voorbeeld van
 typering. De \ttt{sequence} eigenschap werd getypeerd als een \ttt{byte}. Naast
 \ttt{byte} bestaan ook \ttt{integer}, \ttt{float}, \ttt{boolean} en
 \ttt{timestamp} als standaard eenvoudige types.
 
-Vergelijkbaar met lijsten is er ook het \emph{tuple} type. Dit is een lijst van
-types en defini\"eert de types van de elementen van een lijst van vaste lengte.
+Vergelijkbaar met lijsten is er ook het \emph{tuple}-type. Dit is een lijst van
+types en defini\"eert de types van de elementen van een lijst met vaste lengte.
 
 Van alle types kan ook een veelvoud gedefinieerd worden door het toevoegen van
-een sterretje (\ttt{*}) achter het type. Zo kunnen lijsten van een bepaald type
-gedefinieerd worden. Gecombineerd met het \emph{tuple} type, ontstaat zo bv. de
-mogelijkheid om lijsten van \emph{records} te defini\"eren.
+een sterretje (\ttt{*}) als suffix van het type. Zo kunnen lijsten van een
+bepaald type gedefinieerd worden. Gecombineerd met het \emph{tuple} type,
+ontstaat zo bv. de mogelijkheid om lijsten van \emph{records} te defini\"eren.
 
 In codevoorbeeld \ref{lst:foo-complex_type} wordt het \ttt{nodes}-domein
 uitgebreid met een eigenschap, genaamd \ttt{inbox}. Deze bestaat uit meerdere

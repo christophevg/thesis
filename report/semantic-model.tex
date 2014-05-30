@@ -19,23 +19,21 @@ Het SM bevat meer informatie dan de AST, zoals bv. typering. Bij deze
 visualisatie is gebruikgemaakt van een kleurencodering. Hierdoor wordt het
 makkelijker om het diagram te interpreteren.
 
-De belangrijkste kleur is zonder meer de rode kleur, die problemen in het model
-aangeeft. In dit geval betreft het onbekende types. Dit is in deze fase van het
-generatieproces normaal aangezien typering in FOO-lang optioneel is. Deze
-eerste versie van het SM bevat daarom nog niet alle types.
+De belangrijkste kleur is rood en geeft problemen in het model aan, zoals
+onbekende types. Dit is in deze fase van het generatieproces normaal, aangezien
+typering in FOO-lang optioneel is. Deze eerste versie van het SM bevat daarom
+nog niet alle types.
 
 Een ander deel dat lijkt te ontbreken in dit diagram is de uitbreiding van het
 domein. In het voorbeeld werd immers een eigenschap \ttt{sequence} toegevoegd.
-Aangezien dit een uitbreiding is van het domein, zal deze terug te vinden zijn
-in de eigen instantie van het domein voor deze module. In figuur
+Aangezien dit een uitbreiding is van het domein, zal deze eigenschap terug te
+vinden zijn in de instantie van het domein voor deze module. In figuur
 \ref{fig:hello.sm} is dit domein beperkt tot een referentie in een gele kleur.
-De volledig inhoud van wat hierachter schuil gaat, is opgenomen in bijlage
-\ref{section:nodes.sm}.
-
-Dit is een groot stuk van het SM en behelst verschillende types en
-functiedeclaraties die door het \ttt{nodes}-domein ge\"introduceerd worden in
-het SM. Hier vinden we tevens de uitbreiding met de extra \ttt{sequence}
-eigenschap.
+De volledige inhoud van wat hierachter schuilgaat, is opgenomen in bijlage
+\ref{section:nodes.sm} en vormt is een groot stuk van het SM. Het behelst
+verschillende types en functiedeclaraties die door het \ttt{nodes}-domein
+ge\"introduceerd worden. Hier vinden we de uitbreiding met de extra
+\ttt{sequence}-eigenschap.
 
 \vspace{-3mm}
 
@@ -45,10 +43,10 @@ De volgende stap in het generatieproces bestaat erin om de nog onbekende types
 te deduceren op basis van andere informatie uit het SM. Dit gebeurt aan de hand
 van de \ttt{inferrer}-module. Dit is een implementatie van de \emph{visitor}
 voor het SM die nagaat of alle types gekend zijn. Voor onbekende types wordt,
-afhankelijk van de plaats van het type op verschillende manieren op zoek gegaan
-naar een juiste typering.
+afhankelijk van de plaats van het type, op verschillende manieren op zoek
+gegaan naar een juiste typering.
 
-De eenvoudigste methode bouwt, terwijl het model doorlopen wordt, een overzicht
+De eenvoudigste manier bouwt, terwijl het model doorlopen wordt, een overzicht
 op van gekende types die ontstaan door de declaratie van variabelen\dots Indien
 een onbekend type wordt gevonden, consulteert de \ttt{inferrer}-module dit
 overzicht. Indien een referentie naar een eerdere declaratie gevonden wordt,
@@ -77,17 +75,16 @@ het SM, zien we in dit geval toch dat er een vijftal elementen uit het model
 verdwenen lijken te zijn. Dit is nochtans een gewoon voorbeeld van deductie. Na
 het inladen van het initi\"ele model werd de (enige) uitvoeringsstrategie
 gekoppeld aan een functie-expressie (\emph{FunctionExp}) genaamd \ttt{step}. Op
-dat ogenblik was er over \ttt{step} niets meer geweten. De declaratie van
-\ttt{step} was wel eerder gebeurd, maar het is pas in de deductiefase dat het
-onbekende type van deze functie opgezocht werd. Deel van het type is tevens de
-declaratie ervan. Tijdens de deductiefase wordt deze gekoppeld aan de eerdere
-declaratie, waardoor in figuur \ref{fig:hello.sm-inferred} deze
-functiedeclaratie niet meer volledig getoond wordt, maar nu als een referentie
-naar de \ttt{step} functie opgenomen is.
+dat ogenblik was er over \ttt{step} niets geweten. De declaratie van \ttt{step}
+was wel eerder gebeurd, maar het is pas in de deductiefase dat het onbekende
+type van deze functie opgezocht werd. Deel van het type is tevens de declaratie
+ervan. Tijdens de typedeductie wordt deze gekoppeld aan de declaratie, waardoor
+in figuur \ref{fig:hello.sm-inferred} deze functiedeclaratie niet meer getoond
+wordt, maar als een referentie naar de \ttt{step}-functie opgenomen is.
 
 \vspace{-3mm}
 
-\subsubsection{Model controle}
+\subsubsection{Modelcontrole}
 
 De \ttt{inferrer}-module tracht alle onbekende types te deduceren. Een tweede
 ondersteunende module is de \ttt{checker}-module of modelcontrole. Deze
