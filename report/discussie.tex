@@ -4,22 +4,21 @@
 \label{chapter:discussie}
 
 Inspectie van de gegenereerde code leert dat het prototype het beoogde doel
-realiseert. We illustreerden dit reeds tijdens de bespreking van de
-implementatie in sectie \ref{section:generation}. Hier zagen we hoe de
-generator bepaalde patronen in de FOO-lang broncode omzet naar code die
-tegemoetkomt aan de typische problemen die kunnen ontstaan indien
-implementaties van verschillende algoritmen gewoon naast elkaar geplaatst
-worden. In dit hoofdstuk gaan we echter dieper in op deze vaststelling en
-trachten de kwaliteit van de oplossing te quantificeren.
+realiseert. We illustreerden dit al tijdens de bespreking van de implementatie
+in sectie \ref{section:generation}. Hier zagen we hoe de generator bepaalde
+patronen in de FOO-lang broncode omzet naar code die problemen, die zouden
+ontstaan wanneer verschillende algoritmen eenvoudig na elkaar opgeroepen
+worden, vermijdt. In dit hoofdstuk trachten we deze vaststelling te
+quantificeren.
 
 Sectie \ref{section:setup} introduceert de gebruikte testopstelling en de
-algoritmen die ge\"implementeerd werden voor deze evaluatie.
+algoritmen die gekozen werden voor deze evaluatie.
 
-Sectie \ref{section:criteria} bepaalt vervolgens de evaluatecriteria en bekijkt
-de theoretische resultaten die we zouden verwachten, gegeven de mogelijkheden
-tot generatie die in eerdere hoofdstukken werden voorgesteld.
+Sectie \ref{section:criteria} bepaalt vervolgens de functionele en
+niet-functionele evaluatiecriteria en berekent de theoretisch te verwachten
+resultaten, op basis van de mogelijkheden die de generatie biedt.
 
-Sectie \ref{section:evaluation-functionals} bekijkt eerst de invulling van de
+Sectie \ref{section:evaluation-functionals} bekijkt de realisatie van de
 functionele criteria.
 
 Sectie \ref{section:evaluation-non-functionals} presenteert en evalueert
@@ -30,10 +29,10 @@ vervolgens de resultaten met betrekking tot de niet-functionele criteria.
 \section{Opstelling}
 \label{section:setup}
 
-De evaluatie gebeurde door middel van een representatieve hardware- en
-netwerkopstelling. Hierop werd een selectie van detectiealgoritmen
+De evaluatie gebeurde door middel van een functioneel representatieve hardware-
+en netwerkopstelling. Hierop werd een selectie van detectiealgoritmen
 ge\"implementeerd. Figuur \ref{fig:setup} geeft een overzicht van de volledige
-opstelling. Secties \ref{subsection:eval-hardware},
+testopstelling. Secties \ref{subsection:eval-hardware},
 \ref{subsection:eval-software} en \ref{subsection:eval-algorithms} introduceren
 respectievelijk de hardware, software en algoritmen die hier een rol spelen.
 
@@ -51,34 +50,32 @@ respectievelijk de hardware, software en algoritmen die hier een rol spelen.
 
 Het WSN dat voor deze opstelling gerealiseerd werd, is gebaseerd op de
 ZigBee-netwerkinfrastructuur en bestaat uit 3 knopen: een eindknoop, een router
-en een co\"ordinator. De configuratie van de verschillende radio-modules werd
-zo ingesteld dat deze topologie op kleine schaal gerealiseerd kon worded.
-Hiertoe werd een extra netwerk-laag in software toegevoegd. Deze laag zorgt
-o.a. voor een simulatie van het feit dat elke knoop berichten van een andere
-knoop kan \emph{afluisteren}. De elementaire hardware die gebruikt werd voor
-het draadloze netwerk liet dit in feite niet toe. In bijlage \ref{virtual-mesh}
-wordt deze virtuele netwerklaag in meer detail toegelicht.
+en een co\"ordinator. De configuratie van de radiomodules realiseert deze
+volledige topologie toch op kleine schaal. Hiertoe werd een extra netwerklaag
+in software toegevoegd. Deze laag simuleert o.a. dat elke knoop berichten van
+een andere knoop kan \emph{afluisteren}. De gebruikte draadloze radio laat dit
+immers niet toe. In bijlage \ref{virtual-mesh} wordt deze virtuele netwerklaag
+in meer detail toegelicht.
 
 De sensorknopen zijn niet gebaseerd op een welbepaald bestaand platform, maar
 zijn samengesteld uit een \mcu en een ZigBee-module. Er werd gebruik gemaakt
 van een Atmel ATMEGA1284p \citep{datasheet:atmega1284p} en een Digi XBee 2
-module \citep{manual:xbee}. Bijlage \ref{hardware-platform} bespreekt de bouw
-van de sensorknoop. De keuze om geen standaard platform te gebruiken is
-belangrijk. De gekozen \mcu is een veel gebruikte architectuur en komt voor in
-veel hedendaagse standaard platformen en sensorknopen, zoals bv de Atmal
-RZRAVEN ontwikkelkit \citep{manual:rzraven} of het Arduino open bron
-electronica platform \citep{url:arduino}.
+module \citep{manual:xbee}. Bijlage \ref{hardware-platform} bespreekt deze
+sensorknoop. De keuze om geen standaard platform te gebruiken is belangrijk. De
+gekozen \mcu is een veel gebruikte architectuur en komt voor in veel
+hedendaagse standaardplatformen en sensorknopen, zoals bv de Atmal RZRAVEN
+ontwikkelkit \citep{manual:rzraven} of het Arduino open bron electronica
+platform \citep{url:arduino}.
 
 Door gebruik te maken van elementaire componenten wordt het platform herleid
-tot zijn fundamentele basis. Zo kan de generator ge\"evalueerd worden in een
-context die geen voordelen noch nadelen biedt. Standaard platformen komen
-tevens veelal met een eigen raamwerk voor ontwikkeling of nood aan een vorm van
-besturingssysteem. Vertrekken van deze elementaire basis garandeert dat elke
-toevoeging van standaardisatie van het platform of toevoeging van een hoger
-niveau van abstractie op softwarevlak, voordelen biedt voor de implementatie
-van de generator en dit eenvoudiger maakt. Met dit platform zijn we van mening
-dat er een representatieve, minimale basis bestaat waarmee de generator in
-staat is om code te genereren.
+tot zijn essentie. Zo kan de generator ge\"evalueerd worden in een context die
+geen voordelen noch nadelen biedt. Standaardplatformen komen veelal met een
+eigen raamwerk voor ontwikkeling of besturingssysteem. Vertrekken van deze
+elementaire basis garandeert dat elke toevoeging van standaardisatie van het
+platform of toevoeging van een hoger niveau van abstractie op softwarevlak,
+voordelen biedt voor de implementatie van de generator en deze eenvoudiger
+maakt. Met dit platform zijn we van mening dat er een representatieve, minimale
+basis bestaat waarvoor de generator in staat is om code te genereren.
 
 \vspace{-3mm}
 
@@ -86,11 +83,11 @@ staat is om code te genereren.
 \label{subsection:eval-software}
 
 Naast de hardware en de virtuele netwerklaag, wordt verder gebruik gemaakt van
-een kleine abstractielaag boven de hardware. Met dezelfde filosofie in
-gedachte, zorgt deze elementaire tussenlaag voor een situatie waarbij de eisen
-die aan het onderliggende platform gesteld worden minimaal zijn. De
-functionaliteit die gebruikt worden beperkte zicht tot elementaire operaties
-aangaande het netwerk:
+een minimale abstractielaag voor de hardware. Naar analogie met de hardware,
+zorgt deze elementaire tussenlaag ook voor een situatie waarbij de eisen die
+aan het onderliggende platform gesteld worden minimaal zijn. De functionaliteit
+die gebruikt wordt, beperkt zich tot enkele elementaire operaties aangaande het
+netwerk:
 
 \begin{itemize}[noitemsep, topsep=0pt, partopsep=0pt]
 
@@ -106,9 +103,10 @@ aangaande het netwerk:
 \end{itemize}
 
 Om de opstelling te voorzien van een functionele toepassing, werd een
-lichtsensor toegevoegd aan de knopen. De toepassing van het netwerk meet op
-geregelde tijdstippen de lichtintensiteit en stuurt deze naar de co\"ordinator
-van het netwerk.
+lichtsensor toegevoegd. De toepassing meet op geregelde tijdstippen de
+lichtintensiteit en stuurt deze naar de co\"ordinator van het netwerk.
+
+\vspace{-3mm}
 
 \subsection{Detectiealgoritmen}
 \label{subsection:eval-algorithms}
@@ -121,20 +119,19 @@ algoritmen werden in FOO-lang beschreven en zijn opgenomen in bijlage
 
 \begin{description}[noitemsep, topsep=0pt, partopsep=1pt]
 
-  \item[Heartbeat] In het kader van het \emph{heartbeat} principe zenden
-  knopen op gestelde tijdstippen een pakket uit. Andere knopen kunnen deze
+  \item[Heartbeat] In het kader van het \emph{heartbeat} principe zenden knopen
+  op regelmatige tijdstippen een pakket uit. Andere knopen kunnen deze
   sequentie van berichten opvolgen en bij het ontbreken van deze berichten de
   beschikbaarheid van een knoop in vraag stellen. Ofschoon minimalistisch van
-  aard, is het structureel toch representatief voor eenvoudige
+  aard, is het toch structureel representatief voor eenvoudige
   detectiealgoritmen die gegevens uitsturen, binnenkomende berichten verwerken
   en een beperkte status van andere knopen bijhouden en aggregeren tot een
   beslissing.
 
   De implementatie gebruikt ook een SHA1 hash \citep{rfc:3174} om een digitale
-  handtekening toe te voegen aan het bericht. Zonder de betrouwbaarheid van
-  deze aanpak in vraag te willen stellen, staat het gebruik ervan eerder in
-  functie van het aantonen dat cryptografische en externe functionaliteit kan
-  gebruikt worden.
+  handtekening toe te voegen aan het bericht. Zonder het nut hiervan in vraag
+  te stellen, staat het gebruik ervan eerder in functie van het aantonen dat
+  cryptografische en externe functionaliteit kan gebruikt worden.
 
   \item[Reputatie] Het tweede algoritme is een implementatie van het principe
   dat voorgesteld werd in sectie \ref{subsection:reputation}. Door op te volgen
@@ -142,10 +139,9 @@ algoritmen werden in FOO-lang beschreven en zijn opgenomen in bijlage
   doorheen het netwerk stuurt, wordt statistisch bepaald of deze knoop
   betrouwbaar is of niet.
 
-  Dit algoritme voegt nog enkele complexiteiten toe en vraagt dat arbitraire
-  berekeningen kunnen uitgevoerd worden en dat de resultaten er van kunnen
-  ge\"interpreteerd worden. Ook wordt hier de complexiteit toegevoegd waarbij
-  omgegaan moet worden met volledige netwerkpakketten.
+  Dit algoritme voegt verder complexiteit toe en noodzaakt dat berekeningen
+  kunnen uitgevoerd worden en dat de resultaten ervan kunnen ge\"interpreteerd
+  worden, o.a. op basis van volledige netwerkpakketten.
 
 \end{description}
 
@@ -155,16 +151,15 @@ algoritmen werden in FOO-lang beschreven en zijn opgenomen in bijlage
 
 De configuratie van beide algoritmen is natuurlijk van belang. Een configuratie
 die niet resulteert in een concurrentie tussen beide algoritmen zal weinig tot
-geen optimalisatie laten optekenen.
+geen optimalisatie toelaten.
 
-De mogelijkheden tot configuratie liggen in de tijden tussen twee uitvoeringen
-van een functioneel aspect van het algoritme. In beide gevallen gaat dit om een
-tussentijd vooraleer het algoritme zelf een bericht uitstuurt en de tussentijd
-waarop een evaluatie van de geaggregeerde informatie gebeurt. Het eerste aspect
-bepaalt de synchroniciteit van het uitsturen van berichten en of er
-mogelijkheid is tot samennemen van berichten om zo het draadloze netwerk te
-ontlasten. Het punt van evaluatie bepaalt of het overlopen van alle gekende
-knopen voor beide algoritmen tegelijk kan gebeuren of niet.
+De mogelijkheid tot configuratie ligt in de tijden tussen twee uitvoeringen van
+een functioneel aspect van het algoritme. In beide gevallen gaat dit om een het
+interval waarop het algoritme een bericht uitstuurt of waarop een evaluatie van
+de geaggregeerde informatie gebeurt. Het eerste aspect bepaalt de
+synchroniciteit van het uitsturen van berichten en de mogelijkheid tot
+samennemen van berichten. Het punt van evaluatie bepaalt of het overlopen van
+alle gekende knopen voor beide algoritmen tegelijk kan gebeuren of niet.
 
 Om een situatie af te dwingen waar de voordelen van de oplossing zich kunnen
 manifesteren, werd geopteerd voor volgende configuratie:
@@ -187,16 +182,15 @@ manifesteren, werd geopteerd voor volgende configuratie:
 De doelstelling om de impact van de introductie van een IDS in een WSN te
 verlagen is de basis voor de evaluatiecriteria. Bij het uitdiepen van de
 probleemstelling in hoofdstuk \ref{chapter:probleemstelling} werd het
-ontwikkelingsproces gevolg van de hardware en het onderzoek tot de software en
+ontwikkelingsproces gevolgd van de hardware en het onderzoek tot de software en
 de uitbating. Hieruit leiden we de volgende functionele en niet-functionele
-criteria.
+criteria af.
 
 \vspace{-3mm}
 
 \subsection{Functionele criteria}
 
-Elk van de ontwikkelde componenten in deze masterproef dient een functioneel
-doel:
+Elk van de ontwikkelde componenten dient een functioneel doel:
 
 \begin{description}[noitemsep, topsep=0pt, partopsep=1pt]
 
@@ -229,7 +223,7 @@ aan gegevens die worden verstuurd.
   \item[Aantal verzonden netwerkpakketten] Het aantal verzonden pakketten
   bepaalt hoe frequent de radio effectief moet zenden. Dit is typisch het
   duurste wat betreft energieverbruik. Het verminderen van het aantal pakketten
-  heeft dus een rechtstreekse relatie met het energieverbruik.
+  heeft dus een rechtstreekse invloed op het energieverbruik.
 
   \item[Aantal verzonden bytes] Het opvolgen van het aantal bytes die effectief
   verstuurd worden is van belang om in te schatten of de eventuele winst door
@@ -239,13 +233,13 @@ aan gegevens die worden verstuurd.
   \item[Lengte event loop] De doorlooptijd van \'e\'en cyclus van de
   \emph{event loop} bepaalt hoe lang de \mcu effectief actief is. Typisch wordt
   op het einde van elke cyclus een periode ingelast van niet-activiteit. De
-  cyclus plus de rustperiode zijn een constante, waardoor het aandeel van de
-  cyclus een relatieve impact heeft op het energieverbruik.
+  cyclus plus de rustperiode zijn een constante, waardoor de cyclus een directe
+  relatie heeft tot het energieverbruik.
   
 \end{description}
 
-Naast deze drie energie-gebonden criteria kunnen we nog een vierde criterium in
-beschouwing nemen, nl. de grootte van de resulterende code die naast de
+Naast deze drie energiegerelateerde criteria kunnen we nog een vierde criterium
+in beschouwing nemen, nl. de grootte van de resulterende code die naast de
 applicatiecode moet ge\"installeerd worden op de sensorknoop.
 
 Dit is een noodzakelijk kwaad, want het is evident dat de introductie van een
@@ -264,16 +258,14 @@ hierbinnen uitzetten kunnen we het aantal verzonden netwerkpakketten berekenen.
 
 De toepassing verstuurt om de 5 seconden een meting van de lichtsensor. Dit
 resulteert in 18 netwerkpakketten. Het \emph{heartbeat} algoritme verstuurt
-elke 3 seconden een pakket. Dit resulteert in 30 pakketten. Het
-reputatie-gebaseerde algoritme verstuurt informatie om de 7,5 seconde, dus nog
-eens 12 pakketten.
-
-Over een periode van 90 seconden verwachten we dus dat er 18 + 30 + 12 = 60
-pakketten verzonden worden.
+elke 3 seconden een pakket. Dit resulteert in 30 pakketten. Het op reputatie
+gebaseerde algoritme verstuurt informatie om de 7,5 seconden, dus nog eens 12
+pakketten. Over een periode van 90 seconden verwachten we dus dat er 18 + 30 +
+12 = 60 pakketten verzonden worden.
 
 Indien we aannemen dat de generator er effectief voor zorgt dat berichten die
 dicht bij elkaar verzonden worden, gebundeld worden in \'e\'en pakket, dan zal
-zich deze situatie aanbieden op gemeenschappelijk veelvouden van 3 en 7,5.
+deze situatie zich voordoen op gemeenschappelijk veelvouden van 3 en 7,5.
 Concreet zal dit zijn op de veelvouden van 15, ofwel op 6 ogenblikken binnen de
 periode van 90 seconden. We zouden bij de gegenereerde code dus een reductie
 van 6 pakketten moeten kunnen optekenen.
@@ -306,35 +298,33 @@ mogelijkheden.
 
 De concepten van de taal blijven overeind en de aanpassingen zijn meestal
 uitbreidingen van bestaande constructies met bijkomende mogelijkheden of een
-andere scope.
+andere context.
 
 \vspace{-3mm}
 
 \subsection{De generator}
 
-De generator biedt met een API en een CLI toepassing een uitermate flexibele
-interface naar de buitenwereld toe. Op deze manier is integratie in een
-ontwikkelingsproces zeer vlot realiseerbaar. Bij wijze van illustratie is elke
-test die uitgevoerd werd voor deze masterproef op te starten met \'e\'en enkele
-oproep van een door een \emph{Makefile} georganiseerd generatie-, compilatie-
-en installatieproces.
+De generator biedt met een API en een CLI-toepassing een flexibele interface.
+Op deze manier is integratie in een ontwikkelingsproces zeer vlot
+realiseerbaar. Bij wijze van illustratie is elke test die uitgevoerd werd voor
+deze masterproef op te starten met \'e\'en enkele oproep van een door een
+\emph{Makefile} georganiseerd generatie-, compilatie- en installatieproces.
 
 Een ander aspect dat van belang is in de context van de generator is de
 uitbreidbaarheid. Bij het prototype is uitgegaan van een minimalistische
 situatie met een \emph{event loop}. Indien men bv. ondersteuning zou willen
-inbouwen voor Contiki of een ander besturingssysteem dient hiervoor een nieuwe
-Python module geschreven te worden die mee de vertaling dient te doen aan de
-hand van model transformaties.
+inbouwen voor Contiki of een ander besturingssysteem dient hiervoor een
+bijkomende Python-module geschreven te worden, die instaat voor de vertaling
+aan de hand van modeltransformaties.
 
 Dit vraagt extra werk en een juiste inschatting van de hoeveelheid is zeer
 platformafhankelijk. Hier kan slechts een indicatie gegeven worden op basis van
-de ervaring bij het ontwikkelen van de software voor de evaluatie. Het
+de ervaring bij het ontwikkelen van de software voor deze evaluatie. Het
 schrijven van een manuele versie op basis van enkele losse modules geeft een
 goed beeld van hoe de integratie dient te gebeuren. Mits een korte analyse van
 deze manuele code en een koppeling naar de typische concepten die FOO-lib
 aanbiedt, kan de creatie van zo'n module vlot gebeuren. Dit is tevens een
-\'e\'enmalige investering die zichzelf snel terugbetaalt bij elke volgende
-generatie.
+\'e\'enmalige investering die zichzelf terugbetaalt bij elke generatie.
 
 \vspace{-3mm}
 
@@ -348,10 +338,9 @@ implementatie bestaat uit een basisapplicatie en twee modules voor de
 algoritmen.
 
 Deze modules werden vervolgens sequentieel ingevoegd in de basisapplicatie,
-zoals dit het geval zou zijn indien men bestaande implementaties kon
-hergebruiken. Dit resulteert structureel in twee oproepen naar de modules
-vanuit de \emph{event loop} en twee oproepen wanneer een bericht ontvangen
-wordt.
+zoals dit het geval zou zijn indien men bestaande implementaties hergebruikt.
+Dit resulteert structureel in twee oproepen naar de modules vanuit de
+\emph{event loop} en twee oproepen wanneer een bericht ontvangen wordt.
 
 \vspace{-3mm}
 
@@ -362,7 +351,7 @@ minimale abstractielaag en is dus een constante bijkomende belasting in alle
 gevallen.
 
 Om de doorlooptijd van de event loop te meten, werd het aantal cycli dat de
-\emph{event loop} doorliep gemeten gedurende een interval van 15 seconden.
+\emph{event loop} doorliep geteld gedurende een interval van 15 seconden.
 Hieruit werd de doorlooptijd van \'e\'en cyclus berekend. De reden van deze
 opstelling is het feit dat de \mcu slechts een kloksnelheid heeft van 8MHz.
 Hiermee is het mogelijk om aan de hand van \emph{interrupts} een virtuele klok
@@ -375,19 +364,17 @@ aan het begin van een oproep naar een module van een detectiealgoritme een
 spanning aan te leggen op \'e\'en van de uitvoerpinnen van de \mcu en deze op
 het einde van de oproep opnieuw weg te nemen, kunnen we deze verschillen van
 buitenaf meten. Dit laat toe om zelfs verschillen op een
-sub-microseconde-schaal te meten.
-
-Met de beschikbare middelen was het niet mogelijk om een totaalbeeld te vormen
-over een periode van 90 seconden, maar de meting liet wel toe om de situatie
-waarbij in een cyclus van de event loop geen enkele actie ondernomen werd door
-het IDS, in kaart te brengen. Deze situatie toont de minimale, constante extra
-belasting die het IDS met zich meebrengt.
+sub-microseconde-schaal te meten. Met de beschikbare middelen was het niet
+mogelijk om een totaalbeeld te vormen over een periode van 90 seconden. De
+meting liet wel toe om een cyclus, waarbij geen enkele actie ondernomen werd
+door het IDS, in kaart te brengen. Deze situatie toont de minimale en constante
+toegevoegde belasting van het IDS.
 
 \vspace{-3mm}
 
 \subsection{Resultaten}
 
-Tabellen \ref{tbl:manual} en \ref{tbl:generated} tonen de ruwe metingen voor
+Tabellen \ref{tbl:manual} en \ref{tbl:generated} tonen de metingen voor
 respectievelijk de manuele en de gegenereerde implementatie. De verschillende
 niet-functionele criteria worden voor de verschillende configuraties uitgezet.
 De eerste situatie is die van de naakte applicatie, zonder enige vorm van IDS.
@@ -396,8 +383,8 @@ configuraties geplaatst: \'e\'en met alleen het \emph{heartbeat} algoritme
 toegevoegd, \'e\'en met het reputatie-algoritme toegevoegd en \'e\'en met beide
 algoritmen.
 
-Naast de ruwe meetwaarde is tevens een procentuele vergelijking met de
-referentie opgenomen om de impact beter te quantificeren.
+Naast de meting is tevens een vergelijking met de referentie opgenomen om de
+impact relatief te quantificeren.
 
 \begin{table}[H]
   \centering
@@ -421,9 +408,9 @@ grootte (bytes)       & 10500    & 15530    & 148\% & 13306    & 127\% & 18334  
 
 Wanneer we de referentie bij de manuele implementatie bekijken zien we dat er
 inderdaad zoals verwacht (ongeveer) 19 pakketten verstuurd zijn.\footnote{Het
-bijkomende pakket is toe te schrijven aan een bijkomend pakket dat tijdens het
-initialiseren van het virtuele netwerk gebruikt wordt door de eindknoop om de
-hoger liggende knoop te vinden.} Het gemiddeld aantal bytes per frame is
+extra pakket is toe te schrijven aan het initialiseren van het virtuele
+netwerk. Dit wordt gebruikt door de eindknoop om het adres van de hoger
+liggende knoop/router te vinden.} Het gemiddeld aantal bytes per frame is
 (ongeveer) 24. Een lichtmeting bestaat uit 2 bytes. Daarnaast worden er 6 extra
 bytes gebruikt door de implementatie van het virtuele netwerk. Het
 ZigBee-pakketformaat voegt nog eens 16 bytes toe \citep{alliance2012zigbee}. De
@@ -438,9 +425,9 @@ Door de introductie van het IDS stijgen deze waarden natuurlijk. We berekenden
 reeds dat de introductie van een \emph{heartbeat} een bijkomende 30 pakketten
 betekent en dat voor de communicatie voor het uitwisselen van
 reputatie-informatie er 12 extra pakketten nodig zijn. We zien deze getallen
-nagenoeg exact terugkomen in de meeteresultaten: in het geval van het
+nagenoeg exact terugkomen in de meetresultaten: in het geval van het
 \emph{heartbeat} algoritme is er \'e\'en pakket meer verzonden. Dit was te
-wijten aan een tweede initialisatie-pakket voor het opzetten van het virtuele
+wijten aan een tweede initialisatiepakket voor het opzetten van het virtuele
 netwerk.
 
 We merken verder op dat de combinatie van de twee algoritmen letterlijk een
@@ -484,17 +471,16 @@ Hier merken we op dat de gegenereerde referentie-implementatie nagenoeg perfect
 overeenkomt met de manuele referentie-implementatie\footnote{De vier bytes
 verschil zijn vermoedelijk te wijten aan twee bijkomende ongebruikte
 functiedeclaraties in de manuele code. Dit werd omwille van het marginale
-verschil niet verder onderzocht.}.
-
-Dezelfde getallen als bij de manuele implementatie zien we terugkomen voor het
-aantal verzonden pakketten\footnote{Bij het \emph{heartbeat} algoritme werd er
-geen extra pakket bij intialisering verstuurd en werd 1 pakket net niet meer
-meegeteld op het einde van de 90 seconden.}.
+verschil niet verder onderzocht.}. Dezelfde getallen als bij de manuele
+implementatie zien we terugkomen voor het aantal verzonden
+pakketten\footnote{Bij het \emph{heartbeat} algoritme werd er geen extra pakket
+bij intialisering verstuurd en werd 1 pakket net niet meer meegeteld op het
+einde van de 90 seconden.}.
 
 Een eerste verschil merken we echter op bij het aantal pakketten in het geval
 dat beide algoritmen actief zijn. In theorie verwachtten we hier 6 pakketten
 minder. Het verschil is 8. Dit is te wijten aan een extra initialiseringspakket
-bij de manuele versie en een opnieuw een pakket dat net niet meegeteld werd.
+bij de manuele versie en opnieuw een pakket dat net niet meegeteld werd.
 
 Met een lengte van 20 bytes, voegt een digitale handtekening op basis van SHA1
 extra bytes toe aan het gemiddelde. Ook een pakket met informatie over de
@@ -512,11 +498,11 @@ meer is dan de gemeten waarde.
 
 De doorlooptijd van \'e\'en cyclus van de \emph{event loop} vraagt per
 toevoeging van een algoritme ongeveer 73$\mu$s. Bij een implementatie met de
-twee algoritmen is dit slechts 90 in totaal. We zien hier dat een groot deel
-van de bijkomende verwerking van een algoritme toe te schrijven is aan de
-softwarebibliotheek. Door deze kost te spreiden over meerdere algoritmen komt
-deze investering tot uiting. Eenzelfde situatie doet zich voor bij de grootte
-van de te installeren code.
+twee algoritmen is dit slechts 90$\mu$s in totaal. We zien hier dat een groot
+deel van de bijkomende verwerking van een algoritme dus toe te schrijven is aan
+de softwarebibliotheek. Door deze kost te spreiden over meerdere algoritmen
+komt deze investering tot uiting. Eenzelfde situatie doet zich voor bij de
+grootte van de te installeren code.
 
 \vspace{-3mm}
 
@@ -524,8 +510,9 @@ van de te installeren code.
 
 De belangrijkste vraag die we willen beantwoorden is hoe de gegenereerde code
 zich verhoudt tot de manuele code. Tabel \ref{tbl:comparison} vergelijkt de
-eerdere resultaten door een verschil te maken tussen de twee situaties en door
-een relatieve vergelijking van de configuratie met beide algoritmen te maken.
+eerdere resultaten door het verschil tussen de twee situaties te bekijken en
+door een relatieve vergelijking van de configuratie met beide algoritmen te
+maken.
 
 \begin{table}[H]
   \centering
@@ -609,6 +596,5 @@ Het is gevaarlijk om een evaluatie van een taal en codegenerator te doen aan de
 hand van metingen. De cijfers gepresenteerd in dit hoofdstuk zijn grotendeels
 afhankelijk van de beschreven algoritmen, de configuratie, evenals de
 feitelijke functionele toepassing. De enige manier waarop deze resultaten
-ge\"interpreteerd mogen worden is als een vage bevestiging van wat
-logischerwijs reeds ingeschat kon worden, nl. dat men door code beter te
-organiseren winst kan boeken.
+ge\"interpreteerd mogen worden is als een vage bevestiging van wat intu\"itief
+verwacht werd, nl. dat men door code beter te organiseren winst kan boeken.
