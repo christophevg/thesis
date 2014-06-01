@@ -4,7 +4,7 @@
 \label{appendix:idp-cooperation}
 
 \citep{krontiris2009cooperative} beschrijft enerzijds een theoretisch model
-voor het zgn. ``Intrusion Detection Problem'' (IDP) en biedt anderzijds een
+voor het zgn. \emph{Intrusion Detection Problem} (IDP) en biedt anderzijds een
 zeer praktisch algoritme om gedistribueerd tot een consensus te komen voor het
 ontmaskeren van een kwaadwillige knoop in het netwerk.
 
@@ -12,31 +12,57 @@ ontmaskeren van een kwaadwillige knoop in het netwerk.
 \label{section:idp}
 
 Het theoretische model beschrijft het IDP aan de hand van $S = \{ s_1, s_2,
-\dots s_n \}$, de set van sensoren in het netwerk, $N(s)$, de set van buren van
-$s$ en $D(s)$, de set van knopen die door $s$ verdacht worden. Indien $|D(s)| =
-1$, is de aanvaller ge\"identificeerd.
+\dots s_n \}$, de set van sensoren in het netwerk, $N(s)$, de verzameling van
+buren van $s$ en $D(s)$, de set van knopen die door $s$ verdacht worden. Indien
+$|D(s)| = 1$, is de aanvaller ge\"identificeerd. Verder worden enkele
+predicaten gedefinieerd als volgt:
 
-Enkele predicaten worden gedefinieerd als volgt: $source(q)$ geldt indien $q$
-de aanvaller is, $honest(s) \iff \neg source(s)$, $expose_s(q) \iff D(s) = \{ q
-\}$ ofwel $s$ verklaart dat $q$ de aanvaller is en $A(s) \iff D(s) \not= \{\}$
-wat zoveel betekent als dat $s$ gealarmeerd is. De set van gealarmeerde buren
-van een knoop $s$ wordt gedefinieerd als $AN(s) = \{ t | A(t) \wedge t \in N(s)
-\}$ en de set van gealarmeerde buren die nuttig is voor een knoop $s$ wordt dan
-uitgedrukt als $\tilde{AN}(q,s) = AN(q) \backslash \{s\}$.
+\begin{subequations}
+\begin{equation} \label{eq:honest}
+honest(s) \iff \neg source(s)
+\end{equation}
+\begin{equation} \label{eq:expose}
+expose_s(q) \iff D(s) = \{ q \}
+\end{equation}
+\begin{equation} \label{eq:alerted}
+A(s) \iff D(s) \not= \{\}
+\end{equation}
+\begin{equation} \label{eq:alerted-neighbours}
+AN(s) = \{ t | A(t) \wedge t \in N(s) \}
+\end{equation}
+\begin{equation} \label{eq:alerted-useful-neighbours}
+\tilde{AN}(q,s) = AN(q) \backslash \{s\}
+\end{equation}
+\end{subequations}
+  
+\ref{eq:honest} definieert een eerlijke knoop (\emph{honest}) en de aanvaller
+als de oorsprong van de aanval (\emph{source}). \ref{eq:expose} stelt dat een
+knoop $s$ een andere knoop $q$ kan ontmaskeren (\emph{expose}) als de
+aanvaller, indien de verzameling van knopen die door $s$ verdacht worden alleen
+$q$ bevat. \ref{eq:alerted} verzamelt alle knopen die andere knopen verdenken,
+ook wel gealarmeerde knopen genoemd. Indien deze knopen buren zijn van $s$, dan
+bestaat de verzameling van gealarmeerde buren volgens
+\ref{eq:alerted-neighbours}. \ref{eq:alerted-useful-neighbours} tot slot
+definieert de verzameling van gealarmeerde buren van $q$ die nuttig zijn voor
+$s$.
 
 Het IDP wordt vervolgens gedefinieerd als het vinden van een algoritme dat
-voldoet aan de eigenschappen van correctheid: $\forall s \in S : honest(s)
-\wedge expose_s(s') \implies A(s) \wedge source(s')$ en eindigheid: bij een
-aanval zullen na een tijd alle eerlijke knopen in de gealarmeerde set een knoop
-verdenken.
+voldoet aan de eigenschappen van correctheid (\ref{eq:idp-correctness}) en
+eindigheid: bij een aanval zullen na een tijd alle eerlijke knopen in de
+gealarmeerde set een knoop verdenken.
 
-Twee condities worden voorgesteld: de ``Intrusion Detection Condition'' (IDC)
-en de ``Neighbourhood Conditions'' (NC). Indien aan minstens \'e\'en van deze
-condities voldaan is, is het IDP oplosbaar.
+\begin{equation} \label{eq:idp-correctness}
+\forall s \in S : honest(s) \wedge expose_s(s') \implies A(s) \wedge source(s')
+\end{equation}
 
-De IDC wordt beschreven als $\forall p,q \in S : source(q) \implies
-\tilde{AN}(p,q) \not= \tilde{AN}(q,p)$. Dit drukt uit dat geen enkele andere
-knoop een zelfde gealarmeerde buurt kan hebben als de aanvaller.
+Twee condities worden voorgesteld: de \emph{Intrusion Detection Condition}
+(IDC) en de \emph{Neighbourhood Conditions} (NC). Indien aan minstens \'e\'en
+van deze condities voldaan is, is het IDP oplosbaar. De IDC stelt dat geen
+enkele andere knoop een zelfde gealarmeerde buurt kan hebben als de aanvaller:
+
+\begin{equation} \label{eq:idc}
+\forall p,q \in S : source(q) \implies \tilde{AN}(p,q) \not= \tilde{AN}(q,p)
+\end{equation}
 
 De NC worden beschreven door ``\emph{alle buren van een aanvaller zijn
 gealarmeerd}'' ($NC_1$) en ``\emph{indien twee of meer knopen verdacht zijn door
@@ -61,7 +87,7 @@ aan de hand van enkele voorbeelden:
   \label{fig:idp-examples-2}
 \end{subfigure}
 \caption[Voorbeelden van de toepassing van IDC en NC]{Voorbeelden van de
-toepassing van IDC en NC: Rode knopen zijn aanvallers, omcirkelde knopen zijn
+toepassing van IDC en NC: Rode knopen zijn aanvallers, gekleurde knopen zijn
 gealarmeerd. $x \rightarrow y$ betekent dat knoop $x$ knoop y verdenkt}
 \label{fig:idp-examples}
 \end{figure}
@@ -74,7 +100,7 @@ verdenkingen op zijn naam heeft staan, kunnen knopen $b$ en $c$ eenvoudig
 beslissen dat knoop $a$ de aanvaller is.
 
 Figuur \ref{fig:idp-examples-2} toont een situatie waar de IDC wel voldaan is
-want $\tilde{AN}(q,r) = \{s\} \not= \tilde{AN}(r,q) = \{\}$. Er zijn nu echter
+want $\tilde{AN}(a,b) = \{d\} \not= \tilde{AN}(b,a) = \{\}$. Er zijn nu echter
 twee knopen met een meerderheid aan verdenkingen: $a$ en $c$. Vanuit het
 standpunt van knoop $b$ moet dus knoop $a$ of knoop $d$ valse aantijgingen
 verspreiden. Als \'e\'en van deze knopen de aanvaller is, dan moet
@@ -92,29 +118,28 @@ tevens een algoritme dat kan dienen als raamwerk voor co\"operatieve
 inbraakdetectie. Het algoritme bestaat uit vier tot vijf fasen: initialisatie,
 stemming, publicatie van gebruikte sleutels, ontmaskeren van de aanvaller en
 optioneel het inroepen van informatie uit de externe kring. Het is in essentie
-een implementatie van het Guy Fawkes protocol, beschreven in
+een implementatie van het Guy Fawkes-protocol, beschreven in
 \citep{anderson1998new}, dat toelaat om een reeks van berichten te authenticeren
-op basis van \'e\'en initi\"eel gedeelde sleutel.
+op basis van \'e\'en initieel gedeelde sleutel.
 
 Tijdens de initialisatiefase krijgt elke knoop een unieke sleutel, $K_l$. Aan
 de hand van deze sleutel wordt een \'e\'enrichtingsketting van lengte $l$
-gemaakt van sleutels door het toepassen van bv. SHA1-hashing \citep{rfc:3174}
-toe te passen: $\{K_0, K_1,\dots K_{l-1}\}$ waarbij $\forall k \in [1..l] :
-K_{k-1} = SHA1(K_k)$. Daarnaast worden ook naburige knopen gezocht tot twee
-knopen ver en wordt sleutel $K_0$ gecommuniceerd aan al deze buren. De
-volledige initialisatiefase wordt verondersteld te gebeuren zonder mogelijkheid
-tot inbraken.
+gemaakt van sleutels door bv. SHA1-hashing \citep{rfc:3174} toe te passen:
+$\{K_0, K_1,\dots K_{l-1}\}$ waarbij $\forall k \in [1..l] : K_{k-1} =
+SHA1(K_k)$. Daarnaast worden ook naburige knopen gezocht tot twee knopen ver en
+wordt sleutel $K_0$ gecommuniceerd aan al deze buren. De initialisatiefase
+wordt verondersteld te gebeuren zonder mogelijkheid tot inbraken.
 
 Tijdens de stemming brengen alle knopen een stem uit van de vorm $m_v(s),$ $
 MAC_{K_j}(m_v(s))$. $m_v(s)$ bestaat uit een lijst van knopen die door knoop
 $s$ beschouwd worden als mogelijke aanvallers, of uitgedrukt aan de hand van
-het theoretische model: $m_v(s) = D(s)$. De $MAC_{K_j}()$ functie is een zgn.
-\emph{Message Authentication Code} \citep{rfc:2104} en wordt meestal berekend
-door het toepassen van een \'e\'enrichtings-hashfunctie op de boodschap.
-Typisch wordt er aan de boodschap een unieke, wederzijds gekende identificatie
-toegevoegd, zodat de ontvanger van een boodschap deze handtekening ook kan
-berekenen en vergelijken met het origineel. In dit geval wordt $K_j$ gebruikt,
-waarbij $j$ de volgende indexwaarde krijg uit lijst van beschikbare sleutels.
+het IDP: $m_v(s) = D(s)$. De $MAC_{K_j}()$ functie is een zgn. \emph{Message
+Authentication Code} \citep{rfc:2104} en wordt meestal berekend door het
+toepassen van een \'e\'enrichtings-hashfunctie op de boodschap. Typisch wordt
+er aan de boodschap een unieke, wederzijds gekende identificatie toegevoegd,
+zodat de ontvanger van een boodschap deze handtekening ook kan berekenen en
+vergelijken met het origineel. In dit geval wordt $K_j$ gebruikt, waarbij $j$
+de volgende indexwaarde krijgt uit lijst van beschikbare sleutels.
 
 Een dergelijke boodschap kan op het ogenblik van verzending door geen enkele
 andere knoop gevalideerd worden. De enige sleutel die zij tot op dat ogenblik
@@ -126,18 +151,19 @@ Pas wanneer de knopen elkaars stemmen hebben ontvangen, wordt de gebruikte
 sleutel vrijgegeven in de publicatiefase. Op dit ogenblik kunnen de knopen de
 eerder verstuurde stemmen valideren. Ze kunnen eerst controleren of de
 gepubliceerde sleutel inderdaad de juiste is. Immers, door het toepassen van
-SHA1 op deze sleutel, moeten zij de huidige gekende sleutel bekomen. Na
-validatie van de nieuwe sleutel, kan ook de boodschap gevalideerd worden.
+SHA1 op deze sleutel ($K_j$), moeten zij de huidige gekende sleutel ($K_{j-1}$)
+bekomen. Na validatie van de nieuwe sleutel, kan ook de boodschap gevalideerd
+worden.
 
 Nu alle knopen de stemmen van alle knopen ontvangen hebben en zeker zijn dat de
 stemmen authentiek zijn, kan met \'e\'enzelfde algoritme door alle knopen de
-aanvaller bepaald worden tijdens de ontmaskering fase.
+aanvaller bepaald worden tijdens de ontmaskering.
 
-Het is echter mogelijk dat er meerdere knopen zijn met eenzelfde aantal stemmen
-zijn, wat overeenkomt met een gelijke samenstelling van gealarmeerde buren,
+Het is echter mogelijk dat er meerdere knopen zijn met eenzelfde aantal
+stemmen, wat overeenkomt met een gelijke samenstelling van gealarmeerde buren,
 wanneer de IDC niet kan gerealiseerd worden. Onder voorbehoud dat aan de NC wel
-voldaan wordt, kan door het inroepen van de niet gealarmeerde buren van de
-gealarmeerde knopen. Deze zullen op hun beurt nagaan of de knopen die verdacht
-worden, buren zijn en dan aangeven dat zij hen \emph{niet} verdenken. Aan de
-hand van deze informatie kunnen de eerder gealarmeerde knopen hun beslissing
-verder staven.
+voldaan wordt, kan door het inroepen van de niet-gealarmeerde buren van de
+gealarmeerde knopen, de zgn. externe kring, een oplossing bekomen worden. Deze
+zullen op hun beurt nagaan of de knopen die verdacht worden, buren zijn en dan
+aangeven dat zij hen \emph{niet} verdenken. Aan de hand van deze informatie
+kunnen de gealarmeerde knopen hun beslissing staven.
