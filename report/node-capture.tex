@@ -3,10 +3,10 @@
 \chapter{Knoopverovering}
 \label{appendix:node-capture}
 
-Zoals reeds beschreven in de inleiding en situering, is de fysieke
-toegankelijkheid van sensorknopen een re\"eel probleem. In de volgende
-paragrafen illustreren we hoe eenvoudig het is om een knoop te veroveren en dat
-dit zelfs kan zonder dat de knoop of het netwerk hier iets van merken.
+Zoals beschreven in de inleiding en situering, is de fysieke toegankelijkheid
+van sensorknopen een re\"eel probleem. In de volgende paragrafen illustreren we
+hoe eenvoudig het is om een knoop te veroveren zonder dat de knoop of het
+netwerk hier iets van merken.
 
 \section{Situatie en doel}
 
@@ -17,8 +17,8 @@ kan men zich louter hierop focussen bij een poging om de knoop te veroveren.
 In de testopstelling voor dit experiment maken we gebruik van een Atmel
 ATMEGA1284p \citep{datasheet:atmega1284p}. Dit is een representatieve \mcu met
 128KB programmeerbaar geheugen en 16KB werkgeheugen, die bv. gebruikt wordt in
-de populaire Atmel RZRAVEN ontwikkelingskit \citep{manual:rzraven}. We kiezen
-ervoor om de ATMEGA1284p volledig te ontdoen van enige context, om zo tevens de
+de populaire Atmel RZRAVEN-ontwikkelingskit \citep{manual:rzraven}. We kiezen
+ervoor om de ATMEGA1284p volledig te ontdoen van enige context, om zo de
 algemeenheid van het probleem te illustreren.
 
 De \mcu wordt voorzien van een eenvoudig programma dat een numerieke teller
@@ -34,17 +34,17 @@ te verkrijgen zonder dat dit de werking van de \mcu verandert. Figuur
 \end{figure}
 
 De \mcu is via een USART\footnote{USART staat voor \emph{Universal
-synchronous/asynchronous receiver/transmitter} dat in staat voor de vertaling
-van gegevens tussen een parallelle en seri\"ele voorstelling.} poort verbonden
-met een MAX232 \citep{datasheet:max232} die de USART signalen omzet naar een
+synchronous/asynchronous receiver/transmitter} en staat in voor de vertaling
+tussen een parallelle en seri\"ele voorstelling.}-poort verbonden met een
+MAX232-module \citep{datasheet:max232} die de USART-signalen omzet naar een
 RS-232\footnote{RS-232 is een seri\"ele communicatiestandaard, typisch gebruikt
 tussen computers en randapparatuur, maar ook kan dienen als eenvoudige data
-verbinding tussen twee computers.} compatibele communicatie.
+verbinding tussen twee computers.}-compatibele communicatie.
 
 Codevoorbeeld \ref{lst:node-capture} toont de functionaliteit die op de \mcu
 ge\"implementeerd werd: een globale variabele, \ttt{counter}, wordt eindeloos
-verhoogd. Na elke verhoging wordt de waarde via de USART en de RS-232
-verbinding naar een terminal verzonden. 
+verhoogd. Na elke verhoging wordt de waarde via de USART- en de
+RS-232-verbinding naar een terminal verzonden.
 
 \begin{listing}[ht]
   \inputminted[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{c}{../src/node-capture/main.c}
@@ -56,7 +56,7 @@ verbinding naar een terminal verzonden.
 Het is dus de bedoeling om de waarde van deze \ttt{counter}-variabele te
 bemachtigen, zonder dat de werking van het programma onderbroken wordt. Deze
 variabele staat symbool voor eender welk gegeven dat in het geheugen van de
-knoop wordt opgeslagen.
+\mcu wordt opgeslagen.
 
 \vspace{-3mm}
 
@@ -64,15 +64,15 @@ knoop wordt opgeslagen.
 
 De aanval bestaat er in dit geval in om de knoop te verbinden met een
 hardwarematige foutopspoorder, zoals de Atmel JTAGICE mkII
-\citep{manual:jtagicemkii}. Dit kan bv. gebeuren aan de hand van een JTAG
-verbinding. Dit is een verbinding met tien draden, waarvan er vier aangesloten
-worden op de \mcu. Normaal gezien, bij programmatie of foutopsporing, worden 5
-draden aangesloten. De vijfde verbinding is de zgn. \ttt{RESET}-aansturing.
-Aangezien we bij deze aanval de \mcu zeker niet willen \emph{resetten}, kan
-deze verbinding weggelaten worden. Zoals te zien is op figuur
-\ref{fig:node-capture-jtag} worden de vier draden eenvoudig op naast elkaar
-liggende pinnen (24 tot 27) van de \mcu aangesloten. Nog twee draden gaan naar
-de voeding en aarding.
+\citep{manual:jtagicemkii}. Dit kan gebeuren aan de hand van een
+JTAG-verbinding. Dit is een verbinding met tien draden, waarvan er vier
+aangesloten worden op de \mcu. Normaal gezien, bij programmatie of
+foutopsporing, worden 5 draden aangesloten. De vijfde verbinding is de zgn.
+\ttt{RESET}-aansturing. Aangezien we bij deze aanval de \mcu zeker niet willen
+\emph{resetten}, kan deze verbinding weggelaten worden. Zoals te zien is op
+figuur \ref{fig:node-capture-jtag} worden de vier draden eenvoudig op naast
+elkaar liggende pinnen (24 tot 27) van de \mcu aangesloten. Nog twee draden
+gaan naar de voeding en aarding.
 
 \begin{figure}[ht]
   \centering
@@ -82,8 +82,12 @@ de voeding en aarding.
 \end{figure}
 
 De uitvoer van de applicatie wordt weergegeven in codevoorbeeld
-\ref{lst:node-capture-terminal} en toont een terminal applicatie die deze
-uitvoer weergeeft. De applicatie werkt ononderbroken.
+\ref{lst:node-capture-terminal} en toont de uitvoer. De applicatie werkt
+ononderbroken. In tussentijd werd er echter een aanval uitgevoerd. Deze werd
+gedaan aan de hand van de standaard foutopsporingsmogelijkheden van de \mcu.
+Hiervoor werd een aangepaste versie van de standaard foutopsporingssoftware
+\ttt{gdb}\footnote{http://www.gnu.org/software/gdb/} gebruikt, nl.
+\ttt{avr-gdb}.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
@@ -104,17 +108,14 @@ counter = 16
   \label{lst:node-capture-terminal}
 \end{listing}
 
-Tijdens de realisatie van deze uitvoer, werd er echter een aanval uitgevoerd.
-Deze werd gedaan aan de hand van de standaard foutopsporingsmogelijkheden van
-de \mcu. Hiervoor werd een aangepaste versie van de standaard
-foutopsporingssoftware \ttt{gdb}\footnote{http://www.gnu.org/software/gdb/}
-gebruikt, nl. \ttt{avr-gdb}.
-
-Vermits \ttt{gdb} standaard niet met een JTAG verbinding kan werken, werd
-tevens een brug opgezet door middel van
+Vermits \ttt{gdb} standaard niet met een JTAG-verbinding kan werken, werd een
+brug opgezet door middel van
 \ttt{avarice}\footnote{http://avarice.sourceforge.net}. Codevoorbeeld
 \ref{lst:node-capture-avarice} toont het opstarten van de brug en het
-beschikbaar maken van de JTAG verbinding via een lokale netwerkverbinding.
+beschikbaar maken van de JTAG-verbinding via een lokale netwerkverbinding. Zo
+kan de standaard foutopspoorder, \ttt{gdb}, gebruikt worden om het geheugen van
+de \mcu te raadplegen en het programma verder te laten lopen. Codevoorbeeld
+\ref{lst:node-capture-gdb} toont deze interactie.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
@@ -133,10 +134,6 @@ Connection opened by host 127.0.0.1, port 58521.
   \label{lst:node-capture-avarice}
 \end{listing}
 
-Vervolgens kan de standaard foutopspoorder, \ttt{gdb}, gebruikt worden om het
-geheugen van de \mcu te raadplegen en het programma verder te laten lopen.
-Codevoorbeeld \ref{lst:node-capture-gdb} toont deze interactie.
-
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
 $ avr-gdb
@@ -145,13 +142,13 @@ GNU gdb 6.8
 (gdb) target remote localhost:4242
 Remote debugging using localhost:4242
 0x000001d8 in ?? ()
-(gdb) dump binary memory counter12.bin 8388892 8388900
+(gdb) dump binary memory counter12.bin 0x80011C 0x800124
 (gdb) c
 Continuing.
 ^C
 Program received signal SIGINT, Interrupt.
 0x000001d2 in ?? ()
-(gdb) dump binary memory counter15.bin 8388892 8388900
+(gdb) dump binary memory counter15.bin 0x80011C 0x800124
 (gdb) c
 Continuing.
   \end{minted}
@@ -161,9 +158,9 @@ Continuing.
 \end{listing}
 
 Codevoorbeeld \ref{lst:node-capture-hexdump} toont de inhoud van de veroverde
-gegevens. \ttt{0c} en \ttt{0f} zijn telkens de eerste byte in het geheugen van
-de \ttt{counter}-variabele en tonen inderdaad de waarde die de variabele had op
-het moment van de opvraging.
+gegevens. \ttt{0c} en \ttt{0f} zijn telkens de eerste byte in het geheugen en
+tonen de waarde die de \ttt{counter}-variabele had op het moment van de
+opvraging.
 
 \begin{listing}[ht]
   \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
@@ -182,38 +179,57 @@ $ hexdump counter15.bin
 
 \section{Geheugens en geheugenplaatsen}
 
-In de \ttt{gdb}-sessie worden expliciete adressen in het geheugen gebruikt. Dit
-was mogelijk mits enige voorkennis i.v.m. de gecompileerde code. De
-\ttt{counter}-variabele is een globale variabele en komt daarom terecht in de
-\ttt{.bss}-sectie. Deze sectie heeft een vaste plaats in het datageheugen - bij
-de Harvard architectuur van de AVR \mcu is dit gescheiden van het
-programmageheugen \citep{avr-memory}.
-
-\noindent Figuur \ref{fig:avr-ram-map} toont de indeling van het datageheugen
-op een AVR \mcu.
+De \ttt{counter}-variabele is een globale variabele en komt daarom terecht in
+de \ttt{.bss}-sectie. Deze sectie heeft een vaste plaats in het datageheugen -
+bij de Harvard-architectuur van de AVR-\mcu is dit gescheiden van het
+programmageheugen \citep{avr-memory}. Figuur \ref{fig:avr-ram-map} toont de
+indeling van het datageheugen op een AVR-\mcu.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/avr-ram-map.pdf}
-  \caption[Indeling van het datageheugen van een AVR \mcu]{Indeling van het
-  datageheugen van een AVR \mcu (Bron:\citep{avr-malloc})}
+  \caption[Datageheugen van een AVR \mcu]{Datageheugen van een AVR \mcu
+  (Bron:\citep{avr-malloc})}
   \label{fig:avr-ram-map}
 \end{figure}
 
-Zelfs zonder voorkennis over de code kunnen we het datageheugen benaderen. Het
-binaire beeld dat naar de \mcu werd overgebracht, bestond uit de programmacode
-in de \ttt{.text}-sectie en de \ttt{.data}-sectie met de statische gegevens.
-Aangezien de Harvard architectuur programma- en datageheugen scheidt, wordt bij
-het uitvoeren van het programma, de \ttt{.data}-sectie gekopieerd naar dit
-aparte datageheugen. Daarna wordt de \ttt{.bss}-sectie gevuld en start de
-opbouw van de \ttt{heap}.
+Het programma dat naar de \mcu werd overgebracht, bevat de programmacode voor
+de \ttt{.text}-sectie en de de statische gegevens voor de \ttt{.data}-sectie.
+Bij het uitvoeren van het programma wordt de inhoud voor de \ttt{.data}-sectie
+gekopieerd naar dit aparte datageheugen. Daarna wordt de \ttt{.bss}-sectie
+gevuld en start de opbouw van de \ttt{heap}.
 
-We kunnen nu twee binaire beelden downloaden van de \mcu: het oorspronkelijk
-opgeladen beeld en een kopie van het datageheugen. Dit laatste start op adres
-\ttt{0x0100} met een bijkomende verschuiving van \ttt{0x800000}. Door het einde
-van het oorspronkelijke beeld en het begin van het datageheugen te vergelijken,
-kunnen we de \ttt{.data}-sectie bepalen, als ook het begin van de
-\ttt{.bss}-sectie.
+We kunnen dus twee kopies van het geheugen van de \mcu nemen: het
+oorspronkelijk opgeladen programma en een stuk van het datageheugen. Dit
+laatste start op adres \ttt{0x0100} (met een bijkomende verschuiving van
+\ttt{0x800000}). Door het einde van het oorspronkelijke beeld en het begin van
+het datageheugen te vergelijken, kunnen we de \ttt{.data}-sectie identificeren
+en zo ook het begin van de \ttt{.bss}-sectie. Codevoorbeeld
+\ref{lst:determine-bss} toont het einde van het het programma, zoals het zich
+op de \mcu bevindt, alsook het begin van de \ttt{.data} sectie. Het is mogelijk
+om het einde van het programma terug te vinden in de \ttt{.data}-sectie. De
+\ttt{.bss}-sectie volgt hierop. In dit geval is dit de 29$^{ste}$ byte op adres
+\ttt{0x80011C}.
+
+\begin{listing}[ht]
+  \begin{minted}[linenos,frame=lines,framesep=2mm,fontsize=\footnotesize]{console}
+$ cat downloaded.hex | tail -3
+0000740 62 0f 73 1f 84 1f 95 1f a0 1d 08 95 f8 94 ff cf
+0000750 00 00 00 02 00 00 00 00 a7 00 00 00 00 00 63 6f
+0000760 75 6e 74 65 72 20 3d 20 25 69 0a 00
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+$ cat data-section.hex
+0000000 00 00 00 02 00 00 0d 00 a7 00 00 00 00 00 63 6f
+0000010 75 6e 74 65 72 20 3d 20 25 69 0a 00 1f 00 00 00
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0000020 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0000030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  \end{minted}
+  \vspace{-5mm}
+  \caption{Bepalen van het begin van de \ttt{.bss}-sectie}
+  \label{lst:determine-bss}
+\end{listing}
 
 \section{Conclusies en gevolgen}
 
@@ -222,7 +238,7 @@ ge\"illustreerd hoe met standaard ontwikkelingsmiddelen, doelbewust het
 geheugen van een werkende \mcu uitgelezen en ge\"interpreteerd kan worden.
 
 Een eenvoudige variabele met een teller is zeker geen doelwit op zich, maar het
-is denkbaar dat in een gelijkaardige globale variabele een encryptiesleutel, of
+is denkbaar dat in een gelijkaardige globale variabele een encryptiesleutel of
 andere belangrijke informatie opgeslagen wordt.
 
 De mogelijkheid om via JTAG en On-Chip Debugging (OCD)) het geheugen te
@@ -233,9 +249,7 @@ zoals door de eigenaar en ontwikkelaar van de knoop.
 Het aanpassen van deze instellingen gaat echter gepaard met het herstarten van
 de \mcu, omdat ze deel uitmaken van de programmatie. Indien de software van een
 knoop dus bij het opstarten de instellingen van de \mcu valideert, kan het
-controleren dat deze instellingen geen kwaadaardige acties toelaten. Indien
-wel, kunnen ze er voor zorgen dat ze geen belangrijke informatie ontvangen van
-het netwerk en opslagen in het datageheugen.
+controleren dat deze instellingen geen kwaadaardige acties toelaten.
 
 We vinden het voorbeeld van de aanval via JTAG ook terug in
 \citep{becher2006tampering}. Daarnaast zijn nog andere aanvallen van deze aard
@@ -244,4 +258,4 @@ geheugens, sensors of de draadloze radio.
 
 Uit dit alles blijkt dat een inbraakdetectiesysteem minimaal een controle moet
 uitvoeren van de instellingen van de \mcu. Dit kan bv. een onderdeel zijn kan
-van een algemeen \emph{anomalie-detectie} subsysteem.
+van een algemene \emph{anomaliedetectie}.

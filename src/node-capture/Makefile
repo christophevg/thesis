@@ -3,6 +3,10 @@ MCU 		 = atmega1284p
 F_CPU 	 = 8000000
 MORE_SRC = avr.c serial.c
 
+# external hardware composition ... yummie :-)
+MORE_CDEFS+=-DSERIAL_ON_USART1 # -DXBEE_ON_USART0 == default
+# MORE_CDEFS+=-DDEBUG
+
 # output format. (can be srec, ihex, binary)
 FORMAT = ihex
 
@@ -62,9 +66,10 @@ LDFLAGS += $(MATH_LIB)
 # LDFLAGS += -lm -lprintf_flt -Wl,-u,vfprintf -Wl,-Map=$(TARGET).map
 
 # avrdude
-AVRDUDE_PROGRAMMER = jtag2isp
+AVRDUDE_PROGRAMMER = jtag2
 AVRDUDE_PORT = usb:5a:cb
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
+AVRDUDE_READ_FLASH = -U flash:r:download.hex:h
 AVRDUDE_FLAGS = -p $(MCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER)
 
 # define programs and commands.
@@ -106,6 +111,9 @@ sizeafter:
 # program the device.  
 program: $(TARGET).hex $(TARGET).eep
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
+
+download:
+	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_READ_FLASH)
 
 clean:
 	@rm -rf *.hex *.eep *.cof *.elf *.map *.sym *.lss *.lst *.o *.s

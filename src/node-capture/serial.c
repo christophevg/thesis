@@ -19,10 +19,10 @@ void serial_init(void) {
   avr_clear_bit(RX_PORT, RX_PIN);
 
   // set USART Baud rate
-  UBRR0H = MYUBRR >> 8;
-  UBRR0L = MYUBRR;
+  UBRR1H = MYUBRR >> 8;
+  UBRR1L = MYUBRR;
   // enable receiver and transmitter
-  UCSR0B = (1 << RXEN0) | (1 << TXEN0);
+  UCSR1B = (1 << RXEN1) | (1 << TXEN1);
     
   stdout = &mystdout; // required for printf init
 }
@@ -30,13 +30,13 @@ void serial_init(void) {
 static int serial_putchar(char c, FILE *stream) {
   if (c == '\n') serial_putchar('\r', stream); // add a CR before the LF
 
-  loop_until_bit_is_set(UCSR0A, UDRE0);
-  UDR0 = c;
+  loop_until_bit_is_set(UCSR1A, UDRE1);
+  UDR1 = c;
 
   return 0;
 }
 
 uint8_t serial_getchar(void) {
-  while( !(UCSR0A & (1<<RXC0)) );
-  return(UDR0);
+  while( !(UCSR1A & (1<<RXC1)) );
+  return(UDR1);
 }
