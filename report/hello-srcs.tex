@@ -133,12 +133,19 @@ void step(node_t* node) {
 \label{section:nodes.sm}
 
 Figuur \ref{fig:nodes.sm} toont de volledige inhoud van het \ttt{nodes}-domein,
-zoals dit gedefinieerd is in het geval van \ttt{hello.foo}.
+zoals dit gedefinieerd is in het geval van \ttt{hello.foo}. De uitbreiding van
+de definitie van een knoop met de \ttt{sequence}-eigenschap is uitvergroot
+weergegeven.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[angle=90,width=0.74\linewidth]{resources/nodes_sm.pdf}
+  \begin{overpic}[width=0.74\linewidth]{resources/nodes_sm.pdf}
+    \put(140,350){
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{1pt}%
+\fbox{\includegraphics[scale=0.75]{resources/nodes_sm_detail.pdf}}%
+    }  
+  \end{overpic}
   \caption{Het \ttt{nodes}-domein in het SM voor \ttt{hello.foo} }
   \label{fig:nodes.sm}
 \end{figure}
-

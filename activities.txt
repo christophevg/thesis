@@ -693,8 +693,9 @@ activities
 - proofreading ch7-ch8 (1h)
 - second review ch7-ch8 (1h)
 
-2014-06-01 (5h/673h)
+2014-06-01 (7h/675h)
 - proofreading appendices (1h30min)
 - third review ch6 (15min)
 - reviewed node-capture (2h)
 - reviewed reputation and idp appendices (1h15min)
+- finalized second review appendices (2h)

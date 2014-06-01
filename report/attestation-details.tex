@@ -4,7 +4,8 @@
 \label{appendix:attestation}
 
 In deze bijlage bekijken we een voorbeeld van software-attestatie, meer
-specifiek het ICE-algoritme en evalueren de mogelijkheden en beperkingen.
+specifiek het ICE-algoritme \citep{seshadri2006scuba, seshadri2008sake} en
+evalueren de mogelijkheden en beperkingen.
 
 Figuur \ref{fig:attestation-process} illustreert de werking van
 software-attestatie en toont hoe een wijziging door een aanvaller zich
@@ -12,9 +13,9 @@ propageert van het geheugen naar de checksum.
 
 \begin{figure}[ht] \centering
 \includegraphics[width=0.9\linewidth]{resources/attestation-process.pdf}
-\caption[De werking van software-attestatie]{De werking van software
-attestatie: een aanvaller heeft een wijziging (rood gekleurd vlak in de
-voorstelling van het geheugen van de knoop) kunnen aanbrengen in de
+\caption[De werking van software-attestatie]{De werking van
+software-attestatie: een aanvaller heeft een wijziging (rood gekleurd vlak in
+de voorstelling van het geheugen van de knoop) kunnen aanbrengen in de
 programmacode op een knoop. Deze wijziging propageert zich in de
 \emph{checksum} en wordt door de vaststeller opgemerkt.}
 \label{fig:attestation-process} \end{figure}
@@ -32,7 +33,7 @@ vorm van een vertraging van het antwoord aan de vaststeller.
 Met SCUBA in \citep{seshadri2006scuba} en SAKE in \citep{seshadri2008sake} werd
 verder gebouwd op SWATT met het oog op een beveiligde distributie van
 programmacode en het veilig uitwisselen van sleutels. Samen met SCUBA en SAKE
-werd ook \emph{Indisputable Code Execution} of ICE ge\"introduceerd. Daar waar
+werd ook \emph{Indisputable Code Execution} (ICE) ge\"introduceerd. Daar waar
 SWATT gericht is op inhoudelijke integriteit, voegt ICE hieraan ook de garantie
 van een niet-aangetaste uitvoering van programma's toe en laat toe om beperkte
 regio's van het geheugen te benaderen.
@@ -43,15 +44,15 @@ Zo wordt het mogelijk om nieuwe code te installeren of gedeelde geheimen uit te
 wisselen.
 
 ICE realiseert dit door een \emph{checksum} te berekenen over de geheugenregio
-waar de attestatieroutine zich bevindt, alsook over de regio waar het uit te
-voeren programma zich bevindt en van de staat van de processor. Hierdoor
-ontstaat er een garantie dat de attestatie correct verloopt, dat het uit te
-voeren programma geen onbekende code bevat en dat de omgeving waarin de
-attestatie en het programma uitgevoerd worden gegarandeerd niet aangetast wordt.
+waar de attestatieroutine zich bevindt, over de regio waar het uit te voeren
+programma zich bevindt en van de staat van de processor. Hierdoor ontstaat er
+een garantie dat de attestatie correct verloopt, dat het uit te voeren
+programma geen onbekende code bevat en dat de omgeving waarin de attestatie en
+het programma uitgevoerd worden gegarandeerd niet aangetast wordt.
 
 Een belangrijke eigenschap van ICE is dat de attestatieroutine de processor in
-een emph{veilige} staat brengt door geen \emph{interrupts} toe te laten.
-Hierdoor kan de werking van de attestatie routine niet onderbroken of gewijzigd
+een \emph{veilige} staat brengt door geen \emph{interrupts} toe te laten.
+Hierdoor kan de werking van de attestatieroutine niet onderbroken of gewijzigd
 worden. Na succesvolle attestatie zal het geattesteerde programma in dezelfde
 veilige omstandigheden als de ICE routine uitgevoerd worden.
 
@@ -66,9 +67,7 @@ weerwoord gegeven.
 
 Desalniettemin zijn de voorgestelde ontwijkingstechnieken zeer interessante
 voorbeelden van de mogelijkheden die een aanvaller heeft tegen
-software-attestatie. Het feit dat de op het eerste zicht valabele aanvallen
-toch nog fouten bevatten, biedt dan weer een ander beeld op de kwaliteiten van
-de voorgestelde technieken.
+software-attestatie.
 
 \subsection{Vrij geheugen}
 
@@ -77,49 +76,47 @@ opgevraagde geheugenadressen te controleren en indien ze verwijzen naar
 plaatsen waar zich niet-originele code bevindt, deze te herschrijven naar
 adressen waar de originele code zich bevindt.
 
-Aangezien het merendeel van het programmageheugen op een knoop typisch leeg
-is, kan de aanvaller zijn benodigde code verbergen in zo'n stuk leeg geheugen.
-Mits zorgvuldige keuze van deze locatie, kan het controleren van en verwijzen
-naar een andere locatie zich beperken tot de manipulatie van \'e\'en enkele bit
-in het adres. Deze techniek wordt ook wel een geheugen schaduwende aanval
-genoemd.
+Aangezien het merendeel van het programmageheugen op een knoop typisch leeg is,
+kan de aanvaller zijn benodigde code verbergen in zo'n stuk leeg geheugen. Mits
+zorgvuldige keuze van deze locatie, kan het controleren van en verwijzen naar
+een andere locatie zich beperken tot de manipulatie van \'e\'en enkele bit in
+het adres. Deze techniek wordt ook wel een geheugenschaduwende aanval genoemd.
 
-Om het probleem van een leeg programmageheugen, en de bijhorende uitnodiging
-aan het adres van de aanvaller om zich eenvoudig te kunnen verschuilen, aan te
+Om het probleem van een leeg programmageheugen en de bijhorende uitnodiging aan
+het adres van de aanvaller om zich hier eenvoudig te kunnen verschuilen, aan te
 pakken, stellen o.a. \citep{yang2007distributed,seshadri2008sake} voor dat dit
 geheugen opgevuld wordt met willekeurige waarden. Op deze manier heeft de
 aanvaller geen vrije ruimte om zijn code in te plaatsen.
 
 Deze willekeurige waarden kunnen zo opgesteld worden dat ze niet verkleind
 kunnen worden. Dit kan echter niet gegarandeerd worden van de eigenlijke
-programmacode. Deze kan typisch wel nog verkleind worden en in die vorm
-opgeslagen worden, waardoor er mogelijk voldoende ruimte vrijkomt voor de code
-van de aanvaller. Op het ogenblik van attestatie kan deze oorspronkelijke code
-dan, indien nodig, terug hersteld worden.
+programmacode. Deze kan typisch wel nog verkleind en in die vorm opgeslagen
+worden, waardoor er mogelijk voldoende ruimte vrijkomt voor de code van de
+aanvaller. Op het ogenblik van attestatie kan deze oorspronkelijke code dan,
+indien nodig, terug hersteld worden.
 
 Indien deze eenvoudige technieken toch niet voldoende ruimte zouden bieden, kan
 er nog altijd gekeken worden naar het datageheugen. We merken immers op dat
 nagenoeg alle vormen van attestatie alleen toegepast worden op het
-programmageheugen. Het datageheugen is immers te veranderlijk en kan niet
-volledig gekend zijn door de vaststeller.
-
-Hierdoor wordt dit datageheugen natuurlijk het volgende mogelijke aandachtspunt
-voor de aanvaller. Ondanks het feit dat ook op een \mcu het datageheugen veelal
-niet kan uitgevoerd worden, blijft het mogelijk om programmacode in het
-datageheugen op te slagen en te kopi\"eren naar het programmageheugen.
+programmageheugen. Het datageheugen is te veranderlijk en kan niet volledig
+gekend zijn door de vaststeller. Hierdoor wordt dit datageheugen natuurlijk het
+volgende mogelijke aandachtspunt voor de aanvaller. Ondanks het feit dat op een
+\mcu het datageheugen veelal niet kan uitgevoerd worden, blijft het mogelijk om
+programmacode in het datageheugen op te slagen en te kopi\"eren naar het
+programmageheugen.
 
 \subsection{Een rootkit}
 
-De \emph{rootkit} voorgesteld in \citep{castelluccia2009difficulty} hanteert
-dit principe. Door middel van de \emph{Return Operation Programming} (ROP)
-techniek, o.a. beschreven in \citep{prandini2012return}, kan een aanvaller met
-eerste aanknopingspunt of \emph{haak} bij aanvang van de attestatie code in het
+De \emph{rootkit} voorgesteld in \citep{castelluccia2009difficulty} misbruikt
+dit vrije geheugen. Door middel van \emph{Return Operation Programming} (ROP),
+o.a. beschreven in \citep{prandini2012return}, kan een aanvaller met eerste
+aanknopingspunt of \emph{haak} bij aanvang van de attestatiecode in het
 programmageheugen, zijn eigen rootkit uit het programmageheugen laten
 verwijderen. Na deze operatie is het programmageheugen opnieuw intact en zal de
 originele attestatieroutine een positief resultaat opleveren. Maar de eerste
 haak heeft er ook voor gezorgd dat bij terugkeer uit de attestatieroutine een
 tweede haak geplaatst is die op zijn beurt de rootkit en de initi\"ele haak
-opnieuw door middel van ROP instructies installeert. Figuur
+opnieuw door middel van ROP-instructies installeert. Figuur
 \ref{fig:attestation-rootkit} toont deze werking.
 
 \begin{figure}[ht]
@@ -133,66 +130,42 @@ Het verbergen van de rootkit en het herstellen van het programmageheugen in
 zijn oorspronkelijke staat blijkt slechts een overhead van ongeveer 0.3\% op te
 leveren t.o.v. bv. de attestatietechniek voorgesteld in
 \citep{seshadri2004swatt}. Deze techniek controleert tevens de tijd dat de
-attestatie routine nodig had om de checksum te berekenen. Indien deze te lang
+attestatieroutine nodig had om de checksum te berekenen. Indien deze te lang
 duurt dan schrijft SWATT dit toe aan de overhead ge\"introduceerd door
 mogelijke kwaadaardige code. Een verhoging met 0.3\% is mogelijk te weinig om
 tot deze conclusie te komen.
 
-Deze aanval richt zich nu louter op de attestatie routine, maar zoals in
+Deze aanval richt zich nu louter op de attestatieroutine, maar zoals in
 \citep{perrig2010refutation} aangegeven wordt, is SWATT slechts een deel van
 een volledige software-attestatie en focust zich op het effectief attesteren
 van code in het geheugen, niet op de omringende context. In een volledige
-opstelling zou een attestatieprocedure de het terugkeer adres op de stack mee
+opstelling zou een attestatieprocedure het terugkeeradres op de stack mee
 kunnen nemen in de attestatie.
 
 \subsection{Maatregelen}
 
 \citep{castelluccia2009difficulty} beschrijven zelf enkele mogelijke pistes
-waarmee een attestatie routine zichzelf zou kunnen beschermen tegen een
-dergelijke rootkit. Een eerste mogelijk bestaat in het leegmaken van het
-datageheugen en vervolgens, zonder een terugkeer operatie uit te voeren,
-waardoor de tweede haak vermeden wordt, de knoop herstarten. Het verwijderen
-van alle gegevens en het herstarten van een knoop bij elk attestatieverzoek,
-kan afhankelijk van de functionaliteit die de knoop aanbiedt, in de meeste
-gevallen niet wenselijk zijn. Dit euvel kan eventueel wel ondervangen worden
-door het wegschrijven van deze gegevens naar een EEPROM, een geheugen dat de
-opgeslagen gegevens bewaard bij herstarten.
-
-Een andere oplossingsstrategie is het attesteren van het datageheugen. Dit
-dient op hetzelfde ogenblik te gebeuren als de attestatie van het
-programmageheugen, zodat de rootkit niet in staat is om zichzelf heen en weer
-te kopi\"eren tussen de twee afzonderlijke attestaties. Zelfs al wordt er
-willekeurig telkens uit het ene of het andere geheugen gelezen, dan nog kan de
-rootkit zich nog steeds verplaatsen tussen de twee geheugens en moet deze dat
-dan zelfs maar gemiddeld om de twee lees-operaties doen. Hierdoor zal de
-overhead zelfs gedeeld door twee worden, waardoor de impact ervan nog
-moeilijker te detecteren wordt.
-
-Tot slot is, zoals eerder reeds vermeld, het attesteren van het werkgeheugen op
-zich reeds een zeer moeilijk gegeven, door de onvoorspelbare inhoud ervan.
-Idealiter zou de vaststeller ook de inhoud van het volledige datageheugen
-moeten kennen. Enerzijds bevat dit geheugen registers enz., welke volledig
-onvoorspelbaar zijn en dus uitgesloten zouden moeten worden. Anderzijds bevat
-het geheugen gegevens van de actieve processen. Deze zijn typisch afhankelijk
-van opgemeten waarden en/of communicatie met andere knopen en dus per definitie
-onvoorspelbaar voor de vaststeller.
-
-Opnieuw zou het leegmaken van het datageheugen een voorspelbaar resultaat
-opleveren voor de vaststeller, maar dit is dan evengoed een voorspelbaar
-resultaat voor de aanvaller en kunnen opnieuw geheugen-schaduwende technieken
-gebruikt worden.
+waarmee een attestatieroutine zichzelf zou kunnen beschermen tegen een
+dergelijke rootkit. Een voorbeeld is het leegmaken van het datageheugen en
+vervolgens, zonder een terugkeeroperatie uit te voeren - waardoor de tweede
+haak vermeden wordt - de knoop te herstarten. Het verwijderen van alle gegevens
+en het herstarten van een knoop bij elk attestatieverzoek kan, afhankelijk van
+de functionaliteit die de knoop aanbiedt, in de meeste gevallen niet wenselijk
+zijn. Dit euvel kan eventueel wel ondervangen worden door het wegschrijven van
+deze gegevens naar een EEPROM, een geheugen dat de opgeslagen gegevens bewaart
+bij herstarten.
 
 \subsection{Het algoritme}
 
 Naast SWATT werd in \citep{castelluccia2009difficulty} ook een
-aanvalsmogelijkheid tegen ICE voorgesteld. Het \emph{checksum} algoritme van
+aanvalsmogelijkheid tegen ICE voorgesteld. Het \emph{checksum}-algoritme van
 ICE is zo geconstrueerd dat het niet mogelijk is om bij elke geheugentoegang na
 te gaan of er een doorverwijzing moet gebeuren of niet. Het is echter wel
 mogelijk om een consequente bit-wijziging te doen, zonder voorafgaande test.
 
-Algoritme \ref{alg:attestation-ice} toont het \emph{checksum} algoritme. De
+Algoritme \ref{alg:attestation-ice} toont het \emph{checksum}-algoritme. De
 eigenlijke berekening vanaf regel 4 bestaat uit een strikte afwisseling van
-16 bit optellingen zonder overdracht en XOR operaties ($\oplus$).
+16-bit-optellingen zonder overdracht en XOR-operaties ($\oplus$).
 
 \begin{algorithm}
 \begin{algorithmic}[1]
@@ -219,10 +192,10 @@ Een mogelijke aanval op ICE bestaat er in om twee wijzigingen aan te brengen
 die elkaar opheffen, waardoor eenzelfde checksum berekend wordt. Praktisch is
 het mogelijk om de meest betekenisvolle bit van de programmateller
 (\emph{program counter}) (PC) en van de waarde van de opgehaalde
-geheugenlocatie te wisselen. Door de opeenvolging van de optelling en de XOR
-operatie zullen deze elkaar opheffen, zoals getoond wordt in de vergelijkingen
+geheugenlocatie te wisselen. Door de opeenvolging van de optelling en de
+XOR-operatie zullen deze elkaar opheffen, zoals getoond wordt in
 \ref{eq:attestation-ice} en \ref{eq:attestation-ice-bitflip}, waarin een
-voorbeeld wordt gegeven met 8 bits argumenten.
+voorbeeld wordt gegeven met 8-bit argumenten.
 
 \begin{equation} \label{eq:attestation-ice}
 \begin{array}{cccccccccc}
@@ -250,19 +223,17 @@ voorbeeld wordt gegeven met 8 bits argumenten.
 
 Het resultaat van deze minimale aanpassingen is dat er zich een situatie
 voordoet zoals weergegeven in figuur \ref{fig:attestation-ice-copy}. De
-aanvaller kan zijn eigen aangepaste kopie van de ICE routine laten uitvoeren.
+aanvaller kan zijn eigen aangepaste kopie van de ICE-routine laten uitvoeren.
 De geattesteerde regio bevindt zich echter elders, waardoor de routine niet
-meer zelf-attesterend is en zijn beginsel verliest.
+meer zelfattesterend is en zijn beginsel verliest.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/attestation-ice-copy.pdf}
-
-  \caption[Omzeilen van ICE-gebaseerde software-attestatie]{De legitieme ICE
-  routine is opgeslagen op adres 0x9100 en een aangepaste kopie op adres
+  \caption[Omzeilen van ICE-gebaseerde software-attestatie]{De legitieme
+  ICE-routine is opgeslagen op adres 0x9100 en een aangepaste kopie op adres
   0x1100. Deze twee adressen verschillen slechts in hun meest betekenisvolle
   bit. De aanvaller kan zijn code gebruiken \'en slagen voor de attestatie.}
-
   \label{fig:attestation-ice-copy}
 \end{figure}
 
@@ -272,100 +243,43 @@ liggen om deze aanval tegen te gaan.
 
 \subsubsection*{Trusted Platform Module - TPM}
 
-In bovenstaande paragrafen, lag de nadruk op het software aspect van
-attestatie. Voor \mcu's, met beperkte mogelijkheden, is het belangrijk om zo
-effici\"ent mogelijk om te springen met energie. Ook de kostprijs is een
-belangrijke factor, aangezien bijkomende kosten per knoop snel kunnen oplopen
-in het kader van een volledig netwerk.
+In voorgaande paragrafen, lag de nadruk op het software-aspect van attestatie.
+Voor \mcu's met beperkte mogelijkheden, is het belangrijk om zo effici\"ent
+mogelijk om te springen met energie. Ook de kostprijs is een belangrijke
+factor, aangezien bijkomende kosten per knoop snel kunnen oplopen in het kader
+van een volledig netwerk.
 
 Software biedt in dit laatste geval dan logischerwijs een positief economisch
 antwoord. Het is echter ook mogelijk om voor attestatie beroep te doen op
-hardware. Daar waar een eenvoudige \mcu zich nagenoeg niet kan beschermen tegen
-fysieke aanvallen, is het wel mogelijk om specifieke hardware te cre\"eren die
+hardware. Daar waar een eenvoudige \mcu zich niet kan beschermen tegen fysieke
+aanvallen, is het wel mogelijk om specifieke hardware te cre\"eren die
 hermetisch afgesloten is.
 
 Een voorbeeld hiervan is de \emph{Trusted Platform Module} (TPM), van de
-\emph{Trusted Platform Group}. Dit is een specificatie op industrie-niveau die
-toelaat om een vertrouwen te cre\"eren tussen verschillende ge\"informatiseerde
-platformen in het algemeen. Deze specificatie is in 2009 ook opgenomen als een
-ISO standaard\footnote{ISO/IEC 11889-1:2009 -
+\emph{Trusted Platform Group}. Dit is een specificatie die toelaat om een
+vertrouwen te cre\"eren tussen verschillende ge\"informatiseerde platformen in
+het algemeen. Deze specificatie is in 2009 ook opgenomen als een
+ISO-standaard\footnote{ISO/IEC 11889-1:2009 -
 \url{http://www.iso.org/iso/catalogue_detail.htm?csnumber=50970}}.
 
-In essentie is een TPM een smart-card die in staat is om cryptografische
+In essentie is een TPM een smartcard die in staat is om cryptografische
 gegevens op te slaan en bijhorende bewerking uit te voeren, zonder dat enige
 interactie van de buitenwereld kan bewerkstelligd worden en het onmogelijk is
 om de opgeslagen sleutels naar buiten te exporteren. Op deze manier kan de TPM
-als een initi\"eel startpunt gebruikt worden om een keten van vertrouwen op te
+als een initieel startpunt gebruikt worden om een keten van vertrouwen op te
 bouwen.
 
-Een nadeel is dat een extra TPM op een reeds beladen \mcu, soms niet mogelijk
-is. Daarom stelt \citep{krauss2007detecting} voor om de mogelijkheden van een
-TPM op de cluster hoofden (zie sectie \ref{subsection:zigbee}) (CH) binnen het
-netwerk te gebruiken. Aangezien deze per definitie voorzien zijn om meer
-energie te verbruiken, kan de bijkomende kost op dit niveau verantwoord worden.
+Een extra TPM voorzien op elke sensorknoop is waarschijnlijk (nog) niet
+realistisch. Daarom stelt \citep{krauss2007detecting} voor om de mogelijkheden
+van een TPM op de clusterhoofden (zie sectie \ref{subsection:zigbee}) (CH)
+binnen het netwerk te gebruiken. Aangezien deze per definitie voorzien zijn om
+meer energie te verbruiken, kan de bijkomende kost op dit niveau verantwoord
+worden.
 
 Vanuit het oogpunt dat de werking van het netwerk moet gegarandeerd worden, kan
-dit tevens een interessant gegeven zijn. Knopen, of cluster nodes (CN), die de
-eigenlijke metingen doen en vervolgens doorsturen via een CH, kunnen nu deze
-een verzoek tot attestatie sturen.
-
-Deze functionaliteit wordt in een eerste protocol ge\"implementeerd als het
-\emph{Periodic Broadcast Attestation Protocol}, of PBAP. De aanleiding van dit
-protocol is terug te vinden in de manier waarop CNs communiceren met hun CH.
-Indien elke CN individueel zijn CH zou gaan attesteren, zou dit een grote
-overhead leggen op de CH. Door te opteren voor het periodiek uitsturen van
-attestaties, kan de CH al zijn CNs in \'e\'en keer op de hoogte stellen. Het
-feit dat CNs tussen twee metingen in slaap kunnen zijn, is inherent ondervangen
-door het feit dat de CHs berichten voor hun CNs bufferen.
-
-Deze attestatie focust zich op het garanderen dat de configuratie van het CH
-ongewijzigd is sinds de installatie van het netwerk. Tijdens deze installatie
-zal zo'n CH met zijn TPM een keten van hashes maken en deze blokkeren in de
-TPM. Dit is een techniek die \emph{sealing}\footnote{Dit is slechts \'e\'en van
-de basiscomponenten van een TPM. De volledige TPM functionaliteit wordt o.a. in
-\citep{parno2010bootstrapping} toegelicht in het kader van de mogelijkheden die
-een TPM biedt om als initi\"ele bron van vertrouwen gebruikt te worden.}
-genoemd wordt. De TPM zal deze hashes alleen vrijgeven indien deze de
-configuratie van de CH kan valideren als ongewijzigd.
-
-Door de laatste hash uit de keten van elke CH te verdelen over de CNs, wordt
-het voor hen opnieuw mogelijk om boodschappen van de CH te valideren. We nemen
-aan dat het CH en de CNs lichtelijk gesynchroniseerd zijn qua tijd en dat zij
-de evolutie van de tijd onderling herkennen als intervallen die aangeduid wordt
-met $I_\lambda$.
-
-Indien $CH_i$ op ogenblik $I_\lambda$ inderdaad nog steeds dezelfde
-configuratie heeft als initieel, zal de TPM de volgende hash uit de keten
-vrijgeven: $c_{n-\lambda}^{CH_i}$\footnote{De keten was gebaseerd op de
-init\"ele hash $c_0^{CH_i}$ en werd opgebouwd tot $c_n^{CH_i}$, welke
-vrijgegeven werd aan de verschillende CNs.}.
-
-De CH kan deze nieuw vrijgegeven hash nu distribueren naar de CNs, welke deze
-kunnen valideren aan de hand van de vorig gekende hash:
-$H(c_{n-\lambda}^{CH_i}) \overset{?}{=} c_{n-\lambda+1}^{CH_i}$. Aangezien de
-CH slechts over deze hash kan beschikking indien deze is vrijgegeven door de
-TPM en aangezien dit slechts gebeurt wanneer de systeem configuratie van de CH
-niet gewijzigd is, heeft de CN een garantie dat de CH ongewijzigd en
-betrouwbaar is.
-
-Maar ook individuele attestaties zijn mogelijk, in de vorm van het
-\emph{Individual Attestation Protocol} of IAP. Hierbij wordt er een
-symmetrische encryptie sleutel $K_{CN_j,CH_i}$ gegenereerd en opgeslagen in de
-TPM. De CH zal deze sleutel alleen kunnen gebruiken vanuit zijn TPM en deze zal
-er slechts toegang toe verschaffen indien de configuratie van de CH ongewijzigd
-is.
-
-Een CN die nu zijn CH wil attesteren, kan nu een eenmalig een uniek getal, of
-\emph{nonce} (\emph{Numeric used ONCE}), samen mijn zijn unieke identificatie
-($ID_{CN_j}$) versleutelen en naar zijn CH sturen. Indien deze over een
-ongewijzigde configuratie beschikt, zal de TPM hem toelaten om de versleutelde
-boodschap te decoderen en de oorsprong van de boodschap te valideren aan de
-hand van $ID_{CN_j}$. De CH kan vervolgens de \emph{nonce} opnieuw versleutelen
-en terugsturen naar de CN. Deze kan tot slot deze boodschap opnieuw decoderen
-en vaststellen of de CH inderdaad dezelfde \emph{nonce} terugstuurde. Omdat de
-CN weet dat de CH slechts over $K_{CN_j,CH_i}$ kan beschikken indien zijn
-configuratie ongewijzigd is, beschikt de CN over voldoende aanwijzing dat de CH
-betrouwbaar is.
+dit tevens een interessant gegeven zijn. Eindknopen (\emph{cluster nodes}) (CN)
+die de eigenlijke metingen doen en vervolgens doorsturen via een CH, kunnen
+deze nu een verzoek tot attestatie sturen.
 
 \subsubsection*{Gedistribueerde attestatie}
 
@@ -394,17 +308,17 @@ zelf niet. Deze heeft alleen het resultaat in het geheugen staan.
 
 De attestatie van knoop $u$ gebeurt dan als volgt: alle buren selecteren
 \'e\'en knoop uit hun groep en sturen elk hun waarde $f(i)$ naar deze knoop. Op
-basis van deze waarden kan via Lagrange interpolatie de functie terug opgesteld
+basis van deze waarden kan via Lagrange-interpolatie de functie terug opgesteld
 worden en kan $S_u = f(0)$ berekend worden door deze knoop. Vervolgens kan deze
-knoop knoop $u$ attesteren door het sturen van een challenge en kan deze
-valideren door zelf ook deze berekening te maken.
+knoop $u$ attesteren door het sturen van een challenge en deze valideren door
+zelf ook deze berekening te maken.
 
 De techniek is zonder meer interessant, maar is onderhevig aan verschillende
 problemen. Zo kan een aanvaller trachten een geselecteerde knoop onder controle
 te krijgen, waardoor hij in staat is om diens opnieuw samengestelde initi\"ele
 waarde te bemachtigen. Nadien is hij in staat om diezelfde knoop te veroveren
-en te voorzien van code die gebruik maakt van de veroverde initi\"ele waarde om
-de pseudo-willekeurige getallen te generen, alsook de lege ruimte opnieuw te
+en te voorzien van code die gebruikmaakt van de veroverde initi\"ele waarde om
+de pseudo-willekeurige getallen te genereren, alsook de lege ruimte opnieuw te
 gebruiken voor zijn eigen doeleinden. De auteurs beseffen dit probleem ook en
 stellen daarom een aangepast algoritme voor, dat tevens de herberekening van de
 \emph{checksums} door de attesterende buren vermijdt.
@@ -427,8 +341,8 @@ een attestatie zou kunnen weerstaan.
 We stellen vast dat het op een eenvoudige \mcu zeer moeilijk, maar mogelijk
 moet zijn, om een sluitende oplossing voor software-attestatie te realiseren.
 Er zijn echter veel mogelijkheden waarbij de code van een aanvaller zich tussen
-de verschillende stappen in de attestatie procedure kan wringen. Zelfs indien
-de vaststeller rekening houdt met de tijd die de knoop nodig heeft om de
+de verschillende stappen in de attestatieprocedure kan \emph{wringen}. Zelfs
+indien de vaststeller rekening houdt met de tijd die de knoop nodig heeft om de
 attestatie te voltooien, zijn er technieken die snel genoeg zijn om ook hier
 binnen de aannemelijke grenzen te vallen. Al deze ingrepen zijn zeer complex en
 vragen een perfecte voorbereiding.

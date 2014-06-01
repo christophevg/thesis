@@ -3,14 +3,16 @@
 \chapter{Het \emph{visitor} patroon}
 \label{appendix:visitor}
 
-Het \emph{visitor} patroon vormt de basis voor transformaties in de generator.
+Het \emph{visitor}-patroon vormt de basis voor transformaties in de generator.
 In deze bijlage belichten we dit patroon kort, alsook de implementatie in
 Python, zoals deze gerealiseerd werd in het kader van deze masterproef.
 
 \section{Het patroon}
 \label{section:devel-visitor-pattern}
 
-De kern van de transformaties is het \emph{visitor} patroon zoals beschreven in
+\setlength{\parindent}{15pt} % fixes indentation after inputminted
+
+De kern van de transformaties is het \emph{visitor}-patroon zoals beschreven in
 het de facto standaardwerk ``Design Patterns: Elements of reusable
 object-oriented software'' \citep{gamma1994design}. Figuur \ref{fig:visitor}
 illustreert het patroon in UML vorm.
@@ -18,13 +20,13 @@ illustreert het patroon in UML vorm.
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/visitor.pdf}
-  \caption[Het \emph{visitor} patroon in UML]{Het \emph{visitor} patroon in UML (Bron: \citep{wikipedia:visitor})}
+  \caption[Het \emph{visitor}-patroon in UML]{Het \emph{visitor}-patroon in UML (Bron: \citep{wikipedia:visitor})}
   \label{fig:visitor}
 \end{figure}
 
 Het principe tracht een ontkoppeling te maken van een taxonomie van klassen en
 de manier waarop deze klassen overlopen kunnen worden. Het patroon vraagt
-daarom het bestaan van twee basis-entiteiten: een te bezoeken taxonomie met een
+daarom het bestaan van twee basisentiteiten: een te bezoeken taxonomie met een
 gemeenschappelijke basisklasse en een declaratie van een bezoekende klasse.
 
 De gemeenschappelijke basisklasse declareert typisch een methode \ttt{accept}
@@ -32,7 +34,7 @@ die een instantie van de bezoekende klasse als parameter accepteert. De
 bedoeling is dat de implementerende taxonomie vervolgens voor elke klasse
 specifiek een implementatie maakt van deze methode. Deze implementatie zal
 ofwel de bezoekende klasse doorspelen aan hi\"erarchisch onderliggende klassen,
-ofwel een \ttt{visit} methode op de bezoekende klasse oproepen met zichzelf als
+ofwel een \ttt{visit}-methode op de bezoekende klasse oproepen met zichzelf als
 argument.
 
 Op een implementatie van een bezoekende klasse kunnen we nu verschillende
@@ -46,22 +48,22 @@ klasse ook geen kennis hebben van de structuur van de taxonomie.
 Python beschikt echter niet over het concept van overladen functies. Dit gebrek
 kan opgevangen worden door het type van de klasse mee op te nemen in de
 \ttt{visit}-functie. Dit eist natuurlijk dat bij de oproep van de
-\ttt{visit\_<class>} functie dit type mee in beschouwing wordt genomen. Zo
+\ttt{visit\_<class>}-functie dit type mee in beschouwing wordt genomen. Zo
 vervalt de mogelijkheid om met \'e\'en implementatie van de functie een
-onderliggend deel van de taxonomie te voorzien van een standaard implementatie.
+onderliggend deel van de taxonomie te voorzien van een standaardimplementatie.
 Figuur \ref{fig:py-visitor} geeft de opbouw van een mogelijke implementatie in
 Python weer.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\linewidth]{resources/py-visitor.pdf}
-  \caption{Een \emph{visitor} implementatie in Python}
+  \caption{Een \emph{visitor}-implementatie in Python}
   \label{fig:py-visitor}
 \end{figure}
 
 Dankzij het dynamische karakter van Python is het mogelijk om veel van deze
 problematiek te verbergen en te automatiseren. Door gebruik te maken van
-\emph{decorators} is het mogelijk om Python functies en klassen dynamisch aan
+\emph{decorators} is het mogelijk om Python-functies en klassen dynamisch aan
 te passen voor ze gebruikt worden. Door middel van dit principe is het mogelijk
 om een klasse te declareren die de klassen, gedefini\"eerd in een bepaalde
 module, kan bezoeken. Van deze klasse kan vervolgens een implementatie gemaakt
@@ -83,7 +85,7 @@ is ook mede de reden dat doorheen de hele implementatie van de generator vele
 bezoekende klassen gebruikt worden.
 
 Een laatste bijkomende uitbreiding die werd toegevoegd is de opsplitsing van de
-\ttt{handle\_<ttype>} functie in een \ttt{before\_visit\_<class>} en
+\ttt{handle\_<class>}-functie in een \ttt{before\_visit\_<class>} en
 \ttt{after\_visit\_<class>}. Hierdoor kan de manier waarop doorheen de
 hi\"erarchische boomstructuur wordt gelopen bepaald worden: ofwel eerst in de
 breedte (\emph{Depth-First}) ofwel eerst in diepte (\emph{Breadth-First}). Dit

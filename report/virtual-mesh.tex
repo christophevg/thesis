@@ -3,12 +3,12 @@
 \chapter{Simulatie van routering voor een XBee-gebaseerd maasnetwerk}
 \label{virtual-mesh}
 
-Het hardwareplatform, beschreven in \ref{hardware-platform}, beschikt over een
-XBee-module om het ZigBee-netwerk op te bouwen. Deze module biedt een zeer
-hoogniveau interface aan, waardoor routering en concepten op lagere niveaus in
-het algemeen verborgen blijven. Zo is het bv. onmogelijk om communicatie die
-niet voor de eigen radio bestemd is op te vangen, terwijl dit net een typische
-eigenschap is van een draadloos (maas)netwerk.
+Het hardwareplatform, beschreven in bijlage \ref{hardware-platform}, beschikt
+over een XBee-module om het ZigBee-netwerk op te bouwen. Deze module biedt een
+zeer hoogniveau interface aan, waardoor routering en concepten op lagere
+niveaus in het algemeen verborgen blijven. Zo is het bv. onmogelijk om
+communicatie die niet voor de eigen radio bestemd is op te vangen, terwijl dit
+net een typische eigenschap is van een draadloos (maas)netwerk.
 
 Aangezien het kunnen opvolgen van het verder doorsturen van berichten een
 belangrijk aspect is in het kader van deze masterproef, en hiervoor alle
@@ -25,10 +25,10 @@ In een eerste fase werd deze virtuele routering gerealiseerd door middel van
 verstuurd. Op deze manier komt een bericht niet alleen toe bij de effectieve
 bestemmeling, maar ook bij andere knopen, waardoor het \emph{afluistergedrag}
 gesimuleerd kan worden. Door toevoegen van extra informatie over de
-oorspronkelijke verzender, de tussenliggende knoop langs waar de boodschap
+oorspronkelijke verzender, de tussenliggende knoop waarlangs de boodschap
 verzonden werd en de uiteindelijke bestemmeling, kan een knoop bepalen of een
 bericht aan hem verzonden is, of dat het een \emph{afgeluisterde} boodschap is
-die verzonden was tussen twee andere knopen. 
+die verzonden was tussen twee andere knopen.
 
 Deze implementatie was eenvoudig maar doeltreffend, maar ook slechts in theorie
 een goede oplossing. In de praktijk bleek dit niet zo te zijn. Het probleem
@@ -56,12 +56,12 @@ network, broadcast messages should be used sparingly.}
 
 \end{quote}
 
-Aangezien de \emph{broadcast transmissie tabel} slechts plaats heeft om 8
-broadcasts op te volgen. Elk van die broadcasts moet gedurende 8 seconden
-bijgehouden worden. Het is duidelijk dat bij gebruik van broadcasting, om alle
-communicatie te realiseren, deze buffer snel gevuld is en dat vervolgens
-pakketten gewoon verwijderd worden. Dat dit nagenoeg stilzwijgend gebeurt is
-op zijn minst bedenkelijk te noemen.
+De \emph{broadcast transmission table} heeft slechts plaats om 8 broadcasts op
+te volgen. Elk van die broadcasts moet gedurende 8 seconden bijgehouden worden.
+Het is duidelijk dat bij gebruik van broadcasting om alle communicatie te
+realiseren, deze buffer snel gevuld is en dat vervolgens pakketten gewoon
+verwijderd worden. Dat dit nagenoeg stilzwijgend gebeurt is op zijn minst
+bedenkelijk te noemen.
 
 Daarom werd in een tweede implementatie gebruik gemaakt van \emph{unicasting},
 of het versturen van een bericht aan \'e\'en specifieke bestemmeling. Bij
@@ -94,9 +94,9 @@ twee identieke sensorknopen.
 
 Om met de drie XBee-modules op een correcte manier tot een maasnetwerk te
 komen, moeten we de modules voorzien van een specifieke configuratie. Zo wordt
-bij de co\"rdinator de tijdspanne dat nieuwe knopen het netwerk kunnen
-vervoegen beperkt tot \'e\'en minuut. Dit gebeurt aan de hand van het \ttt{NJ}
-(Node Join) commando. Gedurende deze periode kan dan de router geactiveerd
+bij de co\"ordinator de tijdspanne dat nieuwe knopen het netwerk kunnen
+vervoegen beperkt tot \'e\'en minuut. Dit gebeurt aan de hand van het
+\emph{Node Join}-commando. Gedurende deze periode kan dan de router geactiveerd
 worden. Na associatie van deze radio en het verstrijken van deze minuut, kan de
 eindknoop geactiveerd worden. Deze zal niet meer rechtstreeks bij de
 co\"ordinator kunnen aansluiten en zal via de router het netwerk moeten
@@ -116,8 +116,8 @@ daarentegen zal nooit berichten voor een andere knoop ontvangen, moet geen
 berichten doorsturen en dient daarom ook geen berichten te ontdubbelen.
 
 Bij het versturen van berichten wordt \emph{extra adresinformatie} aan het
-bericht toegevoegd, nl. de drie bijkomende netwerkadressen van de betrokken:
-het adres van de oorspronkelijke \emph{verzender}, het adres van de
+bericht toegevoegd, nl. de drie bijkomende netwerkadressen van de betrokken
+knopen: het adres van de oorspronkelijke \emph{verzender}, het adres van de
 \emph{tussenliggende knoop} en het adres van de uiteindelijke
 \emph{bestemmeling}. Aan de hand van deze extra informatie kunnen knopen
 bepalen welke rol ze vertolken bij het ontvangen van een bericht en hoe ze er
@@ -125,8 +125,8 @@ dus moeten mee omgaan.
 
 De extra code die deze simulatie realiseert is weergegeven in codevoorbeeld
 \ref{lst:virtual-mesh}. Ze volgt de opbouw van de overeenkomstige code voor
-normale aansturing van de XBee-module: een verzend functie, een ontvang functie
-en de mogelijkheid om een externe verwerker voor binnenkomende berichten te
+normale aansturing van de XBee-module: een verzendfunctie, een ontvangfunctie
+en de mogelijkheid om een externe functie voor binnenkomende berichten te
 registreren.
 
 De werking wordt duidelijk aan de hand van een voorbeeld, waarbij zowel de
@@ -148,6 +148,8 @@ de eindknoop inderdaad de router als \emph{parent} opgeeft.
 \captionof{listing}{Simulatie van een maasnetwerk met XBee modules.
 \label{lst:virtual-mesh}}
 \vspace{3mm}
+
+\setlength{\parindent}{15pt} % fixes indentation after inputminted
 
 De router geeft als \emph{parent} \ttt{ff fe} aan. Dit adres staat voor een
 onbekend adres. XBee routers geven dit adres standaard terug aangezien het

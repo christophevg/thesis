@@ -206,6 +206,8 @@ gegenereerde functies, meegegeven kunnen worden aan de generieke functies. Deze
 kleine functies zouden dan opgeroepen kunnen worden om de effectieve condities
 te testen.
 
+\subsection{Optimaliseren van code}
+
 In het prototype is gekozen om een voorbeeld te introduceren van
 \emph{inlining}. Het gebruiken van functieverwijzingen zou het genereren
 eenvoudiger maken, doch de kost die gepaard gaat met het herhaaldelijk oproepen
@@ -213,6 +215,13 @@ van de verwijzing naar de functie met de conditie zou een serieuze belasting
 voor de \mcu met zich meebrengen. In het kader van dit probleem werden testen
 gedaan die uitwezen dat het verschil tussen het gebruik van een verwijzing en
 het \emph{inline}'en van deze code kan oplopen tot een factor 3000.
+
+Naast \emph{inlining} kan in het kader van de generator er tevens voor gezorgd
+worden dat de gegenereerde code technieken implementeert om optimaal met de
+gegevens en de verwerking door de \mcu om te springen. Voorbeelden van zulke
+mogelijkheden worden o.a. in \citep{naik2001software,panda2001data} besproken.
+Hierin worden verschillende voorbeelden gegeven van de impact van bepaalde
+codestructuren op de uitvoer van het gecompileerde resultaat.
 
 \subsection{Conclusie}
 
