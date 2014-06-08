@@ -700,3 +700,7 @@ activities
 - reviewed reputation and idp appendices (1h15min)
 - finalized second review appendices (2h)
 - finalized abbreviations + touch-ups (2h)
+
+2014-06-08 (6h30min/683h30min)
+- improved hardware design (30min)
+- design concept + intro slides final presentation (6h)
