@@ -701,6 +701,7 @@ activities
 - finalized second review appendices (2h)
 - finalized abbreviations + touch-ups (2h)
 
-2014-06-08 (6h30min/683h30min)
+2014-06-08 (9h/686h)
 - improved hardware design (30min)
 - design concept + intro slides final presentation (6h)
+- completed design + added slides on problem and proposed solution (2h30min)
