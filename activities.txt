@@ -705,3 +705,7 @@ activities
 - improved hardware design (30min)
 - design concept + intro slides final presentation (6h)
 - completed design + added slides on problem and proposed solution (2h30min)
+
+2014-06-09 (3h/689h)
+- touch-ups slides (1h)
+- added problem description slides (2h)
