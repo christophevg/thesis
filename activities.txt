@@ -709,3 +709,6 @@ activities
 2014-06-09 (3h/689h)
 - touch-ups slides (1h)
 - added problem description slides (2h)
+
+2014-06-10 (30min/689h30min)
+- touch-ups (30min)
