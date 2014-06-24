@@ -713,3 +713,16 @@ activities
 2014-06-10 (3h/692h)
 - touch-ups (30min)
 - added solution slides (2h30min)
+
+2014-06-21 (2h/694h)
+- finalized hardware design (2h)
+
+2014-06-22 (6h/700h)
+- constructed first sensor hardware (6h)
+
+2014-06-23 (4h/704h)
+- constructed second sensor hardware (4h)
+
+2014-06-24 (2h30min/706h30min)
+- fixed last hardware issues (30min)
+- improved coordinate.py to handle generated frames (2h)
