@@ -723,6 +723,7 @@ activities
 2014-06-23 (4h/704h)
 - constructed second sensor hardware (4h)
 
-2014-06-24 (2h30min/706h30min)
+2014-06-24 (7h30min/711h30min)
 - fixed last hardware issues (30min)
 - improved coordinate.py to handle generated frames (2h)
+- finalized slides (5h)
