@@ -75,5 +75,6 @@ clean:
 	@rm -rf $(OUTPUT)
 	@rm -f ../foo-lib/C/foo-lib/*.o
 	@rm -f lib/*.o
+	@(cd $(FOO-LANG); make mrproper)
 
 .PHONY: clean generate beautify build
