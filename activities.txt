@@ -728,5 +728,6 @@ activities
 - improved coordinate.py to handle generated frames (2h)
 - finalized slides (5h)
 
-2014-06-25 (1h/712h30min)
+2014-06-25 (2h/713h30min)
 - dry-run presentation + demo + backup hw (1h)
+- defense (1h)
