@@ -48,20 +48,26 @@ int main(void) {
   );
 #endif
 
+  // initialize receive interval
+  time_t next_receive = clock_get_millis(); // start now
+  
   while(TRUE) {
+    // process incoming packets
+    if( clock_get_millis() >= next_receive ) {
+      xbee_receive();
+      next_heartbeat += RECEIVE_INTERVAL;
+    }
+
+    // always do the application step
     application_step();
     
 #ifdef WITH_HEARTBEAT
-    xbee_receive();
     measure(heartbeat_step(););
 #endif
 
 #ifdef WITH_REPUTATION
-    xbee_receive();
     measure(reputation_step(););
 #endif
-
-    xbee_receive();
     
     report_metrics();
   }

@@ -8,6 +8,7 @@ uint16_t address;
 uint16_t parent;
 
 #define METRICS_REPORT_INTERVAL 15000
+#define RECEIVE_INTERVAL          100
 
 void report_metrics(void) {
          time_t   now         = clock_get_millis();
