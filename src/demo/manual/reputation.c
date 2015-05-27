@@ -18,8 +18,6 @@
 // configuration
 
 #define FORWARD_INTERVAL    1000    // forwards must be completed within 1s
-#define VALIDATION_INTERVAL 5000    // interval to check trust of nodes
-#define SHARING_INTERVAL    7500    // interval to broadcast reputation info
 #define INDIRECT_THRESHOLD     0.9  // lower limit for including indirect info
 #define AGING_WEIGHT           0.98 // factor to age reputation
 
@@ -58,8 +56,6 @@ static uint8_t           node_count = 0;
 static uint16_t me;
 
 // forward declarations of private helper functions
-static void _validate(void);
-static void _share(void);
 static void _track(reputation_node_t* node, uint8_t size, uint8_t* payload);
 static void _untrack(reputation_node_t* node, uint8_t size, uint8_t* payload);
 static uint8_t _remove_late(reputation_node_t* node);
@@ -69,31 +65,6 @@ static reputation_node_t* _get_node(uint16_t address);
 
 void reputation_init(void) {
   me = xbee_get_nw_address();
-}
-
-void reputation_step(void) {
-  // intervals markers
-  static time_t next_validation = 0;
-  static time_t next_sharing    = 0;
-  
-  if(next_validation == 0) {
-    next_validation = clock_get_millis() + VALIDATION_INTERVAL;
-    next_sharing    = clock_get_millis() + SHARING_INTERVAL;
-  }
-
-  time_t now = clock_get_millis();
-  
-  // validate known nodes
-  if( now >= next_validation ) {
-    _validate();
-    next_validation += VALIDATION_INTERVAL;
-  }
-  
-  // share reputation information
-  if( now >= next_sharing ) {
-    _share();
-    next_sharing += SHARING_INTERVAL;
-  }
 }
 
 // processing all incoming messages.
@@ -155,9 +126,7 @@ void reputation_transmit(uint16_t from, uint16_t hop, uint16_t to,
   _track(node, size, payload);
 }
 
-// private helper functions
-
-static void _validate(void) {
+void reputation_validate(void) {
   for(uint8_t n=0; n<node_count; n++) {
     // count late/missing forwards
     uint8_t failures = _remove_late(&nodes[n]);
@@ -188,7 +157,7 @@ static void _validate(void) {
   }
 }
 
-static void _share(void) {
+void reputation_share(void) {
   for(uint8_t n=0; n<node_count; n++) {
     union {
       struct {

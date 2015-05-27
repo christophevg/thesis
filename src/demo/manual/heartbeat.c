@@ -17,8 +17,6 @@
 
 // configuration
 
-#define HEARTBEAT_INTERVAL  3000  // send out a heartbeat every 3s
-#define PROCESSING_INTERVAL 5000  // process every 1s
 #define MAX_INCIDENTS          3  // number of incidents before trust is gone
 
 #define MAX_NODES              5  // maximum number of tracked neighbours
@@ -49,8 +47,6 @@ static uint8_t          node_count = 0;
 static uint16_t me;
 
 // forward declarations of private helper functions
-static void              _beat(void);
-static void              _process(void);
 static heartbeat_node_t* _get_node(uint16_t address);
 static void              _log_node(const char* msg, heartbeat_node_t* node);
 
@@ -58,32 +54,6 @@ static void              _log_node(const char* msg, heartbeat_node_t* node);
 
 void heartbeat_init(void) {
   me = xbee_get_nw_address();
-}
-
-void heartbeat_step(void) {
-  // intervals markers
-  static time_t next_heartbeat  = 0;
-  static time_t next_processing = 0;
-  if(next_heartbeat == 0) {
-    next_heartbeat = clock_get_millis();
-    next_processing = clock_get_millis() + PROCESSING_INTERVAL;
-  }
-
-  time_t now = clock_get_millis();
-  
-  // send a heartbeat
-  if( now >= next_heartbeat ) {
-    _beat();
-    next_heartbeat += HEARTBEAT_INTERVAL;
-  }
-
-  now = clock_get_millis(); // refresh time, might bring next step closer ;-)
-  
-  // do background processing
-  if( now >= next_processing ) {
-    _process();
-    next_processing += PROCESSING_INTERVAL;
-  }
 }
 
 // processes payload received information
@@ -127,7 +97,7 @@ void heartbeat_receive(uint16_t source,
 
 // private helper functions
 
-void _beat(void) {
+void heartbeat_send(void) {
   // a heartbeat sequence counter
   static uint8_t heartbeat = 0;
 
@@ -155,7 +125,7 @@ void _beat(void) {
 // background processing: check if anything went wrong and do this in two steps
 // check if node's heartbeat is late.
 // after 3 incidents, mark the node as untrustworthy
-void _process(void) {
+void heartbeat_process(void) {
   time_t now = clock_get_millis();
 
   for(uint8_t i=0; i<node_count; i++) {

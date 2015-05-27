@@ -31,7 +31,18 @@ void transmit(uint16_t from, uint16_t hop, uint16_t to,
               uint8_t size,  uint8_t* payload);
 
 void application_step(void) {
-#include "../lib/application_step.c"
+  uint16_t reading;               // the 16-bit reading from the ADC
+  uint8_t  values[2];             // the bytes containing the reading in bytes
+
+  // read light sensor
+  reading = avr_adc_read(LIGHT_SENSOR_PIN);
+  values[0] = (reading >> 8);
+  values[1] = reading;
+  
+  _log("light reading: %02x %02x\n", values[0], values[1]);
+
+  // and send it to the coordinator through the mesh
+  mesh_send(address, DESTINATION, 2, values);
 }
 
 int main(void) {
@@ -48,28 +59,71 @@ int main(void) {
   );
 #endif
 
+  time_t now = clock_get_millis();
+
   // initialize receive interval
-  time_t next_receive = clock_get_millis(); // start now
-  
+  time_t next_receive     = now;
+  time_t next_report      = now + METRICS_REPORT_INTERVAL;
+  time_t next_heartbeat   = now;
+  time_t next_processing  = now + PROCESSING_INTERVAL;
+  time_t next_validation  = now + VALIDATION_INTERVAL;
+  time_t next_sharing     = now + SHARING_INTERVAL;
+  time_t next_measurement = now;  
+
   while(TRUE) {
+    now = clock_get_millis();
+    cycles++;
+    
     // process incoming packets
-    if( clock_get_millis() >= next_receive ) {
+    if( now >= next_receive ) {
       xbee_receive();
-      next_heartbeat += RECEIVE_INTERVAL;
+      next_receive += RECEIVE_INTERVAL;
+      continue;
     }
 
-    // always do the application step
-    application_step();
+    // the application step
+    if( now >= next_measurement) {
+      application_step();
+      next_measurement += 5000;
+      continue;
+    }
     
 #ifdef WITH_HEARTBEAT
-    measure(heartbeat_step(););
+    // send a heartbeat
+    if( now >= next_heartbeat ) {
+      heartbeat_send();
+      next_heartbeat += HEARTBEAT_INTERVAL;
+      continue;
+    }
+    if( now >= next_processing ) {
+      heartbeat_process();
+      next_processing += PROCESSING_INTERVAL;
+      continue;
+    }
 #endif
 
 #ifdef WITH_REPUTATION
-    measure(reputation_step(););
+    // validate known nodes
+    if( now >= next_validation ) {
+        reputation_validate();
+        next_validation += VALIDATION_INTERVAL;
+        continue;
+    }
+  
+    // share reputation information
+    if( now >= next_sharing ) {
+      reputation_share();
+      next_sharing += SHARING_INTERVAL;
+      continue;
+    }
 #endif
     
-    report_metrics();
+    // reporting
+    if( now >= next_report ) {
+      report_metrics();
+      next_report += METRICS_REPORT_INTERVAL;
+      continue;
+    }
   }
 
   return(0);
